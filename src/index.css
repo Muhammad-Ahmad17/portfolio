@@ -18,7 +18,7 @@ All colors MUST be HSL.
     --popover: 44 96% 98%;
     --popover-foreground: 192 81% 14%;
 
-    /* Solarized Blue as Primary */
+    /* Default - Solarized Blue as Primary */
     --primary: 205 69% 49%;
     --primary-foreground: 44 96% 98%;
     --primary-glow: 197 71% 73%;
@@ -50,6 +50,61 @@ All colors MUST be HSL.
     --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.3);
   }
 
+  /* Pink Theme */
+  :root[data-color="pink"] {
+    --primary: 330 81% 60%;
+    --primary-foreground: 44 96% 98%;
+    --primary-glow: 330 81% 80%;
+    --ring: 330 81% 60%;
+    --gradient-primary: linear-gradient(135deg, hsl(330 81% 60%), hsl(330 81% 80%));
+    --gradient-hero: linear-gradient(135deg, hsl(330 81% 60% / 0.1), hsl(330 81% 80% / 0.1));
+    --shadow-glow: 0 0 40px hsl(330 81% 80% / 0.3);
+  }
+
+  /* Orange Theme */
+  :root[data-color="orange"] {
+    --primary: 25 95% 53%;
+    --primary-foreground: 44 96% 98%;
+    --primary-glow: 25 95% 73%;
+    --ring: 25 95% 53%;
+    --gradient-primary: linear-gradient(135deg, hsl(25 95% 53%), hsl(25 95% 73%));
+    --gradient-hero: linear-gradient(135deg, hsl(25 95% 53% / 0.1), hsl(25 95% 73% / 0.1));
+    --shadow-glow: 0 0 40px hsl(25 95% 73% / 0.3);
+  }
+
+  /* Green Theme */
+  :root[data-color="green"] {
+    --primary: 142 76% 36%;
+    --primary-foreground: 44 96% 98%;
+    --primary-glow: 142 76% 56%;
+    --ring: 142 76% 36%;
+    --gradient-primary: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 56%));
+    --gradient-hero: linear-gradient(135deg, hsl(142 76% 36% / 0.1), hsl(142 76% 56% / 0.1));
+    --shadow-glow: 0 0 40px hsl(142 76% 56% / 0.3);
+  }
+
+  /* Blue Theme (Default) */
+  :root[data-color="blue"] {
+    --primary: 205 69% 49%;
+    --primary-foreground: 44 96% 98%;
+    --primary-glow: 197 71% 73%;
+    --ring: 205 69% 49%;
+    --gradient-primary: linear-gradient(135deg, hsl(205 69% 49%), hsl(197 71% 73%));
+    --gradient-hero: linear-gradient(135deg, hsl(205 69% 49% / 0.1), hsl(197 71% 73% / 0.1));
+    --shadow-glow: 0 0 40px hsl(197 71% 73% / 0.3);
+  }
+
+  /* Purple Theme */
+  :root[data-color="purple"] {
+    --primary: 259 94% 51%;
+    --primary-foreground: 44 96% 98%;
+    --primary-glow: 280 100% 70%;
+    --ring: 259 94% 51%;
+    --gradient-primary: linear-gradient(135deg, hsl(259 94% 51%), hsl(280 100% 70%));
+    --gradient-hero: linear-gradient(135deg, hsl(259 94% 51% / 0.1), hsl(280 100% 70% / 0.1));
+    --shadow-glow: 0 0 40px hsl(280 100% 70% / 0.3);
+  }
+
   .dark {
     /* Monaco Dark Theme Colors */
     --background: 0 0% 12%;
@@ -61,7 +116,7 @@ All colors MUST be HSL.
     --popover: 0 0% 14%;
     --popover-foreground: 0 0% 95%;
 
-    /* Monaco Blue as Primary */
+    /* Default - Monaco Blue as Primary */
     --primary: 212 100% 48%;
     --primary-foreground: 0 0% 98%;
     --primary-glow: 212 100% 70%;
@@ -88,6 +143,56 @@ All colors MUST be HSL.
     --gradient-hero: linear-gradient(135deg, hsl(212 100% 48% / 0.1), hsl(212 100% 70% / 0.1));
     --shadow-elegant: 0 20px 25px -5px hsl(0 0% 0% / 0.4), 0 10px 10px -5px hsl(0 0% 0% / 0.2);
     --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.3);
+  }
+
+  /* Dark Pink Theme */
+  .dark[data-color="pink"] {
+    --primary: 330 81% 60%;
+    --primary-glow: 330 81% 80%;
+    --ring: 330 81% 60%;
+    --gradient-primary: linear-gradient(135deg, hsl(330 81% 60%), hsl(330 81% 80%));
+    --gradient-hero: linear-gradient(135deg, hsl(330 81% 60% / 0.1), hsl(330 81% 80% / 0.1));
+    --shadow-glow: 0 0 40px hsl(330 81% 80% / 0.3);
+  }
+
+  /* Dark Orange Theme */
+  .dark[data-color="orange"] {
+    --primary: 25 95% 53%;
+    --primary-glow: 25 95% 73%;
+    --ring: 25 95% 53%;
+    --gradient-primary: linear-gradient(135deg, hsl(25 95% 53%), hsl(25 95% 73%));
+    --gradient-hero: linear-gradient(135deg, hsl(25 95% 53% / 0.1), hsl(25 95% 73% / 0.1));
+    --shadow-glow: 0 0 40px hsl(25 95% 73% / 0.3);
+  }
+
+  /* Dark Green Theme */
+  .dark[data-color="green"] {
+    --primary: 142 76% 36%;
+    --primary-glow: 142 76% 56%;
+    --ring: 142 76% 36%;
+    --gradient-primary: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 56%));
+    --gradient-hero: linear-gradient(135deg, hsl(142 76% 36% / 0.1), hsl(142 76% 56% / 0.1));
+    --shadow-glow: 0 0 40px hsl(142 76% 56% / 0.3);
+  }
+
+  /* Dark Blue Theme (Default) */
+  .dark[data-color="blue"] {
+    --primary: 212 100% 48%;
+    --primary-glow: 212 100% 70%;
+    --ring: 212 100% 48%;
+    --gradient-primary: linear-gradient(135deg, hsl(212 100% 48%), hsl(212 100% 70%));
+    --gradient-hero: linear-gradient(135deg, hsl(212 100% 48% / 0.1), hsl(212 100% 70% / 0.1));
+    --shadow-glow: 0 0 40px hsl(212 100% 70% / 0.3);
+  }
+
+  /* Dark Purple Theme */
+  .dark[data-color="purple"] {
+    --primary: 259 94% 51%;
+    --primary-glow: 280 100% 70%;
+    --ring: 259 94% 51%;
+    --gradient-primary: linear-gradient(135deg, hsl(259 94% 51%), hsl(280 100% 70%));
+    --gradient-hero: linear-gradient(135deg, hsl(259 94% 51% / 0.1), hsl(280 100% 70% / 0.1));
+    --shadow-glow: 0 0 40px hsl(280 100% 70% / 0.3);
   }
 }
 

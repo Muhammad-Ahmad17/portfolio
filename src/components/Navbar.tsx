@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { ColorPicker } from "@/components/ColorPicker";
 import { portfolioData } from "@/data/portfolio";
 
 const navItems = [
@@ -110,6 +111,7 @@ export function Navbar() {
                 <Mail className="h-5 w-5" />
               </a>
             </Button>
+            <ColorPicker />
             <ThemeToggle />
           </div>
 

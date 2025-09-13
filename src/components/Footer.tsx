@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Heart, Github, Linkedin, Mail, ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { ColorPicker } from "@/components/ColorPicker";
 import { portfolioData } from "@/data/portfolio";
 
 export function Footer() {
@@ -91,7 +92,8 @@ export function Footer() {
               <p>{portfolioData.personal.location}</p>
             </div>
             <div className="mt-6 flex justify-center md:justify-end">
-              <ThemeToggle />
+          <ColorPicker />
+          <ThemeToggle />
             </div>
           </motion.div>
         </div>
