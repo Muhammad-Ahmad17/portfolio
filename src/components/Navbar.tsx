@@ -5,19 +5,22 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { ColorPicker } from "@/components/ColorPicker";
 import { portfolioData } from "@/data/portfolio";
+import { Link, useNavigate } from "react-router-dom";
 
 const navItems = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-  { href: "#skills", label: "Skills" },
-  { href: "#experience", label: "Experience" },
-  { href: "#contact", label: "Contact" },
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/skills", label: "Skills" },
+  { href: "/experience", label: "Experience" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,12 +31,10 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false);
-    }
+  const handleNavigation = (href: string) => {
+    navigate(href);
+    setIsOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -55,7 +56,7 @@ export function Navbar() {
           >
             <Button
               variant="ghost"
-              onClick={() => scrollToSection("#home")}
+              onClick={() => handleNavigation("/")}
               className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent hover:bg-transparent"
             >
               Muhammad
@@ -69,11 +70,16 @@ export function Navbar() {
                 <Button
                   key={item.href}
                   variant="ghost"
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => handleNavigation(item.href)}
                   className="hover:text-primary transition-colors relative group"
                 >
                   {item.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+                  <motion.span 
+                    className="absolute bottom-0 left-0 h-0.5 bg-primary"
+                    initial={{ width: 0 }}
+                    whileHover={{ width: "100%" }}
+                    transition={{ duration: 0.3 }}
+                  />
                 </Button>
               ))}
             </div>
@@ -117,6 +123,7 @@ export function Navbar() {
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-2">
+            <ColorPicker />
             <ThemeToggle />
             <Button
               variant="ghost"
@@ -143,8 +150,8 @@ export function Navbar() {
                   <Button
                     key={item.href}
                     variant="ghost"
-                    onClick={() => scrollToSection(item.href)}
-                    className="w-full text-left justify-start hover:text-primary"
+                    onClick={() => handleNavigation(item.href)}
+                    className="w-full text-left justify-start hover:text-primary hover:bg-primary/10 transition-all"
                   >
                     {item.label}
                   </Button>
