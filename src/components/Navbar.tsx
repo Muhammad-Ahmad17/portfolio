@@ -41,23 +41,24 @@ export function Navbar() {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border/50"
-          : "bg-transparent"
+          ? "bg-background/95 backdrop-blur-lg border-b border-border shadow-lg"
+          : "bg-background/50 backdrop-blur-sm"
       }`}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             className="flex-shrink-0"
           >
             <Button
               variant="ghost"
               onClick={() => handleNavigation("/")}
-              className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent hover:bg-transparent"
+              className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent hover:bg-transparent p-0 h-auto"
             >
               Muhammad
             </Button>
@@ -65,33 +66,28 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+            <div className="flex items-center space-x-1">
               {navItems.map((item) => (
                 <Button
                   key={item.href}
                   variant="ghost"
                   onClick={() => handleNavigation(item.href)}
-                  className="hover:text-primary transition-colors relative group"
+                  className="relative px-4 py-2 text-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300 rounded-lg group"
                 >
                   {item.label}
-                  <motion.span 
-                    className="absolute bottom-0 left-0 h-0.5 bg-primary"
-                    initial={{ width: 0 }}
-                    whileHover={{ width: "100%" }}
-                    transition={{ duration: 0.3 }}
-                  />
+                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-primary group-hover:w-3/4 transition-all duration-300 rounded-full" />
                 </Button>
               ))}
             </div>
           </div>
 
           {/* Right side buttons */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-2">
             <Button
               variant="ghost"
               size="icon"
               asChild
-              className="hover:text-primary"
+              className="hover:text-primary hover:bg-primary/10 transition-all duration-300 rounded-full"
             >
               <a href={portfolioData.social.github} target="_blank" rel="noopener noreferrer">
                 <Github className="h-5 w-5" />
@@ -101,7 +97,7 @@ export function Navbar() {
               variant="ghost"
               size="icon"
               asChild
-              className="hover:text-primary"
+              className="hover:text-primary hover:bg-primary/10 transition-all duration-300 rounded-full"
             >
               <a href={portfolioData.social.linkedin} target="_blank" rel="noopener noreferrer">
                 <Linkedin className="h-5 w-5" />
@@ -111,12 +107,13 @@ export function Navbar() {
               variant="ghost"
               size="icon"
               asChild
-              className="hover:text-primary"
+              className="hover:text-primary hover:bg-primary/10 transition-all duration-300 rounded-full"
             >
               <a href={`mailto:${portfolioData.personal.email}`}>
                 <Mail className="h-5 w-5" />
               </a>
             </Button>
+            <div className="w-px h-6 bg-border mx-2" />
             <ColorPicker />
             <ThemeToggle />
           </div>
@@ -129,7 +126,7 @@ export function Navbar() {
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
-              className="text-foreground"
+              className="text-foreground hover:bg-primary/10 hover:text-primary transition-all duration-300"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
@@ -143,31 +140,53 @@ export function Navbar() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-background/95 backdrop-blur-md rounded-lg mt-2 border border-border/50"
+              transition={{ duration: 0.3 }}
+              className="md:hidden overflow-hidden"
             >
-              <div className="px-2 pt-2 pb-3 space-y-1">
-                {navItems.map((item) => (
-                  <Button
+              <div className="py-4 space-y-2 bg-card/80 backdrop-blur-lg rounded-xl my-4 border border-border shadow-xl">
+                {navItems.map((item, index) => (
+                  <motion.div
                     key={item.href}
-                    variant="ghost"
-                    onClick={() => handleNavigation(item.href)}
-                    className="w-full text-left justify-start hover:text-primary hover:bg-primary/10 transition-all"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
                   >
-                    {item.label}
-                  </Button>
+                    <Button
+                      variant="ghost"
+                      onClick={() => handleNavigation(item.href)}
+                      className="w-full text-left justify-start hover:text-primary hover:bg-primary/10 transition-all duration-300 px-6"
+                    >
+                      {item.label}
+                    </Button>
+                  </motion.div>
                 ))}
-                <div className="flex items-center justify-center space-x-4 pt-4 border-t border-border/50">
-                  <Button variant="ghost" size="icon" asChild>
+                <div className="flex items-center justify-center space-x-4 pt-4 mt-4 border-t border-border">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    asChild
+                    className="hover:text-primary hover:bg-primary/10 transition-all duration-300 rounded-full"
+                  >
                     <a href={portfolioData.social.github} target="_blank" rel="noopener noreferrer">
                       <Github className="h-5 w-5" />
                     </a>
                   </Button>
-                  <Button variant="ghost" size="icon" asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    asChild
+                    className="hover:text-primary hover:bg-primary/10 transition-all duration-300 rounded-full"
+                  >
                     <a href={portfolioData.social.linkedin} target="_blank" rel="noopener noreferrer">
                       <Linkedin className="h-5 w-5" />
                     </a>
                   </Button>
-                  <Button variant="ghost" size="icon" asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    asChild
+                    className="hover:text-primary hover:bg-primary/10 transition-all duration-300 rounded-full"
+                  >
                     <a href={`mailto:${portfolioData.personal.email}`}>
                       <Mail className="h-5 w-5" />
                     </a>
