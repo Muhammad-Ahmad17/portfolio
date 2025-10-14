@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,191 +10,199 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Solarized Light Theme Colors */
-    --background: 44 87% 94%;
-    --foreground: 192 81% 14%;
+    /* Refined Light Theme - Professional & Clean */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
 
-    --card: 44 96% 98%;
-    --card-foreground: 192 81% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
 
-    --popover: 44 96% 98%;
-    --popover-foreground: 192 81% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
 
-    /* Default - Solarized Blue as Primary */
-    --primary: 205 69% 49%;
-    --primary-foreground: 44 96% 98%;
-    --primary-glow: 197 71% 73%;
+    /* Default - Cyan Developer Vibe */
+    --primary: 189 94% 43%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 189 94% 63%;
 
-    --secondary: 45 100% 85%;
-    --secondary-foreground: 192 81% 14%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 44 87% 94%;
-    --muted-foreground: 194 14% 40%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 68 100% 30%;
-    --accent-foreground: 44 96% 98%;
+    --accent: 189 94% 43%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 1 71% 52%;
-    --destructive-foreground: 44 96% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 45 100% 85%;
-    --input: 45 100% 85%;
-    --ring: 205 69% 49%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 189 94% 43%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    /* Solarized specific colors */
-    --glass-bg: 44 87% 94% / 0.8;
-    --glass-border: 45 100% 85% / 0.5;
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-hero: linear-gradient(135deg, hsl(205 69% 49% / 0.1), hsl(197 71% 73% / 0.1));
-    --shadow-elegant: 0 20px 25px -5px hsl(var(--primary) / 0.1), 0 10px 10px -5px hsl(var(--primary) / 0.04);
-    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.3);
+    /* Professional gradients & shadows */
+    --glass-bg: 0 0% 100% / 0.8;
+    --glass-border: 214 32% 91% / 0.5;
+    --gradient-primary: linear-gradient(135deg, hsl(189 94% 43%), hsl(189 94% 63%));
+    --gradient-hero: linear-gradient(135deg, hsl(189 94% 43% / 0.05), hsl(189 94% 63% / 0.05));
+    --shadow-elegant: 0 4px 6px -1px hsl(220 20% 10% / 0.05), 0 2px 4px -1px hsl(220 20% 10% / 0.03);
+    --shadow-glow: 0 0 60px hsl(189 94% 63% / 0.4);
+    
+    /* Code editor aesthetic */
+    --code-bg: 220 14% 96%;
+    --code-text: 222 47% 11%;
   }
 
-  /* Pink Theme */
+  /* Pink Theme - Elegant Rose */
   :root[data-color="pink"] {
-    --primary: 330 81% 60%;
-    --primary-foreground: 44 96% 98%;
-    --primary-glow: 330 81% 80%;
-    --ring: 330 81% 60%;
-    --gradient-primary: linear-gradient(135deg, hsl(330 81% 60%), hsl(330 81% 80%));
-    --gradient-hero: linear-gradient(135deg, hsl(330 81% 60% / 0.1), hsl(330 81% 80% / 0.1));
-    --shadow-glow: 0 0 40px hsl(330 81% 80% / 0.3);
+    --primary: 345 82% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 345 82% 75%;
+    --ring: 345 82% 60%;
+    --gradient-primary: linear-gradient(135deg, hsl(345 82% 60%), hsl(345 82% 75%));
+    --gradient-hero: linear-gradient(135deg, hsl(345 82% 60% / 0.05), hsl(345 82% 75% / 0.05));
+    --shadow-glow: 0 0 60px hsl(345 82% 75% / 0.4);
   }
 
-  /* Orange Theme */
+  /* Orange Theme - Warm Amber */
   :root[data-color="orange"] {
-    --primary: 25 95% 53%;
-    --primary-foreground: 44 96% 98%;
-    --primary-glow: 25 95% 73%;
-    --ring: 25 95% 53%;
-    --gradient-primary: linear-gradient(135deg, hsl(25 95% 53%), hsl(25 95% 73%));
-    --gradient-hero: linear-gradient(135deg, hsl(25 95% 53% / 0.1), hsl(25 95% 73% / 0.1));
-    --shadow-glow: 0 0 40px hsl(25 95% 73% / 0.3);
+    --primary: 27 96% 61%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 27 96% 76%;
+    --ring: 27 96% 61%;
+    --gradient-primary: linear-gradient(135deg, hsl(27 96% 61%), hsl(27 96% 76%));
+    --gradient-hero: linear-gradient(135deg, hsl(27 96% 61% / 0.05), hsl(27 96% 76% / 0.05));
+    --shadow-glow: 0 0 60px hsl(27 96% 76% / 0.4);
   }
 
-  /* Green Theme */
+  /* Green Theme - Matrix Green */
   :root[data-color="green"] {
-    --primary: 142 76% 36%;
-    --primary-foreground: 44 96% 98%;
-    --primary-glow: 142 76% 56%;
-    --ring: 142 76% 36%;
-    --gradient-primary: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 56%));
-    --gradient-hero: linear-gradient(135deg, hsl(142 76% 36% / 0.1), hsl(142 76% 56% / 0.1));
-    --shadow-glow: 0 0 40px hsl(142 76% 56% / 0.3);
+    --primary: 142 71% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 142 71% 60%;
+    --ring: 142 71% 45%;
+    --gradient-primary: linear-gradient(135deg, hsl(142 71% 45%), hsl(142 71% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(142 71% 45% / 0.05), hsl(142 71% 60% / 0.05));
+    --shadow-glow: 0 0 60px hsl(142 71% 60% / 0.4);
   }
 
-  /* Blue Theme (Default) */
+  /* Blue Theme (Default) - Cyan Dev */
   :root[data-color="blue"] {
-    --primary: 205 69% 49%;
-    --primary-foreground: 44 96% 98%;
-    --primary-glow: 197 71% 73%;
-    --ring: 205 69% 49%;
-    --gradient-primary: linear-gradient(135deg, hsl(205 69% 49%), hsl(197 71% 73%));
-    --gradient-hero: linear-gradient(135deg, hsl(205 69% 49% / 0.1), hsl(197 71% 73% / 0.1));
-    --shadow-glow: 0 0 40px hsl(197 71% 73% / 0.3);
+    --primary: 189 94% 43%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 189 94% 63%;
+    --ring: 189 94% 43%;
+    --gradient-primary: linear-gradient(135deg, hsl(189 94% 43%), hsl(189 94% 63%));
+    --gradient-hero: linear-gradient(135deg, hsl(189 94% 43% / 0.05), hsl(189 94% 63% / 0.05));
+    --shadow-glow: 0 0 60px hsl(189 94% 63% / 0.4);
   }
 
-  /* Purple Theme */
+  /* Purple Theme - Electric Violet */
   :root[data-color="purple"] {
-    --primary: 259 94% 51%;
-    --primary-foreground: 44 96% 98%;
-    --primary-glow: 280 100% 70%;
-    --ring: 259 94% 51%;
-    --gradient-primary: linear-gradient(135deg, hsl(259 94% 51%), hsl(280 100% 70%));
-    --gradient-hero: linear-gradient(135deg, hsl(259 94% 51% / 0.1), hsl(280 100% 70% / 0.1));
-    --shadow-glow: 0 0 40px hsl(280 100% 70% / 0.3);
+    --primary: 271 81% 56%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 271 81% 71%;
+    --ring: 271 81% 56%;
+    --gradient-primary: linear-gradient(135deg, hsl(271 81% 56%), hsl(271 81% 71%));
+    --gradient-hero: linear-gradient(135deg, hsl(271 81% 56% / 0.05), hsl(271 81% 71% / 0.05));
+    --shadow-glow: 0 0 60px hsl(271 81% 71% / 0.4);
   }
 
   .dark {
-    /* Monaco Dark Theme Colors */
-    --background: 0 0% 12%;
-    --foreground: 0 0% 95%;
+    /* VS Code Dark+ Theme */
+    --background: 220 13% 13%;
+    --foreground: 210 11% 85%;
 
-    --card: 0 0% 14%;
-    --card-foreground: 0 0% 95%;
+    --card: 220 13% 16%;
+    --card-foreground: 210 11% 85%;
 
-    --popover: 0 0% 14%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 220 13% 16%;
+    --popover-foreground: 210 11% 85%;
 
-    /* Default - Monaco Blue as Primary */
-    --primary: 212 100% 48%;
-    --primary-foreground: 0 0% 98%;
-    --primary-glow: 212 100% 70%;
+    /* Default - Cyan Terminal */
+    --primary: 189 94% 63%;
+    --primary-foreground: 220 13% 13%;
+    --primary-glow: 189 94% 75%;
 
-    --secondary: 0 0% 20%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 220 13% 18%;
+    --secondary-foreground: 210 11% 85%;
 
-    --muted: 0 0% 16%;
-    --muted-foreground: 0 0% 64%;
+    --muted: 220 13% 18%;
+    --muted-foreground: 215 14% 55%;
 
-    --accent: 197 71% 52%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 189 94% 63%;
+    --accent-foreground: 220 13% 13%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 93% 64%;
+    --destructive-foreground: 210 11% 85%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 18%;
-    --ring: 212 100% 48%;
+    --border: 220 13% 23%;
+    --input: 220 13% 20%;
+    --ring: 189 94% 63%;
 
-    /* Monaco Dark specific colors */
-    --glass-bg: 0 0% 0% / 0.4;
+    /* VS Code specific colors */
+    --glass-bg: 220 13% 10% / 0.8;
     --glass-border: 0 0% 100% / 0.1;
-    --gradient-hero: linear-gradient(135deg, hsl(212 100% 48% / 0.1), hsl(212 100% 70% / 0.1));
-    --shadow-elegant: 0 20px 25px -5px hsl(0 0% 0% / 0.4), 0 10px 10px -5px hsl(0 0% 0% / 0.2);
-    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.3);
+    --gradient-hero: linear-gradient(135deg, hsl(189 94% 63% / 0.08), hsl(189 94% 75% / 0.08));
+    --shadow-elegant: 0 4px 6px -1px hsl(0 0% 0% / 0.3), 0 2px 4px -1px hsl(0 0% 0% / 0.2);
+    --shadow-glow: 0 0 60px hsl(189 94% 75% / 0.35);
+    
+    /* Code editor aesthetic */
+    --code-bg: 220 13% 18%;
+    --code-text: 210 11% 85%;
   }
 
   /* Dark Pink Theme */
   .dark[data-color="pink"] {
-    --primary: 330 81% 60%;
-    --primary-glow: 330 81% 80%;
-    --ring: 330 81% 60%;
-    --gradient-primary: linear-gradient(135deg, hsl(330 81% 60%), hsl(330 81% 80%));
-    --gradient-hero: linear-gradient(135deg, hsl(330 81% 60% / 0.1), hsl(330 81% 80% / 0.1));
-    --shadow-glow: 0 0 40px hsl(330 81% 80% / 0.3);
+    --primary: 345 82% 65%;
+    --primary-glow: 345 82% 80%;
+    --ring: 345 82% 65%;
+    --gradient-primary: linear-gradient(135deg, hsl(345 82% 65%), hsl(345 82% 80%));
+    --gradient-hero: linear-gradient(135deg, hsl(345 82% 65% / 0.08), hsl(345 82% 80% / 0.08));
+    --shadow-glow: 0 0 60px hsl(345 82% 80% / 0.35);
   }
 
   /* Dark Orange Theme */
   .dark[data-color="orange"] {
-    --primary: 25 95% 53%;
-    --primary-glow: 25 95% 73%;
-    --ring: 25 95% 53%;
-    --gradient-primary: linear-gradient(135deg, hsl(25 95% 53%), hsl(25 95% 73%));
-    --gradient-hero: linear-gradient(135deg, hsl(25 95% 53% / 0.1), hsl(25 95% 73% / 0.1));
-    --shadow-glow: 0 0 40px hsl(25 95% 73% / 0.3);
+    --primary: 27 96% 66%;
+    --primary-glow: 27 96% 81%;
+    --ring: 27 96% 66%;
+    --gradient-primary: linear-gradient(135deg, hsl(27 96% 66%), hsl(27 96% 81%));
+    --gradient-hero: linear-gradient(135deg, hsl(27 96% 66% / 0.08), hsl(27 96% 81% / 0.08));
+    --shadow-glow: 0 0 60px hsl(27 96% 81% / 0.35);
   }
 
   /* Dark Green Theme */
   .dark[data-color="green"] {
-    --primary: 142 76% 36%;
-    --primary-glow: 142 76% 56%;
-    --ring: 142 76% 36%;
-    --gradient-primary: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 56%));
-    --gradient-hero: linear-gradient(135deg, hsl(142 76% 36% / 0.1), hsl(142 76% 56% / 0.1));
-    --shadow-glow: 0 0 40px hsl(142 76% 56% / 0.3);
+    --primary: 142 71% 50%;
+    --primary-glow: 142 71% 65%;
+    --ring: 142 71% 50%;
+    --gradient-primary: linear-gradient(135deg, hsl(142 71% 50%), hsl(142 71% 65%));
+    --gradient-hero: linear-gradient(135deg, hsl(142 71% 50% / 0.08), hsl(142 71% 65% / 0.08));
+    --shadow-glow: 0 0 60px hsl(142 71% 65% / 0.35);
   }
 
   /* Dark Blue Theme (Default) */
   .dark[data-color="blue"] {
-    --primary: 212 100% 48%;
-    --primary-glow: 212 100% 70%;
-    --ring: 212 100% 48%;
-    --gradient-primary: linear-gradient(135deg, hsl(212 100% 48%), hsl(212 100% 70%));
-    --gradient-hero: linear-gradient(135deg, hsl(212 100% 48% / 0.1), hsl(212 100% 70% / 0.1));
-    --shadow-glow: 0 0 40px hsl(212 100% 70% / 0.3);
+    --primary: 189 94% 63%;
+    --primary-glow: 189 94% 75%;
+    --ring: 189 94% 63%;
+    --gradient-primary: linear-gradient(135deg, hsl(189 94% 63%), hsl(189 94% 75%));
+    --gradient-hero: linear-gradient(135deg, hsl(189 94% 63% / 0.08), hsl(189 94% 75% / 0.08));
+    --shadow-glow: 0 0 60px hsl(189 94% 75% / 0.35);
   }
 
   /* Dark Purple Theme */
   .dark[data-color="purple"] {
-    --primary: 259 94% 51%;
-    --primary-glow: 280 100% 70%;
-    --ring: 259 94% 51%;
-    --gradient-primary: linear-gradient(135deg, hsl(259 94% 51%), hsl(280 100% 70%));
-    --gradient-hero: linear-gradient(135deg, hsl(259 94% 51% / 0.1), hsl(280 100% 70% / 0.1));
-    --shadow-glow: 0 0 40px hsl(280 100% 70% / 0.3);
+    --primary: 271 81% 61%;
+    --primary-glow: 271 81% 76%;
+    --ring: 271 81% 61%;
+    --gradient-primary: linear-gradient(135deg, hsl(271 81% 61%), hsl(271 81% 76%));
+    --gradient-hero: linear-gradient(135deg, hsl(271 81% 61% / 0.08), hsl(271 81% 76% / 0.08));
+    --shadow-glow: 0 0 60px hsl(271 81% 76% / 0.35);
   }
 }
 
@@ -203,24 +213,44 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground transition-colors duration-300;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
   /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
   }
+  
+  /* Code/Monospace font for technical elements */
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  }
+  
+  /* Grid pattern background */
+  .bg-grid-pattern {
+    background-image: 
+      linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  
+  /* Dot pattern background */
+  .bg-dot-pattern {
+    background-image: radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
 }
 
 @layer utilities {
   /* Micro animations */
   .animate-fade-in-up {
-    animation: fadeInUp 0.5s ease-out;
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(30px);
     }
     to {
       opacity: 1;
@@ -229,14 +259,36 @@ All colors MUST be HSL.
   }
 
   .hover-lift {
-    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/20;
+    @apply transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-elegant;
   }
 
   .hover-glow {
-    @apply transition-all duration-300 hover:shadow-glow;
+    @apply transition-all duration-500 ease-out hover:shadow-glow;
   }
 
   .hover-scale {
-    @apply transition-transform duration-300 hover:scale-105;
+    @apply transition-transform duration-300 ease-out hover:scale-[1.02];
+  }
+  
+  .hover-border-glow {
+    @apply transition-all duration-300 ease-out hover:border-primary hover:shadow-[0_0_20px_hsl(var(--primary-glow)/0.3)];
+  }
+  
+  /* Glass morphism */
+  .glass {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--glass-border));
+  }
+  
+  /* Terminal cursor effect */
+  .terminal-cursor::after {
+    content: '▋';
+    animation: blink 1s step-end infinite;
+  }
+  
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
   }
 }
