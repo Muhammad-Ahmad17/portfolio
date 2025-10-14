@@ -1,231 +1,288 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Github, Linkedin, Mail, Code2, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Github, Linkedin, Mail, Terminal, Server, Database, FileCode, GitBranch, Cpu } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 export function Hero() {
   const navigate = useNavigate();
-  const [typedText, setTypedText] = useState("");
-  const fullText = portfolioData.personal.title;
+  const [displayedTitle, setDisplayedTitle] = useState("");
+  const fullTitle = portfolioData.personal.title;
+  const [terminalLines, setTerminalLines] = useState<string[]>([]);
 
   useEffect(() => {
     let currentIndex = 0;
-    const interval = setInterval(() => {
-      if (currentIndex <= fullText.length) {
-        setTypedText(fullText.slice(0, currentIndex));
+    const typingInterval = setInterval(() => {
+      if (currentIndex <= fullTitle.length) {
+        setDisplayedTitle(fullTitle.slice(0, currentIndex));
         currentIndex++;
       } else {
-        clearInterval(interval);
+        clearInterval(typingInterval);
       }
     }, 80);
 
-    return () => clearInterval(interval);
-  }, [fullText]);
+    return () => clearInterval(typingInterval);
+  }, []);
 
-  const handleNavigation = (path: string) => {
-    navigate(path);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  useEffect(() => {
+    const commands = [
+      "$ whoami",
+      "> backend_developer",
+      "$ cat /etc/skills.conf",
+      "> Node.js | Python | PostgreSQL | Docker",
+      "$ systemctl status projects",
+      "> active (running) - 24+ projects deployed",
+      "$ uptime",
+      "> system operational - 99.9% uptime"
+    ];
+
+    let lineIndex = 0;
+    const terminalInterval = setInterval(() => {
+      if (lineIndex < commands.length) {
+        setTerminalLines(prev => [...prev, commands[lineIndex]]);
+        lineIndex++;
+      } else {
+        clearInterval(terminalInterval);
+      }
+    }, 400);
+
+    return () => clearInterval(terminalInterval);
+  }, []);
+
+  const techStack = [
+    { icon: Server, label: "Node.js", delay: 0 },
+    { icon: Database, label: "PostgreSQL", delay: 0.1 },
+    { icon: FileCode, label: "Python", delay: 0.2 },
+    { icon: GitBranch, label: "Git", delay: 0.3 },
+    { icon: Cpu, label: "Docker", delay: 0.4 },
+  ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Subtle grid background */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] dark:opacity-[0.03]" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+      {/* Enhanced Background with visible patterns */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-100" />
+      <div className="absolute inset-0 bg-gradient-hero" />
       
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] via-transparent to-primary-glow/[0.03]" />
-
-      {/* Floating code snippets decoration */}
+      {/* Linux file tree decoration */}
       <motion.div
-        animate={{
-          y: [0, -20, 0],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-20 left-[5%] text-primary/20 text-xs font-mono hidden lg:block"
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.5, duration: 1 }}
+        className="absolute left-4 top-1/4 hidden lg:block text-xs font-mono text-muted-foreground/40 leading-relaxed"
       >
-        <div className="space-y-1">
-          <div>const developer = {'{'}</div>
-          <div className="pl-4">skills: ['React', 'TypeScript'],</div>
-          <div className="pl-4">passion: 'Building'</div>
-          <div>{'}'}</div>
-        </div>
+        <div>├── src/</div>
+        <div>│   ├── api/</div>
+        <div>│   ├── models/</div>
+        <div>│   └── controllers/</div>
+        <div>├── docker/</div>
+        <div>├── scripts/</div>
+        <div>└── .env</div>
       </motion.div>
 
+      {/* System info decoration */}
       <motion.div
-        animate={{
-          y: [0, 20, 0],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 2,
-        }}
-        className="absolute bottom-32 right-[8%] text-primary/20 text-xs font-mono hidden lg:block"
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.7, duration: 1 }}
+        className="absolute right-4 top-1/4 hidden lg:block text-xs font-mono text-muted-foreground/40 leading-relaxed"
       >
-        <div className="space-y-1">
-          <div>{'// Innovation through code'}</div>
-          <div>function create() {'{'}</div>
-          <div className="pl-4">return excellence;</div>
-          <div>{'}'}</div>
-        </div>
+        <div>System: Linux 5.15.0</div>
+        <div>Shell: zsh 5.8</div>
+        <div>Memory: 16GB</div>
+        <div>CPU: 8 cores</div>
+        <div>Uptime: 365 days</div>
       </motion.div>
 
-      {/* Main content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center space-y-8">
-            {/* Terminal-style intro */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 border border-border backdrop-blur-sm"
-            >
-              <Terminal className="w-4 h-4 text-primary" />
-              <span className="text-sm font-mono text-muted-foreground">~/portfolio</span>
-              <span className="text-primary">$</span>
-              <span className="text-sm font-mono">whoami</span>
-            </motion.div>
-
-            {/* Name - Large and Bold */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="space-y-4"
-            >
-              <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
-                <span className="bg-gradient-primary bg-clip-text text-transparent">
-                  {portfolioData.personal.name}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left content - Terminal */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-6"
+          >
+            {/* Main terminal window */}
+            <div className="glass rounded-lg border-2 border-primary/30 shadow-2xl overflow-hidden">
+              {/* Terminal header */}
+              <div className="bg-primary/10 px-4 py-2 flex items-center space-x-2 border-b border-primary/20">
+                <div className="flex space-x-1.5">
+                  <div className="w-3 h-3 rounded-full bg-destructive/70" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
+                  <div className="w-3 h-3 rounded-full bg-primary/70" />
+                </div>
+                <span className="text-xs font-mono text-muted-foreground ml-4">
+                  muhammad@devmachine: ~
                 </span>
-              </h1>
-            </motion.div>
+              </div>
+              
+              {/* Terminal content */}
+              <div className="p-6 font-mono text-sm space-y-1 bg-code-bg min-h-[320px]">
+                {terminalLines.map((line, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className={line.startsWith('$') ? 'text-primary font-semibold' : 
+                              line.startsWith('>') ? 'text-foreground/80 pl-2' : 
+                              'text-muted-foreground'}
+                  >
+                    {line}
+                  </motion.div>
+                ))}
+                {terminalLines.length > 0 && (
+                  <span className="inline-block w-2 h-4 bg-primary animate-pulse ml-1" />
+                )}
+              </div>
+            </div>
 
-            {/* Typing effect for title */}
+            {/* Tech stack badges */}
+            <div className="flex flex-wrap gap-3">
+              {techStack.map((tech, index) => (
+                <motion.div
+                  key={tech.label}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1.5 + tech.delay, duration: 0.4 }}
+                  className="glass rounded-lg px-4 py-2 flex items-center space-x-2 border border-primary/20 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
+                >
+                  <tech.icon className="w-4 h-4 text-primary" />
+                  <span className="text-sm font-mono text-foreground">{tech.label}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right content */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="space-y-8"
+          >
+            {/* Main heading with command-line style */}
+            <div className="space-y-6">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                className="space-y-2"
+              >
+                <p className="text-sm font-mono text-muted-foreground">
+                  <span className="text-primary">~</span> /home/developer
+                </p>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                  <span className="text-primary font-mono"># </span>
+                  {portfolioData.personal.name}
+                </h1>
+              </motion.div>
+              
+              <motion.div
+                className="space-y-2"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+              >
+                <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
+                  Role:
+                </p>
+                <div className="text-xl sm:text-2xl lg:text-3xl font-bold font-mono text-foreground">
+                  {displayedTitle}
+                  <span className="inline-block w-0.5 h-6 sm:h-8 bg-primary animate-pulse ml-1" />
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Description with code comment style */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex items-center justify-center gap-3 text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground/80"
+              transition={{ delay: 0.7 }}
+              className="space-y-3"
             >
-              <Code2 className="w-8 h-8 text-primary" />
-              <span className="font-mono">{typedText}</span>
-              {typedText.length < fullText.length && (
-                <span className="inline-block w-0.5 h-8 bg-primary animate-pulse" />
-              )}
+              <div className="flex items-start space-x-2">
+                <span className="text-primary font-mono text-sm mt-1">/*</span>
+                <p className="text-lg text-foreground/80 leading-relaxed max-w-xl">
+                  {portfolioData.personal.bio}
+                </p>
+              </div>
+              <span className="text-primary font-mono text-sm">*/</span>
             </motion.div>
 
-            {/* Tagline */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
-            >
-              {portfolioData.personal.tagline}
-            </motion.p>
-
-            {/* CTA Buttons */}
+            {/* CTA Buttons with command style */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="flex flex-wrap items-center justify-center gap-4 pt-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9 }}
+              className="space-y-4"
             >
-              <Button
-                size="lg"
-                onClick={() => handleNavigation("/projects")}
-                className="h-12 px-8 text-base font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
-              >
-                View Projects
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                asChild
-                className="h-12 px-8 text-base font-medium hover-border-glow"
-              >
-                <a href={portfolioData.personal.resume} download>
-                  <Download className="mr-2 w-5 h-5" />
-                  Download CV
-                </a>
-              </Button>
-            </motion.div>
-
-            {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1 }}
-              className="flex items-center justify-center gap-3 pt-8"
-            >
-              <span className="text-sm text-muted-foreground font-medium">Connect:</span>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-4">
                 <Button
-                  variant="ghost"
-                  size="icon"
-                  asChild
-                  className="h-10 w-10 rounded-lg hover:bg-primary/10 hover:text-primary transition-all duration-300 hover-scale"
+                  size="lg"
+                  onClick={() => navigate("/projects")}
+                  className="group relative overflow-hidden bg-primary text-primary-foreground hover:shadow-glow transition-all duration-300 font-mono"
                 >
-                  <a href={portfolioData.social.github} target="_blank" rel="noopener noreferrer">
-                    <Github className="h-5 w-5" />
-                  </a>
+                  <Terminal className="mr-2 w-5 h-5" />
+                  <span className="relative z-10">./view_projects.sh</span>
                 </Button>
                 <Button
-                  variant="ghost"
-                  size="icon"
-                  asChild
-                  className="h-10 w-10 rounded-lg hover:bg-primary/10 hover:text-primary transition-all duration-300 hover-scale"
+                  size="lg"
+                  variant="outline"
+                  onClick={() => navigate("/contact")}
+                  className="group border-2 border-primary/50 hover:border-primary hover:bg-primary/10 transition-all duration-300 font-mono"
                 >
-                  <a href={portfolioData.social.linkedin} target="_blank" rel="noopener noreferrer">
-                    <Linkedin className="h-5 w-5" />
-                  </a>
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  asChild
-                  className="h-10 w-10 rounded-lg hover:bg-primary/10 hover:text-primary transition-all duration-300 hover-scale"
-                >
-                  <a href={`mailto:${portfolioData.personal.email}`}>
-                    <Mail className="h-5 w-5" />
-                  </a>
+                  <Mail className="mr-2 w-5 h-5" />
+                  <span>contact --now</span>
                 </Button>
               </div>
             </motion.div>
 
-            {/* Scroll indicator */}
+            {/* Social Links with Linux style */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
-              className="pt-16"
+              transition={{ delay: 1.1 }}
+              className="space-y-3"
             >
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="inline-block"
-              >
-                <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex items-start justify-center p-2">
-                  <motion.div
-                    animate={{ opacity: [1, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                    className="w-1 h-2 bg-primary rounded-full"
-                  />
-                </div>
-              </motion.div>
+              <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
+                $ ls -la /social/
+              </p>
+              <div className="flex space-x-3">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  asChild
+                  className="hover:border-primary hover:bg-primary/10 hover:text-primary transition-all duration-300 rounded-lg"
+                >
+                  <a href={portfolioData.social.github} target="_blank" rel="noopener noreferrer">
+                    <Github className="w-5 h-5" />
+                  </a>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  asChild
+                  className="hover:border-primary hover:bg-primary/10 hover:text-primary transition-all duration-300 rounded-lg"
+                >
+                  <a href={portfolioData.social.linkedin} target="_blank" rel="noopener noreferrer">
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  asChild
+                  className="hover:border-primary hover:bg-primary/10 hover:text-primary transition-all duration-300 rounded-lg"
+                >
+                  <a href={`mailto:${portfolioData.personal.email}`}>
+                    <Mail className="w-5 h-5" />
+                  </a>
+                </Button>
+              </div>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/ThemeToggle";
+
 import { ColorPicker } from "@/components/ColorPicker";
 import { portfolioData } from "@/data/portfolio";
 import { Link, useNavigate } from "react-router-dom";
@@ -115,13 +115,11 @@ export function Navbar() {
             </Button>
             <div className="w-px h-6 bg-border mx-2" />
             <ColorPicker />
-            <ThemeToggle />
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-2">
             <ColorPicker />
-            <ThemeToggle />
             <Button
               variant="ghost"
               size="icon"

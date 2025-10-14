@@ -10,199 +10,109 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Refined Light Theme - Professional & Clean */
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    /* Solarized Light Theme - Professional Developer Aesthetic */
+    --background: 44 87% 94%;      /* Solarized base3 */
+    --foreground: 192 81% 14%;     /* Solarized base02 */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card: 44 87% 96%;
+    --card-foreground: 192 81% 14%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover: 44 87% 96%;
+    --popover-foreground: 192 81% 14%;
 
     /* Default - Cyan Developer Vibe */
     --primary: 189 94% 43%;
-    --primary-foreground: 0 0% 100%;
+    --primary-foreground: 44 87% 94%;
     --primary-glow: 189 94% 63%;
 
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 45 70% 90%;       /* Solarized base2 */
+    --secondary-foreground: 192 81% 14%;
 
-    --muted: 220 14% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 45 70% 90%;
+    --muted-foreground: 194 14% 40%;  /* Solarized base00 */
 
     --accent: 189 94% 43%;
-    --accent-foreground: 0 0% 100%;
+    --accent-foreground: 44 87% 94%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 1 71% 52%;      /* Solarized red */
+    --destructive-foreground: 44 87% 94%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
+    --border: 45 100% 85%;         /* Visible border */
+    --input: 45 70% 88%;
     --ring: 189 94% 43%;
 
     --radius: 0.5rem;
 
-    /* Professional gradients & shadows */
-    --glass-bg: 0 0% 100% / 0.8;
-    --glass-border: 214 32% 91% / 0.5;
+    /* Enhanced gradients & shadows for visibility */
+    --glass-bg: 44 87% 94% / 0.85;
+    --glass-border: 45 100% 75% / 0.6;
     --gradient-primary: linear-gradient(135deg, hsl(189 94% 43%), hsl(189 94% 63%));
-    --gradient-hero: linear-gradient(135deg, hsl(189 94% 43% / 0.05), hsl(189 94% 63% / 0.05));
-    --shadow-elegant: 0 4px 6px -1px hsl(220 20% 10% / 0.05), 0 2px 4px -1px hsl(220 20% 10% / 0.03);
-    --shadow-glow: 0 0 60px hsl(189 94% 63% / 0.4);
+    --gradient-hero: linear-gradient(135deg, hsl(189 94% 43% / 0.12), hsl(189 94% 63% / 0.12));
+    --shadow-elegant: 0 4px 6px -1px hsl(192 81% 14% / 0.1), 0 2px 4px -1px hsl(192 81% 14% / 0.06);
+    --shadow-glow: 0 0 60px hsl(189 94% 63% / 0.5);
     
     /* Code editor aesthetic */
-    --code-bg: 220 14% 96%;
-    --code-text: 222 47% 11%;
+    --code-bg: 45 70% 90%;
+    --code-text: 192 81% 14%;
+    
+    /* Terminal colors */
+    --terminal-green: 68 100% 30%;
+    --terminal-prompt: 192 81% 14%;
   }
 
   /* Pink Theme - Elegant Rose */
   :root[data-color="pink"] {
     --primary: 345 82% 60%;
-    --primary-foreground: 0 0% 100%;
+    --primary-foreground: 44 87% 94%;
     --primary-glow: 345 82% 75%;
     --ring: 345 82% 60%;
     --gradient-primary: linear-gradient(135deg, hsl(345 82% 60%), hsl(345 82% 75%));
-    --gradient-hero: linear-gradient(135deg, hsl(345 82% 60% / 0.05), hsl(345 82% 75% / 0.05));
-    --shadow-glow: 0 0 60px hsl(345 82% 75% / 0.4);
+    --gradient-hero: linear-gradient(135deg, hsl(345 82% 60% / 0.12), hsl(345 82% 75% / 0.12));
+    --shadow-glow: 0 0 60px hsl(345 82% 75% / 0.5);
   }
 
   /* Orange Theme - Warm Amber */
   :root[data-color="orange"] {
     --primary: 27 96% 61%;
-    --primary-foreground: 0 0% 100%;
+    --primary-foreground: 44 87% 94%;
     --primary-glow: 27 96% 76%;
     --ring: 27 96% 61%;
     --gradient-primary: linear-gradient(135deg, hsl(27 96% 61%), hsl(27 96% 76%));
-    --gradient-hero: linear-gradient(135deg, hsl(27 96% 61% / 0.05), hsl(27 96% 76% / 0.05));
-    --shadow-glow: 0 0 60px hsl(27 96% 76% / 0.4);
+    --gradient-hero: linear-gradient(135deg, hsl(27 96% 61% / 0.12), hsl(27 96% 76% / 0.12));
+    --shadow-glow: 0 0 60px hsl(27 96% 76% / 0.5);
   }
 
   /* Green Theme - Matrix Green */
   :root[data-color="green"] {
-    --primary: 142 71% 45%;
-    --primary-foreground: 0 0% 100%;
-    --primary-glow: 142 71% 60%;
-    --ring: 142 71% 45%;
-    --gradient-primary: linear-gradient(135deg, hsl(142 71% 45%), hsl(142 71% 60%));
-    --gradient-hero: linear-gradient(135deg, hsl(142 71% 45% / 0.05), hsl(142 71% 60% / 0.05));
-    --shadow-glow: 0 0 60px hsl(142 71% 60% / 0.4);
+    --primary: 68 100% 30%;
+    --primary-foreground: 44 87% 94%;
+    --primary-glow: 68 100% 40%;
+    --ring: 68 100% 30%;
+    --gradient-primary: linear-gradient(135deg, hsl(68 100% 30%), hsl(68 100% 40%));
+    --gradient-hero: linear-gradient(135deg, hsl(68 100% 30% / 0.12), hsl(68 100% 40% / 0.12));
+    --shadow-glow: 0 0 60px hsl(68 100% 40% / 0.5);
   }
 
   /* Blue Theme (Default) - Cyan Dev */
   :root[data-color="blue"] {
     --primary: 189 94% 43%;
-    --primary-foreground: 0 0% 100%;
+    --primary-foreground: 44 87% 94%;
     --primary-glow: 189 94% 63%;
     --ring: 189 94% 43%;
     --gradient-primary: linear-gradient(135deg, hsl(189 94% 43%), hsl(189 94% 63%));
-    --gradient-hero: linear-gradient(135deg, hsl(189 94% 43% / 0.05), hsl(189 94% 63% / 0.05));
-    --shadow-glow: 0 0 60px hsl(189 94% 63% / 0.4);
+    --gradient-hero: linear-gradient(135deg, hsl(189 94% 43% / 0.12), hsl(189 94% 63% / 0.12));
+    --shadow-glow: 0 0 60px hsl(189 94% 63% / 0.5);
   }
 
   /* Purple Theme - Electric Violet */
   :root[data-color="purple"] {
     --primary: 271 81% 56%;
-    --primary-foreground: 0 0% 100%;
+    --primary-foreground: 44 87% 94%;
     --primary-glow: 271 81% 71%;
     --ring: 271 81% 56%;
     --gradient-primary: linear-gradient(135deg, hsl(271 81% 56%), hsl(271 81% 71%));
-    --gradient-hero: linear-gradient(135deg, hsl(271 81% 56% / 0.05), hsl(271 81% 71% / 0.05));
-    --shadow-glow: 0 0 60px hsl(271 81% 71% / 0.4);
-  }
-
-  .dark {
-    /* VS Code Dark+ Theme */
-    --background: 220 13% 13%;
-    --foreground: 210 11% 85%;
-
-    --card: 220 13% 16%;
-    --card-foreground: 210 11% 85%;
-
-    --popover: 220 13% 16%;
-    --popover-foreground: 210 11% 85%;
-
-    /* Default - Cyan Terminal */
-    --primary: 189 94% 63%;
-    --primary-foreground: 220 13% 13%;
-    --primary-glow: 189 94% 75%;
-
-    --secondary: 220 13% 18%;
-    --secondary-foreground: 210 11% 85%;
-
-    --muted: 220 13% 18%;
-    --muted-foreground: 215 14% 55%;
-
-    --accent: 189 94% 63%;
-    --accent-foreground: 220 13% 13%;
-
-    --destructive: 0 93% 64%;
-    --destructive-foreground: 210 11% 85%;
-
-    --border: 220 13% 23%;
-    --input: 220 13% 20%;
-    --ring: 189 94% 63%;
-
-    /* VS Code specific colors */
-    --glass-bg: 220 13% 10% / 0.8;
-    --glass-border: 0 0% 100% / 0.1;
-    --gradient-hero: linear-gradient(135deg, hsl(189 94% 63% / 0.08), hsl(189 94% 75% / 0.08));
-    --shadow-elegant: 0 4px 6px -1px hsl(0 0% 0% / 0.3), 0 2px 4px -1px hsl(0 0% 0% / 0.2);
-    --shadow-glow: 0 0 60px hsl(189 94% 75% / 0.35);
-    
-    /* Code editor aesthetic */
-    --code-bg: 220 13% 18%;
-    --code-text: 210 11% 85%;
-  }
-
-  /* Dark Pink Theme */
-  .dark[data-color="pink"] {
-    --primary: 345 82% 65%;
-    --primary-glow: 345 82% 80%;
-    --ring: 345 82% 65%;
-    --gradient-primary: linear-gradient(135deg, hsl(345 82% 65%), hsl(345 82% 80%));
-    --gradient-hero: linear-gradient(135deg, hsl(345 82% 65% / 0.08), hsl(345 82% 80% / 0.08));
-    --shadow-glow: 0 0 60px hsl(345 82% 80% / 0.35);
-  }
-
-  /* Dark Orange Theme */
-  .dark[data-color="orange"] {
-    --primary: 27 96% 66%;
-    --primary-glow: 27 96% 81%;
-    --ring: 27 96% 66%;
-    --gradient-primary: linear-gradient(135deg, hsl(27 96% 66%), hsl(27 96% 81%));
-    --gradient-hero: linear-gradient(135deg, hsl(27 96% 66% / 0.08), hsl(27 96% 81% / 0.08));
-    --shadow-glow: 0 0 60px hsl(27 96% 81% / 0.35);
-  }
-
-  /* Dark Green Theme */
-  .dark[data-color="green"] {
-    --primary: 142 71% 50%;
-    --primary-glow: 142 71% 65%;
-    --ring: 142 71% 50%;
-    --gradient-primary: linear-gradient(135deg, hsl(142 71% 50%), hsl(142 71% 65%));
-    --gradient-hero: linear-gradient(135deg, hsl(142 71% 50% / 0.08), hsl(142 71% 65% / 0.08));
-    --shadow-glow: 0 0 60px hsl(142 71% 65% / 0.35);
-  }
-
-  /* Dark Blue Theme (Default) */
-  .dark[data-color="blue"] {
-    --primary: 189 94% 63%;
-    --primary-glow: 189 94% 75%;
-    --ring: 189 94% 63%;
-    --gradient-primary: linear-gradient(135deg, hsl(189 94% 63%), hsl(189 94% 75%));
-    --gradient-hero: linear-gradient(135deg, hsl(189 94% 63% / 0.08), hsl(189 94% 75% / 0.08));
-    --shadow-glow: 0 0 60px hsl(189 94% 75% / 0.35);
-  }
-
-  /* Dark Purple Theme */
-  .dark[data-color="purple"] {
-    --primary: 271 81% 61%;
-    --primary-glow: 271 81% 76%;
-    --ring: 271 81% 61%;
-    --gradient-primary: linear-gradient(135deg, hsl(271 81% 61%), hsl(271 81% 76%));
-    --gradient-hero: linear-gradient(135deg, hsl(271 81% 61% / 0.08), hsl(271 81% 76% / 0.08));
-    --shadow-glow: 0 0 60px hsl(271 81% 76% / 0.35);
+    --gradient-hero: linear-gradient(135deg, hsl(271 81% 56% / 0.12), hsl(271 81% 71% / 0.12));
+    --shadow-glow: 0 0 60px hsl(271 81% 71% / 0.5);
   }
 }
 
@@ -226,18 +136,32 @@ All colors MUST be HSL.
     font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
   }
   
-  /* Grid pattern background */
+  /* Grid pattern background - Enhanced visibility */
   .bg-grid-pattern {
     background-image: 
-      linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
+      linear-gradient(to right, hsl(var(--primary) / 0.15) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--primary) / 0.15) 1px, transparent 1px);
     background-size: 40px 40px;
   }
   
-  /* Dot pattern background */
+  /* Dot pattern background - Enhanced visibility */
   .bg-dot-pattern {
-    background-image: radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px);
-    background-size: 20px 20px;
+    background-image: radial-gradient(circle, hsl(var(--primary) / 0.2) 2px, transparent 2px);
+    background-size: 24px 24px;
+  }
+  
+  /* Matrix rain effect background */
+  .bg-matrix-pattern {
+    background-image: 
+      linear-gradient(to bottom, transparent 0%, hsl(var(--primary) / 0.05) 50%, transparent 100%),
+      repeating-linear-gradient(0deg, hsl(var(--primary) / 0.08) 0px, transparent 2px, transparent 4px, hsl(var(--primary) / 0.08) 6px);
+    background-size: 100% 100%, 2px 8px;
+    animation: matrix-scroll 20s linear infinite;
+  }
+  
+  @keyframes matrix-scroll {
+    0% { background-position: 0 0, 0 0; }
+    100% { background-position: 0 0, 0 100%; }
   }
 }
 
