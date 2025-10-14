@@ -4,6 +4,7 @@ import { Menu, X, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 import { ColorPicker } from "@/components/ColorPicker";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { portfolioData } from "@/data/portfolio";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -41,11 +42,10 @@ export function Navbar() {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-        isScrolled
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled
           ? "bg-background/95 backdrop-blur-lg border-b border-border shadow-lg"
           : "bg-background/50 backdrop-blur-sm"
-      }`}
+        }`}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -114,11 +114,13 @@ export function Navbar() {
               </a>
             </Button>
             <div className="w-px h-6 bg-border mx-2" />
+            <ThemeToggle />
             <ColorPicker />
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-2">
+            <ThemeToggle />
             <ColorPicker />
             <Button
               variant="ghost"

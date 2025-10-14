@@ -26,22 +26,31 @@ export function ThemeProvider({
   storageKey = "portfolio-theme",
   ...props
 }: ThemeProviderProps) {
-  // Force light theme always (Solarized Light)
-  const [theme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>(
+    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
+  );
 
   useEffect(() => {
     const root = window.document.documentElement;
     root.classList.remove("light", "dark");
-    root.classList.add("light");
-    
-    // Also store it
-    localStorage.setItem(storageKey, "light");
-  }, [storageKey]);
+
+    if (theme === "system") {
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+        .matches
+        ? "dark"
+        : "light";
+      root.classList.add(systemTheme);
+      return;
+    }
+
+    root.classList.add(theme);
+  }, [theme]);
 
   const value = {
     theme,
-    setTheme: () => {
-      // Do nothing - locked to light mode
+    setTheme: (theme: Theme) => {
+      localStorage.setItem(storageKey, theme);
+      setTheme(theme);
     },
   };
 

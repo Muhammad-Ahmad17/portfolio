@@ -63,7 +63,7 @@ export function Hero() {
       {/* Enhanced Background with visible patterns */}
       <div className="absolute inset-0 bg-grid-pattern opacity-100" />
       <div className="absolute inset-0 bg-gradient-hero" />
-      
+
       {/* Linux file tree decoration */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
@@ -116,18 +116,18 @@ export function Hero() {
                   muhammad@devmachine: ~
                 </span>
               </div>
-              
+
               {/* Terminal content */}
               <div className="p-6 font-mono text-sm space-y-1 bg-code-bg min-h-[320px]">
-                {terminalLines.map((line, index) => (
+                {terminalLines.filter(line => line != null).map((line, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3 }}
-                    className={line.startsWith('$') ? 'text-primary font-semibold' : 
-                              line.startsWith('>') ? 'text-foreground/80 pl-2' : 
-                              'text-muted-foreground'}
+                    className={line.startsWith('$') ? 'text-primary font-semibold' :
+                      line.startsWith('>') ? 'text-foreground/80 pl-2' :
+                        'text-muted-foreground'}
                   >
                     {line}
                   </motion.div>
@@ -178,7 +178,7 @@ export function Hero() {
                   {portfolioData.personal.name}
                 </h1>
               </motion.div>
-              
+
               <motion.div
                 className="space-y-2"
                 initial={{ opacity: 0 }}
