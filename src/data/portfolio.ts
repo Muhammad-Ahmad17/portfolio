@@ -1,7 +1,7 @@
 export const portfolioData = {
   personal: {
     name: "Muhammad",
-    title: "Computer Engineer | MERN Developer | DevOps Learner",
+    title: "Computer Engineer ",//| MERN Developer | DevOps Learner
     tagline: "Building scalable web solutions with modern technologies",
     bio: "Passionate full-stack developer with expertise in MERN stack and a growing interest in DevOps practices. I enjoy creating user-centric applications that solve real-world problems.",
     email: "muhammad@example.com",
