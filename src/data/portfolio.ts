@@ -1,6 +1,6 @@
 export const portfolioData = {
   personal: {
-    name: "Muhammad",
+    name: "Muhammad Ahmad",
     title: "Computer Engineer ",//| MERN Developer | DevOps Learner
     tagline: "Building scalable web solutions with modern technologies",
     bio: "Passionate full-stack developer with expertise in MERN stack and a growing interest in DevOps practices. I enjoy creating user-centric applications that solve real-world problems.",
@@ -11,10 +11,10 @@ export const portfolioData = {
   },
 
   social: {
-    github: "https://github.com/muhammad",
-    linkedin: "https://linkedin.com/in/muhammad-dev",
-    twitter: "https://twitter.com/muhammad_dev",
-    portfolio: "https://muhammad-portfolio.vercel.app"
+    github: "https://github.com/Muhammad-Ahamd17",
+    linkedin: "https://linkedin.com/in/muhammad-ahmad17",
+//    twitter: "https://twitter.com/muhammad_dev",
+    portfolio: "https://aahmad.app"
   },
 
   skills: {
