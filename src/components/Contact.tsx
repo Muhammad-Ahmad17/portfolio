@@ -94,12 +94,12 @@ export function Contact() {
       href: portfolioData.social.linkedin,
       username: "linkedin.com/in/" + portfolioData.social.linkedin.split('/').pop()
     },
-    {
-      icon: Twitter,
-      label: "Twitter",
-      href: portfolioData.social.twitter,
-      username: "twitter.com/" + portfolioData.social.twitter.split('/').pop()
-    }
+    // {
+    //   icon: Twitter,
+    //   label: "Twitter",
+    //   href: portfolioData.social.twitter,
+    //   username: "twitter.com/" + portfolioData.social.twitter.split('/').pop()
+    // }
   ];
 
   return (
