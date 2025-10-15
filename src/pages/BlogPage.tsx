@@ -1,44 +1,16 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Clock, ArrowRight } from "lucide-react";
+import { Terminal, FileText, Calendar, Tag, ChevronRight, Folder } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-
-// Mock blog data - will be replaced with actual markdown files
-const blogPosts = [
-  {
-    id: "react-best-practices",
-    title: "React Best Practices in 2025",
-    description: "Essential patterns and practices for modern React development",
-    date: "2025-01-15",
-    readTime: "8 min read",
-    tags: ["React", "JavaScript", "Web Development"],
-    slug: "react-best-practices"
-  },
-  {
-    id: "devops-cicd",
-    title: "CI/CD Pipeline with GitHub Actions",
-    description: "Building automated deployment pipelines for modern web apps",
-    date: "2025-01-10",
-    readTime: "12 min read",
-    tags: ["DevOps", "CI/CD", "GitHub Actions"],
-    slug: "devops-cicd"
-  },
-  {
-    id: "mern-stack-guide",
-    title: "Complete MERN Stack Guide",
-    description: "Building full-stack applications with MongoDB, Express, React, and Node.js",
-    date: "2025-01-05",
-    readTime: "15 min read",
-    tags: ["MERN", "Full Stack", "MongoDB"],
-    slug: "mern-stack-guide"
-  }
-];
+import { getBlogPosts } from "@/lib/blog";
 
 const BlogPage = () => {
+  const blogPosts = getBlogPosts();
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -49,79 +21,157 @@ const BlogPage = () => {
         className="pt-20 pb-20"
       >
         <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          {/* Terminal Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-center mb-16"
+            transition={{ delay: 0.1 }}
+            className="mb-12"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-              Tech Blog
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-              Thoughts, tutorials, and insights on modern web development, DevOps, and software engineering
-            </p>
+            <div className="glass rounded-lg border-2 border-primary/30 overflow-hidden max-w-4xl mx-auto">
+              {/* Terminal Title Bar */}
+              <div className="bg-primary/10 px-4 py-2 flex items-center justify-between border-b border-primary/20">
+                <div className="flex items-center space-x-2">
+                  <div className="flex space-x-1.5">
+                    <div className="w-3 h-3 rounded-full bg-destructive/70" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
+                    <div className="w-3 h-3 rounded-full bg-primary/70" />
+                  </div>
+                  <Terminal className="w-4 h-4 text-primary ml-2" />
+                  <span className="text-xs font-mono text-muted-foreground">
+                    ~/dev/blog
+                  </span>
+                </div>
+              </div>
+
+              {/* Terminal Content */}
+              <div className="p-6 font-mono text-sm bg-code-bg">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-primary">$</span>
+                    <span className="text-foreground">ls -la /blog/posts</span>
+                  </div>
+                  <div className="text-muted-foreground pl-2">
+                    <span className="text-primary">total {blogPosts.length}</span> articles found
+                  </div>
+                  <div className="flex items-center gap-2 mt-4">
+                    <span className="text-primary">$</span>
+                    <span className="text-foreground">cat README.md</span>
+                  </div>
+                  <div className="text-muted-foreground pl-2 mt-2">
+                    Backend development tutorials, DevOps guides, and system architecture insights.
+                  </div>
+                </div>
+              </div>
+            </div>
           </motion.div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
-            {blogPosts.map((post, index) => (
-              <motion.div
-                key={post.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index }}
-                whileHover={{ scale: 1.02, y: -5 }}
-                className="h-full"
-              >
-                <Card className="h-full flex flex-col bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
-                  <CardHeader>
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        {new Date(post.date).toLocaleDateString('en-US', { 
-                          month: 'short', 
-                          day: 'numeric', 
-                          year: 'numeric' 
-                        })}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="w-4 h-4" />
-                        {post.readTime}
-                      </span>
-                    </div>
-                    <CardTitle className="text-2xl mb-2 group-hover:text-primary transition-colors">
-                      {post.title}
-                    </CardTitle>
-                    <CardDescription className="text-base">
-                      {post.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex-1 flex flex-col justify-between">
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {post.tags.map((tag) => (
-                        <Badge 
-                          key={tag} 
-                          variant="secondary"
-                          className="bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                    <Button 
-                      asChild
-                      variant="ghost" 
-                      className="w-full group hover:bg-primary/10"
-                    >
-                      <Link to={`/blog/${post.slug}`}>
-                        Read More
-                        <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+          {/* Blog Posts as File System */}
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="mb-6"
+            >
+              <div className="flex items-center gap-2 text-sm font-mono text-muted-foreground mb-4">
+                <Folder className="w-4 h-4 text-primary" />
+                <span className="text-primary">drwxr-xr-x</span>
+                <span>muhammad</span>
+                <span>muhammad</span>
+                <span>{blogPosts.length} items</span>
+                <span className="text-foreground">/home/dev/blog/posts</span>
+              </div>
+            </motion.div>
+
+            <div className="space-y-4">
+              {blogPosts.map((post, index) => (
+                <motion.div
+                  key={post.slug}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 * index }}
+                  whileHover={{ x: 10 }}
+                >
+                  <Link to={`/blog/${post.slug}`}>
+                    <Card className="bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 group">
+                      <CardContent className="p-6">
+                        <div className="flex items-start gap-4">
+                          {/* File Icon */}
+                          <div className="pt-1">
+                            <FileText className="w-6 h-6 text-primary group-hover:text-primary/80 transition-colors" />
+                          </div>
+
+                          {/* Content */}
+                          <div className="flex-1 min-w-0">
+                            {/* File Name Style */}
+                            <div className="flex items-center gap-2 mb-2">
+                              <h3 className="text-lg font-mono font-semibold text-foreground group-hover:text-primary transition-colors">
+                                {post.slug}.md
+                              </h3>
+                              <Badge variant="outline" className="text-xs border-primary/30 text-primary/70">
+                                {post.date}
+                              </Badge>
+                            </div>
+
+                            {/* Title as Comment */}
+                            <div className="mb-3">
+                              <span className="text-sm font-mono text-muted-foreground">
+                                <span className="text-primary">#</span> {post.title}
+                              </span>
+                            </div>
+
+                            {/* Excerpt */}
+                            <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                              {post.excerpt}
+                            </p>
+
+                            {/* Tags as File Properties */}
+                            <div className="flex flex-wrap gap-2 items-center">
+                              <Tag className="w-3 h-3 text-muted-foreground" />
+                              {post.tags.map((tag) => (
+                                <Badge
+                                  key={tag}
+                                  variant="secondary"
+                                  className="text-xs bg-primary/10 text-primary hover:bg-primary/20 transition-colors font-mono"
+                                >
+                                  {tag.toLowerCase()}
+                                </Badge>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Arrow */}
+                          <div className="pt-1">
+                            <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Terminal Footer */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="mt-12"
+            >
+              <div className="glass rounded-lg border border-primary/20 p-4 max-w-4xl mx-auto">
+                <div className="font-mono text-sm space-y-1">
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <span className="text-primary">$</span>
+                    <span>echo "Found <span className="text-primary">{blogPosts.length}</span> blog posts"</span>
+                  </div>
+                  <div className="text-muted-foreground pl-4">
+                    Last updated: {new Date().toLocaleString()}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </section>
       </motion.main>

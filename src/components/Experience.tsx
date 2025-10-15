@@ -1,9 +1,14 @@
 import { motion } from "framer-motion";
-import { Briefcase, GraduationCap, MapPin, Calendar, CheckCircle } from "lucide-react";
+import { Terminal, Server, Calendar, CheckCircle, Play, Square } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { portfolioData } from "@/data/portfolio";
+
+const getTimestamp = (date: string) => {
+  // Generate realistic timestamps
+  return new Date(date).toISOString().replace('T', ' ').split('.')[0];
+};
 
 export function Experience() {
   return (
@@ -14,14 +19,35 @@ export function Experience() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-8"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-            Experience & Education
-          </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            My professional journey and educational background that shaped my expertise in development.
-          </p>
+          {/* journalctl header */}
+          <div className="bg-card/80 backdrop-blur-sm border border-border/50 rounded-lg overflow-hidden shadow-lg mb-8">
+            <div className="bg-muted/50 px-4 py-2 flex items-center gap-2 border-b border-border/50">
+              <div className="flex gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+              <span className="text-sm font-mono text-muted-foreground ml-2">
+                journalctl -u career.service --since "2020-01-01" --no-pager
+              </span>
+            </div>
+            <div className="p-6 font-mono text-xs space-y-1.5">
+              <div className="text-muted-foreground">
+                -- Logs begin at 2020-01-01 00:00:00 UTC, end at {new Date().toISOString().split('T')[0]} {new Date().toTimeString().split(' ')[0]} UTC --
+              </div>
+              <div className="text-green-400">
+                <span className="text-muted-foreground">[{new Date().toISOString().split('T')[0]}]</span> career.service: Service status: <span className="font-bold">active (running)</span>
+              </div>
+              <div className="text-cyan-400">
+                <span className="text-muted-foreground">[{new Date().toISOString().split('T')[0]}]</span> career.service: Loaded {portfolioData.experience.length} professional experiences
+              </div>
+              <div className="text-blue-400">
+                <span className="text-muted-foreground">[{new Date().toISOString().split('T')[0]}]</span> career.service: Academic records: {portfolioData.education.length} institutions
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         <motion.div
@@ -31,14 +57,14 @@ export function Experience() {
           viewport={{ once: true }}
         >
           <Tabs defaultValue="experience" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 mb-8">
+            <TabsList className="grid w-full grid-cols-2 mb-8 font-mono">
               <TabsTrigger value="experience" className="flex items-center gap-2">
-                <Briefcase className="w-4 h-4" />
-                Experience
+                <Server className="w-4 h-4" />
+                systemctl status work.service
               </TabsTrigger>
               <TabsTrigger value="education" className="flex items-center gap-2">
-                <GraduationCap className="w-4 h-4" />
-                Education
+                <Terminal className="w-4 h-4" />
+                systemctl status education.service
               </TabsTrigger>
             </TabsList>
 
@@ -51,44 +77,55 @@ export function Experience() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/20 hover:shadow-elegant transition-all duration-300">
+                  <Card className="bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/20 hover:shadow-lg transition-all duration-300">
                     <CardContent className="p-6">
-                      <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
-                        <div className="flex-1">
-                          <h3 className="text-xl font-semibold text-foreground mb-1">
-                            {job.title}
-                          </h3>
-                          <p className="text-primary font-medium mb-2">
-                            {job.company}
-                          </p>
-                          <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
-                            <div className="flex items-center gap-1">
-                              <Calendar className="w-4 h-4" />
-                              {job.period}
+                      {/* Service header */}
+                      <div className="flex items-start justify-between mb-4 pb-4 border-b border-border/30">
+                        <div className="flex items-start gap-3">
+                          <div className="mt-1">
+                            <Play className="w-5 h-5 text-green-400" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold text-foreground font-mono mb-1">
+                              {job.company.toLowerCase().replace(/\s+/g, '-')}.service
+                            </h3>
+                            <p className="text-sm text-primary mb-1">
+                              Position: {job.title}
+                            </p>
+                            <div className="flex items-center gap-2 text-xs text-muted-foreground font-mono">
+                              <Calendar className="w-3 h-3" />
+                              <span>Runtime: {job.period}</span>
                             </div>
                           </div>
                         </div>
-                        <Badge variant="outline" className="border-primary/20 text-primary mb-4 md:mb-0">
-                          Professional
+                        <Badge variant="outline" className="border-green-500/30 text-green-400 font-mono text-xs">
+                          active
                         </Badge>
                       </div>
 
-                      <p className="text-muted-foreground mb-6 leading-relaxed">
-                        {job.description}
-                      </p>
+                      {/* Service logs */}
+                      <div className="font-mono text-xs space-y-2 mb-4">
+                        <div className="text-muted-foreground">
+                          <span className="text-cyan-400">[INFO]</span> {job.description}
+                        </div>
+                      </div>
 
-                      <div>
-                        <h4 className="text-sm font-semibold text-foreground mb-3">
-                          Key Achievements:
-                        </h4>
-                        <ul className="space-y-2">
-                          {job.achievements.map((achievement, achievementIndex) => (
-                            <li key={achievementIndex} className="flex items-start gap-2 text-sm text-muted-foreground">
-                              <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                              {achievement}
-                            </li>
-                          ))}
-                        </ul>
+                      {/* Achievement logs */}
+                      <div className="space-y-2 font-mono text-xs">
+                        <div className="text-primary font-semibold mb-2">-- Service Logs --</div>
+                        {job.achievements.map((achievement, achievementIndex) => (
+                          <div key={achievementIndex} className="flex items-start gap-2 text-muted-foreground">
+                            <CheckCircle className="w-3 h-3 text-green-400 mt-0.5 flex-shrink-0" />
+                            <span>
+                              <span className="text-green-400">[SUCCESS]</span> {achievement}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Footer */}
+                      <div className="mt-4 pt-4 border-t border-border/30 font-mono text-xs text-muted-foreground">
+                        <span className="text-green-400">●</span> Service running successfully. No errors detected.
                       </div>
                     </CardContent>
                   </Card>
@@ -105,41 +142,67 @@ export function Experience() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/20 hover:shadow-elegant transition-all duration-300">
+                  <Card className="bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/20 hover:shadow-lg transition-all duration-300">
                     <CardContent className="p-6">
-                      <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
-                        <div className="flex-1">
-                          <h3 className="text-xl font-semibold text-foreground mb-1">
-                            {edu.degree}
-                          </h3>
-                          <p className="text-primary font-medium mb-2">
-                            {edu.institution}
-                          </p>
-                          <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
-                            <div className="flex items-center gap-1">
-                              <Calendar className="w-4 h-4" />
-                              {edu.period}
+                      {/* Service header */}
+                      <div className="flex items-start justify-between mb-4 pb-4 border-b border-border/30">
+                        <div className="flex items-start gap-3">
+                          <div className="mt-1">
+                            <Square className="w-5 h-5 text-blue-400" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold text-foreground font-mono mb-1">
+                              {edu.institution.toLowerCase().replace(/\s+/g, '-')}.service
+                            </h3>
+                            <p className="text-sm text-primary mb-1">
+                              Program: {edu.degree}
+                            </p>
+                            <div className="flex items-center gap-3 text-xs text-muted-foreground font-mono flex-wrap">
+                              <div className="flex items-center gap-1">
+                                <Calendar className="w-3 h-3" />
+                                <span>{edu.period}</span>
+                              </div>
+                              {edu.gpa && (
+                                <span className="text-green-400">GPA: {edu.gpa}</span>
+                              )}
+                              {edu.completion && (
+                                <span className="text-cyan-400">{edu.completion}</span>
+                              )}
                             </div>
-                            {edu.gpa && (
-                              <div className="flex items-center gap-1">
-                                <span>GPA: {edu.gpa}</span>
-                              </div>
-                            )}
-                            {edu.completion && (
-                              <div className="flex items-center gap-1">
-                                <span>{edu.completion}</span>
-                              </div>
-                            )}
                           </div>
                         </div>
-                        <Badge variant="outline" className="border-primary/20 text-primary mb-4 md:mb-0">
-                          Academic
+                        <Badge variant="outline" className="border-blue-500/30 text-blue-400 font-mono text-xs">
+                          completed
                         </Badge>
                       </div>
 
-                      <p className="text-muted-foreground leading-relaxed">
-                        {edu.description}
-                      </p>
+                      {/* Education logs */}
+                      <div className="font-mono text-xs space-y-3">
+                        <div className="text-muted-foreground">
+                          <span className="text-blue-400">[ACADEMIC]</span> {edu.description}
+                        </div>
+
+                        <div className="bg-muted/20 rounded p-3 space-y-1">
+                          <div className="text-primary font-semibold mb-2">-- Completion Status --</div>
+                          <div className="flex items-center gap-2 text-muted-foreground">
+                            <CheckCircle className="w-3 h-3 text-green-400" />
+                            <span>Degree program completed successfully</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-muted-foreground">
+                            <CheckCircle className="w-3 h-3 text-green-400" />
+                            <span>All core requirements met</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-muted-foreground">
+                            <CheckCircle className="w-3 h-3 text-green-400" />
+                            <span>Certification issued and verified</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Footer */}
+                      <div className="mt-4 pt-4 border-t border-border/30 font-mono text-xs text-muted-foreground">
+                        <span className="text-blue-400">●</span> Academic service completed. Ready for production deployment.
+                      </div>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -148,42 +211,88 @@ export function Experience() {
           </Tabs>
         </motion.div>
 
-        {/* Timeline Summary */}
+        {/* Service Summary */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="mt-16 text-center"
+          className="mt-12"
         >
-          <Card className="bg-gradient-to-r from-primary/10 to-primary-glow/10 border-primary/20">
-            <CardContent className="p-8">
-              <h3 className="text-2xl font-bold mb-6 text-foreground">
-                Career Timeline
-              </h3>
-              <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4 mx-auto">
-                    <GraduationCap className="w-8 h-8 text-primary" />
-                  </div>
-                  <h4 className="font-semibold mb-1">2022</h4>
-                  <p className="text-sm text-muted-foreground">Graduated with Computer Engineering degree</p>
+          <Card className="bg-card/50 backdrop-blur-sm border-border/50">
+            <CardContent className="p-6">
+              <div className="font-mono text-xs space-y-4">
+                <div className="text-primary font-semibold text-sm">
+                  $ systemctl list-units --type=service --state=running
                 </div>
-                <div className="hidden md:block w-8 h-0.5 bg-primary/30" />
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4 mx-auto">
-                    <Briefcase className="w-8 h-8 text-primary" />
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-muted/20 rounded p-4 space-y-2">
+                    <div className="flex items-center gap-2 text-green-400 font-semibold">
+                      <Play className="w-4 h-4" />
+                      Work Services
+                    </div>
+                    <div className="text-muted-foreground">
+                      <div className="flex justify-between">
+                        <span>Total:</span>
+                        <span className="text-foreground">{portfolioData.experience.length}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Status:</span>
+                        <span className="text-green-400">Active</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Uptime:</span>
+                        <span className="text-cyan-400">3+ years</span>
+                      </div>
+                    </div>
                   </div>
-                  <h4 className="font-semibold mb-1">2021-Present</h4>
-                  <p className="text-sm text-muted-foreground">Professional development career</p>
+
+                  <div className="bg-muted/20 rounded p-4 space-y-2">
+                    <div className="flex items-center gap-2 text-blue-400 font-semibold">
+                      <Terminal className="w-4 h-4" />
+                      Education Services
+                    </div>
+                    <div className="text-muted-foreground">
+                      <div className="flex justify-between">
+                        <span>Total:</span>
+                        <span className="text-foreground">{portfolioData.education.length}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Status:</span>
+                        <span className="text-blue-400">Completed</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Output:</span>
+                        <span className="text-green-400">Success</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-muted/20 rounded p-4 space-y-2">
+                    <div className="flex items-center gap-2 text-primary font-semibold">
+                      <CheckCircle className="w-4 h-4" />
+                      System Health
+                    </div>
+                    <div className="text-muted-foreground">
+                      <div className="flex justify-between">
+                        <span>Load Avg:</span>
+                        <span className="text-cyan-400">0.45</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Errors:</span>
+                        <span className="text-green-400">0</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Performance:</span>
+                        <span className="text-green-400">Optimal</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="hidden md:block w-8 h-0.5 bg-primary/30" />
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4 mx-auto">
-                    <CheckCircle className="w-8 h-8 text-primary" />
-                  </div>
-                  <h4 className="font-semibold mb-1">Today</h4>
-                  <p className="text-sm text-muted-foreground">Full-stack developer & DevOps learner</p>
+
+                <div className="pt-4 border-t border-border/30 text-muted-foreground">
+                  <span className="text-green-400">●</span> All services loaded and running. System ready for production.
                 </div>
               </div>
             </CardContent>

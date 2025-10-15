@@ -31,10 +31,17 @@ export function Hero() {
       "> backend_developer",
       "$ cat /etc/skills.conf",
       "> Node.js | Python | PostgreSQL | Docker",
-      "$ systemctl status projects",
-      "> active (running) - 24+ projects deployed",
+      "$ docker ps --format 'table {{.Names}}\t{{.Status}}'",
+      "> api-server\tUp 180 days",
+      "> postgres-db\tUp 180 days (healthy)",
+      "> redis-cache\tUp 180 days",
+      "$ pm2 list",
+      "> ├─ production-api  running  ↺ 0  99.8%  512M",
+      "$ systemctl status nginx",
+      "> ● nginx.service - A high performance web server",
+      ">   Active: active (running) since 6 months ago",
       "$ uptime",
-      "> system operational - 99.9% uptime"
+      "> 16:34:12 up 180 days, 14:22, load: 0.45, 0.38, 0.32"
     ];
 
     let lineIndex = 0;
@@ -45,7 +52,7 @@ export function Hero() {
       } else {
         clearInterval(terminalInterval);
       }
-    }, 400);
+    }, 300);
 
     return () => clearInterval(terminalInterval);
   }, []);
@@ -80,18 +87,30 @@ export function Hero() {
         <div>└── .env</div>
       </motion.div>
 
-      {/* System info decoration */}
+      {/* System monitoring decoration */}
       <motion.div
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.7, duration: 1 }}
-        className="absolute right-4 top-1/4 hidden lg:block text-xs font-mono text-muted-foreground/40 leading-relaxed"
+        className="absolute right-4 top-1/4 hidden lg:block text-xs font-mono text-muted-foreground/40 leading-relaxed space-y-3"
       >
-        <div>System: Linux 5.15.0</div>
-        <div>Shell: zsh 5.8</div>
-        <div>Memory: 16GB</div>
-        <div>CPU: 8 cores</div>
-        <div>Uptime: 365 days</div>
+        <div className="space-y-1">
+          <div className="text-primary">$ uname -a</div>
+          <div>Linux 5.15.0-x86_64</div>
+        </div>
+        <div className="space-y-1">
+          <div className="text-primary">$ free -h</div>
+          <div>Mem: 14.2/16GB</div>
+          <div>Swap: 0.5/8GB</div>
+        </div>
+        <div className="space-y-1">
+          <div className="text-primary">$ netstat -tn</div>
+          <div>Active: 42 connections</div>
+        </div>
+        <div className="space-y-1">
+          <div className="text-primary">$ docker stats</div>
+          <div>CPU: 12.4% | MEM: 2.1GB</div>
+        </div>
       </motion.div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

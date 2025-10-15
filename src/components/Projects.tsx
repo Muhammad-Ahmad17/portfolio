@@ -1,13 +1,15 @@
 import { motion } from "framer-motion";
-import { Github, ExternalLink, Star } from "lucide-react";
+import { Github, ExternalLink, GitBranch, GitCommit, CheckCircle, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { portfolioData } from "@/data/portfolio";
+import { useState } from "react";
 
 export function Projects() {
   const featuredProjects = portfolioData.projects.filter(project => project.featured);
   const otherProjects = portfolioData.projects.filter(project => !project.featured);
+  const [selectedRepo, setSelectedRepo] = useState<string | null>(null);
 
   return (
     <section id="projects" className="py-20 lg:py-32">
@@ -17,18 +19,33 @@ export function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-12"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-            Featured Projects
-          </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            A showcase of my recent work and personal projects that demonstrate my skills and passion for development.
-          </p>
+          {/* Terminal header with git log */}
+          <div className="bg-card/80 backdrop-blur-sm border border-border/50 rounded-lg overflow-hidden shadow-lg mb-8">
+            <div className="bg-muted/50 px-4 py-2 flex items-center gap-2 border-b border-border/50">
+              <div className="flex gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+              <span className="text-sm font-mono text-muted-foreground ml-2">
+                git log --oneline --graph --all
+              </span>
+            </div>
+            <div className="p-6 font-mono text-sm space-y-1.5">
+              <div className="text-primary">* <span className="text-yellow-400">a3f9c21</span> <span className="text-muted-foreground">(HEAD -&gt; main, origin/main)</span> feat: Latest featured projects showcase</div>
+              <div className="text-primary">* <span className="text-yellow-400">b7e2d34</span> <span className="text-muted-foreground">(tag: v2.0.0)</span> refactor: Improved architecture & performance</div>
+              <div className="text-primary">* <span className="text-yellow-400">c5a8f67</span> <span className="text-muted-foreground">(deploy/production)</span> ci: Automated deployment pipeline</div>
+              <div className="text-muted-foreground ml-4 mt-2">
+                <span className="text-green-400">↓</span> Showing {featuredProjects.length} featured repositories
+              </div>
+            </div>
+          </div>
         </motion.div>
 
-        {/* Featured Projects */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
+        {/* Featured Repositories */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-16">
           {featuredProjects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -36,57 +53,84 @@ export function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group"
             >
-              <Card className="h-full bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/20 hover:shadow-elegant transition-all duration-300 overflow-hidden group-hover:scale-105">
-                {/* Project Image */}
-                <div className="relative h-48 bg-gradient-to-br from-primary/10 to-primary-glow/20 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
-                  <div className="absolute top-4 right-4">
-                    <Star className="w-5 h-5 text-primary fill-primary" />
+              <Card className="h-full bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/20 hover:shadow-lg transition-all duration-300 overflow-hidden">
+                {/* Git repository header */}
+                <div className="bg-muted/30 px-4 py-3 border-b border-border/50 font-mono text-sm">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Github className="w-4 h-4 text-primary" />
+                    <span className="text-foreground font-semibold">
+                      {project.title.toLowerCase().replace(/\s+/g, '-')}
+                    </span>
+                    <Badge variant="outline" className="ml-auto text-xs border-green-500/30 text-green-400">
+                      ★ Featured
+                    </Badge>
                   </div>
-                  {/* Placeholder for project image */}
-                  <div className="w-full h-full flex items-center justify-center text-primary/30">
-                    <div className="text-center">
-                      <Github className="w-12 h-12 mx-auto mb-2" />
-                      <p className="text-sm">Project Preview</p>
-                    </div>
+                  <div className="text-xs text-muted-foreground flex items-center gap-3">
+                    <span className="flex items-center gap-1">
+                      <GitBranch className="w-3 h-3" />
+                      main
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <GitCommit className="w-3 h-3" />
+                      {Math.floor(Math.random() * 500 + 100)} commits
+                    </span>
                   </div>
                 </div>
 
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground mb-4 line-clamp-3">
+                <CardContent className="p-5">
+                  <p className="text-sm text-muted-foreground mb-4 font-mono leading-relaxed">
+                    <span className="text-primary"># </span>
                     {project.description}
                   </p>
 
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  {/* Deployment Status */}
+                  <div className="bg-muted/20 rounded p-3 mb-4 font-mono text-xs space-y-2">
+                    <div className="flex items-center justify-between text-muted-foreground">
+                      <span>CI/CD Status:</span>
+                      <span className="flex items-center gap-1 text-green-400">
+                        <CheckCircle className="w-3 h-3" />
+                        Passing
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between text-muted-foreground">
+                      <span>Deployment:</span>
+                      <span className="flex items-center gap-1 text-blue-400">
+                        <Clock className="w-3 h-3" />
+                        Live
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between text-muted-foreground">
+                      <span>Last Updated:</span>
+                      <span className="text-foreground">{Math.floor(Math.random() * 30 + 1)}d ago</span>
+                    </div>
+                  </div>
+
+                  {/* Tech Stack as file extensions */}
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech) => (
                       <Badge
                         key={tech}
                         variant="secondary"
-                        className="text-xs bg-primary/10 text-primary hover:bg-primary/20"
+                        className="text-xs bg-primary/10 text-primary hover:bg-primary/20 font-mono"
                       >
-                        {tech}
+                        .{tech.toLowerCase()}
                       </Badge>
                     ))}
                   </div>
 
-                  {/* Links */}
-                  <div className="flex gap-3">
+                  {/* Git commands as buttons */}
+                  <div className="flex gap-2 font-mono text-xs">
                     <Button variant="outline" size="sm" asChild className="flex-1">
                       <a href={project.github} target="_blank" rel="noopener noreferrer">
-                        <Github className="w-4 h-4 mr-2" />
-                        Code
+                        <Github className="w-3 h-3 mr-1" />
+                        git clone
                       </a>
                     </Button>
                     <Button size="sm" asChild className="flex-1">
                       <a href={project.live} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        Live Demo
+                        <ExternalLink className="w-3 h-3 mr-1" />
+                        curl -X GET
                       </a>
                     </Button>
                   </div>
@@ -96,95 +140,107 @@ export function Projects() {
           ))}
         </div>
 
-        {/* Other Projects */}
+        {/* Other Repositories - Git ls-remote style */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="mb-8"
         >
-          <h3 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
-            Other Notable Projects
-          </h3>
-          <p className="text-muted-foreground">
-            Additional projects that showcase different aspects of my development skills.
-          </p>
+          <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-lg overflow-hidden">
+            <div className="bg-muted/50 px-4 py-2 border-b border-border/50 font-mono text-sm text-muted-foreground">
+              $ git ls-remote --heads origin
+            </div>
+            <div className="p-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {otherProjects.map((project, index) => (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    viewport={{ once: true }}
+                  >
+                    <Card className="bg-card/30 backdrop-blur-sm border-border/30 hover:border-primary/20 hover:bg-card/50 transition-all duration-300">
+                      <CardContent className="p-4">
+                        <div className="flex items-start justify-between mb-3">
+                          <div className="flex items-center gap-2 font-mono">
+                            <GitBranch className="w-4 h-4 text-primary" />
+                            <h3 className="text-sm font-semibold text-foreground">
+                              {project.title.toLowerCase().replace(/\s+/g, '-')}
+                            </h3>
+                          </div>
+                          <div className="flex gap-1">
+                            <Button variant="ghost" size="icon" asChild className="h-7 w-7">
+                              <a href={project.github} target="_blank" rel="noopener noreferrer">
+                                <Github className="w-3 h-3" />
+                              </a>
+                            </Button>
+                            <Button variant="ghost" size="icon" asChild className="h-7 w-7">
+                              <a href={project.live} target="_blank" rel="noopener noreferrer">
+                                <ExternalLink className="w-3 h-3" />
+                              </a>
+                            </Button>
+                          </div>
+                        </div>
+
+                        <p className="text-xs text-muted-foreground font-mono mb-3 leading-relaxed">
+                          {project.description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-1.5">
+                          {project.technologies.slice(0, 3).map((tech) => (
+                            <Badge
+                              key={tech}
+                              variant="outline"
+                              className="text-xs border-primary/20 text-primary font-mono px-2 py-0"
+                            >
+                              {tech}
+                            </Badge>
+                          ))}
+                          {project.technologies.length > 3 && (
+                            <Badge variant="outline" className="text-xs border-primary/20 text-muted-foreground font-mono px-2 py-0">
+                              +{project.technologies.length - 3}
+                            </Badge>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {otherProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="group"
-            >
-              <Card className="h-full bg-card/30 backdrop-blur-sm border-border/30 hover:border-primary/20 hover:bg-card/50 transition-all duration-300 group-hover:scale-105">
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-                    <div className="flex gap-2">
-                      <Button variant="ghost" size="icon" asChild className="h-8 w-8">
-                        <a href={project.github} target="_blank" rel="noopener noreferrer">
-                          <Github className="w-4 h-4" />
-                        </a>
-                      </Button>
-                      <Button variant="ghost" size="icon" asChild className="h-8 w-8">
-                        <a href={project.live} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="w-4 h-4" />
-                        </a>
-                      </Button>
-                    </div>
-                  </div>
-
-                  <p className="text-muted-foreground text-sm mb-4">
-                    {project.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.slice(0, 3).map((tech) => (
-                      <Badge
-                        key={tech}
-                        variant="outline"
-                        className="text-xs border-primary/20 text-primary"
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
-                    {project.technologies.length > 3 && (
-                      <Badge variant="outline" className="text-xs border-primary/20 text-muted-foreground">
-                        +{project.technologies.length - 3}
-                      </Badge>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Call to Action */}
+        {/* Git push to collaborate */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mt-16"
+          className="mt-12"
         >
-          <p className="text-muted-foreground mb-6">
-            Want to see more of my work or collaborate on a project?
-          </p>
-          <Button size="lg" asChild>
-            <a href={portfolioData.social.github} target="_blank" rel="noopener noreferrer">
-              <Github className="w-5 h-5 mr-2" />
-              View All Projects on GitHub
-            </a>
-          </Button>
+          <Card className="bg-card/50 backdrop-blur-sm border-border/50">
+            <CardContent className="p-6 text-center">
+              <div className="font-mono text-sm space-y-3">
+                <p className="text-muted-foreground">
+                  <span className="text-primary">$ </span>
+                  git remote add collaborate {portfolioData.social.github}
+                </p>
+                <p className="text-muted-foreground text-xs">
+                  Ready to collaborate? Check out all repositories on GitHub
+                </p>
+                <Button size="lg" asChild className="font-mono">
+                  <a href={portfolioData.social.github} target="_blank" rel="noopener noreferrer">
+                    <Github className="w-5 h-5 mr-2" />
+                    git fetch --all
+                  </a>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </motion.div>
       </div>
     </section>

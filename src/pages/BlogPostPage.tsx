@@ -3,222 +3,38 @@ import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, Clock, Share2 } from "lucide-react";
+import { ArrowLeft, Terminal, FileText, Tag, Calendar, User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-
-// Mock blog post data - will be replaced with actual markdown files
-const blogPostsContent: Record<string, {
-  title: string;
-  date: string;
-  readTime: string;
-  tags: string[];
-  content: string;
-}> = {
-  "react-best-practices": {
-    title: "React Best Practices in 2025",
-    date: "2025-01-15",
-    readTime: "8 min read",
-    tags: ["React", "JavaScript", "Web Development"],
-    content: `
-# React Best Practices in 2025
-
-React continues to evolve, and with it, our best practices. Here are the essential patterns you should follow in 2025.
-
-## 1. Use TypeScript
-
-TypeScript has become the de facto standard for React applications. It provides:
-
-- **Type safety**: Catch errors at compile time
-- **Better IDE support**: Autocomplete and refactoring tools
-- **Self-documenting code**: Types serve as inline documentation
-
-\`\`\`typescript
-interface UserProps {
-  name: string;
-  email: string;
-  isActive: boolean;
-}
-
-const UserCard: React.FC<UserProps> = ({ name, email, isActive }) => {
-  return (
-    <div className={isActive ? 'active' : 'inactive'}>
-      <h2>{name}</h2>
-      <p>{email}</p>
-    </div>
-  );
-};
-\`\`\`
-
-## 2. Component Composition
-
-Break down complex components into smaller, reusable pieces.
-
-## 3. Custom Hooks
-
-Extract reusable logic into custom hooks for better code organization.
-
-## 4. Performance Optimization
-
-Use React.memo, useMemo, and useCallback wisely, but don't over-optimize prematurely.
-
-## Conclusion
-
-Following these practices will help you build maintainable and scalable React applications in 2025.
-    `
-  },
-  "devops-cicd": {
-    title: "CI/CD Pipeline with GitHub Actions",
-    date: "2025-01-10",
-    readTime: "12 min read",
-    tags: ["DevOps", "CI/CD", "GitHub Actions"],
-    content: `
-# CI/CD Pipeline with GitHub Actions
-
-Automating your deployment pipeline is essential for modern software development. Let's build one with GitHub Actions.
-
-## What is CI/CD?
-
-**Continuous Integration (CI)** and **Continuous Deployment (CD)** are practices that automate the process of:
-
-1. Testing code changes
-2. Building applications
-3. Deploying to production
-
-## Setting Up GitHub Actions
-
-Create a \`.github/workflows/deploy.yml\` file:
-
-\`\`\`yaml
-name: Deploy to Production
-
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-      - name: Install dependencies
-        run: npm install
-      - name: Run tests
-        run: npm test
-      - name: Build
-        run: npm run build
-      - name: Deploy
-        run: npm run deploy
-\`\`\`
-
-## Benefits
-
-- Automated testing
-- Faster deployments
-- Reduced human error
-- Better code quality
-
-## Conclusion
-
-GitHub Actions makes it easy to implement CI/CD for your projects.
-    `
-  },
-  "mern-stack-guide": {
-    title: "Complete MERN Stack Guide",
-    date: "2025-01-05",
-    readTime: "15 min read",
-    tags: ["MERN", "Full Stack", "MongoDB"],
-    content: `
-# Complete MERN Stack Guide
-
-The MERN stack (MongoDB, Express, React, Node.js) is a powerful combination for building full-stack web applications.
-
-## Stack Components
-
-### MongoDB
-NoSQL database for flexible data storage.
-
-### Express.js
-Minimal web framework for Node.js.
-
-### React
-Frontend library for building user interfaces.
-
-### Node.js
-JavaScript runtime for server-side code.
-
-## Project Structure
-
-\`\`\`
-mern-app/
-├── client/          # React frontend
-├── server/          # Express backend
-├── models/          # MongoDB models
-└── package.json
-\`\`\`
-
-## Building a Simple App
-
-Let's create a basic todo application with the MERN stack.
-
-### Backend Setup
-
-\`\`\`javascript
-const express = require('express');
-const mongoose = require('mongoose');
-
-const app = express();
-
-mongoose.connect('mongodb://localhost/todos', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
-
-app.use(express.json());
-
-// Routes
-app.get('/api/todos', async (req, res) => {
-  const todos = await Todo.find();
-  res.json(todos);
-});
-
-app.listen(5000, () => {
-  console.log('Server running on port 5000');
-});
-\`\`\`
-
-## Deployment
-
-Deploy your MERN app to platforms like Heroku, Vercel, or AWS.
-
-## Conclusion
-
-The MERN stack provides everything you need to build modern web applications.
-    `
-  }
-};
+import rehypeHighlight from "rehype-highlight";
+import { getBlogPost } from "@/lib/blog";
+import "highlight.js/styles/atom-one-dark.css";
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const post = slug ? blogPostsContent[slug] : null;
+  const post = slug ? getBlogPost(slug) : null;
 
   if (!post) {
     return (
       <div className="min-h-screen bg-background">
         <Navbar />
         <main className="container mx-auto px-4 py-20">
-          <h1 className="text-4xl font-bold">Post not found</h1>
-          <Button asChild className="mt-4">
-            <Link to="/blog">
-              <ArrowLeft className="mr-2 w-4 h-4" />
-              Back to Blog
-            </Link>
-          </Button>
+          <div className="glass rounded-lg border-2 border-destructive/50 p-8 max-w-2xl mx-auto">
+            <div className="font-mono space-y-4">
+              <div className="flex items-center gap-2 text-destructive">
+                <Terminal className="w-6 h-6" />
+                <span className="text-lg font-semibold">ERROR 404</span>
+              </div>
+              <p className="text-foreground">cat: {slug}: No such file or directory</p>
+              <Button asChild className="mt-4 font-mono">
+                <Link to="/blog">
+                  <ArrowLeft className="mr-2 w-4 h-4" />
+                  cd /blog
+                </Link>
+              </Button>
+            </div>
+          </div>
         </main>
         <Footer />
       </div>
@@ -235,73 +51,173 @@ const BlogPostPage = () => {
         className="pt-20 pb-20"
       >
         <article className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
-          <Button 
-            asChild 
-            variant="ghost" 
-            className="mb-8 hover:bg-primary/10"
+          {/* Terminal Navigation */}
+          <Button
+            asChild
+            variant="ghost"
+            className="mb-8 hover:bg-primary/10 font-mono"
           >
             <Link to="/blog">
               <ArrowLeft className="mr-2 w-4 h-4" />
-              Back to Blog
+              cd ../
             </Link>
           </Button>
 
+          {/* Terminal Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="mb-8"
+          >
+            <div className="glass rounded-lg border-2 border-primary/30 overflow-hidden">
+              {/* Terminal Title Bar */}
+              <div className="bg-primary/10 px-4 py-2 flex items-center space-x-2 border-b border-primary/20">
+                <div className="flex space-x-1.5">
+                  <div className="w-3 h-3 rounded-full bg-destructive/70" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
+                  <div className="w-3 h-3 rounded-full bg-primary/70" />
+                </div>
+                <Terminal className="w-4 h-4 text-primary ml-2" />
+                <span className="text-xs font-mono text-muted-foreground">
+                  ~/dev/blog/{post.slug}.md
+                </span>
+              </div>
+
+              {/* Terminal Content */}
+              <div className="p-6 font-mono text-sm bg-code-bg space-y-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-primary">$</span>
+                  <span className="text-foreground">cat {post.slug}.md</span>
+                </div>
+
+                <div className="border-t border-primary/20 pt-3 space-y-2">
+                  <div className="flex items-start gap-2 text-xs">
+                    <FileText className="w-4 h-4 text-primary mt-0.5" />
+                    <div className="space-y-1">
+                      <div className="text-muted-foreground">
+                        <span className="text-primary">File:</span> {post.slug}.md
+                      </div>
+                      <div className="text-muted-foreground">
+                        <span className="text-primary">Modified:</span> {post.date}
+                      </div>
+                      <div className="text-muted-foreground">
+                        <span className="text-primary">Author:</span> {post.author}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Article Title */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
+            className="mb-8"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-              {post.title}
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 font-mono">
+              <span className="text-primary">#</span> {post.title}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-4 text-muted-foreground mb-6">
-              <span className="flex items-center gap-2">
-                <Calendar className="w-4 h-4" />
-                {new Date(post.date).toLocaleDateString('en-US', { 
-                  month: 'long', 
-                  day: 'numeric', 
-                  year: 'numeric' 
-                })}
-              </span>
-              <span className="flex items-center gap-2">
-                <Clock className="w-4 h-4" />
-                {post.readTime}
-              </span>
-              <Button variant="ghost" size="sm" className="ml-auto hover:bg-primary/10">
-                <Share2 className="w-4 h-4 mr-2" />
-                Share
-              </Button>
+            {/* Meta Info */}
+            <div className="flex flex-wrap items-center gap-4 text-sm font-mono text-muted-foreground mb-6">
+              <div className="flex items-center gap-2">
+                <Calendar className="w-4 h-4 text-primary" />
+                {post.date}
+              </div>
+              <div className="flex items-center gap-2">
+                <User className="w-4 h-4 text-primary" />
+                {post.author}
+              </div>
             </div>
 
-            <div className="flex flex-wrap gap-2 mb-8">
+            {/* Tags */}
+            <div className="flex items-center gap-2 flex-wrap">
+              <Tag className="w-4 h-4 text-primary" />
               {post.tags.map((tag) => (
-                <Badge 
-                  key={tag} 
+                <Badge
+                  key={tag}
                   variant="secondary"
-                  className="bg-primary/10 text-primary"
+                  className="bg-primary/10 text-primary font-mono text-xs"
                 >
-                  {tag}
+                  {tag.toLowerCase()}
                 </Badge>
               ))}
             </div>
+          </motion.div>
 
+          {/* Article Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="glass rounded-lg border border-primary/20 p-8 md:p-12"
+          >
             <div className="prose prose-lg dark:prose-invert max-w-none
-              prose-headings:font-bold prose-headings:text-foreground
-              prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl
-              prose-p:text-foreground/90 prose-p:leading-relaxed
+              prose-headings:font-mono prose-headings:font-bold prose-headings:text-foreground
+              prose-h1:text-3xl prose-h1:border-b prose-h1:border-primary/20 prose-h1:pb-4 prose-h1:mb-6
+              prose-h2:text-2xl prose-h2:text-primary prose-h2:mt-8 prose-h2:mb-4
+              prose-h3:text-xl prose-h3:text-primary/80 prose-h3:mt-6 prose-h3:mb-3
+              prose-p:text-foreground/90 prose-p:leading-relaxed prose-p:my-4
               prose-a:text-primary prose-a:no-underline hover:prose-a:underline
               prose-strong:text-foreground prose-strong:font-semibold
-              prose-code:text-primary prose-code:bg-primary/10 prose-code:px-2 prose-code:py-1 prose-code:rounded
-              prose-pre:bg-muted prose-pre:border prose-pre:border-border
-              prose-blockquote:border-l-primary prose-blockquote:text-foreground/80
-              prose-ul:text-foreground/90 prose-ol:text-foreground/90
-              prose-li:marker:text-primary
+              prose-code:text-primary prose-code:bg-primary/10 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:font-mono prose-code:text-sm
+              prose-pre:bg-code-bg prose-pre:border-2 prose-pre:border-primary/20 prose-pre:rounded-lg prose-pre:p-0 prose-pre:my-6
+              prose-blockquote:border-l-4 prose-blockquote:border-l-primary prose-blockquote:bg-primary/5 prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:my-6
+              prose-ul:text-foreground/90 prose-ul:my-4 prose-ol:text-foreground/90 prose-ol:my-4
+              prose-li:marker:text-primary prose-li:my-2
+              prose-img:rounded-lg prose-img:border prose-img:border-primary/20
+              prose-hr:border-primary/20 prose-hr:my-8
             ">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeHighlight]}
+              >
                 {post.content}
               </ReactMarkdown>
             </div>
+          </motion.div>
+
+          {/* Terminal Footer */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="mt-12"
+          >
+            <div className="glass rounded-lg border border-primary/20 p-4">
+              <div className="font-mono text-sm space-y-1">
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <span className="text-primary">$</span>
+                  <span>echo "End of file"</span>
+                </div>
+                <div className="text-muted-foreground pl-4 text-xs">
+                  EOF
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Back Navigation */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mt-8 flex justify-center"
+          >
+            <Button
+              asChild
+              size="lg"
+              className="font-mono"
+            >
+              <Link to="/blog">
+                <ArrowLeft className="mr-2 w-5 h-5" />
+                ls /blog
+              </Link>
+            </Button>
           </motion.div>
         </article>
       </motion.main>
