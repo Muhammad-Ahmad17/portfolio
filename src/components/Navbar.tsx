@@ -46,26 +46,33 @@ export function Navbar() {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-        isScrolled
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled
           ? "bg-background/95 backdrop-blur-lg border-b border-border shadow-lg"
           : "bg-background/50 backdrop-blur-sm"
-      }`}
+        }`}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+          {/* Logo (profile photo) */}
           <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             className="flex items-center"
           >
             <Button
               variant="ghost"
               onClick={() => handleNavigation("/")}
-              className="text-xl font-bold bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent hover:bg-transparent p-2 h-auto"
+              className="p-0 h-auto"
             >
-              {portfolioData.personal.name.split(' ')[0]}
+              {/*
+                The profile image should be placed at: public/images/profile-pic.png
+                If you prefer a different path/name, update the src below accordingly.
+              */}
+              <img
+                src="/favicon.ico"
+                alt={`${portfolioData.personal.name} profile`}
+                className="w-10 h-10  border-2 border-primary object-cover"
+              />
             </Button>
           </motion.div>
 
@@ -77,11 +84,10 @@ export function Navbar() {
                   key={item.href}
                   variant="ghost"
                   onClick={() => handleNavigation(item.href)}
-                  className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg ${
-                    isActive(item.href)
+                  className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg ${isActive(item.href)
                       ? "text-primary bg-primary/10"
                       : "text-muted-foreground hover:text-primary hover:bg-muted/50"
-                  }`}
+                    }`}
                 >
                   {item.label}
                   {isActive(item.href) && (
@@ -171,11 +177,10 @@ export function Navbar() {
                     <Button
                       variant="ghost"
                       onClick={() => handleNavigation(item.href)}
-                      className={`w-full text-left justify-start transition-all duration-300 px-4 py-2 text-sm font-medium rounded-lg ${
-                        isActive(item.href)
+                      className={`w-full text-left justify-start transition-all duration-300 px-4 py-2 text-sm font-medium rounded-lg ${isActive(item.href)
                           ? "text-primary bg-primary/10"
                           : "text-muted-foreground hover:text-primary hover:bg-muted/50"
-                      }`}
+                        }`}
                     >
                       {item.label}
                     </Button>
