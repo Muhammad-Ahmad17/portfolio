@@ -1,5 +1,10 @@
-// Blog utilities - ADD YOUR BLOGS HERE!
-// To add a new blog post, simply add a new object to the blogPosts array below
+import matter from 'gray-matter';
+import { Buffer } from 'buffer';
+
+// Make Buffer available globally for gray-matter
+if (typeof window !== 'undefined') {
+    window.Buffer = Buffer;
+}
 
 export interface BlogPost {
     slug: string;
@@ -9,209 +14,90 @@ export interface BlogPost {
     excerpt: string;
     tags: string[];
     content: string;
+    featured?: boolean;
 }
 
-// 🚀 ADD NEW BLOG POSTS HERE - Just copy the format below!
-export const blogPosts: BlogPost[] = [
-    {
-        slug: 'nodejs-production-server',
-        title: 'Setting Up a Production Node.js Server',
-        date: '2024-10-01',
-        author: 'Muhammad',
-        excerpt: 'Learn how to set up a production-ready Node.js server with proper security, monitoring, and deployment practices.',
-        tags: ['Node.js', 'DevOps', 'Backend'],
-        content: `# Setting Up a Production Node.js Server
+// Import all markdown files directly from src/content/blogs
+const blogModules = import.meta.glob('/src/content/blogs/*.md', {
+    query: '?raw',
+    import: 'default',
+    eager: false
+});
 
-When deploying a Node.js application to production, there are several critical steps to ensure your server is secure, performant, and maintainable.
+// This will be populated with blog posts from markdown files
+let cachedBlogPosts: BlogPost[] | null = null;
 
-## Prerequisites
-
-Before we begin, make sure you have:
-- A Linux server (Ubuntu 20.04+ recommended)
-- Root or sudo access
-- Basic knowledge of terminal commands
-
-## Step 1: Server Setup
-
-First, update your system packages:
-
-\\\`\\\`\\\`bash
-sudo apt update && sudo apt upgrade -y
-\\\`\\\`\\\`
-
-Install Node.js using nvm:
-
-\\\`\\\`\\\`bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-nvm install --lts
-\\\`\\\`\\\`
-
-## Step 2: Application Deployment
-
-Clone your repository and install dependencies:
-
-\\\`\\\`\\\`bash
-git clone https://github.com/your-repo/your-app.git
-cd your-app
-npm install --production
-\\\`\\\`\\\`
-
-## Step 3: Process Management
-
-Use PM2 to manage your Node.js process:
-
-\\\`\\\`\\\`bash
-npm install -g pm2
-pm2 start app.js --name "my-app"
-pm2 startup
-pm2 save
-\\\`\\\`\\\`
-
-## Conclusion
-
-With these steps, you have a production-ready Node.js server. Remember to regularly update your dependencies and monitor your application logs!`
-    },
-    {
-        slug: 'docker-best-practices',
-        title: 'Docker Best Practices for Backend Developers',
-        date: '2024-09-15',
-        author: 'Muhammad',
-        excerpt: 'Essential Docker practices every backend developer should know for building efficient and secure containers.',
-        tags: ['Docker', 'DevOps', 'Containers'],
-        content: `# Docker Best Practices for Backend Developers
-
-Docker has revolutionized how we deploy applications. Here are the best practices I learned from production experience.
-
-## 1. Use Multi-Stage Builds
-
-Multi-stage builds help reduce image size:
-
-\\\`\\\`\\\`dockerfile
-# Build stage
-FROM node:18-alpine AS builder
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci --only=production
-
-# Production stage
-FROM node:18-alpine
-WORKDIR /app
-COPY --from=builder /app/node_modules ./node_modules
-COPY . .
-EXPOSE 3000
-CMD ["node", "server.js"]
-\\\`\\\`\\\`
-
-## 2. Minimize Layer Count
-
-Combine RUN commands to reduce layers:
-
-\\\`\\\`\\\`dockerfile
-RUN apt-get update && apt-get install -y \\\\
-    curl \\\\
-    git \\\\
-    && rm -rf /var/lib/apt/lists/*
-\\\`\\\`\\\`
-
-## 3. Use .dockerignore
-
-Create a \\\`.dockerignore\\\` file:
-
-\\\`\\\`\\\`
-node_modules
-npm-debug.log
-.env
-.git
-\\\`\\\`\\\`
-
-## 4. Security Scanning
-
-Always scan your images:
-
-\\\`\\\`\\\`bash
-docker scan my-image:latest
-\\\`\\\`\\\`
-
-## Conclusion
-
-Following these practices will help you create efficient, secure Docker containers for your backend applications!`
-    },
-    {
-        slug: 'postgresql-performance-tuning',
-        title: 'PostgreSQL Performance Tuning Tips',
-        date: '2024-08-20',
-        author: 'Muhammad',
-        excerpt: 'Optimize your PostgreSQL database performance with these practical tuning strategies.',
-        tags: ['PostgreSQL', 'Database', 'Performance'],
-        content: `# PostgreSQL Performance Tuning Tips
-
-PostgreSQL is powerful, but it needs proper tuning for optimal performance. Here are my top tips.
-
-## 1. Configure Shared Buffers
-
-Edit \\\`postgresql.conf\\\`:
-
-\\\`\\\`\\\`conf
-shared_buffers = 256MB  # 25% of RAM for dedicated server
-\\\`\\\`\\\`
-
-## 2. Index Your Queries
-
-Find missing indexes:
-
-\\\`\\\`\\\`sql
-SELECT schemaname, tablename, attname, n_distinct, correlation
-FROM pg_stats
-WHERE schemaname = 'public'
-ORDER BY abs(correlation) DESC;
-\\\`\\\`\\\`
-
-## 3. Analyze Query Performance
-
-Use EXPLAIN ANALYZE:
-
-\\\`\\\`\\\`sql
-EXPLAIN ANALYZE
-SELECT * FROM users WHERE email = 'test@example.com';
-\\\`\\\`\\\`
-
-## 4. Connection Pooling
-
-Use pgBouncer for connection pooling:
-
-\\\`\\\`\\\`bash
-sudo apt install pgbouncer
-\\\`\\\`\\\`
-
-## Monitoring
-
-Monitor with these queries:
-
-\\\`\\\`\\\`sql
--- Active connections
-SELECT count(*) FROM pg_stat_activity;
-
--- Slow queries
-SELECT query, calls, total_time, mean_time
-FROM pg_stat_statements
-ORDER BY mean_time DESC
-LIMIT 10;
-\\\`\\\`\\\`
-
-## Conclusion
-
-Regular monitoring and tuning will keep your PostgreSQL database performant as your application scales!`
+// Function to load and parse all blog markdown files
+export async function loadBlogPosts(): Promise<BlogPost[]> {
+    if (cachedBlogPosts) {
+        return cachedBlogPosts;
     }
-];
 
+    try {
+        const posts: BlogPost[] = [];
+
+        // Load all markdown files
+        for (const [path, loadModule] of Object.entries(blogModules)) {
+            try {
+                // Extract slug from path
+                const fileName = path.split('/').pop()?.replace('.md', '') || '';
+
+                // Skip README
+                if (fileName === 'README') continue;
+
+                // Load the module content
+                const content = await loadModule() as string;
+
+                // Parse frontmatter and content
+                const { data, content: markdownContent } = matter(content);
+
+                posts.push({
+                    slug: fileName,
+                    title: data.title || 'Untitled',
+                    date: data.date || new Date().toISOString().split('T')[0],
+                    author: data.author || 'Muhammad Ahmad',
+                    excerpt: data.excerpt || '',
+                    tags: data.tags || [],
+                    content: markdownContent,
+                    featured: data.featured || false
+                });
+            } catch (err) {
+                console.error(`Error loading blog from ${path}:`, err);
+            }
+        }
+
+        // Sort by date (newest first)
+        cachedBlogPosts = posts.sort((a, b) =>
+            new Date(b.date).getTime() - new Date(a.date).getTime()
+        );
+
+        console.log(`Loaded ${cachedBlogPosts.length} blog posts`);
+        return cachedBlogPosts;
+    } catch (error) {
+        console.error('Error loading blog posts:', error);
+        return [];
+    }
+}
+
+// Synchronous version that returns cached posts or empty array
 export function getBlogPosts(): BlogPost[] {
-    return blogPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    return cachedBlogPosts || [];
 }
 
 export function getBlogPost(slug: string): BlogPost | undefined {
-    return blogPosts.find(post => post.slug === slug);
+    const posts = getBlogPosts();
+    return posts.find(post => post.slug === slug);
 }
 
 export function getBlogPostsByTag(tag: string): BlogPost[] {
-    return blogPosts.filter(post => post.tags.includes(tag));
+    const posts = getBlogPosts();
+    return posts.filter(post => post.tags.includes(tag));
 }
+
+export function getFeaturedPosts(): BlogPost[] {
+    const posts = getBlogPosts();
+    return posts.filter(post => post.featured);
+}
+
+// Initialize blog posts on module load
+loadBlogPosts();

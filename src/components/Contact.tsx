@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Github, Linkedin, Twitter, Terminal, CheckCircle } from "lucide-react";
+import { Send, Github, Linkedin, Mail, Phone, MapPin, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -16,8 +16,6 @@ export function Contact() {
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [responseLog, setResponseLog] = useState<string[]>([]);
-  const [showResponse, setShowResponse] = useState(false);
   const { toast } = useToast();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -30,76 +28,51 @@ export function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setShowResponse(true);
-    setResponseLog([]);
 
-    // Simulate API call with logs
-    const logs = [
-      `$ curl -X POST https://api.portfolio.dev/contact \\`,
-      `  -H "Content-Type: application/json" \\`,
-      `  -d '${JSON.stringify(formData, null, 2)}'`,
-      ``,
-      `[${new Date().toISOString()}] Establishing connection...`,
-      `[${new Date().toISOString()}] TLS handshake completed`,
-      `[${new Date().toISOString()}] Sending request...`,
-    ];
-
-    // Show logs progressively
-    for (let i = 0; i < logs.length; i++) {
-      await new Promise(resolve => setTimeout(resolve, 200));
-      setResponseLog(prev => [...prev, logs[i]]);
-    }
-
-    await new Promise(resolve => setTimeout(resolve, 800));
-
-    const successLogs = [
-      `[${new Date().toISOString()}] Response received: 200 OK`,
-      `{`,
-      `  "status": "success",`,
-      `  "message": "Message sent successfully",`,
-      `  "data": {`,
-      `    "messageId": "${Math.random().toString(36).substr(2, 9)}",`,
-      `    "timestamp": "${new Date().toISOString()}"`,
-      `  }`,
-      `}`,
-    ];
-
-    for (const log of successLogs) {
-      setResponseLog(prev => [...prev, log]);
-      await new Promise(resolve => setTimeout(resolve, 100));
-    }
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500));
 
     toast({
       title: "Message Sent!",
       description: "Thank you for your message. I'll get back to you soon!",
     });
 
-    setTimeout(() => {
-      setFormData({ name: "", email: "", subject: "", message: "" });
-      setIsSubmitting(false);
-      setShowResponse(false);
-    }, 3000);
+    setFormData({ name: "", email: "", subject: "", message: "" });
+    setIsSubmitting(false);
   };
+
+  const contactInfo = [
+    {
+      icon: Mail,
+      label: "Email",
+      value: portfolioData.personal.email,
+      href: `mailto:${portfolioData.personal.email}`
+    },
+    {
+      icon: Phone,
+      label: "Phone",
+      value: portfolioData.personal.phone,
+      href: `tel:${portfolioData.personal.phone}`
+    },
+    {
+      icon: MapPin,
+      label: "Location",
+      value: portfolioData.personal.location,
+      href: null
+    }
+  ];
 
   const socialLinks = [
     {
       icon: Github,
       label: "GitHub",
-      href: portfolioData.social.github,
-      username: "github.com/" + portfolioData.social.github.split('/').pop()
+      href: portfolioData.social.github
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
-      href: portfolioData.social.linkedin,
-      username: "linkedin.com/in/" + portfolioData.social.linkedin.split('/').pop()
-    },
-    // {
-    //   icon: Twitter,
-    //   label: "Twitter",
-    //   href: portfolioData.social.twitter,
-    //   username: "twitter.com/" + portfolioData.social.twitter.split('/').pop()
-    // }
+      href: portfolioData.social.linkedin
+    }
   ];
 
   return (
@@ -110,39 +83,23 @@ export function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-8"
+          className="mb-12 text-center"
         >
-          {/* Terminal header */}
-          <div className="bg-card/80 backdrop-blur-sm border border-border/50 rounded-lg overflow-hidden shadow-lg mb-8">
-            <div className="bg-muted/50 px-4 py-2 flex items-center gap-2 border-b border-border/50">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <span className="text-sm font-mono text-muted-foreground ml-2">
-                POST /api/contact - REST API Endpoint
-              </span>
-            </div>
-            <div className="p-6 font-mono text-xs space-y-2">
-              <div className="text-primary font-semibold">
-                $ curl -X POST https://api.portfolio.dev/contact
-              </div>
-              <div className="text-muted-foreground space-y-1">
-                <div><span className="text-cyan-400">Endpoint:</span> /api/contact</div>
-                <div><span className="text-green-400">Method:</span> POST</div>
-                <div><span className="text-orange-400">Content-Type:</span> application/json</div>
-                <div><span className="text-blue-400">Authentication:</span> Not required</div>
-              </div>
-              <div className="pt-2 text-muted-foreground">
-                Send a message via REST API or connect through social channels
-              </div>
-            </div>
+          <div className="inline-block mb-4">
+            <span className="px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-semibold">
+              Get In Touch
+            </span>
           </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+            Let's Work Together
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Have a project in mind or just want to chat? Feel free to reach out!
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Connection Info - Server Details */}
+          {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -152,96 +109,84 @@ export function Contact() {
           >
             <Card className="bg-card/50 backdrop-blur-sm border-border/50">
               <CardContent className="p-6">
-                <div className="font-mono text-xs space-y-4">
-                  <div className="text-primary font-semibold text-sm mb-4">
-                    $ cat /etc/contact/server.conf
-                  </div>
-
-                  <div className="space-y-3">
-                    <div className="bg-muted/20 rounded p-3 space-y-1.5">
-                      <div className="text-cyan-400 font-semibold">## Email Server</div>
-                      <div className="text-muted-foreground">
-                        <span className="text-foreground">SMTP_USER=</span>
-                        <a href={`mailto:${portfolioData.personal.email}`} className="text-primary hover:underline">
-                          {portfolioData.personal.email}
+                <h3 className="text-xl font-semibold mb-6 text-foreground">Contact Information</h3>
+                <div className="space-y-4">
+                  {contactInfo.map((info, index) => (
+                    <motion.div
+                      key={info.label}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                    >
+                      {info.href ? (
+                        <a
+                          href={info.href}
+                          className="flex items-center gap-4 p-4 rounded-lg hover:bg-muted/50 transition-colors group"
+                        >
+                          <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                            <info.icon className="w-6 h-6 text-primary" />
+                          </div>
+                          <div>
+                            <div className="text-xs text-muted-foreground uppercase tracking-wide">{info.label}</div>
+                            <div className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{info.value}</div>
+                          </div>
                         </a>
-                      </div>
-                      <div className="text-muted-foreground">
-                        <span className="text-foreground">SMTP_PORT=</span>587
-                      </div>
-                      <div className="text-muted-foreground">
-                        <span className="text-foreground">TLS_ENABLED=</span>true
-                      </div>
-                    </div>
-
-                    <div className="bg-muted/20 rounded p-3 space-y-1.5">
-                      <div className="text-green-400 font-semibold">## Phone Gateway</div>
-                      <div className="text-muted-foreground">
-                        <span className="text-foreground">TEL_NUMBER=</span>
-                        <a href={`tel:${portfolioData.personal.phone}`} className="text-primary hover:underline">
-                          {portfolioData.personal.phone}
-                        </a>
-                      </div>
-                      <div className="text-muted-foreground">
-                        <span className="text-foreground">TIMEZONE=</span>UTC+0
-                      </div>
-                      <div className="text-muted-foreground">
-                        <span className="text-foreground">AVAILABLE=</span>24/7
-                      </div>
-                    </div>
-
-                    <div className="bg-muted/20 rounded p-3 space-y-1.5">
-                      <div className="text-orange-400 font-semibold">## Location</div>
-                      <div className="text-muted-foreground">
-                        <span className="text-foreground">GEO_LOCATION=</span>{portfolioData.personal.location}
-                      </div>
-                      <div className="text-muted-foreground">
-                        <span className="text-foreground">REMOTE_WORK=</span>enabled
-                      </div>
-                    </div>
-                  </div>
+                      ) : (
+                        <div className="flex items-center gap-4 p-4 rounded-lg">
+                          <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                            <info.icon className="w-6 h-6 text-primary" />
+                          </div>
+                          <div>
+                            <div className="text-xs text-muted-foreground uppercase tracking-wide">{info.label}</div>
+                            <div className="text-sm font-medium text-foreground">{info.value}</div>
+                          </div>
+                        </div>
+                      )}
+                    </motion.div>
+                  ))}
                 </div>
               </CardContent>
             </Card>
 
-            {/* Social Links - Network Connections */}
             <Card className="bg-card/50 backdrop-blur-sm border-border/50">
               <CardContent className="p-6">
-                <div className="font-mono text-xs space-y-3">
-                  <div className="text-primary font-semibold text-sm">
-                    $ netstat -an | grep ESTABLISHED
-                  </div>
-                  <div className="space-y-2">
-                    {socialLinks.map((social, index) => (
-                      <a
-                        key={social.label}
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block bg-muted/20 hover:bg-muted/30 rounded p-3 transition-colors"
-                      >
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                            <social.icon className="w-4 h-4 text-primary" />
-                            <div>
-                              <div className="text-foreground font-semibold">{social.label}</div>
-                              <div className="text-muted-foreground text-xs">{social.username}</div>
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-2 text-green-400">
-                            <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
-                            <span className="text-xs">LIVE</span>
-                          </div>
-                        </div>
+                <h3 className="text-xl font-semibold mb-6 text-foreground">Connect With Me</h3>
+                <div className="flex gap-4">
+                  {socialLinks.map((social) => (
+                    <Button
+                      key={social.label}
+                      variant="outline"
+                      size="lg"
+                      asChild
+                      className="flex-1 hover:border-primary/50 hover:bg-primary/10"
+                    >
+                      <a href={social.href} target="_blank" rel="noopener noreferrer">
+                        <social.icon className="w-5 h-5 mr-2" />
+                        {social.label}
                       </a>
-                    ))}
+                    </Button>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
+              <CardContent className="p-6">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-6 h-6 text-primary mt-1" />
+                  <div>
+                    <h4 className="font-semibold text-foreground mb-2">Quick Response</h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      I typically respond to all inquiries within 24 hours. Looking forward to hearing from you!
+                    </p>
                   </div>
                 </div>
               </CardContent>
             </Card>
           </motion.div>
 
-          {/* Contact Form - curl POST */}
+          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -249,116 +194,87 @@ export function Contact() {
             viewport={{ once: true }}
           >
             <Card className="bg-card/50 backdrop-blur-sm border-border/50">
-              <div className="bg-muted/50 px-4 py-2 border-b border-border/50 font-mono text-xs text-muted-foreground">
-                $ vim /tmp/message.json
-              </div>
               <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-6 text-foreground">Send a Message</h3>
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="font-mono text-xs space-y-4">
-                    {/* JSON-like form */}
-                    <div className="text-muted-foreground">
-                      <span className="text-foreground">{'{'}</span>
-                    </div>
+                  <div>
+                    <label htmlFor="name" className="text-sm font-medium text-foreground block mb-2">
+                      Your Name
+                    </label>
+                    <Input
+                      id="name"
+                      name="name"
+                      placeholder="John Doe"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="bg-background/50"
+                    />
+                  </div>
 
-                    <div className="ml-4 space-y-3">
-                      <div>
-                        <label className="text-cyan-400">"from_name":</label>
-                        <Input
-                          name="name"
-                          placeholder='"John Doe"'
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                          className="mt-1 bg-background/50 border-border/50 focus:border-primary font-mono text-xs"
-                        />
-                      </div>
+                  <div>
+                    <label htmlFor="email" className="text-sm font-medium text-foreground block mb-2">
+                      Email Address
+                    </label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="john@example.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="bg-background/50"
+                    />
+                  </div>
 
-                      <div>
-                        <label className="text-green-400">"from_email":</label>
-                        <Input
-                          name="email"
-                          type="email"
-                          placeholder='"john@example.com"'
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                          className="mt-1 bg-background/50 border-border/50 focus:border-primary font-mono text-xs"
-                        />
-                      </div>
+                  <div>
+                    <label htmlFor="subject" className="text-sm font-medium text-foreground block mb-2">
+                      Subject
+                    </label>
+                    <Input
+                      id="subject"
+                      name="subject"
+                      placeholder="Project Inquiry"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                      className="bg-background/50"
+                    />
+                  </div>
 
-                      <div>
-                        <label className="text-orange-400">"subject":</label>
-                        <Input
-                          name="subject"
-                          placeholder='"Project Inquiry"'
-                          value={formData.subject}
-                          onChange={handleChange}
-                          required
-                          className="mt-1 bg-background/50 border-border/50 focus:border-primary font-mono text-xs"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="text-blue-400">"message":</label>
-                        <Textarea
-                          name="message"
-                          placeholder='"Your message here..."'
-                          value={formData.message}
-                          onChange={handleChange}
-                          required
-                          rows={6}
-                          className="mt-1 bg-background/50 border-border/50 focus:border-primary resize-none font-mono text-xs"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="text-muted-foreground">
-                      <span className="text-foreground">{'}'}</span>
-                    </div>
+                  <div>
+                    <label htmlFor="message" className="text-sm font-medium text-foreground block mb-2">
+                      Message
+                    </label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      placeholder="Tell me about your project..."
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows={6}
+                      className="bg-background/50 resize-none"
+                    />
                   </div>
 
                   <Button
                     type="submit"
                     size="lg"
                     disabled={isSubmitting}
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-mono"
+                    className="w-full bg-primary hover:bg-primary/90"
                   >
                     {isSubmitting ? (
-                      <span className="text-xs">$ Sending... please wait</span>
+                      <>Sending...</>
                     ) : (
                       <>
-                        <Terminal className="w-4 h-4 mr-2" />
-                        <span className="text-xs">$ curl -X POST /api/contact</span>
+                        <Send className="w-5 h-5 mr-2" />
+                        Send Message
                       </>
                     )}
                   </Button>
                 </form>
-
-                {/* Response Log */}
-                {showResponse && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    className="mt-4 bg-background/80 rounded p-4 border border-border/50 overflow-hidden"
-                  >
-                    <div className="font-mono text-xs space-y-1 max-h-64 overflow-y-auto">
-                      {responseLog.map((log, index) => (
-                        <div
-                          key={index}
-                          className={
-                            log.includes('200 OK') ? 'text-green-400' :
-                              log.includes('success') ? 'text-cyan-400' :
-                                log.includes('$') ? 'text-primary' :
-                                  log.includes('{') || log.includes('}') ? 'text-orange-400' :
-                                    'text-muted-foreground'
-                          }
-                        >
-                          {log}
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
               </CardContent>
             </Card>
           </motion.div>

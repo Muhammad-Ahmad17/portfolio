@@ -1,16 +1,30 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, Mail, Terminal, Server, Database, FileCode, GitBranch, Cpu } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Github, Linkedin, Mail, ArrowRight, Sparkles, Code2, Cloud, Database, Rocket } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export function Hero() {
   const navigate = useNavigate();
   const [displayedTitle, setDisplayedTitle] = useState("");
   const fullTitle = portfolioData.personal.title;
-  const [terminalLines, setTerminalLines] = useState<string[]>([]);
+  const [displayedExpertise, setDisplayedExpertise] = useState("");
+  const [expertiseIndex, setExpertiseIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
 
+  const expertiseList = [
+    "Backend Development with Node.js",
+    "DevOps & AWS Cloud Services",
+    "Full Stack Web Applications",
+    "Microservices Architecture",
+    "Docker & Kubernetes",
+    "CI/CD Pipeline Automation",
+    "Database Design & Optimization",
+    "RESTful & GraphQL APIs"
+  ];
+
+  // Title typing effect
   useEffect(() => {
     let currentIndex = 0;
     const typingInterval = setInterval(() => {
@@ -25,283 +39,303 @@ export function Hero() {
     return () => clearInterval(typingInterval);
   }, []);
 
+  // Expertise cycling effect
   useEffect(() => {
-    const commands = [
-      "$ whoami",
-      "> backend_developer",
-      "$ cat /etc/skills.conf",
-      "> Node.js | Python | PostgreSQL | Docker",
-      "$ docker ps --format 'table {{.Names}}\t{{.Status}}'",
-      "> api-server\tUp 180 days",
-      "> postgres-db\tUp 180 days (healthy)",
-      "> redis-cache\tUp 180 days",
-      "$ pm2 list",
-      "> ├─ production-api  running  ↺ 0  99.8%  512M",
-      "$ systemctl status nginx",
-      "> ● nginx.service - A high performance web server",
-      ">   Active: active (running) since 6 months ago",
-      "$ uptime",
-      "> 16:34:12 up 180 days, 14:22, load: 0.45, 0.38, 0.32"
-    ];
+    const currentText = expertiseList[expertiseIndex];
+    const typingSpeed = isDeleting ? 30 : 50;
+    const pauseTime = isDeleting ? 500 : 2000;
 
-    let lineIndex = 0;
-    const terminalInterval = setInterval(() => {
-      if (lineIndex < commands.length) {
-        setTerminalLines(prev => [...prev, commands[lineIndex]]);
-        lineIndex++;
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing
+        if (displayedExpertise.length < currentText.length) {
+          setDisplayedExpertise(currentText.slice(0, displayedExpertise.length + 1));
+        } else {
+          // Finished typing, wait then start deleting
+          setTimeout(() => setIsDeleting(true), pauseTime);
+        }
       } else {
-        clearInterval(terminalInterval);
+        // Deleting
+        if (displayedExpertise.length > 0) {
+          setDisplayedExpertise(currentText.slice(0, displayedExpertise.length - 1));
+        } else {
+          // Finished deleting, move to next expertise
+          setIsDeleting(false);
+          setExpertiseIndex((prevIndex) => (prevIndex + 1) % expertiseList.length);
+        }
       }
-    }, 300);
+    }, typingSpeed);
 
-    return () => clearInterval(terminalInterval);
-  }, []);
+    return () => clearTimeout(timer);
+  }, [displayedExpertise, isDeleting, expertiseIndex]);
 
-  const techStack = [
-    { icon: Server, label: "Node.js", delay: 0 },
-    { icon: Database, label: "PostgreSQL", delay: 0.1 },
-    { icon: FileCode, label: "Python", delay: 0.2 },
-    { icon: GitBranch, label: "Git", delay: 0.3 },
-    { icon: Cpu, label: "Docker", delay: 0.4 },
+  const stats = [
+    { icon: Sparkles, label: "Years Experience", value: "4+" },
+    { icon: Code2, label: "Projects Completed", value: "50+" },
+    { icon: Rocket, label: "Happy Clients", value: "30+" },
+  ];
+
+  const skills = [
+    { icon: Code2, name: "Full Stack Development" },
+    { icon: Cloud, name: "Cloud & DevOps" },
+    { icon: Database, name: "Backend Systems" },
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
-      {/* Enhanced Background with visible patterns */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-100" />
-      <div className="absolute inset-0 bg-gradient-hero" />
+    <section className="relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-gradient-to-br from-background via-background to-primary/5 pt-20 pb-20">
+      {/* Subtle animated background */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-30" />
 
-      {/* Linux file tree decoration */}
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.5, duration: 1 }}
-        className="absolute left-4 top-1/4 hidden lg:block text-xs font-mono text-muted-foreground/40 leading-relaxed"
-      >
-        <div>├── src/</div>
-        <div>│   ├── api/</div>
-        <div>│   ├── models/</div>
-        <div>│   └── controllers/</div>
-        <div>├── docker/</div>
-        <div>├── scripts/</div>
-        <div>└── .env</div>
-      </motion.div>
+      {/* Gradient orbs */}
+      <div className="absolute top-20 right-20 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-20 left-20 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
 
-      {/* System monitoring decoration */}
-      <motion.div
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.7, duration: 1 }}
-        className="absolute right-4 top-1/4 hidden lg:block text-xs font-mono text-muted-foreground/40 leading-relaxed space-y-3"
-      >
-        <div className="space-y-1">
-          <div className="text-primary">$ uname -a</div>
-          <div>Linux 5.15.0-x86_64</div>
-        </div>
-        <div className="space-y-1">
-          <div className="text-primary">$ free -h</div>
-          <div>Mem: 14.2/16GB</div>
-          <div>Swap: 0.5/8GB</div>
-        </div>
-        <div className="space-y-1">
-          <div className="text-primary">$ netstat -tn</div>
-          <div>Active: 42 connections</div>
-        </div>
-        <div className="space-y-1">
-          <div className="text-primary">$ docker stats</div>
-          <div>CPU: 12.4% | MEM: 2.1GB</div>
-        </div>
-      </motion.div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start lg:items-center">
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left content - Terminal */}
+          {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-6"
+            className="space-y-6 lg:space-y-8"
           >
-            {/* Main terminal window */}
-            <div className="glass rounded-lg border-2 border-primary/30 shadow-2xl overflow-hidden">
-              {/* Terminal header */}
-              <div className="bg-primary/10 px-4 py-2 flex items-center space-x-2 border-b border-primary/20">
-                <div className="flex space-x-1.5">
-                  <div className="w-3 h-3 rounded-full bg-destructive/70" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
-                  <div className="w-3 h-3 rounded-full bg-primary/70" />
-                </div>
-                <span className="text-xs font-mono text-muted-foreground ml-4">
-                  muhammad@devmachine: ~
-                </span>
-              </div>
-
-              {/* Terminal content */}
-              <div className="p-6 font-mono text-sm space-y-1 bg-code-bg min-h-[320px]">
-                {terminalLines.filter(line => line != null).map((line, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className={line.startsWith('$') ? 'text-primary font-semibold' :
-                      line.startsWith('>') ? 'text-foreground/80 pl-2' :
-                        'text-muted-foreground'}
-                  >
-                    {line}
-                  </motion.div>
-                ))}
-                {terminalLines.length > 0 && (
-                  <span className="inline-block w-2 h-4 bg-primary animate-pulse ml-1" />
-                )}
-              </div>
-            </div>
-
-            {/* Tech stack badges */}
-            <div className="flex flex-wrap gap-3">
-              {techStack.map((tech, index) => (
-                <motion.div
-                  key={tech.label}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1.5 + tech.delay, duration: 0.4 }}
-                  className="glass rounded-lg px-4 py-2 flex items-center space-x-2 border border-primary/20 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
-                >
-                  <tech.icon className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-mono text-foreground">{tech.label}</span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right content */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8"
-          >
-            {/* Main heading with command-line style */}
-            <div className="space-y-6">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className="space-y-2"
-              >
-                <p className="text-sm font-mono text-muted-foreground">
-                  <span className="text-primary">~</span> /home/developer
-                </p>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-                  <span className="text-primary font-mono"># </span>
-                  {portfolioData.personal.name}
-                </h1>
-              </motion.div>
-
-              <motion.div
-                className="space-y-2"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-              >
-                <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
-                  Role:
-                </p>
-                <div className="text-xl sm:text-2xl lg:text-3xl font-bold font-mono text-foreground">
-                  {displayedTitle}
-                  <span className="inline-block w-0.5 h-6 sm:h-8 bg-primary animate-pulse ml-1" />
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Description with code comment style */}
+            {/* Greeting */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.7 }}
-              className="space-y-3"
+              transition={{ delay: 0.2 }}
             >
-              <div className="flex items-start space-x-2">
-                <span className="text-primary font-mono text-sm mt-1">/*</span>
-                <p className="text-lg text-foreground/80 leading-relaxed max-w-xl">
-                  {portfolioData.personal.bio}
-                </p>
-              </div>
-              <span className="text-primary font-mono text-sm">*/</span>
+              <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-4">
+                👋 Welcome to my portfolio
+              </span>
             </motion.div>
 
-            {/* CTA Buttons with command style */}
+            {/* Name */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+                  {portfolioData.personal.name}
+                </span>
+              </h1>
+            </motion.div>
+
+            {/* Animated Title */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="space-y-2"
+            >
+              <div className="text-xl sm:text-2xl lg:text-3xl font-semibold text-primary">
+                {displayedTitle}
+                <span className="inline-block w-1 h-7 bg-primary animate-pulse ml-1" />
+              </div>
+              <p className="text-base text-muted-foreground">
+                {portfolioData.personal.tagline}
+              </p>
+            </motion.div>
+
+            {/* Bio */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7 }}
+              className="text-base text-foreground/80 leading-relaxed max-w-2xl"
+            >
+              {portfolioData.personal.bio}
+            </motion.p>
+
+            {/* Expertise Cycling Box - Full Width */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="bg-gradient-to-r from-card via-primary/5 to-card border-2 border-primary/30 rounded-lg p-4"
+            >
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Code2 className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide block">
+                      Currently Specialized In
+                    </span>
+                    <div className="text-lg font-bold text-primary min-h-[28px]">
+                      {displayedExpertise}
+                      <span className="inline-block w-0.5 h-5 bg-primary animate-pulse ml-1" />
+                    </div>
+                  </div>
+                </div>
+                <div className="hidden sm:flex items-center gap-2 text-xs text-muted-foreground">
+                  <Sparkles className="w-4 h-4 text-primary" />
+                  <span>8+ Core Skills</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9 }}
-              className="space-y-4"
+              className="flex flex-wrap gap-4"
             >
-              <div className="flex flex-wrap gap-4">
-                <Button
-                  size="lg"
-                  onClick={() => navigate("/projects")}
-                  className="group relative overflow-hidden bg-primary text-primary-foreground hover:shadow-glow transition-all duration-300 font-mono"
-                >
-                  <Terminal className="mr-2 w-5 h-5" />
-                  <span className="relative z-10">./view_projects.sh</span>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  onClick={() => navigate("/contact")}
-                  className="group border-2 border-primary/50 hover:border-primary hover:bg-primary/10 transition-all duration-300 font-mono"
-                >
-                  <Mail className="mr-2 w-5 h-5" />
-                  <span>contact --now</span>
-                </Button>
-              </div>
+              <Button
+                size="lg"
+                onClick={() => navigate("/projects")}
+                className="group bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg"
+              >
+                View My Work
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => navigate("/contact")}
+                className="border-2"
+              >
+                <Mail className="mr-2 w-5 h-5" />
+                Get In Touch
+              </Button>
             </motion.div>
 
-            {/* Social Links with Linux style */}
+            {/* Social Links */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.1 }}
-              className="space-y-3"
+              className="flex gap-4"
             >
-              <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
-                $ ls -la /social/
-              </p>
-              <div className="flex space-x-3">
-                <Button
-                  variant="outline"
-                  size="icon"
-                  asChild
-                  className="hover:border-primary hover:bg-primary/10 hover:text-primary transition-all duration-300 rounded-lg"
+              <Button
+                variant="ghost"
+                size="icon"
+                asChild
+                className="hover:text-primary hover:bg-primary/10"
+              >
+                <a href={portfolioData.social.github} target="_blank" rel="noopener noreferrer">
+                  <Github className="w-6 h-6" />
+                </a>
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                asChild
+                className="hover:text-primary hover:bg-primary/10"
+              >
+                <a href={portfolioData.social.linkedin} target="_blank" rel="noopener noreferrer">
+                  <Linkedin className="w-6 h-6" />
+                </a>
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                asChild
+                className="hover:text-primary hover:bg-primary/10"
+              >
+                <a href={`mailto:${portfolioData.personal.email}`}>
+                  <Mail className="w-6 h-6" />
+                </a>
+              </Button>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Content - Stats & Skills */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="space-y-4 lg:space-y-6"
+          >
+            {/* Stats Cards - Always in a row */}
+            <div className="grid grid-cols-3 gap-3">
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 + index * 0.1 }}
+                  className="bg-card border border-border rounded-xl p-3 hover:shadow-lg transition-shadow"
                 >
-                  <a href={portfolioData.social.github} target="_blank" rel="noopener noreferrer">
-                    <Github className="w-5 h-5" />
-                  </a>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  asChild
-                  className="hover:border-primary hover:bg-primary/10 hover:text-primary transition-all duration-300 rounded-lg"
-                >
-                  <a href={portfolioData.social.linkedin} target="_blank" rel="noopener noreferrer">
-                    <Linkedin className="w-5 h-5" />
-                  </a>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  asChild
-                  className="hover:border-primary hover:bg-primary/10 hover:text-primary transition-all duration-300 rounded-lg"
-                >
-                  <a href={`mailto:${portfolioData.personal.email}`}>
-                    <Mail className="w-5 h-5" />
-                  </a>
-                </Button>
+                  <div className="flex flex-col items-center text-center gap-2">
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                      <stat.icon className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-foreground">{stat.value}</div>
+                      <div className="text-xs text-muted-foreground whitespace-nowrap">{stat.label}</div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Quick Contact Info */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              className="bg-card border border-border rounded-xl p-4"
+            >
+              <h3 className="text-base font-semibold mb-3 flex items-center gap-2">
+                <Mail className="w-4 h-4 text-primary" />
+                Get In Touch
+              </h3>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted/50 transition-colors">
+                  <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    📍
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground">Location</div>
+                    <div className="text-sm font-medium text-foreground">{portfolioData.personal.location}</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted/50 transition-colors">
+                  <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    💼
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground">Work Status</div>
+                    <div className="text-sm font-medium text-green-500">Available for Hire</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted/50 transition-colors">
+                  <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    ⏰
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground">Response Time</div>
+                    <div className="text-sm font-medium text-foreground">Within 24 hours</div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Additional Info Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2 }}
+              className="bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 rounded-xl p-4"
+            >
+              <div className="flex items-start gap-3">
+                <Sparkles className="w-5 h-5 text-primary mt-1" />
+                <div>
+                  <h4 className="text-sm font-semibold text-foreground mb-1">Available for Opportunities</h4>
+                  <p className="text-xs text-foreground/70 leading-relaxed">
+                    Open to freelance projects, consulting, and full-time positions. Let's build something amazing together!
+                  </p>
+                </div>
               </div>
             </motion.div>
           </motion.div>
+
         </div>
       </div>
     </section>

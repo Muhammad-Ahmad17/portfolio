@@ -1,80 +1,48 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { portfolioData } from "@/data/portfolio";
-import { useEffect, useState } from "react";
+import { Code2, Server, Cloud, Wrench, Sparkles, Target } from "lucide-react";
 
-interface ServiceStatus {
+interface Service {
   name: string;
-  status: "active" | "running" | "loaded";
-  uptime: string;
-  memory: string;
+  icon: typeof Code2;
   description: string;
-  icon: string;
   color: string;
+  bgColor: string;
 }
 
-const services: ServiceStatus[] = [
+const services: Service[] = [
   {
-    name: "frontend.service",
-    status: "active",
-    uptime: "6 months 12 days",
-    memory: "128M",
-    description: "React/TypeScript UI service with modern component architecture",
-    icon: "⚛️",
-    color: "text-cyan-400"
+    name: "Frontend Development",
+    icon: Code2,
+    description: "Building responsive and intuitive user interfaces with React, TypeScript, and modern UI libraries",
+    color: "text-cyan-500",
+    bgColor: "bg-cyan-500/10"
   },
   {
-    name: "api-backend.service",
-    status: "running",
-    uptime: "180 days",
-    memory: "512M",
-    description: "Node.js Express REST API with PostgreSQL and Redis integration",
-    icon: "🟢",
-    color: "text-green-400"
+    name: "Backend Architecture",
+    icon: Server,
+    description: "Designing scalable APIs and microservices with Node.js, Express, and database optimization",
+    color: "text-green-500",
+    bgColor: "bg-green-500/10"
   },
   {
-    name: "devops-pipeline.service",
-    status: "active",
-    uptime: "8 months 3 days",
-    memory: "256M",
-    description: "Docker/Kubernetes CI/CD automation with GitHub Actions",
-    icon: "🐳",
-    color: "text-blue-400"
+    name: "DevOps & Cloud",
+    icon: Cloud,
+    description: "Automating deployments with Docker, Kubernetes, and AWS cloud infrastructure",
+    color: "text-blue-500",
+    bgColor: "bg-blue-500/10"
   },
   {
-    name: "problem-solver.service",
-    status: "loaded",
-    uptime: "∞",
-    memory: "∞",
-    description: "Analytical debugging and optimization algorithms",
-    icon: "🔧",
-    color: "text-yellow-400"
+    name: "Problem Solving",
+    icon: Wrench,
+    description: "Analyzing complex challenges and implementing efficient, maintainable solutions",
+    color: "text-orange-500",
+    bgColor: "bg-orange-500/10"
   }
 ];
 
 export function About() {
-  const [logs, setLogs] = useState<string[]>([]);
-
-  useEffect(() => {
-    const logLines = [
-      `[${new Date().toISOString()}] INFO: System initialization started...`,
-      `[${new Date().toISOString()}] INFO: Loading developer profile: ${portfolioData.personal.name}`,
-      `[${new Date().toISOString()}] SUCCESS: All services initialized successfully`,
-      `[${new Date().toISOString()}] INFO: System running at optimal capacity`
-    ];
-
-    let currentIndex = 0;
-    const interval = setInterval(() => {
-      if (currentIndex < logLines.length) {
-        setLogs(prev => [...prev, logLines[currentIndex]]);
-        currentIndex++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 300);
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <section id="about" className="py-20 lg:py-32 bg-muted/30">
@@ -84,63 +52,22 @@ export function About() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-12"
+          className="mb-12 text-center"
         >
-          {/* Terminal header with systemctl status */}
-          <div className="bg-card/80 backdrop-blur-sm border border-border/50 rounded-lg overflow-hidden shadow-lg mb-8">
-            <div className="bg-muted/50 px-4 py-2 flex items-center gap-2 border-b border-border/50">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <span className="text-sm font-mono text-muted-foreground ml-2">
-                systemctl status developer.service
-              </span>
-            </div>
-            <div className="p-6 font-mono text-sm">
-              <div className="space-y-2">
-                <div className="text-green-400">● developer.service - {portfolioData.personal.name}</div>
-                <div className="text-muted-foreground ml-4">
-                  Loaded: <span className="text-foreground">loaded</span> (/etc/systemd/system/developer.service; enabled)
-                </div>
-                <div className="text-muted-foreground ml-4">
-                  Active: <span className="text-green-400">active (running)</span> since {new Date(Date.now() - 180 * 24 * 60 * 60 * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                </div>
-                <div className="text-muted-foreground ml-4">
-                  Main PID: <span className="text-foreground">1337</span> (developer)
-                </div>
-                <div className="text-muted-foreground ml-4">
-                  Memory: <span className="text-cyan-400">896.0M</span>
-                </div>
-                <div className="text-muted-foreground ml-4">
-                  CPU: <span className="text-cyan-400">2h 45min 38s</span>
-                </div>
-              </div>
-
-              <div className="mt-6 space-y-1 text-muted-foreground">
-                {logs.map((log, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="flex items-start gap-2"
-                  >
-                    <span className="text-primary">$</span>
-                    <span>{log}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+          <div className="inline-block mb-4">
+            <span className="px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-semibold">
+              About Me
+            </span>
           </div>
-
-          <p className="text-center text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto font-mono">
-            <span className="text-primary">// </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+            Who I Am
+          </h2>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             {portfolioData.personal.bio}
           </p>
         </motion.div>
 
-        {/* Service Status Grid */}
+        {/* Services Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {services.map((service, index) => (
             <motion.div
@@ -150,35 +77,20 @@ export function About() {
               transition={{ duration: 0.6, delay: index * 0.15 }}
               viewport={{ once: true }}
             >
-              <Card className="bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/20 transition-all duration-300 hover:shadow-lg">
-                <CardContent className="p-6 font-mono text-sm">
-                  <div className="flex items-start gap-3 mb-4">
-                    <span className="text-2xl">{service.icon}</span>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className={`font-semibold ${service.color}`}>
-                          {service.name}
-                        </span>
-                        <span className="text-xs px-2 py-0.5 rounded bg-green-500/20 text-green-400 border border-green-500/30">
-                          {service.status}
-                        </span>
-                      </div>
-                      <div className="text-muted-foreground text-xs space-y-1">
-                        <div className="flex justify-between">
-                          <span>Uptime:</span>
-                          <span className="text-foreground">{service.uptime}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>Memory:</span>
-                          <span className="text-cyan-400">{service.memory}</span>
-                        </div>
-                      </div>
+              <Card className="bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/20 transition-all duration-300 hover:shadow-lg h-full">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className={`w-14 h-14 ${service.bgColor} rounded-xl flex items-center justify-center flex-shrink-0`}>
+                      <service.icon className={`w-7 h-7 ${service.color}`} />
                     </div>
-                  </div>
-
-                  <div className="border-t border-border/30 pt-4 text-xs text-muted-foreground">
-                    <span className="text-primary"># </span>
-                    {service.description}
+                    <div className="flex-1">
+                      <h3 className={`text-lg font-semibold mb-2 ${service.color}`}>
+                        {service.name}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {service.description}
+                      </p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -186,7 +98,7 @@ export function About() {
           ))}
         </div>
 
-        {/* Journey and Drive as server logs */}
+        {/* Journey and Values */}
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -194,17 +106,19 @@ export function About() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <Card className="bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/20 transition-colors h-full">
+            <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20 hover:border-primary/30 transition-all duration-300 h-full">
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold mb-4 text-foreground font-mono flex items-center gap-2">
-                  <span className="text-primary">$</span> cat journey.log
-                </h3>
-                <div className="font-mono text-sm text-muted-foreground space-y-2 leading-relaxed">
-                  <p><span className="text-cyan-400">[INFO]</span> Started journey in computer engineering</p>
-                  <p><span className="text-green-400">[SUCCESS]</span> Developed expertise in MERN stack</p>
-                  <p><span className="text-blue-400">[UPDATE]</span> Expanded into DevOps practices</p>
-                  <p><span className="text-yellow-400">[ACTIVE]</span> Continuously exploring emerging technologies</p>
-                  <p className="text-foreground pt-2">Creating digital solutions with impact and purpose.</p>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+                    <Target className="w-5 h-5 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground">My Journey</h3>
+                </div>
+                <div className="text-sm text-muted-foreground space-y-3 leading-relaxed">
+                  <p>Started my journey in computer engineering with a passion for creating impactful digital solutions.</p>
+                  <p>Developed deep expertise in full-stack development, specializing in the MERN stack and modern web technologies.</p>
+                  <p>Expanded into DevOps practices, mastering cloud infrastructure and automated deployment pipelines.</p>
+                  <p className="text-foreground font-medium">Continuously exploring emerging technologies to deliver innovative solutions.</p>
                 </div>
               </CardContent>
             </Card>
@@ -216,17 +130,23 @@ export function About() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <Card className="bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/20 transition-colors h-full">
+            <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20 hover:border-primary/30 transition-all duration-300 h-full">
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold mb-4 text-foreground font-mono flex items-center gap-2">
-                  <span className="text-primary">$</span> tail -f motivation.log
-                </h3>
-                <div className="font-mono text-sm text-muted-foreground space-y-2 leading-relaxed">
-                  <p><span className="text-primary">[CORE]</span> Clean, maintainable code architecture</p>
-                  <p><span className="text-green-400">[GOAL]</span> Beautiful & functional user experiences</p>
-                  <p><span className="text-cyan-400">[MISSION]</span> Bridging technical complexity with intuitive UI</p>
-                  <p><span className="text-yellow-400">[PASSION]</span> Solving real-world problems through code</p>
-                  <p className="text-foreground pt-2">Driven by curiosity, powered by caffeine ☕</p>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+                    <Sparkles className="w-5 h-5 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground">What Drives Me</h3>
+                </div>
+                <div className="text-sm text-muted-foreground space-y-3 leading-relaxed">
+                  <p>Writing clean, maintainable code that stands the test of time and scale.</p>
+                  <p>Creating beautiful and functional user experiences that delight users.</p>
+                  <p>Bridging technical complexity with intuitive interfaces that anyone can use.</p>
+                  <p className="text-foreground font-medium">Solving real-world problems through elegant code solutions.</p>
+                  <p className="flex items-center gap-2">
+                    <span>Driven by curiosity, powered by dedication</span>
+                    <Sparkles className="w-4 h-4 text-primary" />
+                  </p>
                 </div>
               </CardContent>
             </Card>

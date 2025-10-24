@@ -12,12 +12,26 @@ export function Footer() {
 
   const currentYear = new Date().getFullYear();
 
+  const quickLinks = [
+    { label: "Home", href: "#hero" },
+    { label: "About", href: "#about" },
+    { label: "Projects", href: "#projects" },
+    { label: "Skills", href: "#skills" },
+    { label: "Experience", href: "#experience" },
+    { label: "Contact", href: "#contact" }
+  ];
+
+  const socialLinks = [
+    { icon: Github, href: portfolioData.social.github, label: "GitHub" },
+    { icon: Linkedin, href: portfolioData.social.linkedin, label: "LinkedIn" },
+    { icon: Mail, href: `mailto:${portfolioData.personal.email}`, label: "Email" }
+  ];
+
   return (
     <footer className="relative bg-card/50 backdrop-blur-sm border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Terminal-style footer */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          {/* Server Info */}
+          {/* Brand Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -25,140 +39,108 @@ export function Footer() {
             viewport={{ once: true }}
             className="md:col-span-2"
           >
-            <div className="font-mono text-xs space-y-2">
-              <div className="text-primary font-semibold text-sm mb-3">
-                $ cat /etc/server.info
-              </div>
-              <div className="space-y-1 text-muted-foreground">
-                <div><span className="text-cyan-400">SERVER_NAME=</span>{portfolioData.personal.name}</div>
-                <div><span className="text-green-400">ROLE=</span>{portfolioData.personal.tagline}</div>
-                <div><span className="text-orange-400">LOCATION=</span>{portfolioData.personal.location}</div>
-                <div><span className="text-blue-400">STATUS=</span><span className="text-green-400">● active (running)</span></div>
-                <div><span className="text-purple-400">UPTIME=</span>{currentYear - 2020} years</div>
-              </div>
-              <div className="flex gap-2 mt-4">
+            <h3 className="text-2xl font-bold mb-3 bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent">
+              {portfolioData.personal.name}
+            </h3>
+            <p className="text-sm text-muted-foreground mb-4 max-w-md leading-relaxed">
+              {portfolioData.personal.tagline} based in {portfolioData.personal.location}.
+              Passionate about building exceptional digital experiences.
+            </p>
+            <div className="flex gap-3">
+              {socialLinks.map((social) => (
                 <Button
+                  key={social.label}
                   variant="ghost"
                   size="icon"
                   asChild
-                  className="h-8 w-8 rounded hover:bg-primary/10 hover:text-primary transition-all duration-300"
+                  className="h-9 w-9 rounded-lg hover:bg-primary/10 hover:text-primary transition-all duration-300"
                 >
-                  <a href={portfolioData.social.github} target="_blank" rel="noopener noreferrer">
-                    <Github className="w-4 h-4" />
+                  <a href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label}>
+                    <social.icon className="w-5 h-5" />
                   </a>
                 </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  asChild
-                  className="h-8 w-8 rounded hover:bg-primary/10 hover:text-primary transition-all duration-300"
-                >
-                  <a href={portfolioData.social.linkedin} target="_blank" rel="noopener noreferrer">
-                    <Linkedin className="w-4 h-4" />
-                  </a>
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  asChild
-                  className="h-8 w-8 rounded hover:bg-primary/10 hover:text-primary transition-all duration-300"
-                >
-                  <a href={`mailto:${portfolioData.personal.email}`}>
-                    <Mail className="w-4 h-4" />
-                  </a>
-                </Button>
-              </div>
+              ))}
             </div>
           </motion.div>
 
-          {/* Navigation Tree */}
+          {/* Quick Links */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <div className="font-mono text-xs">
-              <div className="text-primary font-semibold mb-3">$ ls -la ~/pages</div>
-              <div className="space-y-1">
-                {["home", "about", "projects", "skills", "experience", "blog", "contact"].map((item, index) => (
-                  <Button
-                    key={item}
-                    variant="ghost"
-                    onClick={() => {
-                      window.scrollTo({ top: 0, behavior: "smooth" });
-                    }}
-                    className="block w-full text-left px-0 h-auto py-0.5 text-muted-foreground hover:text-primary hover:bg-transparent transition-all duration-300 font-mono text-xs"
-                  >
-                    <span className="text-cyan-400">drwxr-xr-x</span> {item}.tsx
-                  </Button>
-                ))}
-              </div>
-            </div>
+            <h4 className="text-sm font-semibold mb-4 text-foreground">Quick Links</h4>
+            <nav className="space-y-2">
+              {quickLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="block text-sm text-muted-foreground hover:text-primary transition-colors duration-300"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
           </motion.div>
 
-          {/* Contact & Controls */}
+          {/* Contact & Settings */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <div className="font-mono text-xs space-y-3">
-              <div className="text-primary font-semibold mb-3">$ cat contact.conf</div>
-              <div className="space-y-1 text-muted-foreground">
-                <a
-                  href={`mailto:${portfolioData.personal.email}`}
-                  className="block hover:text-primary transition-colors duration-300"
-                >
-                  <span className="text-green-400">EMAIL=</span>{portfolioData.personal.email}
-                </a>
-                <div><span className="text-cyan-400">PHONE=</span>{portfolioData.personal.phone}</div>
-                <div><span className="text-orange-400">TZ=</span>UTC+0</div>
-              </div>
-              <div className="mt-4 pt-3 border-t border-border/30">
-                <div className="text-muted-foreground mb-2">System Controls:</div>
-                <div className="flex gap-2">
-                  <ColorPicker />
-                  <ThemeToggle />
-                </div>
+            <h4 className="text-sm font-semibold mb-4 text-foreground">Contact</h4>
+            <div className="space-y-2 text-sm text-muted-foreground mb-4">
+              <a
+                href={`mailto:${portfolioData.personal.email}`}
+                className="block hover:text-primary transition-colors duration-300"
+              >
+                {portfolioData.personal.email}
+              </a>
+              <div>{portfolioData.personal.phone}</div>
+              <div>{portfolioData.personal.location}</div>
+            </div>
+            <div>
+              <h5 className="text-xs font-semibold mb-2 text-muted-foreground uppercase tracking-wider">
+                Preferences
+              </h5>
+              <div className="flex gap-2">
+                <ColorPicker />
+                <ThemeToggle />
               </div>
             </div>
           </motion.div>
         </div>
 
-        {/* Terminal Footer */}
+        {/* Bottom Bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
-          className="pt-6 border-t border-border"
+          className="pt-8 border-t border-border"
         >
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-xs">
-            <div className="text-muted-foreground space-y-1">
-              <div className="flex items-center gap-2">
-                <span className="text-primary">#</span>
-                <span>© {currentYear} {portfolioData.personal.name}</span>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="text-center md:text-left space-y-1">
+              <div className="text-sm text-muted-foreground">
+                © {currentYear} {portfolioData.personal.name}. All rights reserved.
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-primary">#</span>
-                <span>Built with React + TypeScript + Tailwind CSS</span>
-                <Heart className="w-3 h-3 text-primary fill-primary animate-pulse" />
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-primary">#</span>
-                <span className="text-green-400">All rights reserved. Licensed under MIT.</span>
+              <div className="flex items-center justify-center md:justify-start gap-2 text-sm text-muted-foreground">
+                <span>Built with React, TypeScript & Tailwind CSS</span>
+                <Heart className="w-4 h-4 text-primary fill-primary animate-pulse" />
               </div>
             </div>
 
             <Button
-              variant="ghost"
+              variant="outline"
               size="icon"
               onClick={scrollToTop}
-              className="h-9 w-9 rounded hover:bg-primary/10 hover:text-primary hover:-translate-y-1 transition-all duration-300"
+              className="h-10 w-10 rounded-lg hover:bg-primary/10 hover:text-primary hover:-translate-y-1 transition-all duration-300"
+              aria-label="Scroll to top"
             >
-              <ArrowUp className="w-4 h-4" />
+              <ArrowUp className="w-5 h-5" />
             </Button>
           </div>
         </motion.div>

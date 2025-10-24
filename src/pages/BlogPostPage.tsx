@@ -3,43 +3,71 @@ import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Terminal, FileText, Tag, Calendar, User } from "lucide-react";
+import { ArrowLeft, Calendar, User, Tag, Clock, Share2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
-import { getBlogPost } from "@/lib/blog";
+import { loadBlogPosts, type BlogPost } from "@/lib/blog";
 import "highlight.js/styles/atom-one-dark.css";
+import { useEffect, useState } from "react";
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const post = slug ? getBlogPost(slug) : null;
+  const [post, setPost] = useState<BlogPost | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  if (!post) {
+  useEffect(() => {
+    loadBlogPosts().then(posts => {
+      const foundPost = posts.find(p => p.slug === slug);
+      setPost(foundPost || null);
+      setLoading(false);
+    });
+  }, [slug]);
+
+  if (loading) {
     return (
       <div className="min-h-screen bg-background">
         <Navbar />
-        <main className="container mx-auto px-4 py-20">
-          <div className="glass rounded-lg border-2 border-destructive/50 p-8 max-w-2xl mx-auto">
-            <div className="font-mono space-y-4">
-              <div className="flex items-center gap-2 text-destructive">
-                <Terminal className="w-6 h-6" />
-                <span className="text-lg font-semibold">ERROR 404</span>
-              </div>
-              <p className="text-foreground">cat: {slug}: No such file or directory</p>
-              <Button asChild className="mt-4 font-mono">
-                <Link to="/blog">
-                  <ArrowLeft className="mr-2 w-4 h-4" />
-                  cd /blog
-                </Link>
-              </Button>
-            </div>
-          </div>
+        <main className="container mx-auto px-4 py-32 text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent"></div>
+          <p className="mt-4 text-muted-foreground">Loading article...</p>
         </main>
         <Footer />
       </div>
     );
   }
+
+  if (!post) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <main className="container mx-auto px-4 py-32 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-md mx-auto"
+          >
+            <div className="text-6xl font-bold text-primary mb-4">404</div>
+            <h1 className="text-2xl font-bold text-foreground mb-4">Article Not Found</h1>
+            <p className="text-muted-foreground mb-8">
+              The article you're looking for doesn't exist or has been moved.
+            </p>
+            <Button asChild size="lg">
+              <Link to="/blog">
+                <ArrowLeft className="mr-2 w-5 h-5" />
+                Back to Blog
+              </Link>
+            </Button>
+          </motion.div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  const readingTime = Math.ceil(post.content.split(' ').length / 200);
 
   return (
     <div className="min-h-screen bg-background">
@@ -51,102 +79,74 @@ const BlogPostPage = () => {
         className="pt-20 pb-20"
       >
         <article className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
-          {/* Terminal Navigation */}
-          <Button
-            asChild
-            variant="ghost"
-            className="mb-8 hover:bg-primary/10 font-mono"
-          >
-            <Link to="/blog">
-              <ArrowLeft className="mr-2 w-4 h-4" />
-              cd ../
-            </Link>
-          </Button>
-
-          {/* Terminal Header */}
+          {/* Back Button */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 }}
             className="mb-8"
           >
-            <div className="glass rounded-lg border-2 border-primary/30 overflow-hidden">
-              {/* Terminal Title Bar */}
-              <div className="bg-primary/10 px-4 py-2 flex items-center space-x-2 border-b border-primary/20">
-                <div className="flex space-x-1.5">
-                  <div className="w-3 h-3 rounded-full bg-destructive/70" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
-                  <div className="w-3 h-3 rounded-full bg-primary/70" />
-                </div>
-                <Terminal className="w-4 h-4 text-primary ml-2" />
-                <span className="text-xs font-mono text-muted-foreground">
-                  ~/dev/blog/{post.slug}.md
-                </span>
-              </div>
-
-              {/* Terminal Content */}
-              <div className="p-6 font-mono text-sm bg-code-bg space-y-3">
-                <div className="flex items-center gap-2">
-                  <span className="text-primary">$</span>
-                  <span className="text-foreground">cat {post.slug}.md</span>
-                </div>
-
-                <div className="border-t border-primary/20 pt-3 space-y-2">
-                  <div className="flex items-start gap-2 text-xs">
-                    <FileText className="w-4 h-4 text-primary mt-0.5" />
-                    <div className="space-y-1">
-                      <div className="text-muted-foreground">
-                        <span className="text-primary">File:</span> {post.slug}.md
-                      </div>
-                      <div className="text-muted-foreground">
-                        <span className="text-primary">Modified:</span> {post.date}
-                      </div>
-                      <div className="text-muted-foreground">
-                        <span className="text-primary">Author:</span> {post.author}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Button
+              asChild
+              variant="ghost"
+              className="hover:bg-muted/50"
+            >
+              <Link to="/blog">
+                <ArrowLeft className="mr-2 w-4 h-4" />
+                Back to Blog
+              </Link>
+            </Button>
           </motion.div>
 
-          {/* Article Title */}
+          {/* Article Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mb-8"
+            className="mb-12"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 font-mono">
-              <span className="text-primary">#</span> {post.title}
-            </h1>
-
-            {/* Meta Info */}
-            <div className="flex flex-wrap items-center gap-4 text-sm font-mono text-muted-foreground mb-6">
-              <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-primary" />
-                {post.date}
-              </div>
-              <div className="flex items-center gap-2">
-                <User className="w-4 h-4 text-primary" />
-                {post.author}
-              </div>
-            </div>
-
             {/* Tags */}
-            <div className="flex items-center gap-2 flex-wrap">
-              <Tag className="w-4 h-4 text-primary" />
+            <div className="flex flex-wrap items-center gap-2 mb-6">
               {post.tags.map((tag) => (
                 <Badge
                   key={tag}
                   variant="secondary"
-                  className="bg-primary/10 text-primary font-mono text-xs"
+                  className="bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
                 >
-                  {tag.toLowerCase()}
+                  {tag}
                 </Badge>
               ))}
             </div>
+
+            {/* Title */}
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-foreground leading-tight">
+              {post.title}
+            </h1>
+
+            {/* Meta Info */}
+            <div className="flex flex-wrap items-center gap-4 md:gap-6 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <Calendar className="w-4 h-4 text-primary" />
+                <span>
+                  {new Date(post.date).toLocaleDateString('en-US', {
+                    month: 'long',
+                    day: 'numeric',
+                    year: 'numeric'
+                  })}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <User className="w-4 h-4 text-primary" />
+                <span>{post.author}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4 text-primary" />
+                <span>{readingTime} min read</span>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="mt-8 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
           </motion.div>
 
           {/* Article Content */}
@@ -154,23 +154,28 @@ const BlogPostPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="glass rounded-lg border border-primary/20 p-8 md:p-12"
+            className="mb-12"
           >
             <div className="prose prose-lg dark:prose-invert max-w-none
-              prose-headings:font-mono prose-headings:font-bold prose-headings:text-foreground
-              prose-h1:text-3xl prose-h1:border-b prose-h1:border-primary/20 prose-h1:pb-4 prose-h1:mb-6
-              prose-h2:text-2xl prose-h2:text-primary prose-h2:mt-8 prose-h2:mb-4
-              prose-h3:text-xl prose-h3:text-primary/80 prose-h3:mt-6 prose-h3:mb-3
+              prose-headings:font-bold prose-headings:text-foreground prose-headings:scroll-mt-20
+              prose-h1:text-3xl prose-h1:mb-6 prose-h1:mt-12
+              prose-h2:text-2xl prose-h2:mb-4 prose-h2:mt-10 prose-h2:border-b prose-h2:border-border prose-h2:pb-2
+              prose-h3:text-xl prose-h3:mb-3 prose-h3:mt-8
               prose-p:text-foreground/90 prose-p:leading-relaxed prose-p:my-4
-              prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+              prose-a:text-primary prose-a:no-underline prose-a:font-medium hover:prose-a:underline
               prose-strong:text-foreground prose-strong:font-semibold
-              prose-code:text-primary prose-code:bg-primary/10 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:font-mono prose-code:text-sm
-              prose-pre:bg-code-bg prose-pre:border-2 prose-pre:border-primary/20 prose-pre:rounded-lg prose-pre:p-0 prose-pre:my-6
-              prose-blockquote:border-l-4 prose-blockquote:border-l-primary prose-blockquote:bg-primary/5 prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:my-6
-              prose-ul:text-foreground/90 prose-ul:my-4 prose-ol:text-foreground/90 prose-ol:my-4
-              prose-li:marker:text-primary prose-li:my-2
-              prose-img:rounded-lg prose-img:border prose-img:border-primary/20
-              prose-hr:border-primary/20 prose-hr:my-8
+              prose-code:text-primary prose-code:bg-primary/10 prose-code:px-2 prose-code:py-1 prose-code:rounded-md prose-code:font-mono prose-code:text-sm prose-code:before:content-none prose-code:after:content-none
+              prose-pre:bg-muted prose-pre:border prose-pre:border-border prose-pre:rounded-lg prose-pre:p-4 prose-pre:my-6 prose-pre:overflow-x-auto
+              prose-blockquote:border-l-4 prose-blockquote:border-l-primary prose-blockquote:bg-primary/5 prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:my-6 prose-blockquote:not-italic
+              prose-ul:text-foreground/90 prose-ul:my-4 prose-ul:list-disc prose-ul:pl-6
+              prose-ol:text-foreground/90 prose-ol:my-4 prose-ol:list-decimal prose-ol:pl-6
+              prose-li:marker:text-primary prose-li:my-2 prose-li:leading-relaxed
+              prose-img:rounded-lg prose-img:border prose-img:border-border prose-img:my-8
+              prose-hr:border-border prose-hr:my-12
+              prose-table:border-collapse prose-table:w-full prose-table:my-6
+              prose-thead:border-b prose-thead:border-border
+              prose-th:px-4 prose-th:py-2 prose-th:text-left prose-th:font-semibold
+              prose-td:px-4 prose-td:py-2 prose-td:border-t prose-td:border-border
             ">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
@@ -181,41 +186,42 @@ const BlogPostPage = () => {
             </div>
           </motion.div>
 
-          {/* Terminal Footer */}
+          {/* Article Footer */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
             className="mt-12"
           >
-            <div className="glass rounded-lg border border-primary/20 p-4">
-              <div className="font-mono text-sm space-y-1">
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <span className="text-primary">$</span>
-                  <span>echo "End of file"</span>
+            <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
+              <CardContent className="p-6">
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-2">Enjoyed this article?</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Share it with others who might find it useful
+                    </p>
+                  </div>
+                  <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10">
+                    <Share2 className="w-4 h-4 mr-2" />
+                    Share Article
+                  </Button>
                 </div>
-                <div className="text-muted-foreground pl-4 text-xs">
-                  EOF
-                </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           </motion.div>
 
-          {/* Back Navigation */}
+          {/* Navigation */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="mt-8 flex justify-center"
+            className="mt-12 pt-8 border-t border-border flex justify-center"
           >
-            <Button
-              asChild
-              size="lg"
-              className="font-mono"
-            >
+            <Button asChild size="lg">
               <Link to="/blog">
                 <ArrowLeft className="mr-2 w-5 h-5" />
-                ls /blog
+                View All Articles
               </Link>
             </Button>
           </motion.div>
