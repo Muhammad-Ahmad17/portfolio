@@ -4,6 +4,7 @@ import { Menu, X, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ColorPicker } from "@/components/ColorPicker";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { useTheme } from "@/components/ThemeProvider";
 import { portfolioData } from "@/data/portfolio";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -22,6 +23,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { theme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,23 +57,19 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo (profile photo) */}
           <motion.div
-            whileHover={{ scale: 1.03 }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
             className="flex items-center"
           >
             <Button
               variant="ghost"
               onClick={() => handleNavigation("/")}
-              className="p-0 h-auto"
+              className="p-0 h-auto hover:bg-transparent group"
             >
-              {/*
-                The profile image should be placed at: public/images/profile-pic.png
-                If you prefer a different path/name, update the src below accordingly.
-              */}
               <img
-                src="/favicon.ico"
-                alt={`${portfolioData.personal.name} profile`}
-                className="w-10 h-10  border-2 border-primary object-cover"
+                src={theme === "dark" ? "/images/solorizedLight.png" : "/images/darkSlate.png"}
+                alt={`${portfolioData.personal.name} logo`}
+                className="w-14 h-14 object-contain transition-all duration-300 group-hover:drop-shadow-[0_0_8px_hsl(var(--primary))]"
               />
             </Button>
           </motion.div>
@@ -85,7 +83,7 @@ export function Navbar() {
                   variant="ghost"
                   onClick={() => handleNavigation(item.href)}
                   className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg ${isActive(item.href)
-                      ? "text-primary bg-primary/10"
+                      ? "text-primary bg-primary/10 hover:bg-primary/20"
                       : "text-muted-foreground hover:text-primary hover:bg-muted/50"
                     }`}
                 >

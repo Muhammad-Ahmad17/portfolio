@@ -33,7 +33,7 @@ export function Projects() {
         </motion.div>
 
         {/* Featured Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
           {featuredProjects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -77,7 +77,7 @@ export function Projects() {
 
                   {/* Action Buttons */}
                   <div className="flex gap-2">
-                    <Button variant="outline" size="sm" asChild className="flex-1">
+                    <Button variant="outline" size="sm" asChild className="flex-1 hover:bg-primary/10 hover:text-primary hover:border-primary/50">
                       <a href={project.github} target="_blank" rel="noopener noreferrer">
                         <Github className="w-4 h-4 mr-1" />
                         Code
@@ -95,73 +95,6 @@ export function Projects() {
             </motion.div>
           ))}
         </div>
-
-        {/* Other Projects */}
-        {otherProjects.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="mb-8"
-          >
-            <h3 className="text-2xl font-semibold mb-6 text-center">More Projects</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {otherProjects.map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  viewport={{ once: true }}
-                >
-                  <Card className="bg-card/30 backdrop-blur-sm border-border/30 hover:border-primary/20 hover:bg-card/50 transition-all duration-300">
-                    <CardContent className="p-5">
-                      <div className="flex items-start justify-between mb-3">
-                        <h4 className="text-lg font-semibold text-foreground">
-                          {project.title}
-                        </h4>
-                        <div className="flex gap-1">
-                          <Button variant="ghost" size="icon" asChild className="h-8 w-8">
-                            <a href={project.github} target="_blank" rel="noopener noreferrer">
-                              <Github className="w-4 h-4" />
-                            </a>
-                          </Button>
-                          <Button variant="ghost" size="icon" asChild className="h-8 w-8">
-                            <a href={project.live} target="_blank" rel="noopener noreferrer">
-                              <ExternalLink className="w-4 h-4" />
-                            </a>
-                          </Button>
-                        </div>
-                      </div>
-
-                      <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
-                        {project.description}
-                      </p>
-
-                      <div className="flex flex-wrap gap-1.5">
-                        {project.technologies.slice(0, 4).map((tech) => (
-                          <Badge
-                            key={tech}
-                            variant="outline"
-                            className="text-xs border-primary/20 text-primary px-2 py-0"
-                          >
-                            {tech}
-                          </Badge>
-                        ))}
-                        {project.technologies.length > 4 && (
-                          <Badge variant="outline" className="text-xs border-primary/20 text-muted-foreground px-2 py-0">
-                            +{project.technologies.length - 4}
-                          </Badge>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        )}
 
         {/* Call to Action */}
         <motion.div

@@ -1,46 +1,14 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { portfolioData } from "@/data/portfolio";
-import { Code2, Server, Cloud, Wrench, Sparkles, Target } from "lucide-react";
+import { Code2, Server, Cloud, Wrench, Target, Sparkles } from "lucide-react";
 
-interface Service {
-  name: string;
-  icon: typeof Code2;
-  description: string;
-  color: string;
-  bgColor: string;
-}
-
-const services: Service[] = [
-  {
-    name: "Frontend Development",
-    icon: Code2,
-    description: "Building responsive and intuitive user interfaces with React, TypeScript, and modern UI libraries",
-    color: "text-cyan-500",
-    bgColor: "bg-cyan-500/10"
-  },
-  {
-    name: "Backend Architecture",
-    icon: Server,
-    description: "Designing scalable APIs and microservices with Node.js, Express, and database optimization",
-    color: "text-green-500",
-    bgColor: "bg-green-500/10"
-  },
-  {
-    name: "DevOps & Cloud",
-    icon: Cloud,
-    description: "Automating deployments with Docker, Kubernetes, and AWS cloud infrastructure",
-    color: "text-blue-500",
-    bgColor: "bg-blue-500/10"
-  },
-  {
-    name: "Problem Solving",
-    icon: Wrench,
-    description: "Analyzing complex challenges and implementing efficient, maintainable solutions",
-    color: "text-orange-500",
-    bgColor: "bg-orange-500/10"
-  }
-];
+const iconMap = {
+  "Backend Development": Server,
+  "DevOps Learning": Cloud,
+  "Database Design": Code2,
+  "Problem Solving": Wrench
+};
 
 export function About() {
 
@@ -69,33 +37,36 @@ export function About() {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              viewport={{ once: true }}
-            >
-              <Card className="bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/20 transition-all duration-300 hover:shadow-lg h-full">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className={`w-14 h-14 ${service.bgColor} rounded-xl flex items-center justify-center flex-shrink-0`}>
-                      <service.icon className={`w-7 h-7 ${service.color}`} />
+          {portfolioData.services.map((service, index) => {
+            const IconComponent = iconMap[service.name as keyof typeof iconMap];
+            return (
+              <motion.div
+                key={service.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
+                viewport={{ once: true }}
+              >
+                <Card className="bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/20 transition-all duration-300 hover:shadow-lg h-full">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className={`w-14 h-14 ${service.bgColor} rounded-xl flex items-center justify-center flex-shrink-0`}>
+                        <IconComponent className={`w-7 h-7 ${service.color}`} />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className={`text-lg font-semibold mb-2 ${service.color}`}>
+                          {service.name}
+                        </h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {service.description}
+                        </p>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h3 className={`text-lg font-semibold mb-2 ${service.color}`}>
-                        {service.name}
-                      </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {service.description}
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Journey and Values */}
