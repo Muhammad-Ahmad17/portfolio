@@ -5,7 +5,7 @@ export const portfolioData = {
     tagline: "Backend Engineering & DevOps Enthusiast",
     bio: "6th semester Computer Engineering student at COMSATS University, specializing in backend development and exploring DevOps practices. Building scalable server-side applications and learning cloud infrastructure.",
     email: "muhammadahmad171105@gmail.com",
-    phone: "+1 (555) 123-4567",
+    phone: "+92 337 147947",
     location: "Lahore, Pakistan",
     resume: "/resume.pdf"
   },
@@ -72,40 +72,54 @@ export const portfolioData = {
   },
 
   skills: {
+    languages: [
+      { name: "JavaScript", level: 80, icon: "js", category: "language" },
+      { name: "TypeScript", level: 70, icon: "ts", category: "language" },
+      { name: "Python", level: 65, icon: "python", category: "language" },
+      { name: "C++", level: 60, icon: "cpp", category: "language" },
+      { name: "SQL", level: 70, icon: "sql", category: "language" }
+    ],
     backend: [
-      { name: "Node.js", level: 70 },
-      { name: "Express.js", level: 75 },
-      { name: "MongoDB", level: 70 },
-      { name: "PostgreSQL", level: 60 },
-      { name: "RESTful APIs", level: 75 },
-      { name: "GraphQL", level: 50 }
+      { name: "Node.js", level: 70, icon: "nodejs", category: "backend" },
+      { name: "Express.js", level: 75, icon: "express", category: "backend" },
+      { name: "MongoDB", level: 70, icon: "mongodb", category: "backend" },
+      { name: "PostgreSQL", level: 60, icon: "postgresql", category: "backend" },
+      { name: "RESTful APIs", level: 75, icon: "api", category: "backend" },
+      { name: "GraphQL", level: 50, icon: "graphql", category: "backend" }
+    ],
+    frontend: [
+      { name: "React", level: 75, icon: "react", category: "frontend" },
+      { name: "Next.js", level: 60, icon: "nextjs", category: "frontend" },
+      { name: "Tailwind CSS", level: 85, icon: "tailwind", category: "frontend" },
+      { name: "HTML/CSS", level: 90, icon: "html", category: "frontend" },
+      { name: "Framer Motion", level: 65, icon: "framer", category: "frontend" }
     ],
     devops: [
-      { name: "Docker", level: 55 },
-      { name: "GitHub Actions", level: 60 },
-      { name: "AWS", level: 45 },
-      { name: "Vercel", level: 70 },
-      { name: "Linux", level: 60 },
-      { name: "Git", level: 75 }
+      { name: "Docker", level: 55, icon: "docker", category: "devops" },
+      { name: "GitHub Actions", level: 60, icon: "github", category: "devops" },
+      { name: "AWS", level: 45, icon: "aws", category: "devops" },
+      { name: "Vercel", level: 70, icon: "vercel", category: "devops" },
+      { name: "Linux", level: 60, icon: "linux", category: "devops" },
+      { name: "Git", level: 75, icon: "git", category: "devops" }
     ],
     tools: [
-      { name: "VS Code", level: 85 },
-      { name: "Figma", level: 80 },
-      { name: "Postman", level: 85 },
-      { name: "MongoDB Compass", level: 80 },
-      { name: "Chrome DevTools", level: 90 }
+      { name: "VS Code", level: 85, icon: "vscode", category: "tools" },
+      { name: "Figma", level: 80, icon: "figma", category: "tools" },
+      { name: "Postman", level: 85, icon: "postman", category: "tools" },
+      { name: "MongoDB Compass", level: 80, icon: "mongodb", category: "tools" },
+      { name: "Chrome DevTools", level: 90, icon: "chrome", category: "tools" }
     ]
   },
 
   projects: [
     {
       id: 1,
-      title: "E-Commerce Platform",
-      description: "Learning project: Built a full-stack e-commerce app with product listings, cart functionality, and basic payment flow using Stripe.",
+      title: "Multi-Buyer & Vendor E-Commerce Platform",
+      description: "A modular full-stack e-commerce web application with multi-role support (Buyer, Vendor). This project is designed using a 3-tier architecture with a modern frontend and robust backend, backed by database modeling.",
       image: "/projects/ecommerce.jpg",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      github: "https://github.com/muhammad-ahmad17/ecommerce-platform",
-      live: "https://ecommerce-demo.vercel.app",
+      technologies: ["React", "Node.js", "Express.js", "SQL Server"],
+      github: "https://github.com/Muhammad-Ahmad17/E_Commerce",
+      live: "https://e-commerce1-muhammad-ahmads-projects-1458b467.vercel.app/",
       featured: true
     },
     {
@@ -162,6 +176,17 @@ export const portfolioData = {
 
   experience: [
     {
+      title: "Backend Engineer Intern",
+      company: "Innovative Saudia",
+      period: "Jul 2025 - Aug 2025",
+      description: "2-month on-site internship in Lahore focusing on backend development and DevOps practices under the guidance of experienced professionals.",
+      achievements: [
+        "Learned backend and DevOps practices under the guidance of experienced professionals",
+        "Documented daily progress and key learnings to track skill growth",
+        "Prepared for the AWS Cloud Practitioner certification, completing multiple mock tests"
+      ]
+    },
+    {
       title: "Freelance Web Developer",
       company: "Self-Employed",
       period: "2024 - Present",
@@ -170,28 +195,6 @@ export const portfolioData = {
         "Completed 5+ freelance projects for local clients",
         "Learned client communication and project management",
         "Gained hands-on experience with deployment and hosting"
-      ]
-    },
-    {
-      title: "Web Development Intern",
-      company: "Local Tech Startup (Remote)",
-      period: "Summer 2024",
-      description: "3-month internship working on frontend tasks and learning professional development workflows.",
-      achievements: [
-        "Built responsive UI components using React and Tailwind",
-        "Learned Git workflow and collaborative coding practices",
-        "Fixed bugs and implemented small features under supervision"
-      ]
-    },
-    {
-      title: "Computer Engineering Student",
-      company: "COMSATS University",
-      period: "2023 - Present",
-      description: "Currently in 6th semester, focusing on software engineering courses and building personal projects to practice concepts.",
-      achievements: [
-        "Maintaining 3.5+ GPA while learning full-stack development",
-        "Active participant in university coding competitions",
-        "Built multiple academic and personal projects"
       ]
     }
   ],
@@ -202,14 +205,16 @@ export const portfolioData = {
       institution: "COMSATS University Islamabad, Lahore Campus",
       period: "2023 - 2027",
       description: "Currently in 6th semester. Learning software engineering, data structures, algorithms, databases, and web technologies. Actively participating in coding clubs and tech events.",
-      gpa: "3.5/4.0"
+      gpa: "3.5/4.0",
+      status: "in-progress"
     },
     {
       degree: "FSC (Pre-Engineering)",
       institution: "Punjab College of Science, Ferozpur Road, Lahore",
       period: "2021 - 2023",
       description: "Completed intermediate education with focus on Mathematics, Physics, and Computer Science.",
-      grade: "A"
+      grade: "A",
+      status: "completed"
     }
   ]
 };

@@ -76,8 +76,14 @@ export function Experience() {
                             </div>
                           </div>
                         </div>
-                        <Badge variant="outline" className="border-green-500/30 text-green-500">
-                          Active
+                        <Badge 
+                          variant="outline" 
+                          className={index === 0 
+                            ? "border-blue-500/30 text-blue-500" 
+                            : "border-green-500/30 text-green-500"
+                          }
+                        >
+                          {index === 0 ? 'Completed' : 'Active'}
                         </Badge>
                       </div>
 
@@ -134,14 +140,23 @@ export function Experience() {
                               {edu.gpa && (
                                 <span className="text-green-500 font-medium">GPA: {edu.gpa}</span>
                               )}
+                              {edu.grade && (
+                                <span className="text-green-500 font-medium">Grade: {edu.grade}</span>
+                              )}
                               {edu.completion && (
                                 <span className="text-cyan-500">{edu.completion}</span>
                               )}
                             </div>
                           </div>
                         </div>
-                        <Badge variant="outline" className="border-blue-500/30 text-blue-500">
-                          Completed
+                        <Badge 
+                          variant="outline" 
+                          className={edu.status === 'in-progress' 
+                            ? "border-green-500/30 text-green-500" 
+                            : "border-blue-500/30 text-blue-500"
+                          }
+                        >
+                          {edu.status === 'in-progress' ? 'In Progress' : 'Completed'}
                         </Badge>
                       </div>
 
