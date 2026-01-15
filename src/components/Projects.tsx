@@ -28,7 +28,7 @@ export function Projects() {
             Featured Projects
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Showcasing {featuredProjects.length} of my best work - from enterprise applications to innovative solutions
+            Projects I've built while learning and practicing full-stack development
           </p>
         </motion.div>
 

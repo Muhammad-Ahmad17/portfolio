@@ -15,6 +15,7 @@ export interface BlogPost {
     tags: string[];
     content: string;
     featured?: boolean;
+    image?: string;
 }
 
 // Import all markdown files directly from src/content/blogs
@@ -59,7 +60,8 @@ export async function loadBlogPosts(): Promise<BlogPost[]> {
                     excerpt: data.excerpt || '',
                     tags: data.tags || [],
                     content: markdownContent,
-                    featured: data.featured || false
+                    featured: data.featured || false,
+                    image: data.image || undefined
                 });
             } catch (err) {
                 console.error(`Error loading blog from ${path}:`, err);

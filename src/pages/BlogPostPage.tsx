@@ -3,13 +3,16 @@ import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, User, Tag, Clock, Share2 } from "lucide-react";
+import { ArrowLeft, Calendar, User, Tag, Clock, Share2, Github, Linkedin, Mail, BookOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { loadBlogPosts, type BlogPost } from "@/lib/blog";
+import { portfolioData } from "@/data/portfolio";
 import "highlight.js/styles/atom-one-dark.css";
 import { useEffect, useState } from "react";
 
@@ -72,31 +75,66 @@ const BlogPostPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
+      
+      {/* Hero Section with Cover */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        className="relative w-full h-[40vh] md:h-[50vh] bg-gradient-to-br from-primary/20 via-primary/10 to-background border-b border-border overflow-hidden"
+      >
+        {post.image ? (
+          <>
+            {/* Background Image */}
+            <img 
+              src={post.image} 
+              alt={post.title}
+              className="absolute inset-0 w-full h-full object-contain"
+            />
+            {/* Dark Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40"></div>
+          </>
+        ) : (
+          <>
+            {/* Decorative Pattern (fallback) */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute inset-0" style={{
+                backgroundImage: 'radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)',
+                backgroundSize: '32px 32px'
+              }}></div>
+            </div>
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent"></div>
+          </>
+        )}
+      </motion.div>
+
       <motion.main
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="pt-20 pb-20"
+        className="relative -mt-32 pb-20"
       >
-        <article className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
-          {/* Back Button */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.1 }}
-            className="mb-8"
-          >
-            <Button
-              asChild
-              variant="ghost"
-              className="hover:bg-muted/50"
+        <article className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            {/* Back Button */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+              className="mb-8"
             >
-              <Link to="/blog">
-                <ArrowLeft className="mr-2 w-4 h-4" />
-                Back to Blog
-              </Link>
-            </Button>
-          </motion.div>
+              <Button
+                asChild
+                variant="ghost"
+                className="hover:bg-muted/50 backdrop-blur-sm"
+              >
+                <Link to="/blog">
+                  <ArrowLeft className="mr-2 w-4 h-4" />
+                  Back to Blog
+                </Link>
+              </Button>
+            </motion.div>
 
           {/* Article Header */}
           <motion.div
@@ -105,48 +143,73 @@ const BlogPostPage = () => {
             transition={{ delay: 0.2 }}
             className="mb-12"
           >
-            {/* Tags */}
-            <div className="flex flex-wrap items-center gap-2 mb-6">
-              {post.tags.map((tag) => (
-                <Badge
-                  key={tag}
-                  variant="secondary"
-                  className="bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-                >
-                  {tag}
-                </Badge>
-              ))}
-            </div>
+            <Card className="bg-card/80 backdrop-blur-sm border-border/50 shadow-xl">
+              <CardContent className="p-6 md:p-8">
+                {/* Tags */}
+                <div className="flex flex-wrap items-center gap-2 mb-4">
+                  <Tag className="w-4 h-4 text-primary" />
+                  {post.tags.map((tag) => (
+                    <Badge
+                      key={tag}
+                      variant="secondary"
+                      className="bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                    >
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
 
-            {/* Title */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-foreground leading-tight">
-              {post.title}
-            </h1>
+                {/* Title */}
+                <h1 className="text-3xl md:text-4xl font-bold mb-4 text-foreground leading-tight">
+                  {post.title}
+                </h1>
 
-            {/* Meta Info */}
-            <div className="flex flex-wrap items-center gap-4 md:gap-6 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-primary" />
-                <span>
-                  {new Date(post.date).toLocaleDateString('en-US', {
-                    month: 'long',
-                    day: 'numeric',
-                    year: 'numeric'
-                  })}
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <User className="w-4 h-4 text-primary" />
-                <span>{post.author}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-primary" />
-                <span>{readingTime} min read</span>
-              </div>
-            </div>
+                {/* Excerpt */}
+                <p className="text-base text-muted-foreground mb-6 leading-relaxed">
+                  {post.excerpt}
+                </p>
 
-            {/* Divider */}
-            <div className="mt-8 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+                <Separator className="my-4" />
+
+                {/* Meta Info */}
+                <div className="flex flex-wrap items-center gap-4 text-sm">
+                  <div className="flex items-center gap-2">
+                    <Avatar className="w-8 h-8 border-2 border-primary/20">
+                      <AvatarFallback className="bg-primary/10 text-primary font-semibold text-xs">
+                        {post.author.split(' ').map(n => n[0]).join('')}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <div className="font-medium text-foreground text-sm">{post.author}</div>
+                      <div className="text-xs text-muted-foreground">Author</div>
+                    </div>
+                  </div>
+                  
+                  <Separator orientation="vertical" className="h-8" />
+                  
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Calendar className="w-4 h-4 text-primary" />
+                    <span className="text-sm">
+                      {new Date(post.date).toLocaleDateString('en-US', {
+                        month: 'long',
+                        day: 'numeric',
+                        year: 'numeric'
+                      })}
+                    </span>
+                  </div>
+                  
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Clock className="w-4 h-4 text-primary" />
+                    <span className="text-sm">{readingTime} min read</span>
+                  </div>
+                  
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <BookOpen className="w-4 h-4 text-primary" />
+                    <span className="text-sm">{post.content.split(' ').length} words</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </motion.div>
 
           {/* Article Content */}
@@ -154,28 +217,32 @@ const BlogPostPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="mb-12"
+            className="mb-16"
           >
             <div className="prose prose-lg dark:prose-invert max-w-none
-              prose-headings:font-bold prose-headings:text-foreground prose-headings:scroll-mt-20
-              prose-h1:text-3xl prose-h1:mb-6 prose-h1:mt-12
-              prose-h2:text-2xl prose-h2:mb-4 prose-h2:mt-10 prose-h2:border-b prose-h2:border-border prose-h2:pb-2
-              prose-h3:text-xl prose-h3:mb-3 prose-h3:mt-8
-              prose-p:text-foreground/90 prose-p:leading-relaxed prose-p:my-4
-              prose-a:text-primary prose-a:no-underline prose-a:font-medium hover:prose-a:underline
-              prose-strong:text-foreground prose-strong:font-semibold
-              prose-code:text-primary prose-code:bg-primary/10 prose-code:px-2 prose-code:py-1 prose-code:rounded-md prose-code:font-mono prose-code:text-sm prose-code:before:content-none prose-code:after:content-none
-              prose-pre:bg-muted prose-pre:border prose-pre:border-border prose-pre:rounded-lg prose-pre:p-4 prose-pre:my-6 prose-pre:overflow-x-auto
-              prose-blockquote:border-l-4 prose-blockquote:border-l-primary prose-blockquote:bg-primary/5 prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:my-6 prose-blockquote:not-italic
-              prose-ul:text-foreground/90 prose-ul:my-4 prose-ul:list-disc prose-ul:pl-6
-              prose-ol:text-foreground/90 prose-ol:my-4 prose-ol:list-decimal prose-ol:pl-6
-              prose-li:marker:text-primary prose-li:my-2 prose-li:leading-relaxed
-              prose-img:rounded-lg prose-img:border prose-img:border-border prose-img:my-8
-              prose-hr:border-border prose-hr:my-12
-              prose-table:border-collapse prose-table:w-full prose-table:my-6
-              prose-thead:border-b prose-thead:border-border
-              prose-th:px-4 prose-th:py-2 prose-th:text-left prose-th:font-semibold
-              prose-td:px-4 prose-td:py-2 prose-td:border-t prose-td:border-border
+              prose-headings:text-foreground
+              prose-h1:text-5xl prose-h1:mb-8 prose-h1:mt-20 prose-h1:leading-tight prose-h1:font-black
+              prose-h2:text-3xl prose-h2:mb-6 prose-h2:mt-16 prose-h2:leading-snug prose-h2:font-extrabold
+              prose-h3:text-2xl prose-h3:mb-5 prose-h3:mt-12 prose-h3:leading-snug prose-h3:font-bold
+              prose-h4:text-xl prose-h4:mb-4 prose-h4:mt-10 prose-h4:font-semibold
+              prose-h5:text-lg prose-h5:mb-3 prose-h5:mt-8 prose-h5:font-semibold
+              prose-h6:text-base prose-h6:mb-2 prose-h6:mt-6 prose-h6:font-medium
+              prose-p:text-foreground/90 prose-p:leading-[2] prose-p:my-8 prose-p:text-base prose-p:font-normal
+              prose-a:text-primary prose-a:underline prose-a:underline-offset-4 hover:prose-a:text-primary/80
+              prose-strong:text-foreground prose-strong:font-bold
+              prose-em:text-foreground/80 prose-em:italic
+              prose-code:text-primary prose-code:bg-muted/80 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:before:content-none prose-code:after:content-none prose-code:font-mono
+              prose-pre:bg-muted/80 prose-pre:border prose-pre:border-border prose-pre:rounded-lg prose-pre:p-8 prose-pre:my-12 prose-pre:leading-relaxed prose-pre:text-sm
+              prose-blockquote:border-l-4 prose-blockquote:border-l-primary prose-blockquote:pl-8 prose-blockquote:pr-6 prose-blockquote:py-4 prose-blockquote:my-12 prose-blockquote:italic prose-blockquote:text-muted-foreground prose-blockquote:bg-muted/30 prose-blockquote:rounded-r prose-blockquote:text-base
+              prose-ul:my-10 prose-ul:list-disc prose-ul:pl-10 prose-ul:space-y-4
+              prose-ol:my-10 prose-ol:list-decimal prose-ol:pl-10 prose-ol:space-y-4
+              prose-li:text-foreground/90 prose-li:leading-[2] prose-li:text-base
+              prose-img:rounded-lg prose-img:my-14 prose-img:shadow-md
+              prose-hr:border-border prose-hr:my-16
+              prose-table:my-12 prose-table:text-base
+              prose-thead:border-b-2 prose-thead:border-border
+              prose-th:px-6 prose-th:py-4 prose-th:text-left prose-th:font-semibold prose-th:text-base
+              prose-td:px-6 prose-td:py-4 prose-td:border-t prose-td:border-border prose-td:text-base
             ">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
@@ -186,24 +253,76 @@ const BlogPostPage = () => {
             </div>
           </motion.div>
 
-          {/* Article Footer */}
+          {/* Author Card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="mt-12"
+            className="mb-12"
           >
-            <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
-              <CardContent className="p-6">
-                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Enjoyed this article?</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Share it with others who might find it useful
+            <Card className="bg-gradient-to-br from-primary/10 via-primary/5 to-background border-primary/20 shadow-lg">
+              <CardContent className="p-8">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+                  <Avatar className="w-20 h-20 border-4 border-primary/30 shadow-lg">
+                    <AvatarFallback className="bg-primary/20 text-primary text-2xl font-bold">
+                      {portfolioData.personal.name.split(' ').map(n => n[0]).join('')}
+                    </AvatarFallback>
+                  </Avatar>
+                  
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-foreground mb-2">
+                      Written by {portfolioData.personal.name}
+                    </h3>
+                    <p className="text-muted-foreground mb-4 leading-relaxed">
+                      {portfolioData.personal.bio}
+                    </p>
+                    <div className="flex flex-wrap gap-3">
+                      <Button variant="outline" size="sm" asChild className="border-primary/30 hover:bg-primary/10">
+                        <a href={portfolioData.social.github} target="_blank" rel="noopener noreferrer">
+                          <Github className="w-4 h-4 mr-2" />
+                          GitHub
+                        </a>
+                      </Button>
+                      <Button variant="outline" size="sm" asChild className="border-primary/30 hover:bg-primary/10">
+                        <a href={portfolioData.social.linkedin} target="_blank" rel="noopener noreferrer">
+                          <Linkedin className="w-4 h-4 mr-2" />
+                          LinkedIn
+                        </a>
+                      </Button>
+                      <Button variant="outline" size="sm" asChild className="border-primary/30 hover:bg-primary/10">
+                        <a href={`mailto:${portfolioData.personal.email}`}>
+                          <Mail className="w-4 h-4 mr-2" />
+                          Email
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Article Footer */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mb-12"
+          >
+            <Card className="bg-card/80 backdrop-blur-sm border-border/50">
+              <CardContent className="p-8">
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-foreground mb-2 flex items-center gap-2">
+                      <Share2 className="w-5 h-5 text-primary" />
+                      Enjoyed this article?
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Share it with others who might find it useful and help spread the knowledge!
                     </p>
                   </div>
-                  <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10">
-                    <Share2 className="w-4 h-4 mr-2" />
+                  <Button size="lg" className="bg-primary hover:bg-primary/90 shadow-lg">
+                    <Share2 className="w-5 h-5 mr-2" />
                     Share Article
                   </Button>
                 </div>
@@ -215,16 +334,17 @@ const BlogPostPage = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="mt-12 pt-8 border-t border-border flex justify-center"
+            transition={{ delay: 0.6 }}
+            className="pt-8 border-t border-border flex justify-center"
           >
-            <Button asChild size="lg">
+            <Button asChild size="lg" variant="outline" className="border-primary/30 hover:bg-primary/10">
               <Link to="/blog">
                 <ArrowLeft className="mr-2 w-5 h-5" />
                 View All Articles
               </Link>
             </Button>
           </motion.div>
+        </div>
         </article>
       </motion.main>
       <Footer />
