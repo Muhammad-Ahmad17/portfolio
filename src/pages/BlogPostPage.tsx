@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { TableOfContents } from "@/components/TableOfContents";
 import { motion } from "framer-motion";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -76,44 +77,14 @@ const BlogPostPage = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       
-      {/* Hero Section with Cover */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        className="relative w-full h-[40vh] md:h-[50vh] bg-gradient-to-br from-primary/20 via-primary/10 to-background border-b border-border overflow-hidden"
-      >
-        {post.image ? (
-          <>
-            {/* Background Image */}
-            <img 
-              src={post.image} 
-              alt={post.title}
-              className="absolute inset-0 w-full h-full object-contain"
-            />
-            {/* Dark Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40"></div>
-          </>
-        ) : (
-          <>
-            {/* Decorative Pattern (fallback) */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0" style={{
-                backgroundImage: 'radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)',
-                backgroundSize: '32px 32px'
-              }}></div>
-            </div>
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent"></div>
-          </>
-        )}
-      </motion.div>
+      {/* Table of Contents */}
+      {post && <TableOfContents content={post.content} />}
 
       <motion.main
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="relative -mt-32 pb-20"
+        className="pt-24 pb-20"
       >
         <article className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">

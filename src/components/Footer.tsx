@@ -131,6 +131,9 @@ export function Footer() {
                 <span>Built with React, TypeScript & Tailwind CSS</span>
                 <Heart className="w-4 h-4 text-primary fill-primary animate-pulse" />
               </div>
+              <div className="text-xs text-muted-foreground/60 italic mt-1">
+                Psst... try the Konami code 🎮
+              </div>
             </div>
 
             <Button
