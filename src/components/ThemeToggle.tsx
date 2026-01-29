@@ -15,7 +15,7 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon"
       onClick={toggleTheme}
-      className="relative h-10 w-10 rounded-full hover:bg-accent/20 transition-colors"
+      className="relative h-10 w-10 rounded-full hover:bg-primary/10 transition-colors"
     >
       <motion.div
         initial={false}

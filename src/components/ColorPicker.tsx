@@ -20,7 +20,7 @@ export function ColorPicker() {
     <div className="relative">
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="h-10 w-10 rounded-full flex items-center justify-center hover:bg-accent/20 transition-colors"
+        className="h-10 w-10 rounded-full flex items-center justify-center hover:bg-primary/10 transition-colors"
         whileTap={{ scale: 0.95 }}
       >
         <div 
@@ -46,7 +46,7 @@ export function ColorPicker() {
                     setColorTheme(theme.name as any);
                     setIsOpen(false);
                   }}
-                  className="h-8 w-8 rounded-full flex items-center justify-center hover:bg-accent/20 transition-colors relative"
+                  className="h-8 w-8 rounded-full flex items-center justify-center hover:bg-primary/10 transition-colors relative"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >

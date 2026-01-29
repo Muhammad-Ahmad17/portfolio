@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { List, ChevronRight, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -26,6 +26,8 @@ export function TableOfContents({ content }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>("");
   const [isVisible, setIsVisible] = useState(true);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const tocScrollRef = useRef<HTMLDivElement>(null);
+  const activeLinkRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     // Extract headings from markdown content
@@ -63,18 +65,27 @@ export function TableOfContents({ content }: TableOfContentsProps) {
       heading.id = id;
     });
 
-    // Intersection Observer for active heading
+    // Intersection Observer for active heading - improved sync
     const observerOptions = {
-      rootMargin: '-100px 0px -66%',
-      threshold: 0
+      rootMargin: '-80px 0px -80%',
+      threshold: [0, 0.25, 0.5, 0.75, 1]
     };
 
+    let mostVisibleHeading = '';
     const observerCallback: IntersectionObserverCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveId(entry.target.id);
+      const visibleEntries = entries.filter(entry => entry.isIntersecting);
+      
+      if (visibleEntries.length > 0) {
+        // Get the most visible heading (highest intersection ratio)
+        const mostVisible = visibleEntries.reduce((prev, current) => 
+          current.intersectionRatio > prev.intersectionRatio ? current : prev
+        );
+        
+        if (mostVisible.target.id !== mostVisibleHeading) {
+          mostVisibleHeading = mostVisible.target.id;
+          setActiveId(mostVisible.target.id);
         }
-      });
+      }
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
@@ -83,19 +94,49 @@ export function TableOfContents({ content }: TableOfContentsProps) {
       observer.observe(heading);
     });
 
-    // Check scroll position to hide/show TOC
+    // Check scroll position to hide/show TOC - hide near bottom for footer
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      setIsVisible(scrollY > 400);
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const distanceFromBottom = documentHeight - (scrollY + windowHeight);
+      
+      // Show TOC after scrolling 400px but hide when within 600px of bottom
+      setIsVisible(scrollY > 400 && distanceFromBottom > 600);
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
 
     return () => {
       observer.disconnect();
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [headings]);
+  }, []);
+
+  // Auto-scroll active heading into view in TOC
+  useEffect(() => {
+    if (activeId && activeLinkRef.current && tocScrollRef.current) {
+      const activeElement = activeLinkRef.current;
+      const container = tocScrollRef.current;
+      
+      // Calculate if element is in view
+      const containerRect = container.getBoundingClientRect();
+      const elementRect = activeElement.getBoundingClientRect();
+      
+      // Check if element is outside the visible area
+      const isAbove = elementRect.top < containerRect.top;
+      const isBelow = elementRect.bottom > containerRect.bottom;
+      
+      if (isAbove || isBelow) {
+        // Scroll the active element into view with some padding
+        activeElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }
+    }
+  }, [activeId]);
 
   const scrollToHeading = (id: string) => {
     const element = document.getElementById(id);
@@ -112,35 +153,33 @@ export function TableOfContents({ content }: TableOfContentsProps) {
 
   if (headings.length === 0) return null;
 const TableOfContentsContent = () => (
-    <nav className="space-y-1">
-      {headings.map((heading, index) => {
+    <nav className="space-y-0.5">
+      {headings.map((heading) => {
         const isActive = activeId === heading.id;
-        const indent = (heading.level - 1) * 12;
+        const indent = (heading.level - 1) * 10;
         
         return (
-          <motion.button
-            key={`${heading.id}-${index}`}
+          <button
+            key={heading.id}
+            ref={isActive ? activeLinkRef : null}
             onClick={() => scrollToHeading(heading.id)}
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: index * 0.05 }}
             className={cn(
-              "w-full text-left px-3 py-2 text-sm rounded-md transition-all duration-200 flex items-start gap-2 group",
+              "w-full text-left px-2 py-1.5 text-xs rounded transition-all duration-200 flex items-start gap-1.5 group",
               isActive
                 ? "bg-primary/10 text-primary font-medium border-l-2 border-primary"
                 : "text-muted-foreground hover:text-foreground hover:bg-muted/50 border-l-2 border-transparent"
             )}
-            style={{ paddingLeft: `${indent + 12}px` }}
+            style={{ paddingLeft: `${indent + 8}px` }}
           >
             <ChevronRight 
               className={cn(
-                "w-3 h-3 mt-0.5 flex-shrink-0 transition-transform duration-200",
+                "w-2.5 h-2.5 mt-0.5 flex-shrink-0 transition-transform duration-200",
                 isActive ? "text-primary" : "text-muted-foreground/50 group-hover:text-foreground/70",
                 isActive && "rotate-90"
               )}
             />
-            <span className="line-clamp-2 leading-tight">{heading.text}</span>
-          </motion.button>
+            <span className="line-clamp-2 leading-snug">{heading.text}</span>
+          </button>
         );
       })}
     </nav>
@@ -156,22 +195,25 @@ const TableOfContentsContent = () => (
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}
-            className="hidden xl:block fixed left-8 top-32 w-64 max-h-[calc(100vh-200px)] overflow-y-auto z-10"
+            className="hidden xl:block fixed left-8 top-32 w-64 max-h-[calc(100vh-180px)] z-10"
           >
-            <div className="bg-card/80 backdrop-blur-sm border border-border/50 rounded-lg p-4 shadow-lg">
-              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-border/50">
-                <List className="w-4 h-4 text-primary" />
-                <h3 className="text-sm font-semibold text-foreground uppercase tracking-wide">
-                  Table of Contents
+            <div className="bg-background/60 backdrop-blur-md border border-border/30 rounded-xl p-3 shadow-sm">
+              <div className="flex items-center gap-2 mb-3 pb-2 border-b border-border/30">
+                <List className="w-3.5 h-3.5 text-primary" />
+                <h3 className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">
+                  On This Page
                 </h3>
               </div>
               
-              <TableOfContentsContent />
+              {/* Scrollable content with custom scrollbar */}
+              <div ref={tocScrollRef} className="max-h-[calc(100vh-260px)] overflow-y-auto pr-1.5 custom-scrollbar">
+                <TableOfContentsContent />
+              </div>
 
               {/* Scroll indicator */}
-              <div className="mt-4 pt-3 border-t border-border/50">
-                <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
-                  <div className="w-1 h-1 rounded-full bg-primary animate-pulse" />
+              <div className="mt-3 pt-2 border-t border-border/30">
+                <div className="flex items-center justify-center gap-1.5 text-[10px] text-muted-foreground/70">
+                  <div className="w-1 h-1 rounded-full bg-primary/60 animate-pulse" />
                   <span>Scroll to explore</span>
                 </div>
               </div>

@@ -123,59 +123,59 @@ All colors MUST be HSL.
 
   /* DARK MODE - Professional Dark Theme */
   .dark {
-    --background: 222 47% 11%;
-    /* Dark slate background */
-    --foreground: 210 40% 98%;
-    /* Light text */
+    --background: 240 10% 8%;
+    /* Softer neutral dark background */
+    --foreground: 0 0% 98%;
+    /* Pure white text */
 
-    --card: 222 47% 13%;
-    --card-foreground: 210 40% 98%;
+    --card: 240 10% 11%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 222 47% 15%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 240 10% 13%;
+    --popover-foreground: 0 0% 98%;
 
     /* Default Dark - Cyan Developer Vibe */
     --primary: 189 94% 53%;
-    --primary-foreground: 222 47% 11%;
+    --primary-foreground: 0 0% 100%;
     --primary-glow: 189 94% 73%;
 
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 240 8% 15%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 240 8% 15%;
+    --muted-foreground: 240 5% 65%;
 
     --accent: 189 94% 53%;
-    --accent-foreground: 210 40% 98%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 217 33% 24%;
-    --input: 217 33% 20%;
+    --border: 240 10% 20%;
+    --input: 240 10% 16%;
     --ring: 189 94% 53%;
 
     /* Dark mode gradients & shadows */
-    --glass-bg: 222 47% 11% / 0.85;
-    --glass-border: 217 33% 30% / 0.6;
+    --glass-bg: 240 10% 8% / 0.85;
+    --glass-border: 240 10% 25% / 0.6;
     --gradient-primary: linear-gradient(135deg, hsl(189 94% 53%), hsl(189 94% 73%));
     --gradient-hero: linear-gradient(135deg, hsl(189 94% 53% / 0.15), hsl(189 94% 73% / 0.15));
     --shadow-elegant: 0 4px 6px -1px hsl(0 0% 0% / 0.3), 0 2px 4px -1px hsl(0 0% 0% / 0.2);
     --shadow-glow: 0 0 60px hsl(189 94% 73% / 0.4);
 
     /* Code editor aesthetic */
-    --code-bg: 217 33% 15%;
-    --code-text: 210 40% 98%;
+    --code-bg: 240 8% 12%;
+    --code-text: 0 0% 98%;
 
     /* Terminal colors */
     --terminal-green: 142 76% 36%;
-    --terminal-prompt: 210 40% 98%;
+    --terminal-prompt: 0 0% 98%;
   }
 
   /* Dark Mode - Pink Theme */
   .dark[data-color="pink"] {
     --primary: 345 82% 65%;
-    --primary-foreground: 222 47% 11%;
+    --primary-foreground: 0 0% 100%;
     --primary-glow: 345 82% 80%;
     --ring: 345 82% 65%;
     --gradient-primary: linear-gradient(135deg, hsl(345 82% 65%), hsl(345 82% 80%));
@@ -186,7 +186,7 @@ All colors MUST be HSL.
   /* Dark Mode - Orange Theme */
   .dark[data-color="orange"] {
     --primary: 27 96% 66%;
-    --primary-foreground: 222 47% 11%;
+    --primary-foreground: 0 0% 100%;
     --primary-glow: 27 96% 81%;
     --ring: 27 96% 66%;
     --gradient-primary: linear-gradient(135deg, hsl(27 96% 66%), hsl(27 96% 81%));
@@ -197,7 +197,7 @@ All colors MUST be HSL.
   /* Dark Mode - Green Theme */
   .dark[data-color="green"] {
     --primary: 142 76% 36%;
-    --primary-foreground: 222 47% 11%;
+    --primary-foreground: 0 0% 100%;
     --primary-glow: 142 76% 51%;
     --ring: 142 76% 36%;
     --gradient-primary: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 51%));
@@ -208,7 +208,7 @@ All colors MUST be HSL.
   /* Dark Mode - Blue Theme (Default) */
   .dark[data-color="blue"] {
     --primary: 189 94% 53%;
-    --primary-foreground: 222 47% 11%;
+    --primary-foreground: 0 0% 100%;
     --primary-glow: 189 94% 73%;
     --ring: 189 94% 53%;
     --gradient-primary: linear-gradient(135deg, hsl(189 94% 53%), hsl(189 94% 73%));
@@ -219,7 +219,7 @@ All colors MUST be HSL.
   /* Dark Mode - Purple Theme */
   .dark[data-color="purple"] {
     --primary: 271 81% 61%;
-    --primary-foreground: 222 47% 11%;
+    --primary-foreground: 0 0% 100%;
     --primary-glow: 271 81% 76%;
     --ring: 271 81% 61%;
     --gradient-primary: linear-gradient(135deg, hsl(271 81% 61%), hsl(271 81% 76%));
@@ -266,15 +266,27 @@ All colors MUST be HSL.
   /* Grid pattern background - Enhanced visibility */
   .bg-grid-pattern {
     background-image:
-      linear-gradient(to right, hsl(var(--primary) / 0.15) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--primary) / 0.15) 1px, transparent 1px);
+      linear-gradient(to right, hsl(var(--primary) / 0.25) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--primary) / 0.25) 1px, transparent 1px);
     background-size: 40px 40px;
+  }
+
+  /* Grid pattern for dark mode */
+  .dark .bg-grid-pattern {
+    background-image:
+      linear-gradient(to right, hsl(var(--primary) / 0.25) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--primary) / 0.25) 1px, transparent 1px);
   }
 
   /* Dot pattern background - Enhanced visibility */
   .bg-dot-pattern {
-    background-image: radial-gradient(circle, hsl(var(--primary) / 0.2) 2px, transparent 2px);
+    background-image: radial-gradient(circle, hsl(var(--primary) / 0.3) 2px, transparent 2px);
     background-size: 24px 24px;
+  }
+
+  /* Dot pattern for dark mode */
+  .dark .bg-dot-pattern {
+    background-image: radial-gradient(circle, hsl(var(--primary) / 0.3) 2px, transparent 2px);
   }
 
   /* Matrix rain effect background */
@@ -584,5 +596,28 @@ All colors MUST be HSL.
   .connection-offline::before {
     content: '';
     @apply w-2 h-2 rounded-full bg-red-400;
+  }
+
+  /* Custom scrollbar for Table of Contents */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-primary/20 rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/40;
+  }
+
+  /* Firefox scrollbar */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary) / 0.2) transparent;
   }
 }
