@@ -1,13 +1,23 @@
 import { motion } from "framer-motion";
-import { Github, ExternalLink, Star, TrendingUp } from "lucide-react";
+import { Github, ExternalLink, Star, TrendingUp, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { portfolioData } from "@/data/portfolio";
+import { useState } from "react";
 
 export function Projects() {
+  const [videoOpen, setVideoOpen] = useState(false);
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+  
   const featuredProjects = portfolioData.projects.filter(project => project.featured);
   const otherProjects = portfolioData.projects.filter(project => !project.featured);
+
+  const handleDemoClick = (demoUrl: string) => {
+    setSelectedVideo(demoUrl);
+    setVideoOpen(true);
+  };
 
   return (
     <section id="projects" className="py-20 lg:py-32">
@@ -83,12 +93,23 @@ export function Projects() {
                         Code
                       </a>
                     </Button>
-                    <Button size="sm" asChild className="flex-1 bg-primary hover:bg-primary/90">
-                      <a href={project.live} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="w-4 h-4 mr-1" />
-                        Live Demo
-                      </a>
-                    </Button>
+                    {project.demo ? (
+                      <Button
+                        size="sm"
+                        onClick={() => handleDemoClick(project.demo!)}
+                        className="flex-1 bg-primary hover:bg-primary/90"
+                      >
+                        <Play className="w-4 h-4 mr-1" />
+                        Video
+                      </Button>
+                    ) : (
+                      <Button size="sm" asChild className="flex-1 bg-primary hover:bg-primary/90">
+                        <a href={project.live} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="w-4 h-4 mr-1" />
+                          Live Demo
+                        </a>
+                      </Button>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -122,6 +143,27 @@ export function Projects() {
             </CardContent>
           </Card>
         </motion.div>
+
+        {/* Video Modal */}
+        <Dialog open={videoOpen} onOpenChange={setVideoOpen}>
+          <DialogContent className="max-w-2xl w-full p-4">
+            <DialogTitle className="hidden">Video Demo</DialogTitle>
+            {selectedVideo && (
+              <div className="w-full bg-black rounded-lg overflow-hidden aspect-video">
+                <video
+                  width="100%"
+                  height="100%"
+                  controls
+                  autoPlay
+                  className="w-full h-full"
+                >
+                  <source src={selectedVideo} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );

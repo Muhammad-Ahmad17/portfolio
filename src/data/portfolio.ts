@@ -73,41 +73,47 @@ export const portfolioData = {
 
   skills: {
     languages: [
-      { name: "JavaScript", level: 80, icon: "js", category: "language" },
-      { name: "TypeScript", level: 70, icon: "ts", category: "language" },
-      { name: "Python", level: 65, icon: "python", category: "language" },
-      { name: "C++", level: 60, icon: "cpp", category: "language" },
-      { name: "SQL", level: 70, icon: "sql", category: "language" }
+      { name: "JavaScript", level: 65, icon: "js", category: "language" },
+      { name: "Python", level: 55, icon: "python", category: "language" },
+      { name: "C", level: 60, icon: "c", category: "language" },
+      { name: "C++", level: 50, icon: "cpp", category: "language" },
+      { name: "VHDL", level: 45, icon: "vhdl", category: "language" },
+      { name: "SQL", level: 55, icon: "sql", category: "language" }
     ],
     backend: [
-      { name: "Node.js", level: 70, icon: "nodejs", category: "backend" },
-      { name: "Express.js", level: 75, icon: "express", category: "backend" },
-      { name: "MongoDB", level: 70, icon: "mongodb", category: "backend" },
-      { name: "PostgreSQL", level: 60, icon: "postgresql", category: "backend" },
-      { name: "RESTful APIs", level: 75, icon: "api", category: "backend" },
-      { name: "GraphQL", level: 50, icon: "graphql", category: "backend" }
+      { name: "Node.js", level: 40, icon: "nodejs", category: "backend" },
+      { name: "Express.js", level: 40, icon: "express", category: "backend" },
+      { name: "MongoDB", level: 40, icon: "mongodb", category: "backend" },
+      { name: "SQL", level: 60, icon: "sql", category: "backend" },
+      { name: "RESTful APIs", level: 45, icon: "api", category: "backend" }
     ],
     frontend: [
-      { name: "React", level: 75, icon: "react", category: "frontend" },
-      { name: "Next.js", level: 60, icon: "nextjs", category: "frontend" },
-      { name: "Tailwind CSS", level: 85, icon: "tailwind", category: "frontend" },
-      { name: "HTML/CSS", level: 90, icon: "html", category: "frontend" },
-      { name: "Framer Motion", level: 65, icon: "framer", category: "frontend" }
+      { name: "React", level: 60, icon: "react", category: "frontend" },
+      { name: "Next.js", level: 40, icon: "nextjs", category: "frontend" },
+      { name: "Tailwind CSS", level: 65, icon: "tailwind", category: "frontend" },
+      { name: "HTML/CSS", level: 70, icon: "html", category: "frontend" },
+      { name: "Framer Motion", level: 45, icon: "framer", category: "frontend" }
     ],
     devops: [
-      { name: "Docker", level: 55, icon: "docker", category: "devops" },
-      { name: "GitHub Actions", level: 60, icon: "github", category: "devops" },
-      { name: "AWS", level: 45, icon: "aws", category: "devops" },
-      { name: "Vercel", level: 70, icon: "vercel", category: "devops" },
+      { name: "Docker", level: 40, icon: "docker", category: "devops" },
+      { name: "GitHub Actions", level: 30, icon: "github", category: "devops" },
+      { name: "AWS", level: 30, icon: "aws", category: "devops" },
+      { name: "Vercel", level: 55, icon: "vercel", category: "devops" },
       { name: "Linux", level: 60, icon: "linux", category: "devops" },
-      { name: "Git", level: 75, icon: "git", category: "devops" }
+      { name: "Git", level: 50, icon: "git", category: "devops" }
     ],
     tools: [
-      { name: "VS Code", level: 85, icon: "vscode", category: "tools" },
-      { name: "Figma", level: 80, icon: "figma", category: "tools" },
-      { name: "Postman", level: 85, icon: "postman", category: "tools" },
-      { name: "MongoDB Compass", level: 80, icon: "mongodb", category: "tools" },
-      { name: "Chrome DevTools", level: 90, icon: "chrome", category: "tools" }
+      { name: "VS Code", level: 70, icon: "vscode", category: "tools" },
+      { name: "Figma", level: 50, icon: "figma", category: "tools" },
+      { name: "Postman", level: 65, icon: "postman", category: "tools" },
+      { name: "MongoDB Compass", level: 60, icon: "mongodb", category: "tools" },
+      { name: "Chrome DevTools", level: 55, icon: "chrome", category: "tools" }
+    ],
+    hardware: [
+      { name: "STM32", level: 50, icon: "stm32", category: "hardware" },
+      { name: "Embedded Systems", level: 45, icon: "embedded", category: "hardware" },
+      { name: "FPGA (VHDL)", level: 40, icon: "fpga", category: "hardware" },
+      { name: "Microcontrollers", level: 55, icon: "micro", category: "hardware" }
     ]
   },
 
@@ -140,6 +146,16 @@ export const portfolioData = {
       technologies: ["React", "AWS Lambda", "API Gateway", "DynamoDB", "S3"],
       github: "https://github.com/Muhammad-Ahmad17/getApiForUserData",
       live: "http://user-processing-system-ahmad.s3-website-us-east-1.amazonaws.com/",
+      featured: true
+    },
+    {
+      id: 4,
+      title: "Real-Time Smart Room Automation System",
+      description: "An embedded systems project using STM32F407 microcontroller integrating RFID card access control, motion detection (IR & accelerometer), real-time temperature monitoring with LM35 sensor, automated lighting control, and intelligent fan management. Features multi-sensor data fusion, real-time LCD display feedback, and audio alert system via buzzer. Demonstrates IoT device integration with real-time processing capabilities.",
+      image: "/projects/smart-room-automation.jpg",
+      technologies: ["STM32F407", "C/Embedded C", "HAL Library", "MFRC522 RFID", "LIS302DL Accelerometer", "LM35 Temperature Sensor", "I2C", "SPI", "ADC", "DMA", "ARM Cortex-M4F"],
+      github: "https://github.com/Muhammad-Ahmad17/RealTimeSmartRoomAutomation",
+      demo: "/projects/brokendemo.mp4",
       featured: true
     }
   ],
