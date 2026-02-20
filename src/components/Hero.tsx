@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { portfolioData } from "@/data/portfolio";
 import { useNavigate } from "react-router-dom";
-import { Github, Linkedin, Mail, ArrowRight, Sparkles, Code2, Cloud, Database, Rocket } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowRight, Sparkles, Code2, Cloud, Database, Rocket, FileText } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export function Hero() {
@@ -183,11 +183,13 @@ export function Hero() {
               <Button
                 size="lg"
                 variant="outline"
-                onClick={() => navigate("/contact")}
+                asChild
                 className="border-2 hover:bg-primary/10 hover:text-primary hover:border-primary/50"
               >
-                <Mail className="mr-2 w-5 h-5" />
-                Get In Touch
+                <a href="/Muhammad_Ahmad_Resume.pdf" download="Muhammad_Ahmad_Resume.pdf">
+                  <FileText className="mr-2 w-5 h-5" />
+                  Download CV
+                </a>
               </Button>
             </motion.div>
 

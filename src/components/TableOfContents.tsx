@@ -195,7 +195,7 @@ const TableOfContentsContent = () => (
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}
-            className="hidden xl:block fixed left-8 top-32 w-64 max-h-[calc(100vh-180px)] z-10"
+            className="hidden 2xl:block fixed left-4 top-32 w-56 max-h-[calc(100vh-180px)] z-10"
           >
             <div className="bg-background/60 backdrop-blur-md border border-border/30 rounded-xl p-3 shadow-sm">
               <div className="flex items-center gap-2 mb-3 pb-2 border-b border-border/30">
@@ -223,7 +223,7 @@ const TableOfContentsContent = () => (
       </AnimatePresence>
 
       {/* Mobile Floating Button & Sheet */}
-      <div className="xl:hidden">
+      <div className="2xl:hidden">
         <AnimatePresence>
           {isVisible && (
             <motion.div

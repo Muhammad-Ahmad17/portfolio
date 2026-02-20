@@ -18,14 +18,14 @@ export function Experience() {
         >
           <div className="inline-block mb-4">
             <span className="px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-semibold">
-              Career Journey
+              My Journey
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Experience & Education
+            Learning & Education
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            My professional journey and academic background
+            My academic background and hands-on learning experiences
           </p>
         </motion.div>
 
@@ -39,7 +39,7 @@ export function Experience() {
             <TabsList className="grid w-full grid-cols-2 mb-8">
               <TabsTrigger value="experience" className="flex items-center gap-2">
                 <Briefcase className="w-4 h-4" />
-                Work Experience
+                Projects & Experience
               </TabsTrigger>
               <TabsTrigger value="education" className="flex items-center gap-2">
                 <Award className="w-4 h-4" />

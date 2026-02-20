@@ -2,8 +2,8 @@ export const portfolioData = {
   personal: {
     name: "Muhammad Ahmad",
     title: "Computer Engineering Student",
-    tagline: "Backend Engineering & DevOps Enthusiast",
-    bio: "6th semester Computer Engineering student at COMSATS University, specializing in backend development and exploring DevOps practices. Building scalable server-side applications and learning cloud infrastructure.",
+    tagline: "Learning Backend Development & DevOps",
+    bio: "I'm a 6th semester Computer Engineering student at COMSATS University, passionate about learning backend development and DevOps. Currently building projects to improve my skills in Node.js, Express, and cloud technologies while exploring the world of software engineering.",
     email: "muhammadahmad171105@gmail.com",
     phone: "+92 337 147947",
     location: "Lahore, Pakistan",
@@ -20,25 +20,25 @@ export const portfolioData = {
   services: [
     {
       name: "Backend Development",
-      description: "Building REST APIs with Node.js and Express, working with MongoDB and PostgreSQL databases",
+      description: "Learning to build REST APIs with Node.js and Express, practicing with MongoDB and PostgreSQL databases through student projects",
       color: "text-green-500",
       bgColor: "bg-green-500/10"
     },
     {
       name: "DevOps Learning",
-      description: "Exploring Docker, GitHub Actions, and cloud deployment with AWS and Vercel",
+      description: "Exploring Docker containers, GitHub Actions for CI/CD, and learning cloud deployment basics with AWS and Vercel",
       color: "text-blue-500",
       bgColor: "bg-blue-500/10"
     },
     {
       name: "Database Design",
-      description: "Learning database architecture, query optimization, and working with SQL and NoSQL databases",
+      description: "Studying database fundamentals, practicing query optimization, and learning the differences between SQL and NoSQL databases",
       color: "text-cyan-500",
       bgColor: "bg-cyan-500/10"
     },
     {
       name: "Problem Solving",
-      description: "Practicing DSA and working on real-world projects to improve coding skills",
+      description: "Practicing Data Structures & Algorithms on LeetCode and building projects to strengthen my programming fundamentals",
       color: "text-orange-500",
       bgColor: "bg-orange-500/10"
     }
@@ -62,12 +62,12 @@ export const portfolioData = {
   ],
 
   hero: {
-    greeting: "👋 Welcome to my portfolio",
+    greeting: "👋 Welcome to my learning journey",
     availability: {
-      status: "Open to Internships",
+      status: "Open to Internships & Learning",
       statusColor: "text-green-500",
       responseTime: "Within 24 hours",
-      message: "Looking for internships, freelance opportunities, and collaborative projects to gain real-world experience. Let's learn and build together!"
+      message: "Actively seeking internships and collaborative projects to learn from experienced developers. I'm eager to contribute, learn, and grow in a real-world engineering environment!"
     }
   },
 

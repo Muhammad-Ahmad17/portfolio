@@ -91,10 +91,10 @@ export function Contact() {
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Let's Work Together
+            Let's Connect
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind or just want to chat? Feel free to reach out!
+            I'm always open to learning opportunities, collaboration, or just chatting about tech. Feel free to reach out!
           </p>
         </motion.div>
 

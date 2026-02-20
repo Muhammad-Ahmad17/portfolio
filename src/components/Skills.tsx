@@ -47,10 +47,10 @@ export function Skills() {
             <span className="text-primary text-sm font-semibold">Technical Skills</span>
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Technologies & <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">Expertise</span>
+            Technologies I'm <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">Learning</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A comprehensive overview of the technologies and tools I work with
+            Tools and technologies I'm currently working with and improving my skills in
           </p>
         </motion.div>
 

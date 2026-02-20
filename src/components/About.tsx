@@ -86,10 +86,10 @@ export function About() {
                   <h3 className="text-lg font-semibold text-foreground">My Journey</h3>
                 </div>
                 <div className="text-sm text-muted-foreground space-y-3 leading-relaxed">
-                  <p>Started my journey in computer engineering with a passion for creating impactful digital solutions.</p>
-                  <p>Developed deep expertise in full-stack development, specializing in the MERN stack and modern web technologies.</p>
-                  <p>Expanded into DevOps practices, mastering cloud infrastructure and automated deployment pipelines.</p>
-                  <p className="text-foreground font-medium">Continuously exploring emerging technologies to deliver innovative solutions.</p>
+                  <p>Started learning programming in my first semester with C and C++, which sparked my interest in software development.</p>
+                  <p>Currently building projects with the MERN stack to understand full-stack development and improve my coding skills.</p>
+                  <p>Recently started exploring DevOps tools like Docker and GitHub Actions to learn about deployment and automation.</p>
+                  <p className="text-foreground font-medium">Every day I'm learning something new and working to become a better software engineer.</p>
                 </div>
               </CardContent>
             </Card>
@@ -110,12 +110,12 @@ export function About() {
                   <h3 className="text-lg font-semibold text-foreground">What Drives Me</h3>
                 </div>
                 <div className="text-sm text-muted-foreground space-y-3 leading-relaxed">
-                  <p>Writing clean, maintainable code that stands the test of time and scale.</p>
-                  <p>Creating beautiful and functional user experiences that delight users.</p>
-                  <p>Bridging technical complexity with intuitive interfaces that anyone can use.</p>
-                  <p className="text-foreground font-medium">Solving real-world problems through elegant code solutions.</p>
+                  <p>Learning to write clean, readable code that follows best practices and industry standards.</p>
+                  <p>Trying to understand user needs and build features that solve real problems.</p>
+                  <p>Breaking down complex concepts into simple solutions through practice and iteration.</p>
+                  <p className="text-foreground font-medium">Excited about learning new technologies and improving my problem-solving skills.</p>
                   <p className="flex items-center gap-2">
-                    <span>Driven by curiosity, powered by dedication</span>
+                    <span>Passionate about learning, committed to growth</span>
                     <Sparkles className="w-4 h-4 text-primary" />
                   </p>
                 </div>

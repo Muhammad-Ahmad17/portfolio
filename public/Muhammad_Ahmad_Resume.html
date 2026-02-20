@@ -1,214 +1,174 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Muhammad Ahmad - Resume</title>
-    <style>
-        @page { margin: 0.5in; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: Calibri, 'Segoe UI', Arial, sans-serif;
-            font-size: 10.5pt;
-            line-height: 1.35;
-            color: #2d2d2d;
-            max-width: 8.5in;
-            margin: 0 auto;
-            padding: 0.4in 0.5in;
-        }
-        
-        /* Header */
-        .header { text-align: center; margin-bottom: 12px; border-bottom: 2px solid #2d2d2d; padding-bottom: 12px; }
-        .name { font-size: 24pt; font-weight: bold; color: #1a1a1a; letter-spacing: 1px; margin-bottom: 4px; }
-        .title { font-size: 11pt; color: #444; margin-bottom: 8px; }
-        .contact-row { font-size: 10pt; color: #333; }
-        .contact-row span { margin: 0 6px; }
-        .separator { color: #888; }
-        
-        /* Sections */
-        .section { margin-bottom: 14px; }
-        .section-title {
-            font-size: 11pt;
-            font-weight: bold;
-            color: #1a1a1a;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border-bottom: 1px solid #999;
-            padding-bottom: 3px;
-            margin-bottom: 8px;
-        }
-        
-        /* Entries */
-        .entry { margin-bottom: 10px; }
-        .entry-row { display: flex; justify-content: space-between; align-items: baseline; }
-        .entry-left { flex: 1; }
-        .entry-right { text-align: right; font-size: 10pt; color: #555; white-space: nowrap; }
-        .entry-title { font-weight: bold; font-size: 10.5pt; }
-        .entry-org { font-style: italic; color: #444; }
-        .entry-meta { font-size: 9.5pt; color: #555; margin-top: 1px; }
-        
-        /* Lists */
-        ul { margin: 4px 0 0 18px; }
-        li { margin-bottom: 2px; font-size: 10pt; }
-        
-        /* Skills */
-        .skills-grid { display: flex; flex-wrap: wrap; gap: 4px 0; }
-        .skill-row { width: 100%; margin-bottom: 3px; font-size: 10pt; }
-        .skill-label { font-weight: bold; display: inline; }
-        .skill-items { display: inline; }
-        
-        /* Projects */
-        .project-title { font-weight: bold; font-size: 10.5pt; display: inline; }
-        .project-link { font-size: 9pt; color: #555; margin-left: 8px; }
-        .project-tech { font-size: 9.5pt; color: #555; font-style: italic; margin: 2px 0; }
-        
-        /* Summary */
-        .summary { text-align: justify; font-size: 10pt; line-height: 1.4; }
-    </style>
-</head>
-<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Muhammad Ahmad - Resume</title>
+        <style>
+            @page { margin: 0.5in; }
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body {
+                font-family: Calibri, 'Segoe UI', Arial, sans-serif;
+                font-size: 10.5pt;
+                line-height: 1.35;
+                color: #2d2d2d;
+                max-width: 8.5in;
+                margin: 0 auto;
+                padding: 0.4in 0.5in;
+            }
+            
+            /* Header */
+            .header { text-align: center; margin-bottom: 12px; border-bottom: 2px solid #2d2d2d; padding-bottom: 12px; }
+            .name { font-size: 24pt; font-weight: bold; color: #1a1a1a; letter-spacing: 1px; margin-bottom: 4px; }
+            .title { font-size: 11pt; color: #444; margin-bottom: 8px; }
+            .contact-row { font-size: 10pt; color: #333; }
+            .contact-row span { margin: 0 6px; }
+            .separator { color: #888; }
+            
+            /* Sections */
+            .section { margin-bottom: 14px; }
+            .section-title {
+                font-size: 11pt;
+                font-weight: bold;
+                color: #1a1a1a;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                border-bottom: 1px solid #999;
+                padding-bottom: 3px;
+                margin-bottom: 8px;
+            }
+            
+            /* Entries */
+            .entry { margin-bottom: 10px; }
+            .entry-row { display: flex; justify-content: space-between; align-items: baseline; }
+            .entry-left { flex: 1; }
+            .entry-right { text-align: right; font-size: 10pt; color: #555; white-space: nowrap; }
+            .entry-title { font-weight: bold; font-size: 10.5pt; }
+            .entry-org { font-style: italic; color: #444; }
+            .entry-meta { font-size: 9.5pt; color: #555; margin-top: 1px; }
+            
+            /* Lists */
+            ul { margin: 4px 0 0 18px; }
+            li { margin-bottom: 2px; font-size: 10pt; }
+            
+            /* Skills */
+            .skills-grid { display: flex; flex-wrap: wrap; gap: 4px 0; }
+            .skill-row { width: 100%; margin-bottom: 3px; font-size: 10pt; }
+            .skill-label { font-weight: bold; display: inline; }
+            .skill-items { display: inline; }
+            
+            /* Projects */
+            .project-title { font-weight: bold; font-size: 10.5pt; display: inline; }
+            .project-link { font-size: 9pt; color: #555; margin-left: 8px; }
+            .project-tech { font-size: 9.5pt; color: #555; font-style: italic; margin: 2px 0; }
+            
+            /* Summary */
+            .summary { text-align: justify; font-size: 10pt; line-height: 1.4; }
+        </style>
+    </head>
+    <body>
 
-<div class="header">
-    <div class="name">MUHAMMAD AHMAD</div>
-    <div class="title">Computer Engineering Student | Backend Development & DevOps</div>
-    <div class="contact-row">
-        Lahore, Pakistan <span class="separator">|</span>
-        +92 337 1479647 <span class="separator">|</span>
-        <a href="mailto:muhammadahmad171105@gmail.com" style="color: inherit; text-decoration: none;">muhammadahmad171105@gmail.com</a>
+    <div class="header">
+        <div class="name">MUHAMMAD AHMAD</div>
+        <div class="title">Computer Engineering Student | Learning Backend Development & DevOps</div>
+        <div class="contact-row">
+            Lahore, Pakistan <span class="separator">|</span>
+            +92 337 1479647 <span class="separator">|</span>
+            <a href="mailto:muhammadahmad171105@gmail.com" style="color: inherit; text-decoration: none;">muhammadahmad171105@gmail.com</a>
+        </div>
+        <div class="contact-row">
+            <a href="https://www.linkedin.com/in/muhammad-ahmad17" target="_blank" style="color: inherit; text-decoration: none;">LinkedIn: muhammad-ahmad17</a> <span class="separator">|</span>
+            <a href="https://github.com/muhammad-ahmad17" target="_blank" style="color: inherit; text-decoration: none;">GitHub: muhammad-ahmad17</a> <span class="separator">|</span>
+            <a href="https://aahmad.app" target="_blank" style="color: inherit; text-decoration: none;">Portfolio: aahmad.app</a>
+        </div>
     </div>
-    <div class="contact-row">
-        <a href="https://www.linkedin.com/in/muhammad-ahmad17" target="_blank" style="color: inherit; text-decoration: none;">LinkedIn: muhammad-ahmad17</a> <span class="separator">|</span>
-        <a href="https://github.com/muhammad-ahmad17" target="_blank" style="color: inherit; text-decoration: none;">GitHub: muhammad-ahmad17</a> <span class="separator">|</span>
-        <a href="https://aahmad.app" target="_blank" style="color: inherit; text-decoration: none;">Portfolio: aahmad.app</a>
+
+    <div class="section">
+        <div class="section-title">Summary</div>
+        <p class="summary">
+            6th semester Computer Engineering student at COMSATS University, passionate about learning backend development and DevOps practices. Currently building skills in Node.js, Express.js, databases, and cloud technologies through academic projects and hands-on learning. Seeking internship opportunities to learn from experienced engineers and gain real-world software development experience.
+        </p>
     </div>
-</div>
 
-<div class="section">
-    <div class="section-title">Summary</div>
-    <p class="summary">
-        Computer Engineering student (6th semester) at COMSATS University with hands-on internship experience in backend development and DevOps. Proficient in Node.js, Express.js, and cloud technologies including AWS. Strong foundation in databases, embedded systems, and RESTful API development. Seeking internship opportunities to apply technical skills and contribute to impactful software projects.
-    </p>
-</div>
-
-<div class="section">
-    <div class="section-title">Education</div>
-    <div class="entry">
-        <div class="entry-row">
-            <div class="entry-left">
-                <span class="entry-title">Bachelor of Science in Computer Engineering</span>
+    <div class="section">
+        <div class="section-title">Education</div>
+        <div class="entry">
+            <div class="entry-row">
+                <div class="entry-left">
+                    <span class="entry-title">Bachelor of Science in Computer Engineering</span>
+                </div>
+                <div class="entry-right">Aug 2023 – May 2027</div>
             </div>
-            <div class="entry-right">Aug 2023 – May 2027</div>
+            <div class="entry-org">COMSATS University Islamabad, Lahore Campus</div>
+            <div class="entry-meta">GPA: 3.5/4.0 | 6th Semester | Relevant: Data Structures, Algorithms, Databases, Computer Networks, Embedded Systems</div>
         </div>
-        <div class="entry-org">COMSATS University Islamabad, Lahore Campus</div>
-        <div class="entry-meta">GPA: 3.5/4.0 | 6th Semester | Relevant: Data Structures, Algorithms, Databases, Computer Networks, Embedded Systems</div>
     </div>
-    <div class="entry">
-        <div class="entry-row">
-            <div class="entry-left">
-                <span class="entry-title">FSc Pre-Engineering</span>
+
+    <div class="section">
+        <div class="section-title">Experience</div>
+        <div class="entry">
+            <div class="entry-row">
+                <div class="entry-left">
+                    <span class="entry-title">Backend Development Learning Intern</span>
+                </div>
+                <div class="entry-right">Jul 2025 – Aug 2025</div>
             </div>
-            <div class="entry-right">2021 – 2023</div>
+            <div class="entry-org">Innovative Saudia, Lahore (On-site)</div>
+            <ul>
+                <li>Participated in intensive backend development bootcamp focused on Node.js and Express.js fundamentals</li>
+                <li>Learned Docker containerization basics and practiced CI/CD concepts using GitHub Actions</li>
+                <li>Studied for AWS Cloud Practitioner certification through guided practice exams and learning materials</li>
+                <li>Collaborated with peers on practice projects and documented learning progress</li>
+            </ul>
         </div>
-        <div class="entry-org">Punjab College of Science, Lahore</div>
     </div>
-</div>
 
-<div class="section">
-    <div class="section-title">Experience</div>
-    <div class="entry">
-        <div class="entry-row">
-            <div class="entry-left">
-                <span class="entry-title">Backend Engineer Intern</span>
+    <div class="section">
+        <div class="section-title">Projects</div>
+        <div class="entry">
+            <span class="project-title">E-Commerce Platform (Multi-Role)</span>
+            <span class="project-link">GitHub: Muhammad-Ahmad17/E_Commerce</span>
+            <div class="project-tech">React, Node.js, Express.js, SQL Server, REST API</div>
+            <ul>
+                <li>Learning project: Building full-stack e-commerce platform with Buyer and Vendor roles</li>
+                <li>Practicing database design with normalized schema and implementing authentication and order APIs</li>
+            </ul>
+        </div>
+        <div class="entry">
+            <span class="project-title">Serverless User Processing System</span>
+            <span class="project-link">GitHub: Muhammad-Ahmad17/getApiForUserData</span>
+            <div class="project-tech">AWS Lambda, API Gateway, DynamoDB, S3, React</div>
+            <ul>
+                <li>Learning serverless architecture with AWS Lambda and API Gateway integration</li>
+                <li>Practicing NoSQL database design with DynamoDB and static website hosting on S3</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Technical Skills</div>
+        <div class="skills-grid">
+            <div class="skill-row">
+                <span class="skill-label">Languages:</span>
+                <span class="skill-items">JavaScript, Python, C, C++, SQL, VHDL (University Coursework)</span>
             </div>
-            <div class="entry-right">Jul 2025 – Aug 2025</div>
-        </div>
-        <div class="entry-org">Innovative Saudia, Lahore (On-site)</div>
-        <ul>
-            <li>Developed backend services using Node.js and Express.js under senior engineer mentorship</li>
-            <li>Implemented Docker containerization and configured CI/CD pipelines using GitHub Actions</li>
-            <li>Prepared for AWS Cloud Practitioner certification; completed 10+ practice exams with 85%+ scores</li>
-            <li>Documented technical learnings and contributed to internal knowledge base documentation</li>
-        </ul>
-    </div>
-    <div class="entry">
-        <div class="entry-row">
-            <div class="entry-left">
-                <span class="entry-title">Freelance Web Developer</span>
+            <div class="skill-row">
+                <span class="skill-label">Backend (Learning):</span>
+                <span class="skill-items">Node.js, Express.js, REST APIs, MongoDB, SQL Server</span>
             </div>
-            <div class="entry-right">Jan 2024 – Present</div>
+            <div class="skill-row">
+                <span class="skill-label">Cloud & DevOps (Exploring):</span>
+                <span class="skill-items">AWS (Lambda, S3, DynamoDB, API Gateway), Docker, GitHub Actions, Vercel, Linux, Git</span>
+            </div>
+            <div class="skill-row">
+                <span class="skill-label">Hardware (Academic):</span>
+                <span class="skill-items">STM32, Microcontrollers, FPGA, Embedded Systems</span>
+            </div>
+            <div class="skill-row">
+                <span class="skill-label">Tools:</span>
+                <span class="skill-items">VS Code, Postman, MongoDB Compass, Figma</span>
+            </div>
         </div>
-        <div class="entry-org">Self-Employed, Remote</div>
-        <ul>
-            <li>Delivered 5+ web applications for local businesses using React, Node.js, and MongoDB</li>
-            <li>Managed complete project lifecycle from requirements gathering to deployment on Vercel/AWS</li>
-            <li>Achieved 100% client satisfaction through clear communication and on-time delivery</li>
-        </ul>
     </div>
-</div>
 
-<div class="section">
-    <div class="section-title">Projects</div>
-    <div class="entry">
-        <span class="project-title">E-Commerce Platform (Multi-Role)</span>
-        <span class="project-link">GitHub: Muhammad-Ahmad17/E_Commerce</span>
-        <div class="project-tech">React, Node.js, Express.js, SQL Server, REST API</div>
-        <ul>
-            <li>Built full-stack e-commerce platform supporting Buyer and Vendor roles with 3-tier architecture</li>
-            <li>Designed normalized database schema; implemented secure authentication and order management APIs</li>
-        </ul>
-    </div>
-    <div class="entry">
-        <span class="project-title">Serverless User Processing System</span>
-        <span class="project-link">GitHub: Muhammad-Ahmad17/getApiForUserData</span>
-        <div class="project-tech">AWS Lambda, API Gateway, DynamoDB, S3, React</div>
-        <ul>
-            <li>Architected serverless backend using AWS Lambda with API Gateway integration</li>
-            <li>Configured DynamoDB for NoSQL data storage; deployed static frontend to S3 with public hosting</li>
-        </ul>
-    </div>
-    <div class="entry">
-        <span class="project-title">Personal Portfolio Website</span>
-        <span class="project-link">Live: aahmad.app</span>
-        <div class="project-tech">React, TypeScript, Tailwind CSS, Framer Motion</div>
-        <ul>
-            <li>Developed responsive portfolio with theme switching, blog system (Markdown), and custom animations</li>
-        </ul>
-    </div>
-</div>
-
-<div class="section">
-    <div class="section-title">Technical Skills</div>
-    <div class="skills-grid">
-        <div class="skill-row">
-            <span class="skill-label">Languages:</span>
-            <span class="skill-items">JavaScript, Python, C, C++, SQL, VHDL</span>
-        </div>
-        <div class="skill-row">
-            <span class="skill-label">Backend:</span>
-            <span class="skill-items">Node.js, Express.js, REST APIs, MongoDB, SQL Server</span>
-        </div>
-        <div class="skill-row">
-            <span class="skill-label">Cloud & DevOps:</span>
-            <span class="skill-items">AWS (Lambda, S3, DynamoDB, API Gateway), Docker, GitHub Actions, Vercel, Linux, Git</span>
-        </div>
-        <div class="skill-row">
-            <span class="skill-label">Hardware:</span>
-            <span class="skill-items">STM32, Microcontrollers, FPGA, Embedded Systems</span>
-        </div>
-        <div class="skill-row">
-            <span class="skill-label">Tools:</span>
-            <span class="skill-items">VS Code, Postman, MongoDB Compass, Figma</span>
-        </div>
-    </div>
-</div>
-
-<div class="section">
-    <div class="section-title">Certifications & Activities</div>
-    <ul>
-        <li><strong>AWS Cloud Practitioner</strong> – In Progress (Expected Feb 2026)</li>
-        <li><strong>LeetCode:</strong> Active problem solver – muhammad-ahmad17</li>
-        <li><strong>Languages:</strong> English (Professional), Urdu (Native)</li>
-    </ul>
-</div>
-
-</body>
-</html>
+    </body>
+    </html>
