@@ -180,4 +180,4 @@ You can check out the live app (hosted on AWS Free Tier):
 
 [Live Demo](http://user-processing-system-ahmad.s3-website-us-east-1.amazonaws.com/)
 
-![Live Demo Screenshot](/src/content/blogs/imgs/deploy.png)
+![Live Demo Screenshot](/images/blogs/deploy.png)
