@@ -186,7 +186,7 @@ export function Hero() {
                 asChild
                 className="border-2 hover:bg-primary/10 hover:text-primary hover:border-primary/50"
               >
-                <a href="/Muhammad_Ahmad_Resume.pdf" download="Muhammad_Ahmad_Resume.pdf">
+                <a href="/cv/Muhammad_Ahmad_Resume.pdf" download="Muhammad_Ahmad_Resume.pdf">
                   <FileText className="mr-2 w-5 h-5" />
                   Download CV
                 </a>
