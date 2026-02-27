@@ -129,20 +129,10 @@ export const portfolioData = {
       featured: true
     },
     {
-      id: 2,
-      title: "Portfolio Website",
-      description: "A modern, responsive portfolio website built with React and TypeScript. Features dark/light theme switching, smooth animations with Framer Motion, a blog system with markdown support, and a fully customizable color picker. Showcases my projects, skills, and experience with an elegant UI/UX design.",
-      image: "/projects/portfolio.jpg",
-      technologies: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
-      github: "https://github.com/Muhammad-Ahmad17/portfolio",
-      live: "https://aahmad.app",
-      featured: true
-    },
-    {
       id: 3,
       title: "User Processing System",
       description: "A static website (React) with a serverless backend using AWS Lambda function (Node.js) triggered by API Gateway GET method to display records stored in DynamoDB. Demonstrates cloud infrastructure integration with AWS services.",
-      image: "/projects/aws-project.jpg",
+      image: "/projects/aws-project.png",
       technologies: ["React", "AWS Lambda", "API Gateway", "DynamoDB", "S3"],
       github: "https://github.com/Muhammad-Ahmad17/getApiForUserData",
       live: "http://user-processing-system-ahmad.s3-website-us-east-1.amazonaws.com/",
@@ -178,7 +168,7 @@ export const portfolioData = {
       period: "2024 - Present",
       description: "Taking on small freelance projects to gain practical experience while studying. Building websites and helping local businesses establish online presence.",
       achievements: [
-        "Completed 5+ freelance projects for local clients",
+        "Completed 1+ freelance projects for local clients",
         "Learned client communication and project management",
         "Gained hands-on experience with deployment and hosting"
       ]
@@ -191,7 +181,7 @@ export const portfolioData = {
       institution: "COMSATS University Islamabad, Lahore Campus",
       period: "2023 - 2027",
       description: "Currently in 6th semester. Learning software engineering, data structures, algorithms, databases, and web technologies. Actively participating in coding clubs and tech events.",
-      gpa: "3.5/4.0",
+      gpa: "3.6/4.0",
       status: "in-progress"
     },
     {

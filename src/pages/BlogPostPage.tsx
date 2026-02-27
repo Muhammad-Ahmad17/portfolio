@@ -192,28 +192,29 @@ const BlogPostPage = () => {
           >
             <div className="prose prose-lg dark:prose-invert max-w-none
               prose-headings:text-foreground
-              prose-h1:text-5xl prose-h1:mb-8 prose-h1:mt-20 prose-h1:leading-tight prose-h1:font-black
-              prose-h2:text-3xl prose-h2:mb-6 prose-h2:mt-16 prose-h2:leading-snug prose-h2:font-extrabold
-              prose-h3:text-2xl prose-h3:mb-5 prose-h3:mt-12 prose-h3:leading-snug prose-h3:font-bold
-              prose-h4:text-xl prose-h4:mb-4 prose-h4:mt-10 prose-h4:font-semibold
-              prose-h5:text-lg prose-h5:mb-3 prose-h5:mt-8 prose-h5:font-semibold
-              prose-h6:text-base prose-h6:mb-2 prose-h6:mt-6 prose-h6:font-medium
-              prose-p:text-foreground/90 prose-p:leading-[2] prose-p:my-8 prose-p:text-base prose-p:font-normal
+              prose-h1:text-4xl prose-h1:mb-4 prose-h1:mt-10 prose-h1:leading-tight prose-h1:font-black
+              prose-h2:text-2xl prose-h2:mb-3 prose-h2:mt-8 prose-h2:leading-snug prose-h2:font-extrabold
+              prose-h3:text-xl prose-h3:mb-2 prose-h3:mt-6 prose-h3:leading-snug prose-h3:font-bold
+              prose-h4:text-lg prose-h4:mb-2 prose-h4:mt-5 prose-h4:font-semibold
+              prose-h5:text-base prose-h5:mb-1.5 prose-h5:mt-4 prose-h5:font-semibold
+              prose-h6:text-sm prose-h6:mb-1 prose-h6:mt-3 prose-h6:font-medium
+              prose-p:text-foreground/90 prose-p:leading-relaxed prose-p:my-3 prose-p:text-base prose-p:font-normal
               prose-a:text-primary prose-a:underline prose-a:underline-offset-4 hover:prose-a:text-primary/80
               prose-strong:text-foreground prose-strong:font-bold
               prose-em:text-foreground/80 prose-em:italic
               prose-code:text-primary prose-code:bg-muted/80 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:before:content-none prose-code:after:content-none prose-code:font-mono
-              prose-pre:bg-muted/80 prose-pre:border prose-pre:border-border prose-pre:rounded-lg prose-pre:p-8 prose-pre:my-12 prose-pre:leading-relaxed prose-pre:text-sm
-              prose-blockquote:border-l-4 prose-blockquote:border-l-primary prose-blockquote:pl-8 prose-blockquote:pr-6 prose-blockquote:py-4 prose-blockquote:my-12 prose-blockquote:italic prose-blockquote:text-muted-foreground prose-blockquote:bg-muted/30 prose-blockquote:rounded-r prose-blockquote:text-base
-              prose-ul:my-10 prose-ul:list-disc prose-ul:pl-10 prose-ul:space-y-4
-              prose-ol:my-10 prose-ol:list-decimal prose-ol:pl-10 prose-ol:space-y-4
-              prose-li:text-foreground/90 prose-li:leading-[2] prose-li:text-base
-              prose-img:rounded-lg prose-img:my-14 prose-img:shadow-md
-              prose-hr:border-border prose-hr:my-16
-              prose-table:my-12 prose-table:text-base
+              prose-pre:!bg-[#282c34] prose-pre:border prose-pre:border-border/50 prose-pre:rounded-lg prose-pre:p-5 prose-pre:my-5 prose-pre:leading-relaxed prose-pre:text-sm prose-pre:shadow-lg
+              [&_pre_code]:!bg-transparent [&_pre_code]:!text-[#abb2bf] [&_pre_code]:!p-0 [&_pre_code]:!text-sm
+              prose-blockquote:border-l-4 prose-blockquote:border-l-primary prose-blockquote:pl-6 prose-blockquote:pr-4 prose-blockquote:py-2 prose-blockquote:my-5 prose-blockquote:italic prose-blockquote:text-muted-foreground prose-blockquote:bg-muted/30 prose-blockquote:rounded-r prose-blockquote:text-base
+              prose-ul:my-4 prose-ul:list-disc prose-ul:pl-8 prose-ul:space-y-1.5
+              prose-ol:my-4 prose-ol:list-decimal prose-ol:pl-8 prose-ol:space-y-1.5
+              prose-li:text-foreground/90 prose-li:leading-relaxed prose-li:text-base
+              prose-img:rounded-lg prose-img:my-6 prose-img:shadow-md
+              prose-hr:border-border prose-hr:my-8
+              prose-table:my-6 prose-table:text-base
               prose-thead:border-b-2 prose-thead:border-border
-              prose-th:px-6 prose-th:py-4 prose-th:text-left prose-th:font-semibold prose-th:text-base
-              prose-td:px-6 prose-td:py-4 prose-td:border-t prose-td:border-border prose-td:text-base
+              prose-th:px-4 prose-th:py-3 prose-th:text-left prose-th:font-semibold prose-th:text-base
+              prose-td:px-4 prose-td:py-3 prose-td:border-t prose-td:border-border prose-td:text-base
             ">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}

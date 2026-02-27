@@ -72,7 +72,7 @@ export function Hero() {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-background via-background to-primary/5 pt-16 pb-16">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-background via-background to-primary/5 pt-28 pb-16">
       {/* Subtle animated background */}
       <div className="absolute inset-0 bg-grid-pattern opacity-30" />
 

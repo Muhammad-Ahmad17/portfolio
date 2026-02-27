@@ -29,12 +29,12 @@ export function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    const mailtoLink = `mailto:${portfolioData.personal.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)}`;
+    window.open(mailtoLink, '_blank');
 
     toast({
-      title: "Message Sent!",
-      description: "Thank you for your message. I'll get back to you soon!",
+      title: "Opening Email Client",
+      description: "Your default email client should open with the message details.",
     });
 
     setFormData({ name: "", email: "", subject: "", message: "" });
