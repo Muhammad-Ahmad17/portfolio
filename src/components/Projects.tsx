@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
-import { Github, ExternalLink, Star, TrendingUp, Play } from "lucide-react";
+import { Github, ExternalLink, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { portfolioData } from "@/data/portfolio";
 import { useState } from "react";
@@ -12,7 +10,6 @@ export function Projects() {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   
   const featuredProjects = portfolioData.projects.filter(project => project.featured);
-  const otherProjects = portfolioData.projects.filter(project => !project.featured);
 
   const handleDemoClick = (demoUrl: string) => {
     setSelectedVideo(demoUrl);
@@ -20,143 +17,108 @@ export function Projects() {
   };
 
   return (
-    <section id="projects" className="py-20 lg:py-32">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="py-20 lg:py-28 relative bg-[#E5E0D8] dark:bg-card">
+      <div className="container mx-auto px-6 lg:px-8 max-w-5xl relative">
+        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-12 text-center"
+          className="mb-14 text-center"
         >
-          <div className="inline-block mb-4">
-            <span className="px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-semibold">
-              My Work
-            </span>
-          </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Featured Projects
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Projects I've built while learning and practicing full-stack development
+          <span className="section-heading block mb-4">Work</span>
+          <h2 className="text-4xl md:text-5xl text-foreground mb-6">Featured Projects</h2>
+          <div className="w-12 h-px bg-foreground/20 mx-auto mb-6" />
+          <p className="text-lg text-muted-foreground max-w-lg mx-auto">
+            Projects I've built while learning full-stack development
           </p>
         </motion.div>
 
-        {/* Featured Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        {/* Projects List */}
+        <div className="space-y-6">
           {featuredProjects.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
               viewport={{ once: true }}
+              className="bg-background rounded-xl overflow-hidden"
             >
-              <Card className="h-full bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/20 hover:shadow-xl transition-all duration-300 overflow-hidden group">
-                <CardContent className="p-6">
-                  {/* Project Header */}
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                        {project.title}
-                      </h3>
-                      <Badge variant="outline" className="border-primary/30 text-primary">
-                        <Star className="w-3 h-3 mr-1 fill-primary" />
+              <div className="p-6 md:p-8">
+                {/* Header */}
+                <div className="flex items-start gap-4 mb-4">
+                  <span className="flex-shrink-0 w-10 h-10 rounded-full bg-[#E5E0D8] dark:bg-muted flex items-center justify-center text-sm text-muted-foreground font-medium">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-1">
+                      <h3 className="text-xl text-foreground">{project.title}</h3>
+                      <span className="px-3 py-1 text-xs rounded-full bg-[#E5E0D8] dark:bg-muted text-muted-foreground">
                         Featured
-                      </Badge>
+                      </span>
                     </div>
+                    <p className="text-muted-foreground leading-relaxed">{project.description}</p>
                   </div>
+                </div>
 
-                  {/* Description */}
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                    {project.description}
-                  </p>
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-2 mb-5 ml-14">
+                  {project.technologies.map((tech) => (
+                    <span key={tech} className="cream-tag">{tech}</span>
+                  ))}
+                </div>
 
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech) => (
-                      <Badge
-                        key={tech}
-                        variant="secondary"
-                        className="text-xs bg-primary/10 text-primary hover:bg-primary/20"
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex gap-2">
-                    <Button variant="outline" size="sm" asChild className="flex-1 hover:bg-primary/10 hover:text-primary hover:border-primary/50">
-                      <a href={project.github} target="_blank" rel="noopener noreferrer">
-                        <Github className="w-4 h-4 mr-1" />
-                        Code
-                      </a>
-                    </Button>
-                    {project.demo ? (
-                      <Button
-                        size="sm"
-                        onClick={() => handleDemoClick(project.demo!)}
-                        className="flex-1 bg-primary hover:bg-primary/90"
-                      >
-                        <Play className="w-4 h-4 mr-1" />
-                        Video
-                      </Button>
-                    ) : (
-                      <Button size="sm" asChild className="flex-1 bg-primary hover:bg-primary/90">
-                        <a href={project.live} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="w-4 h-4 mr-1" />
-                          Live Demo
-                        </a>
-                      </Button>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
+                {/* Actions */}
+                <div className="flex items-center gap-6 ml-14">
+                  <a href={project.github} target="_blank" rel="noopener noreferrer"
+                     className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors">
+                    <Github className="w-4 h-4 mr-2" />
+                    <span>View Code</span>
+                  </a>
+                  {project.demo ? (
+                    <button onClick={() => handleDemoClick(project.demo!)}
+                            className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors">
+                      <Play className="w-4 h-4 mr-2" />
+                      <span>Watch Demo</span>
+                    </button>
+                  ) : (
+                    <a href={project.live} target="_blank" rel="noopener noreferrer"
+                       className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      <span>Live Demo</span>
+                    </a>
+                  )}
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Call to Action */}
+        {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mt-12"
+          className="mt-14 text-center"
         >
-          <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
-            <CardContent className="p-8 text-center">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <Github className="w-8 h-8 text-primary" />
-                <h3 className="text-2xl font-semibold text-foreground">Want to See More?</h3>
-              </div>
-              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                Check out all my repositories on GitHub to see more projects, contributions, and open-source work
-              </p>
-              <Button size="lg" asChild className="bg-primary hover:bg-primary/90">
-                <a href={portfolioData.social.github} target="_blank" rel="noopener noreferrer">
-                  <Github className="w-5 h-5 mr-2" />
-                  View All Repositories
-                </a>
-              </Button>
-            </CardContent>
-          </Card>
+          <Button asChild className="btn-soft">
+            <a href={portfolioData.social.github} target="_blank" rel="noopener noreferrer">
+              <Github className="w-4 h-4 mr-2" />
+              View All Repositories
+            </a>
+          </Button>
         </motion.div>
 
         {/* Video Modal */}
         <Dialog open={videoOpen} onOpenChange={setVideoOpen}>
-          <DialogContent className="max-w-2xl w-full p-4">
-            <DialogTitle className="hidden">Video Demo</DialogTitle>
+          <DialogContent className="max-w-2xl w-full p-4 bg-background border-border rounded-xl">
+            <DialogTitle className="sr-only">Video Demo</DialogTitle>
             {selectedVideo && (
-              <div className="w-full bg-black rounded-lg overflow-hidden aspect-video">
-                <video
-                  width="100%"
-                  height="100%"
-                  controls
-                  autoPlay
-                  className="w-full h-full"
-                >
+              <div className="w-full bg-foreground/5 overflow-hidden aspect-video rounded-lg">
+                <video width="100%" height="100%" controls autoPlay className="w-full h-full">
                   <source src={selectedVideo} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>

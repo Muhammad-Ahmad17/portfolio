@@ -2,9 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ColorPicker } from "@/components/ColorPicker";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { useTheme } from "@/components/ThemeProvider";
 import { portfolioData } from "@/data/portfolio";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -23,7 +21,6 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { theme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,107 +46,62 @@ export function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled
-          ? "bg-background/95 backdrop-blur-lg border-b border-border shadow-lg"
-          : "bg-background/50 backdrop-blur-sm"
+          ? "bg-background/98 backdrop-blur-md border-b border-border/50"
+          : "bg-transparent"
         }`}
     >
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo (profile photo) */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
-            className="flex items-center"
-          >
+      <nav className="container mx-auto px-6 lg:px-8 max-w-6xl">
+        <div className="flex items-center justify-between py-5">
+          {/* Logo */}
+          <motion.div whileHover={{ opacity: 0.7 }} className="flex items-center">
             <Button
               variant="ghost"
               onClick={() => handleNavigation("/")}
-              className="p-0 h-auto hover:bg-transparent group"
+              className="p-0 h-auto hover:bg-transparent text-foreground text-lg"
+              style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
             >
-              <img
-                src={theme === "dark" ? "/images/solorizedLight.png" : "/images/darkSlate.png"}
-                alt={`${portfolioData.personal.name} logo`}
-                className="w-14 h-14 object-contain transition-all duration-300 group-hover:drop-shadow-[0_0_8px_hsl(var(--primary))]"
-              />
+              Muhammad Ahmad
             </Button>
           </motion.div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="flex items-center space-x-1">
-              {navItems.map((item) => (
-                <Button
-                  key={item.href}
-                  variant="ghost"
-                  onClick={() => handleNavigation(item.href)}
-                  className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg ${isActive(item.href)
-                      ? "text-primary bg-primary/10 hover:bg-primary/20"
-                      : "text-muted-foreground hover:text-primary hover:bg-muted/50"
-                    }`}
-                >
-                  {item.label}
-                  {isActive(item.href) && (
-                    <motion.span
-                      layoutId="navbar-indicator"
-                      className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </Button>
-              ))}
-            </div>
+          {/* Desktop Navigation - Centered */}
+          <div className="hidden lg:flex items-center gap-8">
+            {navItems.map((item) => (
+              <button
+                key={item.href}
+                onClick={() => handleNavigation(item.href)}
+                className={`relative text-sm transition-colors duration-300 ${isActive(item.href)
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                  }`}
+              >
+                {item.label}
+                {isActive(item.href) && (
+                  <motion.span
+                    layoutId="navbar-indicator"
+                    className="absolute -bottom-1 left-0 right-0 h-px bg-foreground/50"
+                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                  />
+                )}
+              </button>
+            ))}
           </div>
 
-          {/* Right side - Controls */}
-          <div className="hidden md:flex items-center gap-2">
-            <div className="flex items-center gap-1">
-              <Button
-                variant="ghost"
-                size="icon"
-                asChild
-                className="h-9 w-9 hover:text-primary hover:bg-muted/50 transition-all duration-300 rounded-lg"
-              >
-                <a href={portfolioData.social.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                  <Github className="h-4 w-4" />
-                </a>
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                asChild
-                className="h-9 w-9 hover:text-primary hover:bg-muted/50 transition-all duration-300 rounded-lg"
-              >
-                <a href={portfolioData.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                  <Linkedin className="h-4 w-4" />
-                </a>
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                asChild
-                className="h-9 w-9 hover:text-primary hover:bg-muted/50 transition-all duration-300 rounded-lg"
-              >
-                <a href={`mailto:${portfolioData.personal.email}`} aria-label="Email">
-                  <Mail className="h-4 w-4" />
-                </a>
-              </Button>
-            </div>
-            <div className="w-px h-6 bg-border/50 mx-2" />
+          {/* Right side - Theme toggle only */}
+          <div className="hidden lg:block">
             <ThemeToggle />
-            <ColorPicker />
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-2">
+          <div className="lg:hidden flex items-center gap-3">
             <ThemeToggle />
-            <ColorPicker />
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
-              className="text-foreground hover:bg-muted/50 hover:text-primary transition-all duration-300 rounded-lg"
+              className="text-foreground hover:bg-transparent"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
           </div>
         </div>
@@ -162,59 +114,40 @@ export function Navbar() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden overflow-hidden"
+              className="lg:hidden overflow-hidden"
             >
-              <div className="py-4 space-y-1 bg-card/80 backdrop-blur-lg rounded-xl my-4 border border-border shadow-xl">
+              <div className="py-6 space-y-1 border-t border-border/50 mt-3">
                 {navItems.map((item, index) => (
                   <motion.div
                     key={item.href}
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: -12 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
+                    transition={{ delay: index * 0.03 }}
                   >
-                    <Button
-                      variant="ghost"
+                    <button
                       onClick={() => handleNavigation(item.href)}
-                      className={`w-full text-left justify-start transition-all duration-300 px-4 py-2 text-sm font-medium rounded-lg ${isActive(item.href)
-                          ? "text-primary bg-primary/10"
-                          : "text-muted-foreground hover:text-primary hover:bg-muted/50"
+                      className={`block w-full text-left py-2.5 text-sm transition-colors ${isActive(item.href)
+                          ? "text-foreground"
+                          : "text-muted-foreground"
                         }`}
                     >
                       {item.label}
-                    </Button>
+                    </button>
                   </motion.div>
                 ))}
-                <div className="flex items-center justify-center space-x-2 pt-4 mt-4 border-t border-border/50">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    asChild
-                    className="h-10 w-10 hover:text-primary hover:bg-muted/50 transition-all duration-300 rounded-lg"
-                  >
-                    <a href={portfolioData.social.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                      <Github className="h-5 h-5" />
-                    </a>
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    asChild
-                    className="h-10 w-10 hover:text-primary hover:bg-muted/50 transition-all duration-300 rounded-lg"
-                  >
-                    <a href={portfolioData.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                      <Linkedin className="h-5 w-5" />
-                    </a>
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    asChild
-                    className="h-10 w-10 hover:text-primary hover:bg-muted/50 transition-all duration-300 rounded-lg"
-                  >
-                    <a href={`mailto:${portfolioData.personal.email}`} aria-label="Email">
-                      <Mail className="h-5 w-5" />
-                    </a>
-                  </Button>
+                <div className="flex items-center gap-4 pt-5 mt-4 border-t border-border/50">
+                  <a href={portfolioData.social.github} target="_blank" rel="noopener noreferrer" 
+                     aria-label="GitHub" className="text-muted-foreground hover:text-foreground transition-colors">
+                    <Github className="h-5 w-5" />
+                  </a>
+                  <a href={portfolioData.social.linkedin} target="_blank" rel="noopener noreferrer" 
+                     aria-label="LinkedIn" className="text-muted-foreground hover:text-foreground transition-colors">
+                    <Linkedin className="h-5 w-5" />
+                  </a>
+                  <a href={`mailto:${portfolioData.personal.email}`} 
+                     aria-label="Email" className="text-muted-foreground hover:text-foreground transition-colors">
+                    <Mail className="h-5 w-5" />
+                  </a>
                 </div>
               </div>
             </motion.div>

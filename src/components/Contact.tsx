@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Github, Linkedin, Mail, Phone, MapPin, CheckCircle2 } from "lucide-react";
+import { Send, Github, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -62,143 +62,123 @@ export function Contact() {
     }
   ];
 
-  const socialLinks = [
-    {
-      icon: Github,
-      label: "GitHub",
-      href: portfolioData.social.github
-    },
-    {
-      icon: Linkedin,
-      label: "LinkedIn",
-      href: portfolioData.social.linkedin
-    }
-  ];
-
   return (
-    <section id="contact" className="py-20 lg:py-32 bg-muted/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-24 lg:py-32 bg-background relative">
+      {/* Subtle background */}
+      <div className="absolute inset-0 bg-dot-pattern opacity-20" />
+      
+      <div className="container mx-auto px-6 lg:px-8 max-w-4xl relative">
+        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-12 text-center"
+          className="mb-16 text-center"
         >
-          <div className="inline-block mb-4">
-            <span className="px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-semibold">
-              Get In Touch
-            </span>
-          </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+          <span className="section-heading block mb-4">Connect</span>
+          <h2 className="text-4xl md:text-5xl font-normal text-foreground mb-8">
             Let's Connect
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            I'm always open to learning opportunities, collaboration, or just chatting about tech. Feel free to reach out!
+          <div className="w-16 h-px bg-border mx-auto mb-8" />
+          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
+            I'm always open to learning opportunities, collaboration, or just chatting about tech
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Contact Information */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="space-y-8"
           >
-            <Card className="bg-card/50 backdrop-blur-sm border-border/50">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-6 text-foreground">Contact Information</h3>
-                <div className="space-y-4">
-                  {contactInfo.map((info, index) => (
-                    <motion.div
-                      key={info.label}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
-                      viewport={{ once: true }}
+            {/* Contact Details */}
+            <div className="space-y-6">
+              {contactInfo.map((info, index) => (
+                <motion.div
+                  key={info.label}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  {info.href ? (
+                    <a
+                      href={info.href}
+                      className="flex items-center gap-4 group"
                     >
-                      {info.href ? (
-                        <a
-                          href={info.href}
-                          className="flex items-center gap-4 p-4 rounded-lg hover:bg-muted/50 transition-colors group"
-                        >
-                          <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                            <info.icon className="w-6 h-6 text-primary" />
-                          </div>
-                          <div>
-                            <div className="text-xs text-muted-foreground uppercase tracking-wide">{info.label}</div>
-                            <div className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{info.value}</div>
-                          </div>
-                        </a>
-                      ) : (
-                        <div className="flex items-center gap-4 p-4 rounded-lg">
-                          <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                            <info.icon className="w-6 h-6 text-primary" />
-                          </div>
-                          <div>
-                            <div className="text-xs text-muted-foreground uppercase tracking-wide">{info.label}</div>
-                            <div className="text-sm font-medium text-foreground">{info.value}</div>
-                          </div>
-                        </div>
-                      )}
-                    </motion.div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                      <div className="icon-container">
+                        <info.icon className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+                      </div>
+                      <div>
+                        <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{info.label}</div>
+                        <div className="text-foreground group-hover:text-primary transition-colors">{info.value}</div>
+                      </div>
+                    </a>
+                  ) : (
+                    <div className="flex items-center gap-4">
+                      <div className="icon-container">
+                        <info.icon className="w-5 h-5 text-muted-foreground" />
+                      </div>
+                      <div>
+                        <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{info.label}</div>
+                        <div className="text-foreground">{info.value}</div>
+                      </div>
+                    </div>
+                  )}
+                </motion.div>
+              ))}
+            </div>
 
-            <Card className="bg-card/50 backdrop-blur-sm border-border/50">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-6 text-foreground">Connect With Me</h3>
-                <div className="flex gap-4">
-                  {socialLinks.map((social) => (
-                    <Button
-                      key={social.label}
-                      variant="outline"
-                      size="lg"
-                      asChild
-                      className="flex-1 hover:border-primary/50 hover:bg-primary/10"
-                    >
-                      <a href={social.href} target="_blank" rel="noopener noreferrer">
-                        <social.icon className="w-5 h-5 mr-2" />
-                        {social.label}
-                      </a>
-                    </Button>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            {/* Social Links */}
+            <div className="pt-8 border-t border-border">
+              <span className="text-xs text-muted-foreground uppercase tracking-wider block mb-4">
+                Social
+              </span>
+              <div className="flex gap-4">
+                <a 
+                  href={portfolioData.social.github} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="icon-container hover:border-foreground transition-colors"
+                  aria-label="GitHub"
+                >
+                  <Github className="w-5 h-5 text-muted-foreground hover:text-foreground transition-colors" />
+                </a>
+                <a 
+                  href={portfolioData.social.linkedin} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="icon-container hover:border-foreground transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-5 h-5 text-muted-foreground hover:text-foreground transition-colors" />
+                </a>
+              </div>
+            </div>
 
-            <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-primary mt-1" />
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-2">Quick Response</h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      I typically respond to all inquiries within 24 hours. Looking forward to hearing from you!
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            {/* Response Note */}
+            <div className="editorial-quote text-sm">
+              I typically respond to all inquiries within 24 hours. Looking forward to hearing from you!
+            </div>
           </motion.div>
 
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <Card className="bg-card/50 backdrop-blur-sm border-border/50">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-6 text-foreground">Send a Message</h3>
-                <form onSubmit={handleSubmit} className="space-y-4">
+            <Card className="handcrafted-card border-border/30 bg-card/50">
+              <CardContent className="p-8">
+                <h3 className="text-lg font-medium text-foreground mb-6">Send a Message</h3>
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="text-sm font-medium text-foreground block mb-2">
+                    <label htmlFor="name" className="text-xs text-muted-foreground uppercase tracking-wider block mb-2">
                       Your Name
                     </label>
                     <Input
@@ -208,12 +188,12 @@ export function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="bg-background/50"
+                      className="bg-background border-border focus:border-foreground"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="text-sm font-medium text-foreground block mb-2">
+                    <label htmlFor="email" className="text-xs text-muted-foreground uppercase tracking-wider block mb-2">
                       Email Address
                     </label>
                     <Input
@@ -224,12 +204,12 @@ export function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="bg-background/50"
+                      className="bg-background border-border focus:border-foreground"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="subject" className="text-sm font-medium text-foreground block mb-2">
+                    <label htmlFor="subject" className="text-xs text-muted-foreground uppercase tracking-wider block mb-2">
                       Subject
                     </label>
                     <Input
@@ -239,12 +219,12 @@ export function Contact() {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="bg-background/50"
+                      className="bg-background border-border focus:border-foreground"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="text-sm font-medium text-foreground block mb-2">
+                    <label htmlFor="message" className="text-xs text-muted-foreground uppercase tracking-wider block mb-2">
                       Message
                     </label>
                     <Textarea
@@ -254,22 +234,21 @@ export function Contact() {
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      rows={6}
-                      className="bg-background/50 resize-none"
+                      rows={5}
+                      className="bg-background border-border focus:border-foreground resize-none"
                     />
                   </div>
 
                   <Button
                     type="submit"
-                    size="lg"
                     disabled={isSubmitting}
-                    className="w-full bg-primary hover:bg-primary/90"
+                    className="w-full btn-editorial-primary"
                   >
                     {isSubmitting ? (
                       <>Sending...</>
                     ) : (
                       <>
-                        <Send className="w-5 h-5 mr-2" />
+                        <Send className="w-4 h-4 mr-2" />
                         Send Message
                       </>
                     )}

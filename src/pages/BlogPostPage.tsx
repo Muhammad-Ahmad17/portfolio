@@ -34,7 +34,7 @@ const BlogPostPage = () => {
     return (
       <div className="min-h-screen bg-background">
         <Navbar />
-        <main className="container mx-auto px-4 py-32 text-center">
+        <main className="container mx-auto px-4 py-20 text-center">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent"></div>
           <p className="mt-4 text-muted-foreground">Loading article...</p>
         </main>
@@ -47,7 +47,7 @@ const BlogPostPage = () => {
     return (
       <div className="min-h-screen bg-background">
         <Navbar />
-        <main className="container mx-auto px-4 py-32 text-center">
+        <main className="container mx-auto px-4 py-20 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -84,7 +84,7 @@ const BlogPostPage = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="pt-24 pb-20"
+        className="pt-20 pb-16"
       >
         <article className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
