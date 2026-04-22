@@ -58,7 +58,7 @@ export function Navbar() {
               variant="ghost"
               onClick={() => handleNavigation("/")}
               className="p-0 h-auto hover:bg-transparent text-foreground text-lg"
-              style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
+              style={{ fontFamily: "'Inter', -apple-system, sans-serif" }}
             >
               Muhammad Ahmad
             </Button>

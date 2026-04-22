@@ -20,7 +20,7 @@ export default {
 		extend: {
 			fontFamily: {
 				sans: ['DM Sans', 'system-ui', 'sans-serif'],
-				serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+				serif: ['Inter', 'system-ui', 'sans-serif'],
 				mono: ['JetBrains Mono', 'Consolas', 'monospace'],
 			},
 			colors: {

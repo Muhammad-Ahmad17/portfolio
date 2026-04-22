@@ -39,7 +39,7 @@ export function Footer() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-xl mb-4" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+            <h3 className="text-xl mb-4" style={{ fontFamily: "'Inter', -apple-system, sans-serif" }}>
               {portfolioData.personal.name}
             </h3>
             <p className="text-sm opacity-80 leading-relaxed mb-6">
