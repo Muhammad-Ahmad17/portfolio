@@ -120,6 +120,16 @@ export const portfolioData = {
   projects: [
     {
       id: 1,
+      title:"Full-Stack CRUD App with Automated CI/CD & Docker Containerization",
+      description: "Engineered a complete DevOps-first application from conception to production.Implemented fully automated deployment pipeline using GitHub Actions, Docker, and Oracle Cloud Infrastructure. Every git push triggers containerized builds, registry pushes, and cloud deployment—reducing manual intervention to zero.",
+      technologies: ["Docker", "GitHub Actions", "Oracle Cloud", "Node.js", "Express.js", "PostgreSQL", "React"],
+      github: "https://github.com/Muhammad-Ahmad17/root",
+      live: "http://92.4.73.246",
+      demo: "/projects/cicd-oracle-githubaction.mp4",
+      featured: true
+    },
+    {
+      id: 3,
       title: "Multi-Buyer & Vendor E-Commerce Platform",
       description: "A modular full-stack e-commerce web application with multi-role support (Buyer, Vendor). This project is designed using a 3-tier architecture with a modern frontend and robust backend, backed by database modeling.",
       image: "/projects/ecommerce.jpg",
@@ -129,7 +139,7 @@ export const portfolioData = {
       featured: true
     },
     {
-      id: 3,
+      id: 2,
       title: "User Processing System",
       description: "A static website (React) with a serverless backend using AWS Lambda function (Node.js) triggered by API Gateway GET method to display records stored in DynamoDB. Demonstrates cloud infrastructure integration with AWS services.",
       image: "/projects/aws-project.png",
