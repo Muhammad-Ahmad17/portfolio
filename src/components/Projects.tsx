@@ -54,37 +54,22 @@ export function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
               viewport={{ once: true }}
-              className="group relative overflow-hidden rounded-2xl border border-border/60 bg-background/80 shadow-[0_8px_40px_-16px_hsl(var(--foreground)/0.12)] ring-1 ring-foreground/[0.04] backdrop-blur-[2px] transition-all duration-500 hover:border-primary/20 hover:shadow-[0_20px_48px_-20px_hsl(var(--foreground)/0.18)] dark:bg-card/60 dark:hover:border-primary/30"
+              className="relative overflow-hidden rounded-2xl border border-border/60 bg-background/80 shadow-[0_8px_40px_-16px_hsl(var(--foreground)/0.12)] ring-1 ring-foreground/[0.04] backdrop-blur-[2px] transition-all duration-500 hover:border-primary/20 hover:shadow-[0_20px_48px_-20px_hsl(var(--foreground)/0.18)] dark:bg-card/60 dark:hover:border-primary/30"
             >
               <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-primary via-primary/50 to-transparent opacity-90" />
 
               <div className="flex flex-col md:flex-row">
-                {project.image ? (
-                  <div className="relative md:w-[38%] md:shrink-0">
-                    <div className="aspect-[16/10] overflow-hidden md:aspect-auto md:h-full md:min-h-[200px]">
-                      <img
-                        src={project.image}
-                        alt=""
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                      />
-                    </div>
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent md:bg-gradient-to-r" />
-                  </div>
-                ) : (
-                  <div className="relative hidden w-[min(120px,18%)] shrink-0 border-r border-border/40 bg-muted/30 dark:bg-muted/15 md:flex md:flex-col md:items-center md:justify-center md:py-10">
-                    <span className="font-mono text-3xl font-light text-muted-foreground/60">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                )}
+                <div className="relative hidden w-[min(120px,18%)] shrink-0 border-r border-border/40 bg-muted/30 dark:bg-muted/15 md:flex md:flex-col md:items-center md:justify-center md:py-10">
+                  <span className="font-mono text-3xl font-light text-muted-foreground/60">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </div>
 
                 <div className="min-w-0 flex-1 p-6 md:p-8 md:pl-8">
                   <div className="mb-4 flex flex-wrap items-start gap-3">
-                    {project.image && (
-                      <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border/50 bg-muted/40 font-mono text-xs text-muted-foreground dark:bg-muted/25">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                    )}
+                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border/50 bg-muted/40 font-mono text-xs text-muted-foreground md:hidden dark:bg-muted/25">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
                     <div className="min-w-0 flex-1">
                       <div className="mb-2 flex flex-wrap items-center gap-3">
                         <h3 className="text-xl text-foreground">{project.title}</h3>

@@ -11,7 +11,6 @@ export type PortfolioProject = {
   live?: string;
   /** Video path (/foo.mp4) or external demo URL */
   demo?: string;
-  image?: string;
   featured?: boolean;
 };
 
@@ -209,7 +208,6 @@ export const portfolioData = {
       id: 2,
       title: "User Processing System",
       description: "A static website (React) with a serverless backend using AWS Lambda function (Node.js) triggered by API Gateway GET method to display records stored in DynamoDB. Demonstrates cloud infrastructure integration with AWS services.",
-      image: "/projects/aws-project.png",
       technologies: ["React", "AWS Lambda", "API Gateway", "DynamoDB", "S3"],
       github: "https://github.com/Muhammad-Ahmad17/getApiForUserData",
       live: "http://user-processing-system-ahmad.s3-website-us-east-1.amazonaws.com/",
@@ -219,7 +217,6 @@ export const portfolioData = {
       id: 3,
       title: "Multi-Buyer & Vendor E-Commerce Platform",
       description: "A modular full-stack e-commerce web application with multi-role support (Buyer, Vendor). This project is designed using a 3-tier architecture with a modern frontend and robust backend, backed by database modeling.",
-      image: "/projects/ecommerce.jpg",
       technologies: ["React", "Node.js", "Express.js", "SQL Server", "Azure SQL Database"],
       github: "https://github.com/Muhammad-Ahmad17/E_Commerce",
       live: "https://e-commerce1-muhammad-ahmads-projects-1458b467.vercel.app/",
@@ -229,7 +226,6 @@ export const portfolioData = {
       id: 4,
       title: "Real-Time Smart Room Automation System",
       description: "An embedded systems project using STM32F407 microcontroller integrating RFID card access control, motion detection (IR & accelerometer), real-time temperature monitoring with LM35 sensor, automated lighting control, and intelligent fan management. Features multi-sensor data fusion, real-time LCD display feedback, and audio alert system via buzzer. Demonstrates IoT device integration with real-time processing capabilities.",
-      image: "/projects/smart-room-automation.jpg",
       technologies: ["STM32F407", "C/Embedded C", "HAL Library", "MFRC522 RFID", "LIS302DL Accelerometer", "LM35 Temperature Sensor", "I2C", "SPI", "ADC", "DMA", "ARM Cortex-M4F"],
       github: "https://github.com/Muhammad-Ahmad17/RealTimeSmartRoomAutomation",
       demo: "/projects/brokendemo.mp4",
