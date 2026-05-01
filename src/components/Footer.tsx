@@ -14,15 +14,6 @@ export function Footer() {
 
   const currentYear = new Date().getFullYear();
 
-  const quickLinks = [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Projects", href: "/projects" },
-    { label: "Skills", href: "/skills" },
-    { label: "Experience", href: "/experience" },
-    { label: "Contact", href: "/contact" }
-  ];
-
   const handleNavigation = (href: string) => {
     navigate(href);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -70,9 +61,9 @@ export function Footer() {
           >
             <h4 className="text-xs uppercase tracking-[0.2em] opacity-60 mb-5">Navigation</h4>
             <nav className="grid grid-cols-2 gap-2.5">
-              {quickLinks.map((link) => (
+              {portfolioData.navigation.map((link) => (
                 <button
-                  key={link.label}
+                  key={link.href}
                   onClick={() => handleNavigation(link.href)}
                   className="text-sm text-left opacity-75 hover:opacity-100 transition-opacity"
                 >
@@ -122,7 +113,7 @@ export function Footer() {
                 © {currentYear} {portfolioData.personal.name}
               </div>
               <div className="text-xs opacity-50 mt-1">
-                Built with React, TypeScript & Tailwind CSS
+                {portfolioData.site.builtWithLabel}
               </div>
             </div>
 

@@ -1,4 +1,78 @@
+export type NavItem = { href: string; label: string };
+
+export type PortfolioProject = {
+  id: number;
+  title: string;
+  description: string;
+  technologies: string[];
+  /** Source repo — omit if none */
+  github?: string;
+  /** Deployed app URL */
+  live?: string;
+  /** Video path (/foo.mp4) or external demo URL */
+  demo?: string;
+  image?: string;
+  featured?: boolean;
+};
+
 export const portfolioData = {
+  /** Main nav (Navbar + Footer quick links) */
+  navigation: [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/projects", label: "Projects" },
+    { href: "/skills", label: "Skills" },
+    { href: "/experience", label: "Experience" },
+    { href: "/blog", label: "Blog" },
+    { href: "/contact", label: "Contact" }
+  ] as const satisfies readonly NavItem[],
+
+  site: {
+    builtWithLabel: "Built with React, TypeScript & Tailwind CSS"
+  },
+
+  sections: {
+    about: {
+      eyebrow: "About",
+      title: "Who I Am",
+      valuesTitle: "Core Values"
+    },
+    projects: {
+      eyebrow: "Work",
+      title: "Featured Projects",
+      subtitle:
+        "Projects I've built while learning full-stack development, cloud deployment, and DevOps.",
+      featuredBadge: "Featured",
+      viewReposCta: "View All Repositories"
+    },
+    skills: {
+      eyebrow: "Expertise",
+      title: "Technologies & Skills",
+      subtitle: "Tools and technologies I work with"
+    }
+  },
+
+  about: {
+    journeyTitle: "My Journey",
+    secondaryBio:
+      "Started with C/C++ in my first semester, now building full-stack applications with the MERN stack and exploring DevOps practices.",
+    quote: "Every day brings a new opportunity to learn and grow as a developer.",
+    coreValues: [
+      {
+        title: "Clean Code",
+        description: "Writing readable, maintainable code that follows best practices"
+      },
+      {
+        title: "Continuous Learning",
+        description: "Always exploring new technologies and improving my skills"
+      },
+      {
+        title: "User-Focused",
+        description: "Building features that solve real problems for users"
+      }
+    ] as const
+  },
+
   personal: {
     name: "Muhammad Ahmad",
     title: "Computer Engineering Student",
@@ -20,27 +94,35 @@ export const portfolioData = {
   services: [
     {
       name: "Backend Development",
-      description: "Learning to build REST APIs with Node.js and Express, practicing with MongoDB and PostgreSQL databases through student projects",
+      description:
+        "Learning to build REST APIs with Node.js and Express, practicing with MongoDB and PostgreSQL databases through student projects",
       color: "text-green-500",
-      bgColor: "bg-green-500/10"
+      bgColor: "bg-green-500/10",
+      icon: "code" as const
     },
     {
       name: "DevOps Learning",
-      description: "Exploring Docker containers, GitHub Actions for CI/CD, and learning cloud deployment basics with AWS and Vercel",
+      description:
+        "Exploring Docker containers, GitHub Actions for CI/CD, and learning cloud deployment basics with AWS and Vercel",
       color: "text-blue-500",
-      bgColor: "bg-blue-500/10"
+      bgColor: "bg-blue-500/10",
+      icon: "cloud" as const
     },
     {
       name: "Database Design",
-      description: "Studying database fundamentals, practicing query optimization, and learning the differences between SQL and NoSQL databases",
+      description:
+        "Studying database fundamentals, practicing query optimization, and learning the differences between SQL and NoSQL databases",
       color: "text-cyan-500",
-      bgColor: "bg-cyan-500/10"
+      bgColor: "bg-cyan-500/10",
+      icon: "database" as const
     },
     {
       name: "Problem Solving",
-      description: "Practicing Data Structures & Algorithms on LeetCode and building projects to strengthen my programming fundamentals",
+      description:
+        "Practicing Data Structures & Algorithms on LeetCode and building projects to strengthen my programming fundamentals",
       color: "text-orange-500",
-      bgColor: "bg-orange-500/10"
+      bgColor: "bg-orange-500/10",
+      icon: "lightbulb" as const
     }
   ],
 
@@ -84,30 +166,25 @@ export const portfolioData = {
       { name: "Node.js", level: 40, icon: "nodejs", category: "backend" },
       { name: "Express.js", level: 40, icon: "express", category: "backend" },
       { name: "MongoDB", level: 40, icon: "mongodb", category: "backend" },
-      { name: "SQL", level: 60, icon: "sql", category: "backend" },
-      { name: "RESTful APIs", level: 45, icon: "api", category: "backend" }
-    ],
-    frontend: [
-      { name: "React", level: 60, icon: "react", category: "frontend" },
-      { name: "Next.js", level: 40, icon: "nextjs", category: "frontend" },
-      { name: "Tailwind CSS", level: 65, icon: "tailwind", category: "frontend" },
-      { name: "HTML/CSS", level: 70, icon: "html", category: "frontend" },
-      { name: "Framer Motion", level: 45, icon: "framer", category: "frontend" }
-    ],
+      { name: "RESTful APIs", level: 45, icon: "api", category: "backend" },
+      { name: "Message Broker", level: 40, icon: "message-broker", category: "backend" },
+      { name: "Nginx", level: 40, icon: "nginx", category: "backend" },
+      { name: "Redis", level: 40, icon: "redis", category: "backend" }
+      ],
     devops: [
       { name: "Docker", level: 40, icon: "docker", category: "devops" },
       { name: "GitHub Actions", level: 30, icon: "github", category: "devops" },
       { name: "AWS", level: 30, icon: "aws", category: "devops" },
-      { name: "Vercel", level: 55, icon: "vercel", category: "devops" },
       { name: "Linux", level: 60, icon: "linux", category: "devops" },
       { name: "Git", level: 50, icon: "git", category: "devops" }
     ],
     tools: [
       { name: "VS Code", level: 70, icon: "vscode", category: "tools" },
-      { name: "Figma", level: 50, icon: "figma", category: "tools" },
-      { name: "Postman", level: 65, icon: "postman", category: "tools" },
-      { name: "MongoDB Compass", level: 60, icon: "mongodb", category: "tools" },
-      { name: "Chrome DevTools", level: 55, icon: "chrome", category: "tools" }
+      { name: "Cursor", level: 60, icon: "cursor", category: "tools" },
+      { name: "Claude AI", level: 65, icon: "claude", category: "tools" },
+      { name: "GitHub Copilot", level: 55, icon: "copilot", category: "tools" },
+      {name: "LaTeX", level: 50, icon: "latex", category: "tools"}
+
     ],
     hardware: [
       { name: "STM32", level: 50, icon: "stm32", category: "hardware" },
@@ -120,22 +197,12 @@ export const portfolioData = {
   projects: [
     {
       id: 1,
-      title:"Full-Stack CRUD App with Automated CI/CD & Docker Containerization",
+      title: "Full-Stack CRUD App with Automated CI/CD & Docker Containerization",
       description: "Engineered a complete DevOps-first application from conception to production.Implemented fully automated deployment pipeline using GitHub Actions, Docker, and Oracle Cloud Infrastructure. Every git push triggers containerized builds, registry pushes, and cloud deployment—reducing manual intervention to zero.",
       technologies: ["Docker", "GitHub Actions", "Oracle Cloud", "Node.js", "Express.js", "PostgreSQL", "React"],
       github: "https://github.com/Muhammad-Ahmad17/root",
-      live: "http://92.4.73.246",
+      live: "https://cicd.aahmad.app/",
       demo: "/projects/cicd-oracle-githubaction.mp4",
-      featured: true
-    },
-    {
-      id: 3,
-      title: "Multi-Buyer & Vendor E-Commerce Platform",
-      description: "A modular full-stack e-commerce web application with multi-role support (Buyer, Vendor). This project is designed using a 3-tier architecture with a modern frontend and robust backend, backed by database modeling.",
-      image: "/projects/ecommerce.jpg",
-      technologies: ["React", "Node.js", "Express.js", "SQL Server"],
-      github: "https://github.com/Muhammad-Ahmad17/E_Commerce",
-      live: "https://e-commerce1-muhammad-ahmads-projects-1458b467.vercel.app/",
       featured: true
     },
     {
@@ -146,6 +213,16 @@ export const portfolioData = {
       technologies: ["React", "AWS Lambda", "API Gateway", "DynamoDB", "S3"],
       github: "https://github.com/Muhammad-Ahmad17/getApiForUserData",
       live: "http://user-processing-system-ahmad.s3-website-us-east-1.amazonaws.com/",
+      featured: true
+    },
+    {
+      id: 3,
+      title: "Multi-Buyer & Vendor E-Commerce Platform",
+      description: "A modular full-stack e-commerce web application with multi-role support (Buyer, Vendor). This project is designed using a 3-tier architecture with a modern frontend and robust backend, backed by database modeling.",
+      image: "/projects/ecommerce.jpg",
+      technologies: ["React", "Node.js", "Express.js", "SQL Server", "Azure SQL Database"],
+      github: "https://github.com/Muhammad-Ahmad17/E_Commerce",
+      live: "https://e-commerce1-muhammad-ahmads-projects-1458b467.vercel.app/",
       featured: true
     },
     {
@@ -170,17 +247,6 @@ export const portfolioData = {
         "Learned backend and DevOps practices under the guidance of experienced professionals",
         "Documented daily progress and key learnings to track skill growth",
         "Prepared for the AWS Cloud Practitioner certification, completing multiple mock tests"
-      ]
-    },
-    {
-      title: "Freelance Web Developer",
-      company: "Self-Employed",
-      period: "2024 - Present",
-      description: "Taking on small freelance projects to gain practical experience while studying. Building websites and helping local businesses establish online presence.",
-      achievements: [
-        "Completed 1+ freelance projects for local clients",
-        "Learned client communication and project management",
-        "Gained hands-on experience with deployment and hosting"
       ]
     }
   ],

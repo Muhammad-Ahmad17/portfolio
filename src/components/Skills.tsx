@@ -3,10 +3,10 @@ import { portfolioData } from "@/data/portfolio";
 import { Code, Server, Cloud, Wrench, Cpu } from "lucide-react";
 
 const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  "Languages": Code,
-  "Backend": Server,
-  "DevOps": Cloud,
-  "Tools": Wrench,
+  Languages: Code,
+  Backend: Server,
+  DevOps: Cloud,
+  Tools: Wrench,
   "Hardware & Embedded": Cpu
 };
 
@@ -19,12 +19,13 @@ const skillCategories = [
 ];
 
 export function Skills() {
+  const section = portfolioData.sections.skills;
+
   return (
-    <section id="skills" className="py-20 lg:py-28 bg-background relative">
+    <section id="skills" className="relative bg-background py-20 lg:py-28">
       <div className="absolute inset-0 bg-dot-pattern opacity-15" />
-      
-      <div className="container mx-auto px-6 lg:px-8 max-w-5xl relative">
-        {/* Section Header */}
+
+      <div className="relative container mx-auto max-w-5xl px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -32,16 +33,13 @@ export function Skills() {
           viewport={{ once: true }}
           className="mb-14 text-center"
         >
-          <span className="section-heading block mb-4">Expertise</span>
-          <h2 className="text-4xl md:text-5xl text-foreground mb-6">Technologies & Skills</h2>
-          <div className="w-12 h-px bg-border/50 mx-auto mb-6" />
-          <p className="text-lg text-muted-foreground max-w-lg mx-auto">
-            Tools and technologies I work with
-          </p>
+          <span className="section-heading mb-4 block">{section.eyebrow}</span>
+          <h2 className="mb-6 text-4xl text-foreground md:text-5xl">{section.title}</h2>
+          <div className="mx-auto mb-6 h-px w-12 bg-gradient-to-r from-transparent via-primary/35 to-transparent" />
+          <p className="mx-auto max-w-lg text-lg text-muted-foreground">{section.subtitle}</p>
         </motion.div>
 
-        {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {skillCategories.map((category, categoryIndex) => {
             const Icon = categoryIcons[category.title];
             return (
@@ -51,17 +49,26 @@ export function Skills() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: categoryIndex * 0.05 }}
                 viewport={{ once: true }}
-                className="p-5 rounded-lg bg-[#E5E0D8] dark:bg-card"
+                className="relative overflow-hidden rounded-xl border border-border/55 bg-[#E5E0D8]/85 p-5 shadow-[var(--shadow-elegant)] transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-md dark:bg-card/70 dark:hover:border-primary/30"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-9 h-9 rounded-full bg-background dark:bg-muted flex items-center justify-center">
-                    <Icon className="w-4 h-4 text-foreground" />
+                <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-primary/[0.07] blur-2xl dark:bg-primary/[0.09]" />
+
+                <div className="relative mb-4 flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-background/95 ring-1 ring-border/45 dark:bg-muted">
+                    <Icon className="h-4 w-4 text-primary" />
                   </div>
-                  <h3 className="text-base text-foreground">{category.title}</h3>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-base text-foreground">{category.title}</h3>
+                    <div className="mt-1 h-px w-10 bg-gradient-to-r from-primary/50 to-transparent" />
+                  </div>
                 </div>
-                <div className="flex flex-wrap gap-2">
+
+                <div className="relative flex flex-wrap gap-2">
                   {category.skills.map((skill) => (
-                    <span key={skill.name} className="px-3 py-1.5 text-xs rounded-full bg-background dark:bg-muted text-foreground">
+                    <span
+                      key={skill.name}
+                      className="rounded-full border border-border/35 bg-background/90 px-3 py-1.5 text-xs text-foreground shadow-sm backdrop-blur-sm transition-colors hover:border-primary/30 dark:bg-muted/80 dark:hover:border-primary/25"
+                    >
                       {skill.name}
                     </span>
                   ))}
@@ -71,15 +78,14 @@ export function Skills() {
           })}
         </div>
 
-        {/* Summary Stats */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="mt-16 pt-12 border-t border-border/40"
+          className="mt-16 border-t border-border/40 pt-12"
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 gap-8 text-center md:grid-cols-4">
             {[
               { label: "Languages", count: portfolioData.skills.languages.length },
               { label: "Backend", count: portfolioData.skills.backend.length },
@@ -87,8 +93,8 @@ export function Skills() {
               { label: "DevOps & Tools", count: portfolioData.skills.devops.length + portfolioData.skills.tools.length }
             ].map((stat) => (
               <div key={stat.label}>
-                <div className="stat-number text-foreground mb-2">{stat.count}+</div>
-                <div className="text-xs text-muted-foreground tracking-[0.15em] uppercase">{stat.label}</div>
+                <div className="stat-number mb-2 text-foreground">{stat.count}+</div>
+                <div className="text-xs uppercase tracking-[0.15em] text-muted-foreground">{stat.label}</div>
               </div>
             ))}
           </div>

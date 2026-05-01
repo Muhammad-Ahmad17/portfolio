@@ -1,19 +1,19 @@
 import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
-import { Code, Cloud, Lightbulb, Cpu } from "lucide-react";
+import { Code, Cloud, Lightbulb, Database } from "lucide-react";
 
-const services = [
-  { name: "Backend Development", icon: Code, description: "Building robust server-side applications with Node.js, Express, and REST APIs" },
-  { name: "Edge GPU Deployment", icon: Cpu, description: "Working with Jetson Nano for edge computing, GPU acceleration, and embedded AI applications" },
-  { name: "DevOps Learning", icon: Cloud, description: "Exploring Docker, CI/CD pipelines, and cloud deployment practices" },
-  { name: "Problem Solving", icon: Lightbulb, description: "Breaking down complex problems into elegant, maintainable solutions" }
-];
+const serviceIcons = {
+  code: Code,
+  cloud: Cloud,
+  database: Database,
+  lightbulb: Lightbulb
+} as const;
 
 export function About() {
   return (
     <section id="about" className="py-20 lg:py-28 bg-background relative">
       <div className="absolute inset-0 bg-dot-pattern opacity-15" />
-      
+
       <div className="container mx-auto px-6 lg:px-8 max-w-5xl relative">
         {/* Section Header */}
         <motion.div
@@ -23,8 +23,8 @@ export function About() {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <span className="section-heading block mb-4">About</span>
-          <h2 className="text-4xl md:text-5xl text-foreground mb-6">Who I Am</h2>
+          <span className="section-heading mb-4 block">{portfolioData.sections.about.eyebrow}</span>
+          <h2 className="mb-6 text-4xl text-foreground md:text-5xl">{portfolioData.sections.about.title}</h2>
           <div className="w-12 h-px bg-border/50 mx-auto" />
         </motion.div>
 
@@ -42,38 +42,43 @@ export function About() {
               <div className="graphic-container">
                 <img src="/graphics/graduation-cap.png" alt="" className="graphic-icon" />
               </div>
-              <h3 className="text-xl text-foreground">My Journey</h3>
+              <h3 className="text-xl text-foreground">{portfolioData.about.journeyTitle}</h3>
             </div>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>{portfolioData.personal.bio}</p>
-              <p>Started with C/C++ in my first semester, now building full-stack applications with the MERN stack and exploring DevOps practices.</p>
+              <p>{portfolioData.about.secondaryBio}</p>
             </div>
-            
+
             {/* Quote */}
-            <blockquote className="mt-8 pl-6 border-l-2 border-primary/30 italic text-muted-foreground">
-              "Every day brings a new opportunity to learn and grow as a developer."
+            <blockquote className="mt-8 editorial-quote">
+              "{portfolioData.about.quote}"
             </blockquote>
           </motion.div>
 
           {/* Right Column - Services Grid */}
           <div className="lg:col-span-7">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {services.map((service, index) => (
-                <motion.div
-                  key={service.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 + index * 0.05 }}
-                  viewport={{ once: true }}
-                  className="p-5 rounded-lg bg-[#E5E0D8] dark:bg-card"
-                >
-                  <div className="w-10 h-10 rounded-full bg-background dark:bg-muted flex items-center justify-center mb-4">
-                    <service.icon className="w-5 h-5 text-foreground" />
-                  </div>
-                  <h4 className="text-base text-foreground mb-2">{service.name}</h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
-                </motion.div>
-              ))}
+              {portfolioData.services.map((service, index) => {
+                const Icon = serviceIcons[service.icon];
+                return (
+                  <motion.div
+                    key={service.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 + index * 0.05 }}
+                    viewport={{ once: true }}
+                    className="rounded-xl border border-border/50 bg-[#E5E0D8]/90 p-5 shadow-[var(--shadow-elegant)] transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-md dark:bg-card/90"
+                  >
+                    <div>
+                      <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-background/90 ring-1 ring-border/40 dark:bg-muted">
+                        <Icon className="h-5 w-5 text-foreground" />
+                      </div>
+                      <h4 className="mb-2 text-base text-foreground">{service.name}</h4>
+                      <p className="text-sm leading-relaxed text-muted-foreground">{service.description}</p>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -84,23 +89,19 @@ export function About() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="mt-16 pt-12 border-t border-border/40"
+          className="mt-16 border-t border-border/40 pt-12"
         >
-          <div className="flex items-center gap-4 mb-8 justify-center">
+          <div className="mb-8 flex items-center justify-center gap-4">
             <div className="graphic-container">
               <img src="/graphics/appple-on-book.png" alt="" className="graphic-icon" />
             </div>
-            <h3 className="text-xl text-foreground">Core Values</h3>
+            <h3 className="text-xl text-foreground">{portfolioData.sections.about.valuesTitle}</h3>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            {["Clean Code", "Continuous Learning", "User-Focused"].map((value, i) => (
-              <div key={value}>
-                <div className="text-lg text-foreground mb-2">{value}</div>
-                <p className="text-sm text-muted-foreground">
-                  {i === 0 && "Writing readable, maintainable code that follows best practices"}
-                  {i === 1 && "Always exploring new technologies and improving my skills"}
-                  {i === 2 && "Building features that solve real problems for users"}
-                </p>
+          <div className="grid grid-cols-1 gap-8 text-center md:grid-cols-3">
+            {portfolioData.about.coreValues.map((value) => (
+              <div key={value.title}>
+                <div className="mb-2 text-lg text-foreground">{value.title}</div>
+                <p className="text-sm text-muted-foreground">{value.description}</p>
               </div>
             ))}
           </div>

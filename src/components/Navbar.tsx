@@ -6,16 +6,6 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { portfolioData } from "@/data/portfolio";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/projects", label: "Projects" },
-  { href: "/skills", label: "Skills" },
-  { href: "/experience", label: "Experience" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" },
-];
-
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -66,7 +56,7 @@ export function Navbar() {
 
           {/* Desktop Navigation - Centered */}
           <div className="hidden lg:flex items-center gap-8">
-            {navItems.map((item) => (
+            {portfolioData.navigation.map((item) => (
               <button
                 key={item.href}
                 onClick={() => handleNavigation(item.href)}
@@ -117,7 +107,7 @@ export function Navbar() {
               className="lg:hidden overflow-hidden"
             >
               <div className="py-6 space-y-1 border-t border-border/50 mt-3">
-                {navItems.map((item, index) => (
+                {portfolioData.navigation.map((item, index) => (
                   <motion.div
                     key={item.href}
                     initial={{ opacity: 0, x: -12 }}

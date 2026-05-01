@@ -157,10 +157,18 @@
     padding: 12px;
   }
 
+  .dark .graphic-container {
+    background-color: hsl(30 10% 18%);
+  }
+
   .graphic-container-lg {
     @apply inline-flex items-center justify-center rounded-full;
     background-color: #E5E0D8;
     padding: 16px;
+  }
+
+  .dark .graphic-container-lg {
+    background-color: hsl(30 10% 18%);
   }
 
   .graphic-icon {
