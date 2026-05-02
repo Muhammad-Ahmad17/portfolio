@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
-import { Code, Cloud, Lightbulb, Database } from "lucide-react";
+import { Code, Cloud, Lightbulb, Database, Microchip } from "lucide-react";
 
 const serviceIcons = {
   code: Code,
   cloud: Cloud,
   database: Database,
-  lightbulb: Lightbulb
+  lightbulb: Lightbulb,
+  chip: Microchip,
 } as const;
 
 export function About() {
