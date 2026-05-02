@@ -102,18 +102,17 @@ export const portfolioData = {
     {
       name: "DevOps Learning",
       description:
-        "Exploring Docker containers, GitHub Actions for CI/CD, and learning cloud deployment basics with AWS and Vercel",
+        "Exploring Docker containers, GitHub Actions for CI/CD, and learning cloud deployment basics with AWS and Oracle Cloud",
       color: "text-blue-500",
       bgColor: "bg-blue-500/10",
       icon: "cloud" as const
     },
     {
-      name: "Database Design",
-      description:
-        "Studying database fundamentals, practicing query optimization, and learning the differences between SQL and NoSQL databases",
+      name: "Edge Computing",
+      description:"Exploring edge computing with devices like Jetson Nano, understanding distributed systems, and tackling the real-world challenges of deploying machine learning and computer vision solutions at the network edge",
       color: "text-cyan-500",
       bgColor: "bg-cyan-500/10",
-      icon: "database" as const
+      icon: "chip" as const
     },
     {
       name: "Problem Solving",
@@ -127,8 +126,8 @@ export const portfolioData = {
 
   stats: [
     { label: "Current Semester", value: "6th" },
-    { label: "Projects Built", value: "15+" },
-    { label: "Technologies Learning", value: "20+" }
+    { label: "Projects Built", value: "10+" },
+    { label: "Technologies Learning", value: "17+" }
   ],
 
   expertise: [
