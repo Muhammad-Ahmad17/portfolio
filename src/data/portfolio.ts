@@ -54,20 +54,24 @@ export const portfolioData = {
   about: {
     journeyTitle: "My Journey",
     secondaryBio:
-      "Started with C/C++ in my first semester, now building full-stack applications with the MERN stack and exploring DevOps practices.",
-    quote: "Every day brings a new opportunity to learn and grow as a developer.",
+    "Started with C/C++ in early semesters, now focused on backend systems and exploring DevOps and cloud infrastructure.",
+    quote: "Every day is a chance to learn something deeper about systems, code, and scale.",
     coreValues: [
       {
-        title: "Clean Code",
-        description: "Writing readable, maintainable code that follows best practices"
+        title: "Systems Thinking",
+        description: "I don't just write services — I think about how APIs, databases, and infrastructure fit together as a system"
       },
       {
-        title: "Continuous Learning",
-        description: "Always exploring new technologies and improving my skills"
+        title: "Ship & Iterate",
+        description: "Perfect systems don’t exist in production. I prefer deploying, observing metrics, and improving continuously"
       },
       {
-        title: "User-Focused",
-        description: "Building features that solve real problems for users"
+        title: "Debug Everything",
+        description: "From API failures to database inconsistencies — I treat every issue as a system-level investigation"
+      },
+      {
+        title: "Own the Stack",
+        description: "From backend services to cloud infrastructure — I like understanding and controlling the full system lifecycle"
       }
     ] as const
   },
@@ -153,42 +157,43 @@ export const portfolioData = {
 
   skills: {
     languages: [
-      { name: "JavaScript", level: 65, icon: "js", category: "language" },
-      { name: "Python", level: 55, icon: "python", category: "language" },
-      { name: "C", level: 60, icon: "c", category: "language" },
-      { name: "C++", level: 50, icon: "cpp", category: "language" },
-      { name: "VHDL", level: 45, icon: "vhdl", category: "language" },
-      { name: "SQL", level: 55, icon: "sql", category: "language" }
+      { name: "JavaScript", level: 55, icon: "js", category: "language" },
+      { name: "Python", level: 45, icon: "python", category: "language" },
+      { name: "C", level: 55, icon: "c", category: "language" },
+      { name: "C++", level: 55, icon: "cpp", category: "language" },
+      { name: "VHDL", level: 50, icon: "vhdl", category: "language" },
+      { name: "SQL", level: 50, icon: "sql", category: "language" }
     ],
     backend: [
-      { name: "Node.js", level: 40, icon: "nodejs", category: "backend" },
-      { name: "Express.js", level: 40, icon: "express", category: "backend" },
+      { name: "Node.js", level: 50, icon: "nodejs", category: "backend" },
+      { name: "Express.js", level: 50, icon: "express", category: "backend" },
       { name: "MongoDB", level: 40, icon: "mongodb", category: "backend" },
       { name: "RESTful APIs", level: 45, icon: "api", category: "backend" },
       { name: "Message Broker", level: 40, icon: "message-broker", category: "backend" },
-      { name: "Nginx", level: 40, icon: "nginx", category: "backend" },
+      { name: "Nginx", level: 55, icon: "nginx", category: "backend" },
       { name: "Redis", level: 40, icon: "redis", category: "backend" }
       ],
     devops: [
       { name: "Docker", level: 40, icon: "docker", category: "devops" },
       { name: "GitHub Actions", level: 30, icon: "github", category: "devops" },
       { name: "AWS", level: 30, icon: "aws", category: "devops" },
-      { name: "Linux", level: 60, icon: "linux", category: "devops" },
-      { name: "Git", level: 50, icon: "git", category: "devops" }
+      { name: "Linux", level: 40, icon: "linux", category: "devops" },
+      { name: "Git", level: 40, icon: "git", category: "devops" },
+      { name: "CI/CD Pipeline", level: 40, icon: "cicd", category: "devops" },
+      { name: "Oracle Cloud", level: 40, icon: "oracle", category: "devops" }
     ],
     tools: [
       { name: "VS Code", level: 70, icon: "vscode", category: "tools" },
-      { name: "Cursor", level: 60, icon: "cursor", category: "tools" },
-      { name: "Claude AI", level: 65, icon: "claude", category: "tools" },
-      { name: "GitHub Copilot", level: 55, icon: "copilot", category: "tools" },
+      { name: "Cursor", level: 70, icon: "cursor", category: "tools" },
+      { name: "Claude AI", level: 90, icon: "claude", category: "tools" },
+      { name: "GitHub Copilot", level: 90, icon: "copilot", category: "tools" },
       {name: "LaTeX", level: 50, icon: "latex", category: "tools"}
 
     ],
     hardware: [
-      { name: "STM32", level: 50, icon: "stm32", category: "hardware" },
+      { name: "STM32", level: 55, icon: "stm32", category: "hardware" },
       { name: "Embedded Systems", level: 45, icon: "embedded", category: "hardware" },
-      { name: "FPGA (VHDL)", level: 40, icon: "fpga", category: "hardware" },
-      { name: "Microcontrollers", level: 55, icon: "micro", category: "hardware" }
+      { name: "FPGA (VHDL)", level: 50, icon: "fpga", category: "hardware" },
     ]
   },
 
@@ -197,7 +202,7 @@ export const portfolioData = {
       id: 1,
       title: "AI-Powered Event-Driven Medical Image Processing System for Cancer Cell Detection",
       description: "Developed a distributed event-driven microservices application for detection and analysis of cancer cells in medical images. Built the complete end-to-end pipeline including image upload, preprocessing, deep learning inference, and result processing, fully containerized with Docker. Integrated Ollama LLM on cloud and built an AI chatbot for interactive medical image analysis and query support.",
-      technologies: ["Docker", "Kafka", "Redis", "OpenCV", "TensorFlow", "Ollama", "Python", "Node.js", "PostgreSQL"],
+      technologies: ["Oracle Cloud", "Docker", "Kafka", "Redis", "OpenCV", "TensorFlow", "Ollama", "Python", "Node.js", "PostgreSQL"],
       github: "https://github.com/Muhammad-Ahmad17/cancer_cells",
       featured: true,
       demo: "/projects/cancer-cells.mp4"
@@ -206,7 +211,7 @@ export const portfolioData = {
       id: 2,
       title: "Full-Stack CRUD App with Automated CI/CD & Docker Containerization",
       description: "Engineered a complete DevOps-first application from conception to production.Implemented fully automated deployment pipeline using GitHub Actions, Docker, and Oracle Cloud Infrastructure. Every git push triggers containerized builds, registry pushes, and cloud deployment—reducing manual intervention to zero.",
-      technologies: ["Docker", "GitHub Actions", "Oracle Cloud", "Node.js", "Express.js", "PostgreSQL", "React"],
+      technologies: ["Oracle Cloud", "Docker", "GitHub Actions", "Nginx", "Node.js", "Express.js", "PostgreSQL"],
       github: "https://github.com/Muhammad-Ahmad17/root",
       live: "https://cicd.aahmad.app/",
       demo: "/projects/cicd-oracle-githubaction.mp4",
@@ -214,20 +219,20 @@ export const portfolioData = {
     },
     {
       id: 3,
-      title: "User Processing System",
-      description: "A static website (React) with a serverless backend using AWS Lambda function (Node.js) triggered by API Gateway GET method to display records stored in DynamoDB. Demonstrates cloud infrastructure integration with AWS services.",
-      technologies: ["React", "AWS Lambda", "API Gateway", "DynamoDB", "S3"],
-      github: "https://github.com/Muhammad-Ahmad17/getApiForUserData",
-      live: "http://user-processing-system-ahmad.s3-website-us-east-1.amazonaws.com/",
-      featured: true
-    },
-    {
-      id: 4,
       title: "Multi-Buyer & Vendor E-Commerce Platform",
       description: "A modular full-stack e-commerce web application with multi-role support (Buyer, Vendor). This project is designed using a 3-tier architecture with a modern frontend and robust backend, backed by database modeling.",
       technologies: ["React", "Node.js", "Express.js", "SQL Server", "Azure SQL Database"],
       github: "https://github.com/Muhammad-Ahmad17/E_Commerce",
       live: "https://e-commerce1-muhammad-ahmads-projects-1458b467.vercel.app/",
+      featured: true
+    },
+    {
+      id: 4,
+      title: "User Processing System",
+      description: "A static website with a serverless backend using AWS Lambda function (Node.js) triggered by API Gateway GET method to display records stored in DynamoDB. Demonstrates cloud infrastructure integration with AWS services.",
+      technologies: ["AWS Lambda", "API Gateway", "DynamoDB", "S3"],
+      github: "https://github.com/Muhammad-Ahmad17/getApiForUserData",
+      live: "http://user-processing-system-ahmad.s3-website-us-east-1.amazonaws.com/",
       featured: true
     },
     {
