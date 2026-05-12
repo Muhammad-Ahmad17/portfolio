@@ -62,10 +62,6 @@ export const portfolioData = {
         description: "I don't just write services — I think about how APIs, databases, and infrastructure fit together as a system"
       },
       {
-        title: "Ship & Iterate",
-        description: "Perfect systems don’t exist in production. I prefer deploying, observing metrics, and improving continuously"
-      },
-      {
         title: "Debug Everything",
         description: "From API failures to database inconsistencies — I treat every issue as a system-level investigation"
       },
