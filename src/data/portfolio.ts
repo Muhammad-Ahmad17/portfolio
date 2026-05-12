@@ -195,6 +195,15 @@ export const portfolioData = {
   projects: [
     {
       id: 1,
+      title: "AI-Powered Event-Driven Medical Image Processing System for Cancer Cell Detection",
+      description: "Developed a distributed event-driven microservices application for detection and analysis of cancer cells in medical images. Built the complete end-to-end pipeline including image upload, preprocessing, deep learning inference, and result processing, fully containerized with Docker. Integrated Ollama LLM on cloud and built an AI chatbot for interactive medical image analysis and query support.",
+      technologies: ["Docker", "Kafka", "Redis", "OpenCV", "TensorFlow", "Ollama", "Python", "Node.js", "PostgreSQL"],
+      github: "https://github.com/Muhammad-Ahmad17/cancer_cells",
+      featured: true,
+      demo: "/projects/cancer-cells.mp4"
+    },
+    {
+      id: 2,
       title: "Full-Stack CRUD App with Automated CI/CD & Docker Containerization",
       description: "Engineered a complete DevOps-first application from conception to production.Implemented fully automated deployment pipeline using GitHub Actions, Docker, and Oracle Cloud Infrastructure. Every git push triggers containerized builds, registry pushes, and cloud deployment—reducing manual intervention to zero.",
       technologies: ["Docker", "GitHub Actions", "Oracle Cloud", "Node.js", "Express.js", "PostgreSQL", "React"],
@@ -204,7 +213,7 @@ export const portfolioData = {
       featured: true
     },
     {
-      id: 2,
+      id: 3,
       title: "User Processing System",
       description: "A static website (React) with a serverless backend using AWS Lambda function (Node.js) triggered by API Gateway GET method to display records stored in DynamoDB. Demonstrates cloud infrastructure integration with AWS services.",
       technologies: ["React", "AWS Lambda", "API Gateway", "DynamoDB", "S3"],
@@ -213,7 +222,7 @@ export const portfolioData = {
       featured: true
     },
     {
-      id: 3,
+      id: 4,
       title: "Multi-Buyer & Vendor E-Commerce Platform",
       description: "A modular full-stack e-commerce web application with multi-role support (Buyer, Vendor). This project is designed using a 3-tier architecture with a modern frontend and robust backend, backed by database modeling.",
       technologies: ["React", "Node.js", "Express.js", "SQL Server", "Azure SQL Database"],
@@ -222,7 +231,7 @@ export const portfolioData = {
       featured: true
     },
     {
-      id: 4,
+      id: 5,
       title: "Real-Time Smart Room Automation System",
       description: "An embedded systems project using STM32F407 microcontroller integrating RFID card access control, motion detection (IR & accelerometer), real-time temperature monitoring with LM35 sensor, automated lighting control, and intelligent fan management. Features multi-sensor data fusion, real-time LCD display feedback, and audio alert system via buzzer. Demonstrates IoT device integration with real-time processing capabilities.",
       technologies: ["STM32F407", "C/Embedded C", "HAL Library", "MFRC522 RFID", "LIS302DL Accelerometer", "LM35 Temperature Sensor", "I2C", "SPI", "ADC", "DMA", "ARM Cortex-M4F"],
