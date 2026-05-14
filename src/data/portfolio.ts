@@ -201,7 +201,7 @@ export const portfolioData = {
       technologies: ["Oracle Cloud", "Docker", "Kafka", "Redis", "OpenCV", "TensorFlow", "Ollama", "Python", "Node.js", "PostgreSQL"],
       github: "https://github.com/Muhammad-Ahmad17/cancer_cells",
       featured: true,
-      demo: "/projects/cancer-cells.mp4"
+      demo: "/projects/cancer-cells.webm"
     },
     {
       id: 2,

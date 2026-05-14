@@ -1,0 +1,140 @@
+\documentclass[a4paper,10.5pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo} % Professional font (Palatino)
+\usepackage[scaled=0.86]{helvet}
+\usepackage[top=0.5in, bottom=0.5in, left=0.6in, right=0.6in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+% Remove page number
+\pagestyle{empty}
+
+% Section formatting - matching reference CV
+\titleformat{\section}
+  {\sffamily\large\bfseries\uppercase}
+  {}
+  {0em}
+  {}
+  [\titlerule]
+
+\titlespacing*{\section}{0pt}{10pt}{6pt}
+
+% Professional link colors
+\definecolor{linkblack}{RGB}{0, 0, 0}
+\hypersetup{
+  colorlinks=true,
+  urlcolor=linkblack,
+  linkcolor=linkblack,
+  pdfborder={0 0 0}
+}
+\urlstyle{same}
+
+% Remove paragraph indent
+\setlength{\parindent}{0pt}
+
+% Add slight line spacing
+\renewcommand{\baselinestretch}{1.08}
+
+% Custom commands
+\newcommand{\entrytitle}[2]{%
+  \textbf{#1} \hfill #2%
+}
+
+\newcommand{\entrysubtitle}[2]{%
+  \textit{#1} \hfill \textit{#2}%
+}
+
+\begin{document}
+
+% ===================== HEADER =====================
+\begin{center}
+  {\sffamily\Huge\textbf{MUHAMMAD AHMAD}} \\[5pt]
+  Lahore, Pakistan \enspace$|$\enspace \textbf{+92 337 1479647} \enspace$|$\enspace \href{mailto:muhammadahmad171105@gmail.com}{muhammadahmad171105@gmail.com} \\[2pt]
+  \href{https://linkedin.com/in/muhammad-ahmad17}{linkedin.com/in/muhammad-ahmad17} \enspace$|$\enspace 
+  \href{https://github.com/muhammad-ahmad17}{github.com/muhammad-ahmad17} \\[4pt]
+  \textbf{\href{https://aahmad.app}{aahmad.app}} \\[3pt]
+  \textit{Computer Engineering Student $|$ Focus: Backend Development \& DevOps}
+\end{center}
+
+% ===================== OBJECTIVE =====================
+\section{Objective}
+6th-semester Computer Engineering student at COMSATS University with broad exposure across backend development, DevOps, databases and cloud technologies. Eager to join an engineering team as an intern to move from exploring to actually building, get real feedback, and develop genuine expertise through hands-on work.
+% ===================== EXPERIENCE =====================
+\section{Experience}
+
+\entrytitle{Innovative Saudia}{Jul 2025 -- Aug 2025} \\
+\entrysubtitle{Backend Engineer Intern}{Lahore} \\
+{\small\textit{\href{https://github.com/Muhammad-Ahmad17/Internship}{[View Daily Progress Log]}}}
+\normalsize
+\begin{itemize}[nosep, leftmargin=1.5em, topsep=2pt]
+  \item Learned backend and DevOps practices under the guidance of experienced professionals.
+  \item Documented daily progress and key learnings to track skill growth.
+  \item Prepared for the AWS Cloud Practitioner certification, completing multiple mock tests.
+\end{itemize}
+
+% ===================== EDUCATION =====================
+\section{Education}
+
+\entrytitle{COMSATS University Islamabad, Lahore Campus}{2023 -- 2027} \\
+\textit{Bachelor of Computer Engineering} \hfill \textit{Lahore} \\
+\textit{CGPA: 3.6/4.0 $|$ 6th Semester}
+
+% ===================== PROJECTS =====================
+\section{Projects}
+
+\textbf{AI-Powered Event-Driven Medical Image Processing System for Cancer Cell Detection } \hfill
+{\small \href{https://github.com/Muhammad-Ahmad17/cancer_cells}{[GitHub Link]} \enspace \href{https://www.aahmad.app/projects/cep_2x.webm}{[Demo]}} }
+\begin{itemize}[nosep, leftmargin=1.5em, topsep=2pt]
+  \item Developed a distributed event-driven microservices application for detection and analysis of cancer cells in medical images.
+  \item Built the complete end-to-end pipeline including image upload, preprocessing, deep learning inference, and result processing, fully containerized with Docker.
+  \item Integrated Ollama LLM on cloud and built an AI chatbot for interactive medical image analysis and query support.  
+  \item \textbf{Tech stack:} Oracle Cloud, Docker, Kafka, Redis, OpenCV, TensorFlow, Ollama, Python, Node.js, PostgreSQL.
+\end{itemize}
+
+\textbf{Full-Stack CRUD App with Automated CI/CD \& Docker Containerization} \hfill
+{\small \href{https://github.com/Muhammad-Ahmad17/root}{[GitHub Link]} \enspace \href{https://cicd.aahmad.app/}{[Live Demo]}}
+\begin{itemize}[nosep, leftmargin=1.5em, topsep=2pt]
+  \item Engineered a complete DevOps-first application from conception to production.
+  \item Implemented fully automated deployment pipeline using GitHub Actions, Docker, and Oracle Cloud Infrastructure. Every git push triggers containerized builds, registry pushes, and cloud deployment without manual intervention.
+  \item \textbf{Tech stack:} Oracle Cloud, Docker, GitHub Actions, Nginx, Node.js, Express.js, PostgreSQL, React.
+\end{itemize}
+% \textbf{Multi-Buyer \& Vendor E-Commerce Platform} \hfill
+% {\small \href{https://github.com/Muhammad-Ahmad17/E_Commerce}{[GitHub Link]} \enspace \href{https://e-commerce1-muhammad-ahmads-projects-1458b467.vercel.app/}{[Live Demo]}}
+% \begin{itemize}[nosep, leftmargin=1.5em, topsep=2pt]
+%   \item Built a full-stack e-commerce app with multi-role support (Buyer, Vendor) using 3-tier architecture.
+%   \item Implemented authentication, order management, and REST APIs with Node.js and Express.js.
+%   \item \textbf{Tech stack:} React, Node.js, Express.js, Azure SQL Database.
+% \end{itemize}
+\textbf{Serverless User Processing System} \hfill
+{\small \href{https://github.com/Muhammad-Ahmad17/getApiForUserData}{[GitHub Link]} \enspace \href{http://user-processing-system-ahmad.s3-website-us-east-1.amazonaws.com/}{[Live Demo]}}
+\begin{itemize}[nosep, leftmargin=1.5em, topsep=2pt]
+  \item Developed a React frontend with a serverless backend using AWS Lambda triggered by API Gateway.
+  \item Integrated DynamoDB for data storage and hosted on S3 as a static website.
+  \item \textbf{Tech stack:} AWS Lambda, API Gateway, DynamoDB, S3, React.
+\end{itemize}
+
+\textbf{Real-Time Smart Room Automation System} \hfill
+{\small \href{https://github.com/Muhammad-Ahmad17/RealTimeSmartRoomAutomation}{[GitHub Link]} \enspace \href{https://www.aahmad.app/projects/brokendemo.mp4}{[Demo]}}
+\begin{itemize}[nosep, leftmargin=1.5em, topsep=2pt]
+ \item Built an embedded system using STM32F407 with RFID access, motion detection, and temperature monitoring.
+ \item Implemented multi-sensor data fusion with real-time LCD feedback and buzzer alerts.
+ \item \textbf{Tech stack:} STM32F407, C/Embedded C, HAL Library, I2C, SPI, ADC, DMA.
+\end{itemize}
+
+% ===================== TECHNICAL SKILLS =====================
+\section{Technical Skills}
+
+\begin{itemize}[nosep, leftmargin=1.5em, topsep=2pt]
+  \item \textbf{Programming:} JavaScript, Python, C/C++, SQL, VHDL
+  \item \textbf{Backend \& Systems:} Node.js, Express.js, REST APIs, MongoDB, SQL Server, Redis, Nginx
+  \item \textbf{Cloud \& DevOps:} AWS (EC2, Lambda, S3, DynamoDB, API Gateway), Docker, GitHub Actions, Linux, Git
+  \item \textbf{Embedded \& Hardware:} STM32, FPGA (VHDL), Embedded Systems, Jetson Nano
+  \item \textbf{Concepts:} Messaging Systems (queues, pub/sub), basic distributed systems understanding
+  \item \textbf{Tools:} VS Code, Cursor, Claude AI, GitHub Copilot, LaTeX
+\end{itemize}
+
+\end{document}
