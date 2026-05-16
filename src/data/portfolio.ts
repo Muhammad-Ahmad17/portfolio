@@ -14,6 +14,15 @@ export type PortfolioProject = {
   featured?: boolean;
 };
 
+export type PortfolioExperience = {
+  title: string;
+  company: string;
+  companyUrl?: string;
+  period: string;
+  description: string;
+  achievements: string[];
+};
+
 export const portfolioData = {
   /** Main nav (Navbar + Footer quick links) */
   navigation: [
@@ -246,6 +255,7 @@ export const portfolioData = {
     {
       title: "Backend Engineer Intern",
       company: "Innovative Saudia",
+      companyUrl: "https://www.innotech-sa.com/",
       period: "Jul 2025 - Aug 2025",
       description: "2-month on-site internship in Lahore focusing on backend development and DevOps practices under the guidance of experienced professionals.",
       achievements: [
@@ -254,7 +264,7 @@ export const portfolioData = {
         "Prepared for the AWS Cloud Practitioner certification, completing multiple mock tests"
       ]
     }
-  ],
+  ] satisfies PortfolioExperience[],
 
   education: [
     {

@@ -77,7 +77,18 @@ export function Experience() {
                             </span>
                           </div>
                           
-                          <p className="text-primary text-sm mb-4">{job.company}</p>
+                          {job.companyUrl ? (
+                            <a
+                              href={job.companyUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-primary text-sm mb-4 inline-block hover:underline"
+                            >
+                              {job.company}
+                            </a>
+                          ) : (
+                            <p className="text-primary text-sm mb-4">{job.company}</p>
+                          )}
                           
                           <p className="text-muted-foreground mb-6 leading-relaxed">
                             {job.description}
