@@ -5,7 +5,7 @@ import { portfolioData } from "@/data/portfolio";
 
 export function Experience() {
   return (
-    <section id="experience" className="py-24 lg:py-32 bg-muted/20 relative">
+    <section id="experience" className="py-24 lg:py-32 bg-background relative">
       {/* Subtle background */}
       <div className="absolute inset-0 bg-line-pattern opacity-20" />
       
@@ -19,7 +19,7 @@ export function Experience() {
           className="mb-16 text-center"
         >
           <span className="section-heading block mb-4">Journey</span>
-          <h2 className="text-4xl md:text-5xl font-normal text-foreground mb-8">
+          <h2 className="text-4xl md:text-5xl font-normal text-primary mb-8 uppercase">
             Learning & Education
           </h2>
           <div className="w-16 h-px bg-border mx-auto mb-8" />
@@ -35,16 +35,16 @@ export function Experience() {
           viewport={{ once: true }}
         >
           <Tabs defaultValue="experience" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 mb-12 bg-transparent border border-border p-1">
+            <TabsList className="grid w-full grid-cols-2 mb-12 bg-transparent border border-border/70 p-1 rounded-md">
               <TabsTrigger 
                 value="experience" 
-                className="data-[state=active]:bg-foreground data-[state=active]:text-background text-sm tracking-wide"
+                className="data-[state=active]:bg-foreground data-[state=active]:text-background text-[11px] uppercase tracking-[0.25em] font-mono"
               >
                 Experience
               </TabsTrigger>
               <TabsTrigger 
                 value="education" 
-                className="data-[state=active]:bg-foreground data-[state=active]:text-background text-sm tracking-wide"
+                className="data-[state=active]:bg-foreground data-[state=active]:text-background text-[11px] uppercase tracking-[0.25em] font-mono"
               >
                 Education
               </TabsTrigger>
@@ -59,7 +59,7 @@ export function Experience() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="handcrafted-card border-border/30 bg-card/50">
+                  <Card className="handcrafted-card">
                     <CardContent className="p-8">
                       <div className="flex items-start gap-6">
                         {/* Timeline indicator */}
@@ -122,7 +122,7 @@ export function Experience() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="handcrafted-card border-border/30 bg-card/50">
+                  <Card className="handcrafted-card">
                     <CardContent className="p-8">
                       <div className="flex items-start gap-6">
                         {/* Education graphic */}

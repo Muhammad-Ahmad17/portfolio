@@ -22,8 +22,8 @@ export function Skills() {
   const section = portfolioData.sections.skills;
 
   return (
-    <section id="skills" className="relative bg-background py-20 lg:py-28">
-      <div className="absolute inset-0 bg-dot-pattern opacity-15" />
+    <section id="skills" className="relative bg-background py-24 lg:py-32">
+      <div className="absolute inset-0 bg-dot-pattern opacity-25" />
 
       <div className="relative container mx-auto max-w-5xl px-6 lg:px-8">
         <motion.div
@@ -34,7 +34,7 @@ export function Skills() {
           className="mb-14 text-center"
         >
           <span className="section-heading mb-4 block">{section.eyebrow}</span>
-          <h2 className="mb-6 text-4xl text-foreground md:text-5xl">{section.title}</h2>
+          <h2 className="mb-6 text-4xl text-primary md:text-5xl uppercase">{section.title}</h2>
           <div className="mx-auto mb-6 h-px w-12 bg-gradient-to-r from-transparent via-primary/35 to-transparent" />
           <p className="mx-auto max-w-lg text-lg text-muted-foreground">{section.subtitle}</p>
         </motion.div>
@@ -49,12 +49,12 @@ export function Skills() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: categoryIndex * 0.05 }}
                 viewport={{ once: true }}
-                className="relative overflow-hidden rounded-xl border border-border/55 bg-[#E5E0D8]/85 p-5 shadow-[var(--shadow-elegant)] transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-md dark:bg-card/70 dark:hover:border-primary/30"
+                className="relative overflow-hidden rounded-xl border border-border/60 bg-card/80 p-5 shadow-[var(--shadow-elegant)] transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40"
               >
-                <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-primary/[0.07] blur-2xl dark:bg-primary/[0.09]" />
+                <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-primary/[0.08] blur-2xl" />
 
                 <div className="relative mb-4 flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-background/95 ring-1 ring-border/45 dark:bg-muted">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-md border border-border/60 bg-muted/40">
                     <Icon className="h-4 w-4 text-primary" />
                   </div>
                   <div className="min-w-0 flex-1">
@@ -67,7 +67,7 @@ export function Skills() {
                   {category.skills.map((skill) => (
                     <span
                       key={skill.name}
-                      className="rounded-full border border-border/35 bg-background/90 px-3 py-1.5 text-xs text-foreground shadow-sm backdrop-blur-sm transition-colors hover:border-primary/30 dark:bg-muted/80 dark:hover:border-primary/25"
+                      className="rounded-full border border-border/50 bg-background/80 px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] font-mono text-foreground shadow-sm backdrop-blur-sm transition-colors hover:border-primary/40"
                     >
                       {skill.name}
                     </span>

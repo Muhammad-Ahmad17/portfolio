@@ -9,14 +9,14 @@ export function Footer() {
   const navigate = useNavigate();
   
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "auto" });
   };
 
   const currentYear = new Date().getFullYear();
 
   const handleNavigation = (href: string) => {
     navigate(href);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "auto" });
   };
 
   return (
@@ -30,7 +30,7 @@ export function Footer() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-xl mb-4" style={{ fontFamily: "'Inter', -apple-system, sans-serif" }}>
+            <h3 className="text-base mb-4 uppercase tracking-[0.2em] text-primary">
               {portfolioData.personal.name}
             </h3>
             <p className="text-sm opacity-80 leading-relaxed mb-6">
@@ -59,13 +59,13 @@ export function Footer() {
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-xs uppercase tracking-[0.2em] opacity-60 mb-5">Navigation</h4>
+            <h4 className="text-[10px] uppercase tracking-[0.35em] opacity-60 mb-5 font-mono">Navigation</h4>
             <nav className="grid grid-cols-2 gap-2.5">
               {portfolioData.navigation.map((link) => (
                 <button
                   key={link.href}
                   onClick={() => handleNavigation(link.href)}
-                  className="text-sm text-left opacity-75 hover:opacity-100 transition-opacity"
+                  className="text-[11px] uppercase tracking-[0.25em] font-mono text-left opacity-75 hover:opacity-100 transition-opacity"
                 >
                   {link.label}
                 </button>
@@ -80,7 +80,7 @@ export function Footer() {
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-xs uppercase tracking-[0.2em] opacity-60 mb-5">Contact</h4>
+            <h4 className="text-[10px] uppercase tracking-[0.35em] opacity-60 mb-5 font-mono">Contact</h4>
             <div className="space-y-2.5 text-sm mb-6">
               <a
                 href={`mailto:${portfolioData.personal.email}`}
@@ -93,7 +93,7 @@ export function Footer() {
               </div>
             </div>
             <div>
-              <h5 className="text-xs uppercase tracking-[0.2em] opacity-60 mb-3">Appearance</h5>
+              <h5 className="text-[10px] uppercase tracking-[0.35em] opacity-60 mb-3 font-mono">Appearance</h5>
               <ThemeToggle />
             </div>
           </motion.div>
@@ -121,7 +121,7 @@ export function Footer() {
               variant="ghost"
               size="icon"
               onClick={scrollToTop}
-              className="h-10 w-10 rounded-full border border-current/20 hover:border-current/40 hover:bg-transparent transition-all"
+              className="h-10 w-10 rounded-md border border-current/30 hover:border-current/60 hover:bg-transparent transition-all"
               aria-label="Scroll to top"
             >
               <ArrowUp className="w-4 h-4" />

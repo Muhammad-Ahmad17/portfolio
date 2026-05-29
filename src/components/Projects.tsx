@@ -28,9 +28,9 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="relative bg-gradient-to-b from-muted/40 via-background to-background py-20 dark:from-card/40 lg:py-28"
+      className="relative bg-background py-24 lg:py-32"
     >
-      <div className="pointer-events-none absolute inset-0 bg-dot-pattern opacity-[0.12] dark:opacity-[0.08]" />
+      <div className="pointer-events-none absolute inset-0 bg-dot-pattern opacity-[0.18]" />
 
       <div className="relative container mx-auto max-w-5xl px-6 lg:px-8">
         <motion.div
@@ -41,7 +41,7 @@ export function Projects() {
           className="mb-14 text-center"
         >
           <span className="section-heading mb-4 block">{section.eyebrow}</span>
-          <h2 className="mb-6 text-4xl text-foreground md:text-5xl">{section.title}</h2>
+          <h2 className="mb-6 text-4xl text-primary md:text-5xl uppercase">{section.title}</h2>
           <div className="mx-auto mb-6 h-px w-12 bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
           <p className="mx-auto max-w-lg text-lg text-muted-foreground">{section.subtitle}</p>
         </motion.div>
@@ -54,12 +54,12 @@ export function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
               viewport={{ once: true }}
-              className="relative overflow-hidden rounded-2xl border border-border/60 bg-background/80 shadow-[0_8px_40px_-16px_hsl(var(--foreground)/0.12)] ring-1 ring-foreground/[0.04] backdrop-blur-[2px] transition-all duration-500 hover:border-primary/20 hover:shadow-[0_20px_48px_-20px_hsl(var(--foreground)/0.18)] dark:bg-card/60 dark:hover:border-primary/30"
+              className="relative overflow-hidden rounded-xl border border-border/60 bg-card/85 shadow-[var(--shadow-elegant)] backdrop-blur-[2px] transition-all duration-500 hover:border-primary/40"
             >
-              <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-primary via-primary/50 to-transparent opacity-90" />
+              <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-primary/80 via-primary/20 to-transparent" />
 
               <div className="flex flex-col md:flex-row">
-                <div className="relative hidden w-[min(120px,18%)] shrink-0 border-r border-border/40 bg-muted/30 dark:bg-muted/15 md:flex md:flex-col md:items-center md:justify-center md:py-10">
+                <div className="relative hidden w-[min(120px,18%)] shrink-0 border-r border-border/40 bg-muted/30 md:flex md:flex-col md:items-center md:justify-center md:py-10">
                   <span className="font-mono text-3xl font-light text-muted-foreground/60">
                     {String(index + 1).padStart(2, "0")}
                   </span>
@@ -67,13 +67,13 @@ export function Projects() {
 
                 <div className="min-w-0 flex-1 p-6 md:p-8 md:pl-8">
                   <div className="mb-4 flex flex-wrap items-start gap-3">
-                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border/50 bg-muted/40 font-mono text-xs text-muted-foreground md:hidden dark:bg-muted/25">
+                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border/60 bg-muted/40 font-mono text-xs text-muted-foreground md:hidden">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <div className="min-w-0 flex-1">
                       <div className="mb-2 flex flex-wrap items-center gap-3">
                         <h3 className="text-xl text-foreground">{project.title}</h3>
-                        <span className="rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-xs text-foreground dark:bg-primary/15">
+                        <span className="badge-minimal border-primary/40 text-foreground">
                           {section.featuredBadge}
                         </span>
                       </div>
@@ -95,7 +95,7 @@ export function Projects() {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-muted/30 px-4 py-2 text-sm text-foreground transition-colors hover:border-primary/35 hover:bg-primary/10 dark:bg-muted/20"
+                        className="inline-flex items-center gap-2 rounded-md border border-border/60 bg-background/60 px-3.5 py-2 text-[11px] uppercase tracking-[0.2em] font-mono text-foreground transition-colors hover:border-primary/40 hover:bg-primary/10"
                       >
                         <Github className="h-4 w-4 shrink-0" />
                         <span>Code</span>
@@ -106,7 +106,7 @@ export function Projects() {
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-muted/30 px-4 py-2 text-sm text-foreground transition-colors hover:border-primary/35 hover:bg-primary/10 dark:bg-muted/20"
+                        className="inline-flex items-center gap-2 rounded-md border border-border/60 bg-background/60 px-3.5 py-2 text-[11px] uppercase tracking-[0.2em] font-mono text-foreground transition-colors hover:border-primary/40 hover:bg-primary/10"
                       >
                         <ExternalLink className="h-4 w-4 shrink-0" />
                         <span>Live</span>
@@ -117,7 +117,7 @@ export function Projects() {
                         <button
                           type="button"
                           onClick={() => handleDemoClick(project.demo!)}
-                          className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm text-foreground transition-colors hover:bg-primary/20 dark:bg-primary/15 dark:hover:bg-primary/25"
+                          className="inline-flex items-center gap-2 rounded-md border border-primary/40 bg-primary/10 px-3.5 py-2 text-[11px] uppercase tracking-[0.2em] font-mono text-foreground transition-colors hover:bg-primary/20"
                         >
                           <Play className="h-4 w-4 shrink-0" />
                           <span>Demo video</span>
@@ -127,7 +127,7 @@ export function Projects() {
                           href={project.demo}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-muted/30 px-4 py-2 text-sm text-foreground transition-colors hover:border-primary/35 hover:bg-primary/10 dark:bg-muted/20"
+                          className="inline-flex items-center gap-2 rounded-md border border-border/60 bg-background/60 px-3.5 py-2 text-[11px] uppercase tracking-[0.2em] font-mono text-foreground transition-colors hover:border-primary/40 hover:bg-primary/10"
                         >
                           <ExternalLink className="h-4 w-4 shrink-0" />
                           <span>Demo</span>

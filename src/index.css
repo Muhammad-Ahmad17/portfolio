@@ -1,100 +1,101 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=Sora:wght@300;400;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* 
-  Handcrafted Minimalism Design System
-  Soft, rounded typography with creamy warmth.
-  Graphics use a consistent cream background for visibility.
+/*
+  Sockt-inspired signal design system.
+  High-contrast typography, terminal accents, and grid textures.
 */
 
 @layer base {
   :root {
-    /* Primary cream color: #E5E0D8 = hsl(36, 16%, 87%) */
-    --cream: #E5E0D8;
-    --cream-hsl: 36 16% 87%;
-    
-    /* Soft cream background palette */
-    --background: 36 16% 90%;
-    --foreground: 30 8% 25%;
+    --background: 39 46% 93%;
+    --foreground: 36 28% 7%;
 
-    --card: 36 16% 93%;
-    --card-foreground: 30 8% 25%;
+    --card: 30 35% 91%;
+    --card-foreground: 36 28% 7%;
 
-    --popover: 36 16% 93%;
-    --popover-foreground: 30 8% 25%;
+    --popover: 30 35% 91%;
+    --popover-foreground: 36 28% 7%;
 
-    /* Warm muted olive/sage accent */
-    --primary: 45 12% 40%;
-    --primary-foreground: 36 16% 93%;
-    --primary-glow: 45 10% 50%;
+    --primary: 29 71% 41%;
+    --primary-foreground: 39 46% 93%;
+    --primary-glow: 30 48% 61%;
 
-    --secondary: 36 12% 88%;
-    --secondary-foreground: 30 8% 30%;
+    --secondary: 30 47% 80%;
+    --secondary-foreground: 36 28% 7%;
 
-    --muted: 36 10% 85%;
-    --muted-foreground: 30 6% 50%;
+    --muted: 30 36% 87%;
+    --muted-foreground: 30 16% 32%;
 
-    --accent: 45 12% 40%;
-    --accent-foreground: 36 16% 93%;
+    --accent: 30 48% 61%;
+    --accent-foreground: 36 28% 7%;
 
-    --destructive: 0 40% 50%;
-    --destructive-foreground: 36 16% 93%;
+    --destructive: 0 68% 44%;
+    --destructive-foreground: 39 46% 93%;
 
-    --border: 36 12% 82%;
-    --input: 36 12% 86%;
-    --ring: 45 12% 40%;
+    --border: 40 19% 81%;
+    --input: 30 36% 87%;
+    --ring: 29 71% 41%;
 
-    --radius: 0.5rem;
+    --radius: 0.6rem;
 
-    /* Soft effects */
-    --glass-bg: 36 16% 90% / 0.95;
-    --glass-border: 36 12% 80% / 0.5;
-    --gradient-primary: linear-gradient(135deg, hsl(45 12% 40%), hsl(45 10% 50%));
-    --gradient-hero: linear-gradient(180deg, hsl(36 16% 90%), hsl(36 14% 87%));
-    --shadow-elegant: 0 2px 12px -4px hsl(30 8% 25% / 0.06);
-    --shadow-glow: 0 0 30px hsl(45 10% 50% / 0.1);
+    --glass-bg: 39 46% 93% / 0.7;
+    --glass-border: 40 19% 81% / 0.6;
+    --gradient-primary: linear-gradient(90deg, hsl(29 71% 41%), hsl(30 48% 61%));
+    --gradient-hero: radial-gradient(900px 380px at 10% 0%, hsl(29 71% 41% / 0.14), transparent 60%), radial-gradient(900px 380px at 90% 10%, hsl(30 48% 61% / 0.18), transparent 60%);
+    --shadow-elegant: 0 18px 40px -28px hsl(36 28% 7% / 0.35);
+    --shadow-glow: 0 0 40px hsl(29 71% 41% / 0.18);
+
+    --grid: 40 19% 81%;
+    --dot: 40 19% 81%;
+    --terminal: 36 28% 7%;
+    --terminal-foreground: 39 46% 93%;
   }
 
   .dark {
-    /* Dark mode with warm undertones */
-    --background: 30 10% 10%;
-    --foreground: 36 16% 87%;
+    --background: 36 28% 7%;
+    --foreground: 39 46% 93%;
 
-    --card: 30 10% 13%;
-    --card-foreground: 36 16% 87%;
+    --card: 33 30% 12%;
+    --card-foreground: 39 46% 93%;
 
-    --popover: 30 10% 13%;
-    --popover-foreground: 36 16% 87%;
+    --popover: 33 30% 12%;
+    --popover-foreground: 39 46% 93%;
 
-    --primary: 45 15% 70%;
-    --primary-foreground: 30 10% 10%;
-    --primary-glow: 45 12% 75%;
+    --primary: 29 71% 41%;
+    --primary-foreground: 39 46% 93%;
+    --primary-glow: 30 48% 61%;
 
-    --secondary: 30 8% 16%;
-    --secondary-foreground: 36 14% 85%;
+    --secondary: 32 25% 16%;
+    --secondary-foreground: 39 46% 93%;
 
-    --muted: 30 6% 18%;
-    --muted-foreground: 36 8% 55%;
+    --muted: 32 20% 18%;
+    --muted-foreground: 34 18% 70%;
 
-    --accent: 45 15% 70%;
-    --accent-foreground: 30 10% 10%;
+    --accent: 30 48% 61%;
+    --accent-foreground: 36 28% 7%;
 
-    --destructive: 0 45% 55%;
-    --destructive-foreground: 36 16% 87%;
+    --destructive: 0 68% 44%;
+    --destructive-foreground: 39 46% 93%;
 
-    --border: 30 8% 20%;
-    --input: 30 8% 16%;
-    --ring: 45 15% 70%;
+    --border: 32 18% 24%;
+    --input: 32 18% 20%;
+    --ring: 29 71% 41%;
 
-    --glass-bg: 30 10% 10% / 0.95;
-    --glass-border: 30 8% 22% / 0.5;
-    --gradient-primary: linear-gradient(135deg, hsl(45 15% 70%), hsl(45 12% 75%));
-    --gradient-hero: linear-gradient(180deg, hsl(30 10% 10%), hsl(30 8% 8%));
-    --shadow-elegant: 0 2px 12px -4px hsl(0 0% 0% / 0.3);
-    --shadow-glow: 0 0 30px hsl(45 12% 75% / 0.08);
+    --glass-bg: 36 28% 7% / 0.7;
+    --glass-border: 32 18% 24% / 0.7;
+    --gradient-primary: linear-gradient(90deg, hsl(29 71% 41%), hsl(30 48% 61%));
+    --gradient-hero: radial-gradient(900px 380px at 10% 0%, hsl(29 71% 41% / 0.18), transparent 60%), radial-gradient(900px 380px at 90% 10%, hsl(30 48% 61% / 0.2), transparent 60%);
+    --shadow-elegant: 0 18px 40px -28px hsl(36 28% 7% / 0.6);
+    --shadow-glow: 0 0 40px hsl(29 71% 41% / 0.22);
+
+    --grid: 32 18% 24%;
+    --dot: 32 18% 32%;
+    --terminal: 36 28% 7%;
+    --terminal-foreground: 39 46% 93%;
   }
 }
 
@@ -105,27 +106,27 @@
 
   body {
     @apply bg-background text-foreground transition-colors duration-500;
-    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    line-height: 1.75;
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    line-height: 1.7;
     font-weight: 400;
     letter-spacing: 0.01em;
     -webkit-font-smoothing: antialiased;
   }
 
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
 
   /* Bold, modern headings with Inter */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Sora', system-ui, sans-serif;
     font-weight: 600;
-    line-height: 1.3;
-    letter-spacing: -0.02em;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
   }
 
   code, pre, .font-mono {
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
   }
 
   /* Subtle paper texture */
@@ -143,42 +144,69 @@
   }
 
   .bg-dot-pattern {
-    background-image: radial-gradient(circle, hsl(var(--foreground) / 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
+    background-image: radial-gradient(circle, hsl(var(--dot) / 0.9) 1.4px, transparent 1.4px);
+    background-size: 24px 24px;
   }
 }
 
 @layer utilities {
 
-  /* Cream background for graphics - solves dark/light visibility */
-  .graphic-container {
-    @apply inline-flex items-center justify-center rounded-full;
-    background-color: #E5E0D8;
-    padding: 12px;
+  .bg-line-pattern {
+    background-image: linear-gradient(to bottom, hsl(var(--grid) / 0.25) 1px, transparent 1px);
+    background-size: 100% 32px;
   }
 
-  .dark .graphic-container {
-    background-color: hsl(30 10% 18%);
+  .terminal-card {
+    background: hsl(var(--terminal));
+    color: hsl(var(--terminal-foreground));
+    border: 1px solid hsl(var(--border) / 0.4);
+    box-shadow: 0 24px 80px -50px hsl(0 0% 0% / 0.8);
+  }
+
+  .terminal-header {
+    @apply flex items-center justify-between px-4 py-3 text-[10px] uppercase tracking-[0.3em];
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+    border-bottom: 1px solid hsl(var(--terminal-foreground) / 0.12);
+  }
+
+  .terminal-line {
+    @apply flex items-start gap-3 text-xs;
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+    color: hsl(var(--terminal-foreground) / 0.8);
+  }
+
+  .terminal-prompt {
+    color: hsl(var(--primary));
+  }
+
+  .terminal-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    margin-left: 4px;
+    background: hsl(var(--primary));
+    animation: blink 1.2s steps(1) infinite;
+  }
+
+  /* Signal icon containers */
+  .graphic-container {
+    @apply inline-flex items-center justify-center rounded-md border border-border/60 bg-muted/40;
+    padding: 10px;
   }
 
   .graphic-container-lg {
-    @apply inline-flex items-center justify-center rounded-full;
-    background-color: #E5E0D8;
-    padding: 16px;
-  }
-
-  .dark .graphic-container-lg {
-    background-color: hsl(30 10% 18%);
+    @apply inline-flex items-center justify-center rounded-md border border-border/60 bg-muted/40;
+    padding: 14px;
   }
 
   .graphic-icon {
     @apply w-8 h-8 object-contain;
-    filter: contrast(1.1) saturate(0.9);
+    filter: contrast(1.05) saturate(0.95);
   }
 
   .graphic-icon-lg {
     @apply w-12 h-12 object-contain;
-    filter: contrast(1.1) saturate(0.9);
+    filter: contrast(1.05) saturate(0.95);
   }
 
   /* Soft fade animations */
@@ -194,6 +222,17 @@
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes blink {
+    0%,
+    49% {
+      opacity: 1;
+    }
+    50%,
+    100% {
+      opacity: 0;
     }
   }
 
@@ -252,50 +291,46 @@
 
   /* Soft card style */
   .soft-card {
-    @apply relative bg-card rounded-lg transition-all duration-500;
-    box-shadow: 0 1px 3px -1px hsl(var(--foreground) / 0.04);
+    @apply relative bg-card/90 rounded-lg transition-all duration-500 border border-border/60;
+    box-shadow: var(--shadow-elegant);
   }
   
   .soft-card:hover {
-    box-shadow: 0 8px 24px -8px hsl(var(--foreground) / 0.08);
+    box-shadow: 0 24px 50px -36px hsl(var(--foreground) / 0.25);
   }
 
-  /* Cream card - uses #E5E0D8 */
+  /* Panel card */
   .cream-card {
-    background-color: #E5E0D8;
-    @apply rounded-lg p-6;
-  }
-
-  .dark .cream-card {
-    background-color: hsl(30 10% 16%);
+    @apply rounded-lg border border-border/60 bg-card/80 p-6;
   }
 
   /* Section heading */
   .section-heading {
-    @apply text-xs tracking-[0.25em] uppercase text-muted-foreground font-medium;
+    @apply text-[11px] tracking-[0.35em] uppercase text-muted-foreground font-medium font-mono;
   }
 
   /* Soft button styles */
   .btn-soft {
-    @apply px-8 py-3.5 text-sm font-medium tracking-wider transition-all duration-300 rounded-full;
-    @apply border border-foreground/30 bg-transparent text-foreground;
-    @apply hover:border-foreground hover:bg-foreground hover:text-background;
+    @apply px-6 py-3 text-xs font-semibold tracking-[0.25em] uppercase transition-all duration-300 rounded-md;
+    @apply border border-border/70 bg-transparent text-foreground;
+    @apply hover:border-foreground/70 hover:bg-foreground hover:text-background;
   }
 
   .btn-soft-filled {
-    @apply px-8 py-3.5 text-sm font-medium tracking-wider transition-all duration-300 rounded-full;
+    @apply px-6 py-3 text-xs font-semibold tracking-[0.25em] uppercase transition-all duration-300 rounded-md;
     @apply bg-foreground text-background border border-foreground;
     @apply hover:bg-transparent hover:text-foreground;
   }
 
-  /* Icon container with cream background */
-  .icon-container {
-    @apply w-14 h-14 flex items-center justify-center rounded-full;
-    background-color: #E5E0D8;
+  .btn-editorial-primary {
+    @apply px-6 py-3 text-xs font-semibold tracking-[0.25em] uppercase transition-all duration-300 rounded-md;
+    @apply bg-primary text-primary-foreground border border-primary/70 shadow-[var(--shadow-glow)];
+    @apply hover:bg-primary/90 hover:border-primary;
   }
 
-  .dark .icon-container {
-    background-color: hsl(30 10% 18%);
+  /* Icon container */
+  .icon-container {
+    @apply w-12 h-12 flex items-center justify-center rounded-md border border-border/60 bg-muted/40;
   }
 
   /* Custom scrollbar */
@@ -324,20 +359,16 @@
 
   /* Stat number */
   .stat-number {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
     @apply text-4xl font-semibold tracking-tight;
   }
   
-  /* Cream tag for skills/projects */
+  /* Tag for skills/projects */
   .cream-tag {
-    @apply px-4 py-2 text-sm rounded-full;
-    background-color: #E5E0D8;
-    color: hsl(30 8% 30%);
-  }
-  
-  .dark .cream-tag {
-    background-color: hsl(30 10% 20%);
-    color: hsl(36 16% 87%);
+    @apply px-3 py-1 text-xs rounded-full border border-border/60 bg-muted/50 text-foreground;
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
   /* Minimal badge */
@@ -346,9 +377,18 @@
     @apply border border-border/50 bg-transparent text-muted-foreground;
   }
 
+  .handcrafted-card {
+    @apply rounded-xl border border-border/60 bg-card/80 shadow-[var(--shadow-elegant)];
+  }
+
+  .keyline {
+    @apply h-px w-full bg-border/60;
+  }
+
   /* Dark footer */
   .footer-dark {
     @apply bg-foreground text-background;
+    border-top: 1px solid hsl(var(--border) / 0.2);
   }
 
   .dark .footer-dark {

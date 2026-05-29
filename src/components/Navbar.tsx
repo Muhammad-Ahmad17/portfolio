@@ -24,7 +24,7 @@ export function Navbar() {
   const handleNavigation = (href: string) => {
     navigate(href);
     setIsOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "auto" });
   };
 
   const isActive = (href: string) => {
@@ -36,31 +36,31 @@ export function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled
-          ? "bg-background/98 backdrop-blur-md border-b border-border/50"
+          ? "bg-background/90 backdrop-blur-md border-b border-border/60"
           : "bg-transparent"
         }`}
     >
       <nav className="container mx-auto px-6 lg:px-8 max-w-6xl">
-        <div className="flex items-center justify-between py-5">
+        <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <motion.div whileHover={{ opacity: 0.7 }} className="flex items-center">
             <Button
               variant="ghost"
               onClick={() => handleNavigation("/")}
-              className="p-0 h-auto hover:bg-transparent text-foreground text-lg"
-              style={{ fontFamily: "'Inter', -apple-system, sans-serif" }}
+              className="p-0 h-auto hover:bg-transparent text-foreground flex items-center gap-3"
             >
-              Muhammad Ahmad
+              <span className="font-mono text-xs tracking-[0.35em] text-primary">{"{*}"}</span>
+              <span className="text-xs sm:text-sm uppercase tracking-[0.25em]">Muhammad Ahmad</span>
             </Button>
           </motion.div>
 
           {/* Desktop Navigation - Centered */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6">
             {portfolioData.navigation.map((item) => (
               <button
                 key={item.href}
                 onClick={() => handleNavigation(item.href)}
-                className={`relative text-sm transition-colors duration-300 ${isActive(item.href)
+                className={`relative text-[11px] uppercase tracking-[0.3em] font-mono transition-colors duration-300 ${isActive(item.href)
                     ? "text-foreground"
                     : "text-muted-foreground hover:text-foreground"
                   }`}
@@ -69,7 +69,7 @@ export function Navbar() {
                 {isActive(item.href) && (
                   <motion.span
                     layoutId="navbar-indicator"
-                    className="absolute -bottom-1 left-0 right-0 h-px bg-foreground/50"
+                    className="absolute -bottom-2 left-0 right-0 h-px bg-foreground/70"
                     transition={{ type: "spring", stiffness: 350, damping: 30 }}
                   />
                 )}
@@ -116,7 +116,7 @@ export function Navbar() {
                   >
                     <button
                       onClick={() => handleNavigation(item.href)}
-                      className={`block w-full text-left py-2.5 text-sm transition-colors ${isActive(item.href)
+                      className={`block w-full text-left py-2.5 text-[11px] uppercase tracking-[0.3em] font-mono transition-colors ${isActive(item.href)
                           ? "text-foreground"
                           : "text-muted-foreground"
                         }`}

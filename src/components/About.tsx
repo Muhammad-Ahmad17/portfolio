@@ -12,8 +12,8 @@ const serviceIcons = {
 
 export function About() {
   return (
-    <section id="about" className="py-20 lg:py-28 bg-background relative">
-      <div className="absolute inset-0 bg-dot-pattern opacity-15" />
+    <section id="about" className="py-24 lg:py-32 bg-background relative">
+      <div className="absolute inset-0 bg-dot-pattern opacity-25" />
 
       <div className="container mx-auto px-6 lg:px-8 max-w-5xl relative">
         {/* Section Header */}
@@ -25,7 +25,9 @@ export function About() {
           className="mb-16 text-center"
         >
           <span className="section-heading mb-4 block">{portfolioData.sections.about.eyebrow}</span>
-          <h2 className="mb-6 text-4xl text-foreground md:text-5xl">{portfolioData.sections.about.title}</h2>
+          <h2 className="mb-6 text-4xl text-primary md:text-5xl uppercase">
+            {portfolioData.sections.about.title}
+          </h2>
           <div className="w-12 h-px bg-border/50 mx-auto" />
         </motion.div>
 
@@ -68,10 +70,10 @@ export function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.1 + index * 0.05 }}
                     viewport={{ once: true }}
-                    className="rounded-xl border border-border/50 bg-[#E5E0D8]/90 p-5 shadow-[var(--shadow-elegant)] transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-md dark:bg-card/90"
+                    className="rounded-xl border border-border/60 bg-card/80 p-5 shadow-[var(--shadow-elegant)] transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40"
                   >
                     <div>
-                      <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-background/90 ring-1 ring-border/40 dark:bg-muted">
+                      <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-md border border-border/60 bg-muted/40">
                         <Icon className="h-5 w-5 text-foreground" />
                       </div>
                       <h4 className="mb-2 text-base text-foreground">{service.name}</h4>

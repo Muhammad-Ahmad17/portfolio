@@ -65,7 +65,7 @@ export function Contact() {
   return (
     <section id="contact" className="py-24 lg:py-32 bg-background relative">
       {/* Subtle background */}
-      <div className="absolute inset-0 bg-dot-pattern opacity-20" />
+      <div className="absolute inset-0 bg-dot-pattern opacity-25" />
       
       <div className="container mx-auto px-6 lg:px-8 max-w-4xl relative">
         {/* Section Header */}
@@ -77,7 +77,7 @@ export function Contact() {
           className="mb-16 text-center"
         >
           <span className="section-heading block mb-4">Connect</span>
-          <h2 className="text-4xl md:text-5xl font-normal text-foreground mb-8">
+          <h2 className="text-4xl md:text-5xl font-normal text-primary mb-8 uppercase">
             Let's Connect
           </h2>
           <div className="w-16 h-px bg-border mx-auto mb-8" />
@@ -173,7 +173,7 @@ export function Contact() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <Card className="handcrafted-card border-border/30 bg-card/50">
+            <Card className="handcrafted-card">
               <CardContent className="p-8">
                 <h3 className="text-lg font-medium text-foreground mb-6">Send a Message</h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -188,7 +188,7 @@ export function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="bg-background border-border focus:border-foreground"
+                      className="bg-background/80 border-border focus:border-foreground"
                     />
                   </div>
 
@@ -204,7 +204,7 @@ export function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="bg-background border-border focus:border-foreground"
+                      className="bg-background/80 border-border focus:border-foreground"
                     />
                   </div>
 
@@ -219,7 +219,7 @@ export function Contact() {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="bg-background border-border focus:border-foreground"
+                      className="bg-background/80 border-border focus:border-foreground"
                     />
                   </div>
 
@@ -235,7 +235,7 @@ export function Contact() {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="bg-background border-border focus:border-foreground resize-none"
+                      className="bg-background/80 border-border focus:border-foreground resize-none"
                     />
                   </div>
 

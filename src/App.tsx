@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ColorProvider } from "@/components/ColorProvider";
 import { KonamiCode } from "@/components/KonamiCode";
+import { ScrollSmoother } from "@/components/ScrollSmoother";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import AboutPage from "./pages/AboutPage";
@@ -26,6 +27,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <KonamiCode />
+          <ScrollSmoother />
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />

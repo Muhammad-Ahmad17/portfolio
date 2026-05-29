@@ -131,7 +131,7 @@ export function TableOfContents({ content }: TableOfContentsProps) {
       if (isAbove || isBelow) {
         // Scroll the active element into view with some padding
         activeElement.scrollIntoView({
-          behavior: 'smooth',
+          behavior: 'auto',
           block: 'center'
         });
       }
@@ -145,7 +145,7 @@ export function TableOfContents({ content }: TableOfContentsProps) {
       const elementPosition = element.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({
         top: elementPosition - offset,
-        behavior: 'smooth'
+        behavior: 'auto'
       });
       setIsMobileOpen(false); // Close mobile drawer after click
     }

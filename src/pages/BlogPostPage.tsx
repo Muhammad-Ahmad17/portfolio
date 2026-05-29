@@ -131,7 +131,7 @@ const BlogPostPage = () => {
                 </div>
 
                 {/* Title */}
-                <h1 className="text-3xl md:text-4xl font-bold mb-4 text-foreground leading-tight">
+                <h1 className="text-3xl md:text-4xl font-bold mb-4 text-primary leading-tight">
                   {post.title}
                 </h1>
 
