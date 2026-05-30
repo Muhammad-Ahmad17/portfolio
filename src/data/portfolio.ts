@@ -35,10 +35,6 @@ export const portfolioData = {
     { href: "/contact", label: "Contact" }
   ] as const satisfies readonly NavItem[],
 
-  site: {
-    builtWithLabel: "Built with React, TypeScript & Tailwind CSS"
-  },
-
   sections: {
     about: {
       eyebrow: "About",

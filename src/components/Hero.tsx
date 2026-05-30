@@ -25,30 +25,27 @@ export function Hero() {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center bg-background pt-24 pb-16 overflow-hidden">
-      <div className="absolute inset-0 bg-dot-pattern opacity-35" />
+    <section className="relative isolate min-h-screen flex items-center bg-background pt-20 pb-28 md:pt-24 md:pb-16 overflow-hidden">
+      <div className="absolute inset-0 bg-dot-pattern pointer-events-none" aria-hidden="true" />
       <div className="absolute inset-0 bg-gradient-hero opacity-80" />
 
-      <div className="container mx-auto px-6 lg:px-8 relative z-10 max-w-6xl">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr,0.9fr]">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-6xl">
+        <div className="grid items-center gap-10 md:gap-12 md:grid-cols-[1.1fr,0.9fr]">
           <div className="space-y-8">
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="flex items-center gap-4"
+              className="flex flex-wrap items-center gap-3 sm:gap-4"
             >
               <span className="section-heading">Portfolio</span>
-              <span className="text-[10px] uppercase tracking-[0.35em] font-mono text-muted-foreground">
-                Signal
-              </span>
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-5xl sm:text-6xl lg:text-7xl text-primary uppercase"
+              className="text-4xl sm:text-5xl lg:text-7xl text-primary uppercase"
             >
               {portfolioData.personal.name}
             </motion.h1>
@@ -66,17 +63,17 @@ export function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
               <Button
                 onClick={() => navigate("/projects")}
-                className="btn-soft-filled group"
                 size="lg"
+                className="w-full sm:w-auto btn-soft-filled group"
               >
                 View My Work
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button variant="outline" asChild size="lg" className="btn-soft">
+              <Button variant="outline" asChild size="lg" className="w-full sm:w-auto btn-soft">
                 <a
                   href="/cv/Muhammad_Ahmad_Resume.pdf"
                   download="Muhammad_Ahmad_Resume.pdf"
@@ -87,22 +84,13 @@ export function Hero() {
               </Button>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="flex flex-wrap items-center gap-6 text-[10px] uppercase tracking-[0.3em] font-mono text-muted-foreground"
-            >
-              <span>{portfolioData.hero.availability.status}</span>
-              <span className="h-px w-12 bg-border/60" />
-              <span>Response {portfolioData.hero.availability.responseTime}</span>
-            </motion.div>
+            
 
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
-              className="flex gap-6 pt-2"
+              className="flex justify-center sm:justify-start gap-6 pt-2"
             >
               <a
                 href={portfolioData.social.github}
@@ -136,7 +124,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="terminal-card rounded-xl overflow-hidden"
+            className="terminal-card hidden md:block rounded-xl overflow-hidden"
           >
             <div className="terminal-header">
               <span>portfolio-runtime</span>
@@ -175,16 +163,36 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-12 grid grid-cols-1 gap-6 border-t border-border/60 pt-8 sm:grid-cols-3"
+          className="mt-10 border-t border-border/60 pt-8"
         >
-          {portfolioData.stats.map((stat) => (
-            <div key={stat.label} className="text-left">
-              <div className="stat-number text-foreground">{stat.value}</div>
-              <div className="text-[10px] text-muted-foreground tracking-[0.25em] uppercase mt-2 font-mono">
-                {stat.label}
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
+            <div className="flex flex-col items-center sm:items-start">
+              <div className="text-2xl sm:text-3xl font-semibold text-foreground">Open — Hire / Intern</div>
+                <div className="mt-2 flex items-center gap-2 justify-center sm:justify-start">
+                  <a href={`mailto:${portfolioData.personal.email}`} aria-label="Email" className="text-muted-foreground hover:text-foreground">
+                    <Mail className="w-4 h-4" />
+                  </a>
+                </div>
+            </div>
+
+            <div className="flex flex-col items-center sm:items-start">
+              <div className="text-2xl sm:text-3xl font-semibold text-foreground">
+                {portfolioData.personal.location}
+              </div>
+              <div className="text-[12px] text-muted-foreground uppercase tracking-[0.25em] mt-2 font-mono">
+                Location
               </div>
             </div>
-          ))}
+
+            <div className="flex flex-col items-center sm:items-start">
+              <div className="text-2xl sm:text-3xl font-semibold text-foreground">
+                Backend & DevOps
+              </div>
+              <div className="text-[12px] text-muted-foreground uppercase tracking-[0.25em] mt-2 font-mono">
+                Focus Areas
+              </div>
+            </div>
+          </div>
         </motion.div>
       </div>
 
@@ -192,7 +200,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.5 }}
         transition={{ delay: 1, duration: 0.6 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2"
+        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 sm:block"
       >
         <div className="flex flex-col items-center gap-3 text-[10px] uppercase tracking-[0.35em] font-mono text-muted-foreground">
           <span>Scroll</span>

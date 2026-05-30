@@ -30,8 +30,6 @@ export function Projects() {
       id="projects"
       className="relative bg-background py-24 lg:py-32"
     >
-      <div className="pointer-events-none absolute inset-0 bg-dot-pattern opacity-[0.18]" />
-
       <div className="relative container mx-auto max-w-5xl px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -59,17 +57,14 @@ export function Projects() {
               <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-primary/80 via-primary/20 to-transparent" />
 
               <div className="flex flex-col md:flex-row">
-                <div className="relative hidden w-[min(120px,18%)] shrink-0 border-r border-border/40 bg-muted/30 md:flex md:flex-col md:items-center md:justify-center md:py-10">
-                  <span className="font-mono text-3xl font-light text-muted-foreground/60">
+                <div className="relative flex w-16 md:w-[min(120px,18%)] shrink-0 border-r border-border/40 bg-muted/30 items-center justify-center py-4 md:flex-col md:py-10">
+                  <span className="font-mono text-xl md:text-3xl font-light text-muted-foreground/60">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                 </div>
 
                 <div className="min-w-0 flex-1 p-6 md:p-8 md:pl-8">
                   <div className="mb-4 flex flex-wrap items-start gap-3">
-                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border/60 bg-muted/40 font-mono text-xs text-muted-foreground md:hidden">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
                     <div className="min-w-0 flex-1">
                       <div className="mb-2 flex flex-wrap items-center gap-3">
                         <h3 className="text-xl text-foreground">{project.title}</h3>

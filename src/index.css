@@ -50,7 +50,8 @@
     --shadow-glow: 0 0 40px hsl(29 71% 41% / 0.18);
 
     --grid: 40 19% 81%;
-    --dot: 40 19% 81%;
+    --dot: 32 18% 42%;
+    --dot-opacity: 0.14;
     --terminal: 36 28% 7%;
     --terminal-foreground: 39 46% 93%;
   }
@@ -93,7 +94,8 @@
     --shadow-glow: 0 0 40px hsl(29 71% 41% / 0.22);
 
     --grid: 32 18% 24%;
-    --dot: 32 18% 32%;
+    --dot: 32 14% 74%;
+    --dot-opacity: 0.15;
     --terminal: 36 28% 7%;
     --terminal-foreground: 39 46% 93%;
   }
@@ -144,7 +146,7 @@
   }
 
   .bg-dot-pattern {
-    background-image: radial-gradient(circle, hsl(var(--dot) / 0.9) 1.4px, transparent 1.4px);
+    background-image: radial-gradient(circle, hsl(var(--dot) / var(--dot-opacity)) 1.6px, transparent 1.6px);
     background-size: 24px 24px;
   }
 }

@@ -64,9 +64,6 @@ export function Contact() {
 
   return (
     <section id="contact" className="py-24 lg:py-32 bg-background relative">
-      {/* Subtle background */}
-      <div className="absolute inset-0 bg-dot-pattern opacity-25" />
-      
       <div className="container mx-auto px-6 lg:px-8 max-w-4xl relative">
         {/* Section Header */}
         <motion.div

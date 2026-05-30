@@ -23,8 +23,6 @@ export function Skills() {
 
   return (
     <section id="skills" className="relative bg-background py-24 lg:py-32">
-      <div className="absolute inset-0 bg-dot-pattern opacity-25" />
-
       <div className="relative container mx-auto max-w-5xl px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

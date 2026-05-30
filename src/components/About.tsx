@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
-import { Code, Cloud, Lightbulb, Database, Microchip } from "lucide-react";
+import { Code, Cloud, Lightbulb, Database, Microchip, Mail } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const serviceIcons = {
   code: Code,
@@ -13,8 +14,6 @@ const serviceIcons = {
 export function About() {
   return (
     <section id="about" className="py-24 lg:py-32 bg-background relative">
-      <div className="absolute inset-0 bg-dot-pattern opacity-25" />
-
       <div className="container mx-auto px-6 lg:px-8 max-w-5xl relative">
         {/* Section Header */}
         <motion.div
@@ -42,14 +41,26 @@ export function About() {
             className="lg:col-span-5"
           >
             <div className="flex items-center gap-4 mb-6">
-              <div className="graphic-container">
-                <img src="/graphics/graduation-cap.png" alt="" className="graphic-icon" />
+              <div className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-semibold text-primary">
+                {portfolioData.personal.name.split(" ").map((n) => n[0]).slice(0, 2).join("")}
               </div>
-              <h3 className="text-xl text-foreground">{portfolioData.about.journeyTitle}</h3>
+              <div>
+                <h3 className="text-xl text-foreground">{portfolioData.about.journeyTitle}</h3>
+                <div className="text-sm text-muted-foreground">{portfolioData.personal.title}</div>
+              </div>
             </div>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>{portfolioData.personal.bio}</p>
               <p>{portfolioData.about.secondaryBio}</p>
+            </div>
+
+            <div className="mt-6">
+              <Button asChild className="btn-soft">
+                <a href={`mailto:${portfolioData.personal.email}`}>
+                  <Mail className="mr-2 h-4 w-4" />
+                  Contact
+                </a>
+              </Button>
             </div>
 
             {/* Quote */}
