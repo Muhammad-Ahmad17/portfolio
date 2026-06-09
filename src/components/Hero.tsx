@@ -12,58 +12,118 @@ export function Hero() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % expertiseItems.length);
-    }, 3000);
+      setCurrentIndex((prev) => (prev + 1) % skillsItems.length);
+    }, 3500);
     return () => clearInterval(interval);
-  }, [expertiseItems.length]);
+  }, []);
+
+  const skillsItems = [
+    "Learning Backend Development with Node.js",
+    "Exploring DevOps & Cloud Infrastructure",
+    "Building Scalable Database Systems",
+    "Mastering Docker & Kubernetes",
+  ];
 
   const terminalLines = [
-    "booting portfolio",
-    `name: ${portfolioData.personal.name}`,
-    `title: ${portfolioData.personal.title}`,
-    `location: ${portfolioData.personal.location}`,
+    "portfolio-shell v2.0.0 initialized",
+    `$ whoami`,
+    `> Full Stack Developer`,
+    `$ skills --list`,
   ];
 
   return (
-    <section className="relative isolate min-h-screen flex items-center bg-background pt-20 pb-28 md:pt-24 md:pb-16 overflow-hidden">
+    <section className="relative isolate min-h-screen flex flex-col justify-center bg-background pt-20 pb-20 md:pt-20 md:pb-20 overflow-hidden">
       <div className="absolute inset-0 bg-dot-pattern pointer-events-none" aria-hidden="true" />
       <div className="absolute inset-0 bg-gradient-hero opacity-80" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-6xl">
-        <div className="grid items-center gap-10 md:gap-12 md:grid-cols-[1.1fr,0.9fr]">
-          <div className="space-y-8">
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-wrap items-center gap-3 sm:gap-4"
-            >
-              <span className="section-heading">Portfolio</span>
-            </motion.div>
+        {/* Header with context info */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-8 md:mb-4"
+        >
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <span className="section-heading">Portfolio</span>
+            <div className="flex items-center gap-4 text-sm">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <span className="text-muted-foreground">{portfolioData.hero.availability.status}</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
 
-            <motion.h1
+        {/* Main content grid */}
+        <div className="grid items-center gap-12 lg:gap-16 lg:grid-cols-[1.2fr,1fr]">
+          {/* Left: Primary content */}
+          <div className="space-y-6 md:space-y-8">
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-7xl text-primary uppercase"
+              className="space-y-3"
             >
-              {portfolioData.personal.name}
-            </motion.h1>
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl text-primary uppercase leading-tight">
+                {portfolioData.personal.name}
+              </h1>
+              <p className="text-lg sm:text-xl text-muted-foreground">
+                {portfolioData.personal.title}
+              </p>
+            </motion.div>
 
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-lg sm:text-xl text-muted-foreground max-w-xl"
+              className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl h-8"
             >
-              {portfolioData.personal.title} | {portfolioData.personal.tagline}
-            </motion.p>
+              <AnimatePresence mode="sync">
+                <motion.div
+                  key={currentIndex}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute"
+                >
+                  {skillsItems[currentIndex]}
+                </motion.div>
+              </AnimatePresence>
+            </motion.div>
 
+            {/* Info grid - repositioned and redesigned */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
+              className="grid grid-cols-2 gap-4 sm:gap-6 py-4"
+            >
+              <div className="space-y-1">
+                <div className="text-[11px] uppercase tracking-[0.2em] font-mono text-muted-foreground">
+                  Location
+                </div>
+                <div className="text-base sm:text-lg font-semibold text-foreground">
+                  {portfolioData.personal.location}
+                </div>
+              </div>
+              <div className="space-y-1">
+                <div className="text-[11px] uppercase tracking-[0.2em] font-mono text-muted-foreground">
+                  Focus
+                </div>
+                <div className="text-base sm:text-lg font-semibold text-foreground">
+                  Backend & DevOps
+                </div>
+              </div>
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2"
             >
               <Button
                 onClick={() => navigate("/projects")}
@@ -84,118 +144,98 @@ export function Hero() {
               </Button>
             </motion.div>
 
-            
-
+            {/* Social links and availability */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
-              className="flex justify-center sm:justify-start gap-6 pt-2"
+              className="flex flex-col sm:flex-row sm:items-center gap-6 pt-4"
             >
-              <a
-                href={portfolioData.social.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="GitHub"
-              >
-                <Github className="w-5 h-5" />
-              </a>
-              <a
-                href={portfolioData.social.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a
-                href={`mailto:${portfolioData.personal.email}`}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="Email"
-              >
-                <Mail className="w-5 h-5" />
-              </a>
+              <div className="flex gap-6">
+                <a
+                  href={portfolioData.social.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label="GitHub"
+                >
+                  <Github className="w-5 h-5" />
+                </a>
+                <a
+                  href={portfolioData.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </a>
+                <a
+                  href={`mailto:${portfolioData.personal.email}`}
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label="Email"
+                >
+                  <Mail className="w-5 h-5" />
+                </a>
+              </div>
+              <div className="text-sm text-muted-foreground font-mono">
+                Open for Hire / Intern
+              </div>
             </motion.div>
           </div>
 
+          {/* Right: Terminal card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="terminal-card hidden md:block rounded-xl overflow-hidden"
+            className="terminal-card hidden lg:block rounded-xl overflow-hidden"
           >
             <div className="terminal-header">
-              <span>portfolio-runtime</span>
+              <span>portfolio-shell</span>
               <span className="text-primary">READY</span>
             </div>
             <div className="p-5 space-y-2">
-              {terminalLines.map((line) => (
-                <div key={line} className="terminal-line">
-                  <span className="terminal-prompt">&gt;</span>
-                  <span>{line}</span>
-                </div>
-              ))}
+              <div className="terminal-line">
+                <span className="terminal-prompt">&gt;</span>
+                <span>portfolio-shell v2.0.0 initialized</span>
+              </div>
+              <div className="terminal-line">
+                <span className="terminal-prompt">$</span>
+                <span>whoami</span>
+              </div>
+              <div className="terminal-line">
+                <span className="terminal-prompt">&gt;</span>
+                <span>Full Stack Developer</span>
+              </div>
+              <div className="terminal-line">
+                <span className="terminal-prompt">$</span>
+                <span>skills --list</span>
+              </div>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentIndex}
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.4 }}
+                  transition={{ duration: 0.25 }}
                   className="terminal-line"
                 >
                   <span className="terminal-prompt">&gt;</span>
-                  <span>focus: {expertiseItems[currentIndex]}</span>
+                  <span className="text-primary font-semibold">{skillsItems[currentIndex]}</span>
                 </motion.div>
               </AnimatePresence>
               <div className="terminal-line">
                 <span className="terminal-prompt">&gt;</span>
-                <span>status: {portfolioData.hero.availability.status}</span>
+                <span>🚀 Ready to ship</span>
                 <span className="terminal-cursor" />
               </div>
             </div>
           </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-10 border-t border-border/60 pt-8"
-        >
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
-            <div className="flex flex-col items-center sm:items-start">
-              <div className="text-2xl sm:text-3xl font-semibold text-foreground">Open — Hire / Intern</div>
-                <div className="mt-2 flex items-center gap-2 justify-center sm:justify-start">
-                  <a href={`mailto:${portfolioData.personal.email}`} aria-label="Email" className="text-muted-foreground hover:text-foreground">
-                    <Mail className="w-4 h-4" />
-                  </a>
-                </div>
-            </div>
-
-            <div className="flex flex-col items-center sm:items-start">
-              <div className="text-2xl sm:text-3xl font-semibold text-foreground">
-                {portfolioData.personal.location}
-              </div>
-              <div className="text-[12px] text-muted-foreground uppercase tracking-[0.25em] mt-2 font-mono">
-                Location
-              </div>
-            </div>
-
-            <div className="flex flex-col items-center sm:items-start">
-              <div className="text-2xl sm:text-3xl font-semibold text-foreground">
-                Backend & DevOps
-              </div>
-              <div className="text-[12px] text-muted-foreground uppercase tracking-[0.25em] mt-2 font-mono">
-                Focus Areas
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
 
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.5 }}
