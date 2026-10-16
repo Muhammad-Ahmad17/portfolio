@@ -38,17 +38,16 @@ export default function Services() {
         <Stacked className={reduced ? "" : "lg:hidden"} />
       </section>
 
-      <WaveDivider seed={4} className="py-4" />
-
-      <section className="px-6 py-20 md:px-10 lg:px-14">
-        <div className="mx-auto max-w-[1400px]">
+      <section className="border-t border-regal/15 bg-chiffon-light">
+        <WaveDivider seed={4} className="py-4" />
+        <div className="mx-auto max-w-[1400px] px-6 pb-20 pt-10 md:px-10 lg:px-14">
           <Rise>
             <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-redmark">Process</p>
             <h2 className="mt-3 font-serif text-4xl md:text-5xl">Four steps, no surprises.</h2>
           </Rise>
           <ol className="mt-10 grid gap-px bg-regal/15 sm:grid-cols-2 lg:grid-cols-4">
             {freelance.process.map((item, index) => (
-              <Rise key={item.step} as="li" delay={index * 0.06} className="bg-chiffon px-5 py-8">
+              <Rise key={item.step} as="li" delay={index * 0.06} className="bg-chiffon-light px-5 py-8">
                 <p className="font-mono text-[11px] text-redmark">0{index + 1}</p>
                 <h3 className="mt-4 font-serif text-3xl">{item.step}</h3>
                 <p className="mt-3 text-sm leading-relaxed opacity-75">{item.text}</p>

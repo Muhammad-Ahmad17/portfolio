@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { freelance } from "@/data/freelance";
 import { person } from "@/data/person";
-import { CurtainSection } from "@/motion/CurtainSection";
 import { MagneticLink } from "@/motion/MagneticLink";
 import { Rise } from "@/motion/Rise";
 import { StrokeDraw } from "@/motion/StrokeDraw";
@@ -15,7 +14,7 @@ export function CtaBand({ title = "Have a store, an API, or a payment flow to bu
   const meeting = freelance.meeting;
 
   return (
-    <CurtainSection curtain="chiffon" className="on-red border-t border-chiffon/25 bg-redmark px-6 py-24 text-chiffon md:px-10 lg:px-14">
+    <section className="on-red border-t border-chiffon/25 bg-redmark px-6 py-24 text-chiffon md:px-10 lg:px-14">
       <div className="mx-auto max-w-[1400px]">
         <Rise>
           <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-chiffon/75">Start a project</p>
@@ -52,6 +51,6 @@ export function CtaBand({ title = "Have a store, an API, or a payment flow to bu
           </div>
         </Rise>
       </div>
-    </CurtainSection>
+    </section>
   );
 }

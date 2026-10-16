@@ -40,10 +40,10 @@ export function SectionFrame({ tone, section, items, cross, footnote }: SectionF
 
   const bar = academic ? "on-navy border-chiffon/20 bg-regal text-chiffon" : "on-red border-chiffon/25 bg-redmark text-chiffon";
   const hover = "hover:opacity-70";
-  /* The header runs in the contrasting colour: navy ink on the red frame. The footer keeps chiffon. */
-  const headerBar = academic ? bar : "on-red border-navy/30 bg-redmark text-navy";
-  /* The active link is a chip in the contrasting colour: red on the navy frame, navy on the red one. */
-  const active = academic ? "bg-crimson text-cream" : "bg-navy text-cream";
+  /* The header takes the contrasting colour of its room: red over the navy academic pages, navy over the red freelance ones. */
+  const headerBar = academic ? "on-red border-chiffon/25 bg-redmark text-chiffon" : "on-navy border-chiffon/20 bg-regal text-chiffon";
+  /* The active link is a chip in the colour of the room: navy on the red header, red on the navy one. */
+  const active = academic ? "bg-navy text-cream" : "bg-crimson text-cream";
 
   return (
     <div className="flex min-h-[100dvh] flex-col bg-chiffon text-regal">
