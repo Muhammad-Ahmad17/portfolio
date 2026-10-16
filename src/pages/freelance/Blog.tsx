@@ -52,13 +52,13 @@ export default function Blog() {
       />
       <div className="px-6 pb-16 md:px-10 lg:px-14">
         <div className="mx-auto max-w-[1400px]">
-          <div className="flex flex-col gap-6 border-b border-chiffon/20 py-6 md:flex-row md:items-end md:justify-between">
+          <div className="flex flex-col gap-6 border-b border-regal/15 py-6 md:flex-row md:items-end md:justify-between">
             <input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search notes"
               aria-label="Search notes"
-              className="w-full border-b border-chiffon/30 bg-transparent py-2 font-mono text-sm outline-none placeholder:text-chiffon/50 md:max-w-xs"
+              className="w-full border-b border-regal/30 bg-transparent py-2 font-mono text-sm outline-none placeholder:text-regal/50 md:max-w-xs"
             />
             <div className="flex flex-wrap gap-x-4 gap-y-2">
               <button
@@ -89,7 +89,7 @@ export default function Blog() {
 
           <ul>
             {visible.map((post) => (
-              <li key={post.slug} className="border-b border-chiffon/20">
+              <li key={post.slug} className="border-b border-regal/15">
                 <Link to={`/freelance/blog/${post.slug}`} className="group grid gap-3 py-8 md:grid-cols-12 md:items-baseline">
                   <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-redmark md:col-span-3">
                     {formatDate(post.date)}

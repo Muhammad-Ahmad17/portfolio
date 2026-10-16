@@ -54,7 +54,7 @@ export function DeskDrawing({ className }: { className?: string }) {
           <P d={handCircle(118, 78, 5, 10)} progress={p} from={0.19} to={0.26} width={1.2} />
           <P d={handRect(146, 68, 280, 20, 11, 0.6, 1)} progress={p} from={0.2} to={0.3} width={1.2} />
           <P d={handRect(84, 120, 150, 150, 12)} progress={p} from={0.25} to={0.42} />
-          <P d={productCross} progress={p} from={0.3} to={0.5} width={1} className="text-regal/70" />
+          <P d={productCross} progress={p} from={0.3} to={0.5} width={1} className="text-navy/70" />
           <P d={textLines} progress={p} from={0.35} to={0.52} width={1.3} />
           <T x={258} y={216} progress={p} from={0.5} to={0.6} size={14} anchor="start" className="text-chiffon">
             $349
@@ -73,17 +73,17 @@ export function DeskDrawing({ className }: { className?: string }) {
           {/* Payment card */}
           <g transform="rotate(-5 380 430)">
             <P d={handRect(262, 366, 236, 140, 80)} progress={p} from={0.42} to={0.66} />
-            <P d={handRect(282, 386, 40, 30, 81, 0.6)} progress={p} from={0.55} to={0.66} width={1.3} className="text-regal" />
-            <P d={handLine(282, 401, 322, 401, 82, 0.4, 0)} progress={p} from={0.6} to={0.68} width={1} className="text-regal" />
-            <P d={handLine(262, 436, 498, 436, 83, 0.6, 0)} progress={p} from={0.58} to={0.7} width={5} className="text-regal/60" />
+            <P d={handRect(282, 386, 40, 30, 81, 0.6)} progress={p} from={0.55} to={0.66} width={1.3} className="text-navy" />
+            <P d={handLine(282, 401, 322, 401, 82, 0.4, 0)} progress={p} from={0.6} to={0.68} width={1} className="text-navy" />
+            <P d={handLine(262, 436, 498, 436, 83, 0.6, 0)} progress={p} from={0.58} to={0.7} width={5} className="text-navy/60" />
             <P d={cardNumber} progress={p} from={0.62} to={0.75} width={1.3} />
-            <P d={handCircle(462, 388, 10, 84)} progress={p} from={0.65} to={0.72} width={1.3} className="text-regal" />
-            <P d={handCircle(476, 388, 10, 85)} progress={p} from={0.67} to={0.74} width={1.3} className="text-regal" />
+            <P d={handCircle(462, 388, 10, 84)} progress={p} from={0.65} to={0.72} width={1.3} className="text-navy" />
+            <P d={handCircle(476, 388, 10, 85)} progress={p} from={0.67} to={0.74} width={1.3} className="text-navy" />
           </g>
 
           {/* Wiring */}
-          <P d={wire} progress={p} from={0.65} to={0.8} width={1.6} className="text-regal" />
-          <P d={handLine(318, 266, 330, 360, 90, 1, 0)} progress={p} from={0.7} to={0.85} width={1.4} className="text-regal" dash="4 6" />
+          <P d={wire} progress={p} from={0.65} to={0.8} width={1.6} className="text-navy" />
+          <P d={handLine(318, 266, 330, 360, 90, 1, 0)} progress={p} from={0.7} to={0.85} width={1.4} className="text-navy" dash="4 6" />
 
           {/* Braces */}
           <P d={braceL} progress={p} from={0.75} to={0.9} width={1.8} />
@@ -92,7 +92,7 @@ export function DeskDrawing({ className }: { className?: string }) {
             api
           </T>
 
-          <g className="text-regal">
+          <g className="text-navy">
             <Pulse path={wire} dur={1.6} begin={4.4} />
           </g>
         </g>

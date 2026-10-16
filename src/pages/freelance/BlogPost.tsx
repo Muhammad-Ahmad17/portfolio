@@ -69,7 +69,7 @@ export default function BlogPost() {
         </div>
       </header>
       <article className="px-6 py-14 md:px-10 lg:px-14">
-        <div className="mx-auto max-w-[860px] text-[17px] leading-[1.7] [&_a]:text-[#ee6a60] [&_a]:underline [&_a]:decoration-[#ee6a60]/40 [&_a]:underline-offset-4 [&_blockquote]:border-l [&_blockquote]:border-[#ee6a60] [&_blockquote]:pl-4 [&_blockquote]:italic [&_h2]:mt-12 [&_h2]:font-serif [&_h2]:text-4xl [&_h2]:font-normal [&_h2]:leading-tight [&_h3]:mt-8 [&_h3]:font-serif [&_h3]:text-2xl [&_h3]:font-normal [&_li]:mt-1 [&_ol]:mt-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:mt-4 [&_pre]:mt-6 [&_pre]:overflow-x-auto [&_pre]:border [&_pre]:border-chiffon/20 [&_pre]:bg-regal-deep [&_pre]:p-4 [&_pre]:text-sm [&_pre]:text-chiffon [&_ul]:mt-4 [&_ul]:list-disc [&_ul]:pl-5">
+        <div className="mx-auto max-w-[860px] text-[17px] leading-[1.7] [&_a]:text-redmark [&_a]:underline [&_a]:decoration-redmark/40 [&_a]:underline-offset-4 [&_blockquote]:border-l [&_blockquote]:border-redmark [&_blockquote]:pl-4 [&_blockquote]:italic [&_h2]:mt-12 [&_h2]:font-serif [&_h2]:text-4xl [&_h2]:font-normal [&_h2]:leading-tight [&_h3]:mt-8 [&_h3]:font-serif [&_h3]:text-2xl [&_h3]:font-normal [&_li]:mt-1 [&_ol]:mt-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:mt-4 [&_pre]:mt-6 [&_pre]:overflow-x-auto [&_pre]:border [&_pre]:border-chiffon/20 [&_pre]:bg-regal [&_pre]:p-4 [&_pre]:text-sm [&_pre]:text-chiffon [&_ul]:mt-4 [&_ul]:list-disc [&_ul]:pl-5">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeHighlight]}
@@ -81,7 +81,7 @@ export default function BlogPost() {
               ),
               code: ({ className, children }) => {
                 if (className) return <code className={className}>{children}</code>;
-                return <code className="bg-regal-deep px-1 py-0.5 text-chiffon font-mono text-[0.9em]">{children}</code>;
+                return <code className="bg-regal px-1 py-0.5 text-chiffon font-mono text-[0.9em]">{children}</code>;
               },
             }}
           >

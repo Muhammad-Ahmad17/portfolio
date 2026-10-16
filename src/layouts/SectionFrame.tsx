@@ -39,12 +39,12 @@ export function SectionFrame({ tone, section, items, cross, footnote }: SectionF
     window.scrollTo(0, 0);
   }, [pathname, hash]);
 
-  const bar = academic ? "border-regal/15 bg-chiffon text-regal" : "on-red border-chiffon/25 bg-redmark text-chiffon";
-  const hover = academic ? "hover:text-redmark" : "hover:opacity-70";
+  const bar = academic ? "on-navy border-chiffon/20 bg-regal text-chiffon" : "on-red border-chiffon/25 bg-redmark text-chiffon";
+  const hover = "hover:opacity-70";
   const active = academic ? "text-redmark" : "";
 
   return (
-    <div className={cn("flex min-h-[100dvh] flex-col", academic ? "bg-chiffon text-regal" : "on-navy bg-regal text-chiffon")}>
+    <div className="flex min-h-[100dvh] flex-col bg-chiffon text-regal">
       <a
         href="#content"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[90] focus:bg-chiffon focus:px-3 focus:py-2 focus:text-navy"

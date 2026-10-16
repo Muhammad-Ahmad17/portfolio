@@ -40,7 +40,7 @@ export default function Contact() {
         </section>
       </FullScreenReveal>
 
-      <CurtainSection curtain="red" className="bg-regal px-6 py-20 md:px-10 lg:px-14">
+      <CurtainSection curtain="warm" className="px-6 py-20 md:px-10 lg:px-14">
         <div className="mx-auto max-w-[1400px]">
           <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {[
@@ -48,14 +48,14 @@ export default function Contact() {
               ["Phone", person.phone],
               ["Status", freelance.availability],
             ].map(([label, value], index) => (
-              <Rise key={label} delay={index * 0.06} className="border-t border-chiffon/20 pt-5">
+              <Rise key={label} delay={index * 0.06} className="border-t border-regal/15 pt-5">
                 <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-redmark">{label}</dt>
                 <dd className="mt-2 font-serif text-3xl">{value}</dd>
               </Rise>
             ))}
           </dl>
 
-          <ul className="mt-14 flex flex-wrap gap-x-10 gap-y-4 border-t border-chiffon/20 pt-8">
+          <ul className="mt-14 flex flex-wrap gap-x-10 gap-y-4 border-t border-regal/15 pt-8">
             {links.map((link) => (
               <li key={link.label}>
                 <MagneticLink href={link.href} className="font-mono text-[12px] uppercase tracking-[0.18em]">
@@ -67,7 +67,7 @@ export default function Contact() {
         </div>
       </CurtainSection>
 
-      <CurtainSection curtain="red" className="border-t border-chiffon/15 bg-regal-deep px-6 py-24 text-chiffon md:px-10 lg:px-14">
+      <CurtainSection curtain="red" className="border-t border-chiffon/15 bg-regal px-6 py-24 text-chiffon md:px-10 lg:px-14">
         <div className="mx-auto grid max-w-[1400px] gap-10 lg:grid-cols-12 lg:items-end">
           <Rise className="lg:col-span-8">
             <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-redmark">{freelance.meeting.label}</p>

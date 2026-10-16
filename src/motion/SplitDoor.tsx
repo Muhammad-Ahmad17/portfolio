@@ -45,7 +45,7 @@ export function SplitDoor() {
         copy="The degree. Hardware, systems, and the record of study at COMSATS Lahore."
         action="Open the record"
         meta="Muhammad Ahmad"
-        className="bg-chiffon text-regal"
+        className="on-navy bg-regal text-chiffon"
         accent="text-redmark"
         seam
         onEnter={() => fine && setHover("academic")}
@@ -73,7 +73,7 @@ export function SplitDoor() {
         {leaving && (
           <motion.div
             key={leaving}
-            className={cn("fixed inset-0 z-50", leaving === "academic" ? "bg-chiffon" : "bg-redmark")}
+            className={cn("fixed inset-0 z-50", leaving === "academic" ? "bg-regal" : "bg-redmark")}
             initial={{ y: "100%" }}
             animate={{ y: "0%" }}
             transition={{ duration: 0.72, ease: curtain }}

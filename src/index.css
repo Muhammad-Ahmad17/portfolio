@@ -53,16 +53,6 @@
     scroll-behavior: smooth;
   }
 
-  /* The freelance room is navy: paint the canvas behind it (overscroll, scrollbar gutters) to match. */
-  html:has(body[data-tone="freelance"]) {
-    background-color: #0d3b66;
-    color-scheme: dark;
-  }
-
-  body[data-tone="freelance"] {
-    @apply bg-regal text-chiffon;
-  }
-
   body {
     @apply bg-chiffon text-regal antialiased;
     font-family: "Plus Jakarta Sans", system-ui, sans-serif;
@@ -113,18 +103,14 @@
     background-size: 128px 128px;
   }
 
-  /* Red fields: chiffon focus rings and navy selection so nothing disappears. */
+  /*
+    Frames. Academic wraps its pages in navy (header, hero, footer) and freelance in
+    red; the content between them is lemon chiffon with navy ink. The helpers below
+    keep ink and accents readable on the dark fields.
+  */
+  /* Navy and red fields: ink is chiffon, accents lift or flip so nothing disappears. */
+  .on-navy :focus-visible,
   .on-red :focus-visible {
-    outline-color: #faf0ca;
-  }
-
-  .on-red ::selection {
-    background: #0d3b66;
-    color: #faf0ca;
-  }
-
-  /* Navy fields: ink flips to chiffon, and red lifts a little so it stays readable. */
-  .on-navy :focus-visible {
     outline-color: #faf0ca;
   }
 
@@ -133,37 +119,92 @@
     color: #faf0ca;
   }
 
-  .on-navy .text-regal {
+  .on-red ::selection {
+    background: #0d3b66;
     color: #faf0ca;
   }
 
-  .on-navy [class*="text-regal/"] {
+  .on-navy .text-regal,
+  .on-red .text-regal {
+    color: #faf0ca;
+  }
+
+  .on-navy [class*="text-regal/"],
+  .on-red [class*="text-regal/"] {
     color: rgb(250 240 202 / 0.6);
   }
 
-  .on-navy .text-redmark {
-    color: #ee6a60;
-  }
-
-  .on-navy [class*="border-regal/"] {
+  .on-navy [class*="border-regal"],
+  .on-red [class*="border-regal"] {
     border-color: rgb(250 240 202 / 0.22);
   }
 
-  .on-navy [class*="bg-regal/"] {
+  .on-navy [class*="bg-regal/"],
+  .on-red [class*="bg-regal/"] {
     background-color: rgb(250 240 202 / 0.16);
   }
 
+  .on-navy .text-redmark,
   .on-navy .hover\:text-redmark:hover,
   .on-navy .group:hover .group-hover\:text-redmark {
     color: #ee6a60;
   }
 
-  /* Red bands sitting inside a navy page: red ink would vanish, so it turns chiffon. */
   .on-red .text-redmark,
   .on-red .hover\:text-redmark:hover,
   .on-red .group:hover .group-hover\:text-redmark {
     color: #faf0ca;
   }
+
+  /* Drawings on red: accent strokes turn navy, accent labels stay chiffon. */
+  .on-red svg .text-redmark {
+    color: #0d3b66;
+  }
+
+  .on-red svg text.text-redmark {
+    color: #faf0ca;
+  }
+
+  /* Navy bands anywhere (including inside the red room) behave like navy fields. */
+  .bg-regal :focus-visible,
+  .bg-regal-deep :focus-visible {
+    outline-color: #faf0ca;
+  }
+
+  .bg-regal .text-regal,
+  .bg-regal-deep .text-regal {
+    color: #faf0ca;
+  }
+
+  .bg-regal [class*="text-regal/"],
+  .bg-regal-deep [class*="text-regal/"] {
+    color: rgb(250 240 202 / 0.6);
+  }
+
+  .bg-regal [class*="border-regal"],
+  .bg-regal-deep [class*="border-regal"] {
+    border-color: rgb(250 240 202 / 0.22);
+  }
+
+  .bg-regal [class*="bg-regal/"],
+  .bg-regal-deep [class*="bg-regal/"] {
+    background-color: rgb(250 240 202 / 0.16);
+  }
+
+  .bg-regal .text-redmark,
+  .bg-regal-deep .text-redmark,
+  .bg-regal .hover\:text-redmark:hover,
+  .bg-regal-deep .hover\:text-redmark:hover,
+  .bg-regal .group:hover .group-hover\:text-redmark,
+  .bg-regal-deep .group:hover .group-hover\:text-redmark {
+    color: #ee6a60;
+  }
+
+  .bg-regal svg .text-redmark,
+  .bg-regal-deep svg .text-redmark {
+    color: #ee6a60;
+  }
+
 }
 
 @layer utilities {

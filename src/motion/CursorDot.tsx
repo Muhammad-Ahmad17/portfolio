@@ -26,7 +26,7 @@ export function CursorDot() {
   return (
     <motion.div
       aria-hidden="true"
-      className="pointer-events-none fixed left-0 top-0 z-[80] h-1.5 w-1.5 bg-regal"
+      className="pointer-events-none fixed left-0 top-0 z-[80] h-1.5 w-1.5 bg-cream mix-blend-difference"
       style={{ x: springX, y: springY, translateX: "-50%", translateY: "-50%" }}
     />
   );

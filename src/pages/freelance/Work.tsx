@@ -31,7 +31,7 @@ export default function Work() {
         </div>
       </div>
 
-      <CurtainSection curtain="red" className="border-t border-chiffon/15 bg-regal-deep px-6 py-20 text-chiffon md:px-10 lg:px-14">
+      <CurtainSection curtain="red" className="border-t border-chiffon/15 bg-regal px-6 py-20 text-chiffon md:px-10 lg:px-14">
         <div className="mx-auto grid max-w-[1400px] gap-10 md:grid-cols-12">
           <Rise className="md:col-span-3">
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-redmark">Employment</p>
@@ -57,14 +57,14 @@ export default function Work() {
         </div>
       </CurtainSection>
 
-      <CurtainSection curtain="red" className="border-t border-chiffon/15 bg-regal px-6 py-20 md:px-10 lg:px-14">
+      <CurtainSection curtain="warm" className="border-t border-regal/15 px-6 py-20 md:px-10 lg:px-14">
         <div className="mx-auto grid max-w-[1400px] gap-10 md:grid-cols-12">
           <Rise className="md:col-span-3">
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-redmark">Tools on this side</p>
           </Rise>
           <ul className="grid gap-x-10 sm:grid-cols-2 md:col-span-9">
             {freelance.skills.map((item, index) => (
-              <Rise key={item.name} as="li" delay={(index % 4) * 0.04} className="flex items-baseline justify-between gap-4 border-t border-chiffon/15 py-3">
+              <Rise key={item.name} as="li" delay={(index % 4) * 0.04} className="flex items-baseline justify-between gap-4 border-t border-regal/15 py-3">
                 <span className="text-sm">
                   <span className="mr-3 font-mono text-[11px] text-redmark">{String(index + 1).padStart(2, "0")}</span>
                   {item.name}

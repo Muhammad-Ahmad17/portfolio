@@ -24,9 +24,9 @@ export default function Overview() {
   return (
     <>
       <FullScreenReveal>
-        <section className="relative min-h-[calc(100dvh-4.25rem)] overflow-hidden">
+        <section className="on-navy relative min-h-[calc(100dvh-4.25rem)] overflow-hidden bg-regal text-chiffon">
           <div className="pointer-events-none absolute inset-0">
-            <CircuitField />
+            <CircuitField ink="250, 240, 202" accent="238, 106, 96" />
           </div>
           <div className="relative mx-auto grid min-h-[calc(100dvh-4.25rem)] max-w-[1500px] gap-10 px-6 py-10 md:px-10 lg:grid-cols-12 lg:px-14">
             <div className="flex flex-col justify-between gap-12 lg:col-span-7">
@@ -50,7 +50,7 @@ export default function Overview() {
                     href={academic.github}
                     target="_blank"
                     rel="noreferrer"
-                    className="border border-regal px-6 py-3.5 font-mono text-[12px] uppercase tracking-[0.2em] transition-colors hover:bg-regal hover:text-chiffon"
+                    className="border border-chiffon/60 px-6 py-3.5 font-mono text-[12px] uppercase tracking-[0.2em] transition-colors hover:bg-chiffon hover:text-navy"
                   >
                     GitHub ↗
                   </a>

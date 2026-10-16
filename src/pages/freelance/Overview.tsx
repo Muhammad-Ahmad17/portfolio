@@ -85,16 +85,16 @@ export default function Overview() {
         </section>
       </FullScreenReveal>
 
-      <MarqueeLine items={freelance.marquee} className="border-chiffon/20 bg-regal-deep text-chiffon" />
+      <MarqueeLine items={freelance.marquee} className="border-chiffon/20 bg-regal text-chiffon" />
 
       <WordScene
         items={sceneItems}
-        className="border-t border-chiffon/15 bg-regal text-chiffon"
-        wordClass="text-chiffon"
-        numberClass="text-redmark"
+        className="bg-chiffon text-regal"
+        wordClass="text-redmark"
+        numberClass="text-regal"
       />
 
-      <CurtainSection curtain="red" className="border-t border-chiffon/15 bg-regal-deep px-6 py-24 md:px-10 lg:px-14">
+      <CurtainSection curtain="red" className="border-t border-regal/15 bg-chiffon-light px-6 py-24 md:px-10 lg:px-14">
         <div className="mx-auto max-w-[1400px]">
           <Rise className="mb-12 flex items-end justify-between gap-6">
             <h2 className="font-serif text-4xl md:text-6xl">Selected work</h2>
@@ -106,7 +106,7 @@ export default function Overview() {
         </div>
       </CurtainSection>
 
-      <CurtainSection curtain="red" className="border-t border-chiffon/15 bg-regal px-6 py-24 md:px-10 lg:px-14">
+      <CurtainSection curtain="warm" className="border-t border-regal/15 px-6 py-24 md:px-10 lg:px-14">
         <div className="mx-auto max-w-[1400px]">
           <Rise className="mb-10 flex items-end justify-between gap-6">
             <h2 className="font-serif text-4xl md:text-6xl">What I take on</h2>
@@ -119,13 +119,13 @@ export default function Overview() {
               <Rise key={service.index} as="li" delay={(index % 3) * 0.05}>
                 <Link
                   to="/freelance/services"
-                  className="group grid grid-cols-[auto_1fr] items-center gap-x-6 border-t border-chiffon/15 py-4 hover:text-redmark md:grid-cols-12"
+                  className="group grid grid-cols-[auto_1fr] items-center gap-x-6 border-t border-regal/15 py-4 hover:text-redmark md:grid-cols-12"
                 >
                   <span className="font-mono text-[11px] tracking-[0.16em] text-redmark md:col-span-1">{service.index}</span>
                   <span className="font-serif text-2xl transition-transform duration-500 group-hover:translate-x-2 md:col-span-9 md:text-4xl">
                     {service.name}
                   </span>
-                  <GroupIcon kind={service.icon} className="hidden h-10 w-10 justify-self-end text-chiffon group-hover:text-redmark md:col-span-2 md:block" />
+                  <GroupIcon kind={service.icon} className="hidden h-10 w-10 justify-self-end text-regal group-hover:text-redmark md:col-span-2 md:block" />
                 </Link>
               </Rise>
             ))}

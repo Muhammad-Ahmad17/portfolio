@@ -15,7 +15,7 @@ export function CtaBand({ title = "Have a store, an API, or a payment flow to bu
   const meeting = freelance.meeting;
 
   return (
-    <CurtainSection curtain="red" className="on-navy border-t border-chiffon/15 bg-regal-deep px-6 py-24 text-chiffon md:px-10 lg:px-14">
+    <CurtainSection curtain="red" className="on-navy border-t border-chiffon/15 bg-regal px-6 py-24 text-chiffon md:px-10 lg:px-14">
       <div className="mx-auto max-w-[1400px]">
         <Rise>
           <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-chiffon/75">Start a project</p>

@@ -18,7 +18,7 @@ export function PageHeader({ index, label, title, lede, tone = "academic", child
     <header
       className={cn(
         "border-b px-6 pb-14 pt-16 md:px-10 lg:px-14",
-        red ? "on-red border-chiffon/25 bg-redmark text-chiffon" : "border-regal/15"
+        red ? "on-red border-chiffon/25 bg-redmark text-chiffon" : "on-navy border-chiffon/20 bg-regal text-chiffon"
       )}
     >
       <div className="mx-auto max-w-[1400px]">

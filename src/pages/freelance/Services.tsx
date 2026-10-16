@@ -29,7 +29,7 @@ export default function Services() {
         />
       </FullScreenReveal>
 
-      <section className="border-t border-chiffon/15 bg-regal-deep text-chiffon">
+      <section className="border-t border-chiffon/15 bg-regal text-chiffon">
         <div className="mx-auto grid max-w-[1400px] lg:grid-cols-12">
           <Stage active={active} />
           <div className="px-6 md:px-10 lg:col-span-7 lg:px-14">
@@ -40,17 +40,17 @@ export default function Services() {
         </div>
       </section>
 
-      <WaveDivider seed={4} className="bg-regal py-4" />
+      <WaveDivider seed={4} className="py-4" />
 
-      <section className="bg-regal px-6 py-20 md:px-10 lg:px-14">
+      <section className="px-6 py-20 md:px-10 lg:px-14">
         <div className="mx-auto max-w-[1400px]">
           <Rise>
             <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-redmark">Process</p>
             <h2 className="mt-3 font-serif text-4xl md:text-5xl">Four steps, no surprises.</h2>
           </Rise>
-          <ol className="mt-10 grid gap-px bg-chiffon/20 sm:grid-cols-2 lg:grid-cols-4">
+          <ol className="mt-10 grid gap-px bg-regal/15 sm:grid-cols-2 lg:grid-cols-4">
             {freelance.process.map((item, index) => (
-              <Rise key={item.step} as="li" delay={index * 0.06} className="bg-regal px-5 py-8">
+              <Rise key={item.step} as="li" delay={index * 0.06} className="bg-chiffon px-5 py-8">
                 <p className="font-mono text-[11px] text-redmark">0{index + 1}</p>
                 <h3 className="mt-4 font-serif text-3xl">{item.step}</h3>
                 <p className="mt-3 text-sm leading-relaxed opacity-75">{item.text}</p>
@@ -72,7 +72,7 @@ function Stage({ active }: { active: number }) {
 
   return (
     <div className="hidden lg:col-span-5 lg:block">
-      <div className="sticky top-[4.25rem] flex h-[calc(100dvh-4.25rem)] flex-col justify-between border-r border-chiffon/20 py-12 pr-10">
+      <div className="sticky top-[4.25rem] flex h-[calc(100dvh-4.25rem)] flex-col justify-between border-r border-chiffon/20 py-12 pl-6 pr-10 md:pl-10 lg:pl-14">
         <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-chiffon/75">
           <span className="text-redmark">{service.index}</span> / {String(services.length).padStart(2, "0")}
         </p>
