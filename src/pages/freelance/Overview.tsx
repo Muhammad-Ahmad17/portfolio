@@ -85,7 +85,7 @@ export default function Overview() {
         </section>
       </FullScreenReveal>
 
-      <MarqueeLine items={freelance.marquee} className="border-chiffon/20 bg-regal text-chiffon" />
+      <MarqueeLine items={freelance.marquee} className="border-regal/20 bg-chiffon-warm text-regal" />
 
       <WordScene
         items={sceneItems}

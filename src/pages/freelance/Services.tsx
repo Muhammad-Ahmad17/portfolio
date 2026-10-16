@@ -29,7 +29,7 @@ export default function Services() {
         />
       </FullScreenReveal>
 
-      <section className="border-t border-chiffon/15 bg-regal text-chiffon">
+      <section className="on-red border-t border-chiffon/25 bg-redmark text-chiffon">
         <div className="mx-auto grid max-w-[1400px] lg:grid-cols-12">
           <Stage active={active} />
           <div className="px-6 md:px-10 lg:col-span-7 lg:px-14">
@@ -100,7 +100,7 @@ function Stage({ active }: { active: number }) {
               key={item.index}
               className={cn(
                 "h-px transition-all duration-500",
-                index === active ? "w-12 bg-redmark" : "w-4 bg-chiffon/40"
+                index === active ? "w-12 bg-chiffon" : "w-4 bg-chiffon/40"
               )}
             />
           ))}
@@ -138,7 +138,7 @@ function Block({ index, onActive }: BlockProps) {
       <ul className="mt-8 max-w-lg">
         {service.points.map((point) => (
           <li key={point} className="flex items-baseline gap-4 border-t border-chiffon/20 py-3 font-mono text-[12px] uppercase tracking-[0.12em]">
-            <span aria-hidden="true" className="inline-block h-1.5 w-1.5 shrink-0 bg-redmark" />
+            <span aria-hidden="true" className="inline-block h-1.5 w-1.5 shrink-0 bg-chiffon" />
             {point}
           </li>
         ))}

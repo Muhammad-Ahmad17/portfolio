@@ -15,12 +15,12 @@ export function LeatherFeature({ compact = false }: LeatherFeatureProps) {
   return (
     <article className="grid gap-10 lg:grid-cols-12 lg:gap-14">
       <Rise className="lg:col-span-5">
-        <figure className="relative border border-chiffon/30 bg-regal p-6">
-          <span aria-hidden="true" className="pointer-events-none absolute inset-1.5 border border-chiffon/10" />
+        <figure className="relative border border-regal/30 bg-chiffon-warm p-6">
+          <span aria-hidden="true" className="pointer-events-none absolute inset-1.5 border border-regal/10" />
           <figcaption className="absolute left-4 top-3 font-mono text-[10px] uppercase tracking-[0.2em] opacity-60">
             fig. {project.index}
           </figcaption>
-          <JacketDrawing className="mx-auto h-auto w-full max-w-[420px] pt-4 text-chiffon" />
+          <JacketDrawing className="mx-auto h-auto w-full max-w-[420px] pt-4 text-regal" />
         </figure>
       </Rise>
 

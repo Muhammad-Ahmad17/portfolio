@@ -67,7 +67,7 @@ export default function Contact() {
         </div>
       </CurtainSection>
 
-      <CurtainSection curtain="red" className="border-t border-chiffon/15 bg-regal px-6 py-24 text-chiffon md:px-10 lg:px-14">
+      <CurtainSection curtain="chiffon" className="on-red border-t border-chiffon/25 bg-redmark px-6 py-24 text-chiffon md:px-10 lg:px-14">
         <div className="mx-auto grid max-w-[1400px] gap-10 lg:grid-cols-12 lg:items-end">
           <Rise className="lg:col-span-8">
             <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-redmark">{freelance.meeting.label}</p>
@@ -82,7 +82,7 @@ export default function Contact() {
             <p className="max-w-sm text-base leading-relaxed text-chiffon/90">{freelance.meeting.text}</p>
             <MagneticLink
               href={freelance.meeting.href}
-              className="mt-6 inline-block bg-redmark px-7 py-3.5 font-mono text-[12px] uppercase tracking-[0.2em] text-chiffon hover:bg-chiffon hover:text-navy"
+              className="mt-6 inline-block bg-chiffon px-7 py-3.5 font-mono text-[12px] uppercase tracking-[0.2em] text-crimson hover:opacity-85"
             >
               {freelance.meeting.short}
             </MagneticLink>

@@ -31,7 +31,7 @@ export default function Work() {
         </div>
       </div>
 
-      <CurtainSection curtain="red" className="border-t border-chiffon/15 bg-regal px-6 py-20 text-chiffon md:px-10 lg:px-14">
+      <CurtainSection curtain="chiffon" className="on-red border-t border-chiffon/25 bg-redmark px-6 py-20 text-chiffon md:px-10 lg:px-14">
         <div className="mx-auto grid max-w-[1400px] gap-10 md:grid-cols-12">
           <Rise className="md:col-span-3">
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-redmark">Employment</p>
@@ -46,10 +46,10 @@ export default function Work() {
             </p>
             <p className="mt-4 max-w-xl text-sm leading-relaxed opacity-80">{job.text}</p>
             <p className="mt-5 flex flex-wrap gap-x-6 font-mono text-[11px] uppercase tracking-[0.16em]">
-              <a href={job.companyUrl} className="underline decoration-redmark underline-offset-4 hover:text-redmark" target="_blank" rel="noreferrer">
+              <a href={job.companyUrl} className="underline decoration-chiffon/60 underline-offset-4 hover:opacity-70" target="_blank" rel="noreferrer">
                 Company ↗
               </a>
-              <a href={job.log} className="underline decoration-redmark underline-offset-4 hover:text-redmark" target="_blank" rel="noreferrer">
+              <a href={job.log} className="underline decoration-chiffon/60 underline-offset-4 hover:opacity-70" target="_blank" rel="noreferrer">
                 Daily log ↗
               </a>
             </p>

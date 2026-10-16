@@ -15,7 +15,7 @@ export function CtaBand({ title = "Have a store, an API, or a payment flow to bu
   const meeting = freelance.meeting;
 
   return (
-    <CurtainSection curtain="red" className="on-navy border-t border-chiffon/15 bg-regal px-6 py-24 text-chiffon md:px-10 lg:px-14">
+    <CurtainSection curtain="chiffon" className="on-red border-t border-chiffon/25 bg-redmark px-6 py-24 text-chiffon md:px-10 lg:px-14">
       <div className="mx-auto max-w-[1400px]">
         <Rise>
           <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-chiffon/75">Start a project</p>
@@ -33,13 +33,13 @@ export function CtaBand({ title = "Have a store, an API, or a payment flow to bu
           <div className="flex flex-wrap items-center gap-x-8 gap-y-5 lg:col-span-6 lg:justify-end">
             <MagneticLink
               href={meeting.href}
-              className="bg-redmark px-7 py-3.5 font-mono text-[12px] uppercase tracking-[0.2em] text-chiffon hover:bg-chiffon hover:text-navy"
+              className="bg-chiffon px-7 py-3.5 font-mono text-[12px] uppercase tracking-[0.2em] text-crimson hover:opacity-85"
             >
               {meeting.short}
             </MagneticLink>
             <MagneticLink
               href={`mailto:${person.email}`}
-              className="border border-chiffon/60 px-7 py-3.5 font-mono text-[12px] uppercase tracking-[0.2em] hover:bg-chiffon hover:text-navy"
+              className="border border-chiffon/60 px-7 py-3.5 font-mono text-[12px] uppercase tracking-[0.2em] hover:bg-chiffon hover:text-crimson"
             >
               {person.email}
             </MagneticLink>
