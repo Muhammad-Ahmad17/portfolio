@@ -30,7 +30,7 @@ export function PageHeader({ index, label, title, lede, tone = "academic", child
         <h1 className="mt-5 max-w-4xl font-serif text-[clamp(3.4rem,8vw,6.8rem)] leading-[0.88]">
           <LetterRise text={title} />
         </h1>
-        <div className={cn("mt-3 w-32", red ? "text-chiffon" : "text-redmark")}>
+        <div className={cn("mt-3 w-32", red ? "text-navy" : "text-redmark")}>
           <StrokeDraw delay={0.7} />
         </div>
         <p className="mt-6 max-w-xl text-base leading-relaxed opacity-85 md:text-lg">{lede}</p>

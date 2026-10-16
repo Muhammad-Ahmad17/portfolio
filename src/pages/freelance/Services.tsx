@@ -29,7 +29,7 @@ export default function Services() {
         />
       </FullScreenReveal>
 
-      <section className="on-red border-t border-chiffon/25 bg-redmark text-chiffon">
+      <section className="border-t border-regal/15 bg-chiffon-warm">
         <div className="mx-auto grid max-w-[1400px] lg:grid-cols-12">
           <Stage active={active} />
           <div className="px-6 md:px-10 lg:col-span-7 lg:px-14">
@@ -72,14 +72,14 @@ function Stage({ active }: { active: number }) {
 
   return (
     <div className="hidden lg:col-span-5 lg:block">
-      <div className="sticky top-[4.25rem] flex h-[calc(100dvh-4.25rem)] flex-col justify-between border-r border-chiffon/20 py-12 pl-6 pr-10 md:pl-10 lg:pl-14">
-        <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-chiffon/75">
+      <div className="sticky top-[4.25rem] flex h-[calc(100dvh-4.25rem)] flex-col justify-between border-r border-regal/15 py-12 pl-6 pr-10 md:pl-10 lg:pl-14">
+        <p className="font-mono text-[11px] uppercase tracking-[0.24em] opacity-75">
           <span className="text-redmark">{service.index}</span> / {String(services.length).padStart(2, "0")}
         </p>
 
         <div className="relative mx-auto flex aspect-square w-full max-w-[22rem] items-center justify-center">
-          <span aria-hidden="true" className="absolute inset-0 border border-chiffon/20" />
-          <span aria-hidden="true" className="absolute inset-3 border border-chiffon/10" />
+          <span aria-hidden="true" className="absolute inset-0 border border-regal/20" />
+          <span aria-hidden="true" className="absolute inset-3 border border-regal/10" />
           <AnimatePresence mode="wait">
             <motion.div
               key={service.index}
@@ -87,7 +87,7 @@ function Stage({ active }: { active: number }) {
               animate={{ opacity: 1, scale: 1 }}
               exit={reduced ? undefined : { opacity: 0, scale: 1.04 }}
               transition={{ duration: 0.35 }}
-              className="h-3/5 w-3/5 text-chiffon"
+              className="h-3/5 w-3/5 text-regal"
             >
               <GroupIcon kind={service.icon} className="h-full w-full [&_path]:![stroke-width:1.1px]" />
             </motion.div>
@@ -100,7 +100,7 @@ function Stage({ active }: { active: number }) {
               key={item.index}
               className={cn(
                 "h-px transition-all duration-500",
-                index === active ? "w-12 bg-chiffon" : "w-4 bg-chiffon/40"
+                index === active ? "w-12 bg-redmark" : "w-4 bg-regal/30"
               )}
             />
           ))}
@@ -125,20 +125,20 @@ function Block({ index, onActive }: BlockProps) {
     <article
       ref={ref}
       className={cn(
-        "flex min-h-[60vh] flex-col justify-center border-b border-chiffon/15 py-14 transition-opacity duration-500 last:border-b-0 lg:min-h-[78vh]",
+        "flex min-h-[60vh] flex-col justify-center border-b border-regal/15 py-14 transition-opacity duration-500 last:border-b-0 lg:min-h-[78vh]",
         focused ? "opacity-100" : "lg:opacity-35"
       )}
     >
-      <div className="mb-6 h-14 w-14 text-chiffon lg:hidden">
+      <div className="mb-6 h-14 w-14 text-regal lg:hidden">
         <GroupIcon kind={service.icon} className="h-full w-full" />
       </div>
       <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-redmark">{service.index}</p>
       <h2 className="mt-3 font-serif text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.95]">{service.name}</h2>
-      <p className="mt-5 max-w-lg text-base leading-relaxed text-chiffon/85">{service.text}</p>
+      <p className="mt-5 max-w-lg text-base leading-relaxed opacity-85">{service.text}</p>
       <ul className="mt-8 max-w-lg">
         {service.points.map((point) => (
-          <li key={point} className="flex items-baseline gap-4 border-t border-chiffon/20 py-3 font-mono text-[12px] uppercase tracking-[0.12em]">
-            <span aria-hidden="true" className="inline-block h-1.5 w-1.5 shrink-0 bg-chiffon" />
+          <li key={point} className="flex items-baseline gap-4 border-t border-regal/15 py-3 font-mono text-[12px] uppercase tracking-[0.12em]">
+            <span aria-hidden="true" className="inline-block h-1.5 w-1.5 shrink-0 bg-redmark" />
             {point}
           </li>
         ))}

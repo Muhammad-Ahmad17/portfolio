@@ -2,7 +2,6 @@ import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { person } from "@/data/person";
 import { MagneticLink } from "@/motion/MagneticLink";
-import { StrokeDraw } from "@/motion/StrokeDraw";
 import { cn } from "@/lib/utils";
 
 type Item = { to: string; label: string; end?: boolean };
@@ -41,7 +40,8 @@ export function SectionFrame({ tone, section, items, cross, footnote }: SectionF
 
   const bar = academic ? "on-navy border-chiffon/20 bg-regal text-chiffon" : "on-red border-chiffon/25 bg-redmark text-chiffon";
   const hover = "hover:opacity-70";
-  const active = academic ? "text-redmark" : "";
+  /* The active link is a chip in the contrasting colour: red on the navy frame, navy on the red one. */
+  const active = academic ? "bg-crimson text-cream" : "bg-navy text-cream";
 
   return (
     <div className="flex min-h-[100dvh] flex-col bg-chiffon text-regal">
@@ -156,13 +156,12 @@ function FrameLink({ item, pathname, activeClass, hoverClass }: FrameLinkProps) 
       to={item.to}
       end={item.end}
       className={cn(
-        "relative inline-block pb-2 font-mono text-[11px] uppercase tracking-[0.18em]",
+        "relative inline-block px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] transition-colors",
         hoverClass,
         isActive && activeClass
       )}
     >
       {item.label}
-      {isActive && <StrokeDraw className="absolute -bottom-0.5 left-0 w-full" delay={0.05} />}
     </NavLink>
   );
 }

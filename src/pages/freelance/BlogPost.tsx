@@ -59,7 +59,7 @@ export default function BlogPost() {
             ← Notes
           </Link>
           <h1 className="mt-5 font-serif text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.95]">{post.title}</h1>
-          <div className="mt-3 w-28 text-chiffon">
+          <div className="mt-3 w-28 text-navy">
             <StrokeDraw delay={0.15} />
           </div>
           <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.16em] text-chiffon/85">

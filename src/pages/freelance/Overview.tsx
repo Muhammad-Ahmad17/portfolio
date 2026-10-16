@@ -41,7 +41,7 @@ export default function Overview() {
                     <LetterRise text="Engineer" delay={0.14} />
                   </span>
                 </h1>
-                <div className="mt-3 w-36 text-chiffon md:w-48">
+                <div className="mt-3 w-36 text-navy md:w-48">
                   <StrokeDraw delay={0.75} />
                 </div>
                 <p className="mt-8 max-w-md text-base leading-relaxed text-chiffon/90 md:text-lg">{freelance.lede}</p>

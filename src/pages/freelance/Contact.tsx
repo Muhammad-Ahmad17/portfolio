@@ -30,7 +30,7 @@ export default function Contact() {
                 <LetterRise text={person.email} stagger={0.02} />
               </a>
             </h1>
-            <div className="mt-4 w-40 text-chiffon">
+            <div className="mt-4 w-40 text-navy">
               <StrokeDraw delay={0.9} />
             </div>
             <p className="mt-8 max-w-md text-base leading-relaxed text-chiffon/90">
