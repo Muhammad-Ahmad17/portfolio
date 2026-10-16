@@ -1,85 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://aahmad.app/</loc>
+    <loc>https://aahmad.tech/</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://aahmad.app/academic</loc>
+    <loc>https://aahmad.tech/academic</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://aahmad.app/academic/education</loc>
+    <loc>https://aahmad.tech/academic/education</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://aahmad.app/academic/projects</loc>
+    <loc>https://aahmad.tech/academic/projects</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://aahmad.app/academic/skills</loc>
+    <loc>https://aahmad.tech/academic/skills</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://aahmad.app/freelance</loc>
+    <loc>https://aahmad.tech/freelance</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://aahmad.app/freelance/work</loc>
+    <loc>https://aahmad.tech/freelance/work</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://aahmad.app/freelance/services</loc>
+    <loc>https://aahmad.tech/freelance/services</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://aahmad.app/freelance/contact</loc>
+    <loc>https://aahmad.tech/freelance/contact</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://aahmad.app/freelance/blog</loc>
+    <loc>https://aahmad.tech/freelance/blog</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://aahmad.app/freelance/blog/ci-that-tests-cd-that-pulls-a-digest</loc>
+    <loc>https://aahmad.tech/freelance/blog/ci-that-tests-cd-that-pulls-a-digest</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://aahmad.app/freelance/blog/rebuilding-saas-infrastructure-part-1</loc>
+    <loc>https://aahmad.tech/freelance/blog/rebuilding-saas-infrastructure-part-1</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://aahmad.app/freelance/blog/full-stack-cicd-docker-oracle-github-actions</loc>
+    <loc>https://aahmad.tech/freelance/blog/full-stack-cicd-docker-oracle-github-actions</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://aahmad.app/freelance/blog/deploy-react-aws-s3-dynamodb-lambda</loc>
+    <loc>https://aahmad.tech/freelance/blog/deploy-react-aws-s3-dynamodb-lambda</loc>
     <lastmod>2025-02-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
