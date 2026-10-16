@@ -40,6 +40,8 @@ export function SectionFrame({ tone, section, items, cross, footnote }: SectionF
 
   const bar = academic ? "on-navy border-chiffon/20 bg-regal text-chiffon" : "on-red border-chiffon/25 bg-redmark text-chiffon";
   const hover = "hover:opacity-70";
+  /* The header runs in the contrasting colour: navy ink on the red frame. The footer keeps chiffon. */
+  const headerBar = academic ? bar : "on-red border-navy/30 bg-redmark text-navy";
   /* The active link is a chip in the contrasting colour: red on the navy frame, navy on the red one. */
   const active = academic ? "bg-crimson text-cream" : "bg-navy text-cream";
 
@@ -51,7 +53,7 @@ export function SectionFrame({ tone, section, items, cross, footnote }: SectionF
       >
         Skip to content
       </a>
-      <header className={cn("fixed inset-x-0 top-0 z-30 border-b", bar)}>
+      <header className={cn("fixed inset-x-0 top-0 z-30 border-b", headerBar)}>
         <div className="flex h-[4.25rem] items-center justify-between gap-6 px-6 md:px-10 lg:px-14">
           <div className="flex items-baseline gap-4">
             <Link to="/" className="font-serif text-[1.7rem] italic leading-none">
@@ -90,7 +92,7 @@ export function SectionFrame({ tone, section, items, cross, footnote }: SectionF
         </div>
 
         {open && (
-          <nav className={cn("absolute inset-x-0 top-full flex flex-col gap-4 border-b px-6 py-6 md:hidden", bar)} aria-label={section}>
+          <nav className={cn("absolute inset-x-0 top-full flex flex-col gap-4 border-b px-6 py-6 md:hidden", headerBar)} aria-label={section}>
             {items.map((item) => (
               <FrameLink key={item.to} item={item} pathname={pathname} activeClass={active} hoverClass={hover} />
             ))}

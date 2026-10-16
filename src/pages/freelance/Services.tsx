@@ -29,7 +29,7 @@ export default function Services() {
         />
       </FullScreenReveal>
 
-      <section className="border-t border-regal/15 bg-chiffon-warm">
+      <section className="border-t border-regal/15 bg-chiffon-light">
         <div className="mx-auto grid max-w-[1400px] lg:grid-cols-12">
           <Stage active={active} />
           <div className="px-6 md:px-10 lg:col-span-7 lg:px-14">

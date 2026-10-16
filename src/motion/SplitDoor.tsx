@@ -62,7 +62,7 @@ export function SplitDoor() {
         action="See the work"
         meta="Lahore, Pakistan"
         className="on-red bg-redmark text-chiffon"
-        accent="text-chiffon"
+        accent="text-navy"
         alignEnd
         onEnter={() => fine && setHover("freelance")}
         onLeave={() => setHover(null)}
