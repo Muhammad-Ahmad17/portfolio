@@ -71,9 +71,9 @@ function buildSegments(width: number, height: number) {
 export function CircuitField({ className, room }: CircuitFieldProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const colours = rgbOf(usePalette());
-  /* Paper-coloured traces on both rooms; the pointer lights them in the lifted accent (academic) or the ink (freelance). */
-  const ink = colours.paper;
-  const accent = room === "academic" ? colours.lift : colours.ink;
+  /* Traces sit in the room's ink on paper; the pointer lights them in the accent or room ink. */
+  const ink = room === "academic" ? colours.room : colours.ink;
+  const accent = colours.accent;
 
   useEffect(() => {
     const canvas = canvasRef.current;

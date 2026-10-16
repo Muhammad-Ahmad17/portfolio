@@ -54,45 +54,45 @@ export function DeskDrawing({ className }: { className?: string }) {
           <P d={handCircle(118, 78, 5, 10)} progress={p} from={0.19} to={0.26} width={1.2} />
           <P d={handRect(146, 68, 280, 20, 11, 0.6, 1)} progress={p} from={0.2} to={0.3} width={1.2} />
           <P d={handRect(84, 120, 150, 150, 12)} progress={p} from={0.25} to={0.42} />
-          <P d={productCross} progress={p} from={0.3} to={0.5} width={1} className="text-navy/70" />
+          <P d={productCross} progress={p} from={0.3} to={0.5} width={1} className="text-regal/60" />
           <P d={textLines} progress={p} from={0.35} to={0.52} width={1.3} />
-          <T x={258} y={216} progress={p} from={0.5} to={0.6} size={14} anchor="start" className="text-chiffon">
+          <T x={258} y={216} progress={p} from={0.5} to={0.6} size={14} anchor="start" className="text-redmark">
             $349
           </T>
-          <F d="M258 232H378V266H258Z" progress={p} from={0.5} to={0.65} className="text-navy" opacity={0.95} />
+          <F d="M258 232H378V266H258Z" progress={p} from={0.5} to={0.65} className="text-redmark" opacity={0.95} />
           <P d={handRect(258, 232, 120, 34, 13, 0.8)} progress={p} from={0.4} to={0.55} width={1.4} />
-          <T x={318} y={254} progress={p} from={0.6} to={0.7} size={10} className="text-chiffon">
+          <T x={318} y={254} progress={p} from={0.6} to={0.7} size={10} className="text-cream">
             ADD TO CART
           </T>
           {/* Rack */}
           <P d={rack} progress={p} from={0.35} to={0.62} width={1.5} />
-          <T x={138} y={500} progress={p} from={0.65} to={0.85} size={10} className="text-chiffon">
+          <T x={138} y={500} progress={p} from={0.65} to={0.85} size={10} className="text-redmark">
             API · DB · QUEUE
           </T>
 
           {/* Payment card */}
           <g transform="rotate(-5 380 430)">
             <P d={handRect(262, 366, 236, 140, 80)} progress={p} from={0.42} to={0.66} />
-            <P d={handRect(282, 386, 40, 30, 81, 0.6)} progress={p} from={0.55} to={0.66} width={1.3} className="text-navy" />
-            <P d={handLine(282, 401, 322, 401, 82, 0.4, 0)} progress={p} from={0.6} to={0.68} width={1} className="text-navy" />
-            <P d={handLine(262, 436, 498, 436, 83, 0.6, 0)} progress={p} from={0.58} to={0.7} width={5} className="text-navy/60" />
+            <P d={handRect(282, 386, 40, 30, 81, 0.6)} progress={p} from={0.55} to={0.66} width={1.3} className="text-redmark" />
+            <P d={handLine(282, 401, 322, 401, 82, 0.4, 0)} progress={p} from={0.6} to={0.68} width={1} className="text-redmark" />
+            <P d={handLine(262, 436, 498, 436, 83, 0.6, 0)} progress={p} from={0.58} to={0.7} width={5} className="text-regal/50" />
             <P d={cardNumber} progress={p} from={0.62} to={0.75} width={1.3} />
-            <P d={handCircle(462, 388, 10, 84)} progress={p} from={0.65} to={0.72} width={1.3} className="text-navy" />
-            <P d={handCircle(476, 388, 10, 85)} progress={p} from={0.67} to={0.74} width={1.3} className="text-navy" />
+            <P d={handCircle(462, 388, 10, 84)} progress={p} from={0.65} to={0.72} width={1.3} className="text-redmark" />
+            <P d={handCircle(476, 388, 10, 85)} progress={p} from={0.67} to={0.74} width={1.3} className="text-redmark" />
           </g>
 
           {/* Wiring */}
-          <P d={wire} progress={p} from={0.65} to={0.8} width={1.6} className="text-navy" />
-          <P d={handLine(318, 266, 330, 360, 90, 1, 0)} progress={p} from={0.7} to={0.85} width={1.4} className="text-navy" dash="4 6" />
+          <P d={wire} progress={p} from={0.65} to={0.8} width={1.6} className="text-redmark" />
+          <P d={handLine(318, 266, 330, 360, 90, 1, 0)} progress={p} from={0.7} to={0.85} width={1.4} className="text-redmark" dash="4 6" />
 
           {/* Braces */}
           <P d={braceL} progress={p} from={0.75} to={0.9} width={1.8} />
           <P d={braceR} progress={p} from={0.75} to={0.9} width={1.8} />
-          <T x={310} y={586} progress={p} from={0.88} to={1} size={12} className="text-chiffon">
+          <T x={310} y={586} progress={p} from={0.88} to={1} size={12} className="text-redmark">
             api
           </T>
 
-          <g className="text-navy">
+          <g className="text-redmark">
             <Pulse path={wire} dur={1.6} begin={4.4} />
           </g>
         </g>

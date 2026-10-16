@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 const outline = handRect(3, 3, 194, 46, 9, 1, 3);
 
 type ResumeButtonProps = {
-  /** "red" sits on chiffon, "chiffon" and "ghost" sit on red. */
+  /** "red" sits on chiffon, "chiffon" sits on red, "ghost" sits on chiffon with a navy border. */
   variant?: "red" | "chiffon" | "ghost";
   className?: string;
 };
@@ -14,13 +14,13 @@ type ResumeButtonProps = {
 const fills = {
   red: "bg-redmark text-chiffon",
   chiffon: "bg-chiffon text-crimson",
-  ghost: "border border-chiffon/70 text-chiffon",
+  ghost: "border border-regal/40 text-regal hover:bg-regal hover:text-chiffon",
 } as const;
 
 const strokes = {
   red: "text-regal",
   chiffon: "text-chiffon",
-  ghost: "text-chiffon",
+  ghost: "text-regal",
 } as const;
 
 export function ResumeButton({ variant = "red", className }: ResumeButtonProps) {

@@ -24,15 +24,21 @@ export default function Overview() {
   return (
     <>
       <FullScreenReveal>
-        <section className="on-navy relative min-h-[calc(100dvh-4.25rem)] overflow-hidden bg-regal text-chiffon">
-          <div className="pointer-events-none absolute inset-0">
+        <section className="relative min-h-[calc(100dvh-4.25rem)] overflow-hidden bg-chiffon text-regal">
+          <div className="pointer-events-none absolute inset-0 opacity-60">
             <CircuitField room="academic" />
           </div>
           <div className="relative mx-auto grid min-h-[calc(100dvh-4.25rem)] max-w-[1500px] gap-10 px-6 py-10 md:px-10 lg:grid-cols-12 lg:px-14">
-            <div className="flex flex-col justify-between gap-12 lg:col-span-7">
-              <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-redmark">Academic · Computer engineering</p>
+            <div className="flex flex-col justify-between gap-12 border-t-4 border-regal pt-6 lg:col-span-7">
+              <div className="flex items-center justify-between gap-4">
+                <p className="inline-flex items-center gap-2.5 bg-regal px-3 py-1 font-mono text-[10px] uppercase tracking-[0.26em] text-chiffon">
+                  <span className="inline-block h-1.5 w-1.5 bg-redmark" />
+                  Academic · Computer engineering
+                </p>
+                <span className="hidden font-mono text-[10px] uppercase tracking-[0.22em] text-regal/60 sm:inline">01 / RECORD</span>
+              </div>
               <div>
-                <h1 className="font-serif text-[clamp(3.5rem,10.5vw,9rem)] leading-[0.82] tracking-[-0.045em]">
+                <h1 className="font-serif text-[clamp(3.5rem,10.5vw,9rem)] leading-[0.82] tracking-[-0.045em] text-regal">
                   <span className="block">
                     <LetterRise text="Computer" />
                   </span>
@@ -43,38 +49,44 @@ export default function Overview() {
                 <div className="mt-3 w-36 text-redmark md:w-48">
                   <StrokeDraw delay={0.75} />
                 </div>
-                <p className="mt-8 max-w-md text-base leading-relaxed md:text-lg">{academic.lede}</p>
+                <p className="mt-8 max-w-md text-base leading-relaxed text-regal/85 md:text-lg">{academic.lede}</p>
                 <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5">
                   <ResumeButton />
                   <a
                     href={academic.github}
                     target="_blank"
                     rel="noreferrer"
-                    className="border border-chiffon/60 px-6 py-3.5 font-mono text-[12px] uppercase tracking-[0.2em] transition-colors hover:bg-chiffon hover:text-navy"
+                    className="border border-regal/50 px-6 py-3.5 font-mono text-[12px] uppercase tracking-[0.2em] text-regal transition-colors hover:bg-regal hover:text-chiffon"
                   >
                     GitHub ↗
                   </a>
                   <Link
                     to="/academic/projects"
-                    className="font-mono text-[12px] uppercase tracking-[0.2em] underline decoration-redmark underline-offset-[7px] hover:text-redmark"
+                    className="font-mono text-[12px] uppercase tracking-[0.2em] text-regal underline decoration-redmark underline-offset-[7px] hover:text-redmark"
                   >
                     Projects
                   </Link>
                 </div>
               </div>
-              <div className="flex items-end justify-between gap-6">
-                <p className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em]">
+              <div className="flex items-end justify-between gap-6 border-t border-regal/15 pt-5">
+                <p className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-regal">
                   <span className="inline-block h-2 w-2 bg-redmark" />
                   {academic.availability}
                 </p>
-                <div className="hidden items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] sm:flex">
+                <div className="hidden items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-regal sm:flex">
                   Scroll
                   <span className="scroll-hint block h-12 w-px bg-redmark" />
                 </div>
               </div>
             </div>
             <div className="flex items-center justify-center lg:col-span-5">
-              <BenchDrawing className="h-auto max-h-[70vh] w-full" />
+              <div className="relative w-full border border-regal/25 bg-chiffon-light/90 p-5 shadow-[8px_8px_0_0_rgb(var(--c-regal))] md:p-7">
+                <div className="mb-3 flex items-center justify-between border-b border-regal/15 pb-2.5 font-mono text-[10px] uppercase tracking-[0.22em] text-regal/70">
+                  <span>FIG. 00 — HARDWARE BENCH</span>
+                  <span className="text-redmark">STM32 · ESP32 · JETSON</span>
+                </div>
+                <BenchDrawing className="h-auto max-h-[62vh] w-full" />
+              </div>
             </div>
           </div>
         </section>

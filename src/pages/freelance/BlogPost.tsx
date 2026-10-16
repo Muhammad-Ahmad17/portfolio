@@ -53,19 +53,19 @@ export default function BlogPost() {
 
   return (
     <FullScreenReveal>
-      <header className="on-red bg-redmark px-6 pb-12 pt-16 text-chiffon md:px-10 lg:px-14">
-        <div className="mx-auto max-w-[860px]">
-          <Link to="/freelance/blog" className="font-mono text-[11px] uppercase tracking-[0.2em] opacity-85 hover:opacity-100">
+      <header className="border-b border-regal/15 bg-chiffon px-6 pb-12 pt-16 text-regal md:px-10 lg:px-14">
+        <div className="mx-auto max-w-[860px] border-t-4 border-redmark pt-6">
+          <Link to="/freelance/blog" className="font-mono text-[11px] uppercase tracking-[0.2em] text-redmark hover:opacity-75">
             ← Notes
           </Link>
-          <h1 className="mt-5 font-serif text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.95]">{post.title}</h1>
-          <div className="mt-3 w-28 text-navy">
+          <h1 className="mt-5 font-serif text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.95] text-regal">{post.title}</h1>
+          <div className="mt-3 w-28 text-redmark">
             <StrokeDraw delay={0.15} />
           </div>
-          <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.16em] text-chiffon/85">
+          <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.16em] text-regal/75">
             {formatDate(post.date)} · {readingTime(post.content)} min · {post.author}
           </p>
-          <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.14em] text-chiffon/75">{post.tags.join("  ·  ")}</p>
+          <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.14em] text-regal/60">{post.tags.join("  ·  ")}</p>
         </div>
       </header>
       <article className="px-6 py-14 md:px-10 lg:px-14">
