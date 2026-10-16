@@ -58,8 +58,8 @@ export const palettes: Palette[] = [
   { id: "mocha", group: "Creamy", name: "Mocha & Sage", a: "#5A4636", b: "#718062", paper: "#F4EDE0", ink: "#3A2E24" },
 ];
 
-export const DEFAULT_PALETTE = "teal";
-const STORAGE_KEY = "palette";
+export const DEFAULT_PALETTE = "classic";
+const STORAGE_KEY = "palette-v2";
 
 type Rgb = [number, number, number];
 
@@ -172,6 +172,16 @@ export function rgbOf(palette: Palette): PaletteRgb {
   };
 }
 
+/* The favicon is the logo on a tile in the current palette: academic colour, paper M, lifted accent cursor. */
+const faviconHref = (a: Rgb, paper: Rgb, lift: Rgb) => {
+  const hex = (rgb: Rgb) => `#${rgb.map((value) => Math.round(value).toString(16).padStart(2, "0")).join("")}`;
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="${hex(a)}"/>` +
+    `<path d="M15 44V17L32 34L49 17V44" fill="none" stroke="${hex(paper)}" stroke-width="6.5" stroke-linejoin="miter"/>` +
+    `<rect x="15" y="50" width="22" height="5.5" fill="${hex(lift)}"/></svg>`;
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+};
+
 export function applyPalette(palette: Palette) {
   const r = resolve(palette);
   const style = document.documentElement.style;
@@ -191,6 +201,7 @@ export function applyPalette(palette: Palette) {
 
   document.documentElement.dataset.palette = palette.id;
   document.querySelector('meta[name="theme-color"]')?.setAttribute("content", palette.a);
+  document.querySelector('link[rel="icon"][type="image/svg+xml"]')?.setAttribute("href", faviconHref(r.a, r.paper, r.lift));
 }
 
 /* A tiny external store so components (the switcher, the canvas) follow the current palette. */

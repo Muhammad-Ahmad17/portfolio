@@ -242,6 +242,10 @@
     animation: caret 1.05s steps(1) infinite;
   }
 
+  .logo-cursor {
+    animation: caret 1.05s steps(1) infinite;
+  }
+
   .scroll-hint {
     transform-origin: top;
     animation: descend 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -323,6 +327,7 @@
   }
 
   .caret,
+  .logo-cursor,
   .scroll-hint,
   .wifi-pulse {
     animation: none;

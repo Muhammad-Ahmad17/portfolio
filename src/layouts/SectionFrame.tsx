@@ -1,3 +1,4 @@
+import { Logo } from "@/components/site/Logo";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { person } from "@/data/person";
@@ -55,9 +56,9 @@ export function SectionFrame({ tone, section, items, cross, footnote }: SectionF
       </a>
       <header className={cn("fixed inset-x-0 top-0 z-30 border-b", headerBar)}>
         <div className="flex h-[4.25rem] items-center justify-between gap-6 px-6 md:px-10 lg:px-14">
-          <div className="flex items-baseline gap-4">
-            <Link to="/" className="font-serif text-[1.7rem] italic leading-none">
-              M.A.
+          <div className="flex items-center gap-4">
+            <Link to="/" aria-label="Muhammad Ahmad, index" className={cn("block", hover)}>
+              <Logo blink className="h-8 w-auto" />
             </Link>
             <span className="hidden font-mono text-[10px] uppercase tracking-[0.24em] opacity-70 sm:inline">{section}</span>
           </div>
@@ -116,7 +117,7 @@ export function SectionFrame({ tone, section, items, cross, footnote }: SectionF
       <footer className={cn("border-t px-6 py-12 md:px-10 lg:px-14", bar)}>
         <div className="mx-auto grid max-w-[1400px] gap-8 md:grid-cols-3 md:items-end">
           <div>
-            <p className="font-serif text-3xl italic leading-none">M.A.</p>
+            <Logo className="h-12 w-auto" />
             <p className="mt-3 max-w-xs font-mono text-[11px] uppercase leading-5 tracking-[0.16em] opacity-70">{footnote}</p>
           </div>
           <div className="flex flex-col gap-2 font-mono text-[11px] uppercase tracking-[0.18em]">
