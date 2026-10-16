@@ -26,7 +26,7 @@ export default function Overview() {
       <FullScreenReveal>
         <section className="on-navy relative min-h-[calc(100dvh-4.25rem)] overflow-hidden bg-regal text-chiffon">
           <div className="pointer-events-none absolute inset-0">
-            <CircuitField ink="250, 240, 202" accent="238, 106, 96" />
+            <CircuitField room="academic" />
           </div>
           <div className="relative mx-auto grid min-h-[calc(100dvh-4.25rem)] max-w-[1500px] gap-10 px-6 py-10 md:px-10 lg:grid-cols-12 lg:px-14">
             <div className="flex flex-col justify-between gap-12 lg:col-span-7">

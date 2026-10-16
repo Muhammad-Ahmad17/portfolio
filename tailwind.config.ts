@@ -30,23 +30,24 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				/* Palette colours are CSS variables (r g b) set by src/theme/palettes.ts, so alpha modifiers still work. */
 				regal: {
-					DEFAULT: '#0D3B66',
-					deep: '#071F36',
-					light: '#144B7E',
-					muted: '#2A5580',
+					DEFAULT: 'rgb(var(--c-regal) / <alpha-value>)',
+					deep: 'rgb(var(--c-regal-deep) / <alpha-value>)',
+					light: 'rgb(var(--c-regal-light) / <alpha-value>)',
+					muted: 'rgb(var(--c-regal-muted) / <alpha-value>)',
 				},
 				chiffon: {
-					DEFAULT: '#FAF0CA',
-					light: '#FCF8E8',
-					warm: '#F5E6AC',
-					muted: '#E6DAB0',
+					DEFAULT: 'rgb(var(--c-chiffon) / <alpha-value>)',
+					light: 'rgb(var(--c-chiffon-light) / <alpha-value>)',
+					warm: 'rgb(var(--c-chiffon-warm) / <alpha-value>)',
+					muted: 'rgb(var(--c-chiffon-muted) / <alpha-value>)',
 				},
-				redmark: '#C8312B',
-				/* Fixed inks that the .on-navy / .on-red helpers never remap: for text on chiffon buttons and fills. */
-				navy: '#0D3B66',
-				crimson: '#C8312B',
-				cream: '#FAF0CA',
+				redmark: 'rgb(var(--c-redmark) / <alpha-value>)',
+				/* Fixed inks that the .on-navy / .on-red helpers never remap: for text on paper-coloured buttons and fills. */
+				navy: 'rgb(var(--c-ink) / <alpha-value>)',
+				crimson: 'rgb(var(--c-redmark) / <alpha-value>)',
+				cream: 'rgb(var(--c-chiffon) / <alpha-value>)',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))',

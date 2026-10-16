@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
+import { rgbOf, usePalette } from "@/theme/palettes";
 
 type Segment = {
   x1: number;
@@ -12,10 +13,8 @@ type Segment = {
 
 type CircuitFieldProps = {
   className?: string;
-  /** "r,g,b" for the faint traces. */
-  ink?: string;
-  /** "r,g,b" for traces near the pointer. */
-  accent?: string;
+  /** Which room the field sits in; the traces take their colours from the current palette. */
+  room: "academic" | "freelance";
 };
 
 function buildSegments(width: number, height: number) {
@@ -69,8 +68,12 @@ function buildSegments(width: number, height: number) {
   return segments;
 }
 
-export function CircuitField({ className, ink = "13, 59, 102", accent = "200, 49, 43" }: CircuitFieldProps) {
+export function CircuitField({ className, room }: CircuitFieldProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const colours = rgbOf(usePalette());
+  /* Paper-coloured traces on both rooms; the pointer lights them in the lifted accent (academic) or the ink (freelance). */
+  const ink = colours.paper;
+  const accent = room === "academic" ? colours.lift : colours.ink;
 
   useEffect(() => {
     const canvas = canvasRef.current;

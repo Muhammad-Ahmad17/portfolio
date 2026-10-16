@@ -3,8 +3,14 @@
 @tailwind utilities;
 
 /*
-  One theme, two rooms.
-  Regal navy #0D3B66, lemon chiffon #FAF0CA, red #C8312B.
+  One theme, two rooms. Colours are r g b variables; src/theme/palettes.ts rewrites them on
+  <html> for the palette switcher. The values below are the first palette (navy, red, chiffon)
+  and only show until the script runs.
+    regal    the academic room, and the ink on paper
+    redmark  the freelance room, and the accent on paper
+    chiffon  the paper
+    ink      the dark accent on the freelance room
+    lift     the freelance colour lightened to read on the academic room
 */
 
 @layer base {
@@ -40,9 +46,17 @@
 
     --radius: 0px;
 
-    --regal-navy: #0d3b66;
-    --lemon-chiffon: #faf0ca;
-    --red-mark: #c8312b;
+    --c-regal: 13 59 102;
+    --c-regal-deep: 7 31 54;
+    --c-regal-light: 20 75 126;
+    --c-regal-muted: 42 85 128;
+    --c-chiffon: 250 240 202;
+    --c-chiffon-light: 252 248 232;
+    --c-chiffon-warm: 245 230 172;
+    --c-chiffon-muted: 230 218 176;
+    --c-redmark: 200 49 43;
+    --c-lift: 238 106 96;
+    --c-ink: 13 59 102;
   }
 
   * {
@@ -79,12 +93,12 @@
   }
 
   ::selection {
-    background: #c8312b;
-    color: #faf0ca;
+    background: rgb(var(--c-redmark));
+    color: rgb(var(--c-chiffon));
   }
 
   :focus-visible {
-    outline: 1px solid #c8312b;
+    outline: 1px solid rgb(var(--c-redmark));
     outline-offset: 3px;
   }
 
@@ -111,84 +125,84 @@
   /* Navy and red fields: ink is chiffon, accents lift or flip so nothing disappears. */
   .on-navy :focus-visible,
   .on-red :focus-visible {
-    outline-color: #faf0ca;
+    outline-color: rgb(var(--c-chiffon));
   }
 
   .on-navy ::selection {
-    background: #c8312b;
-    color: #faf0ca;
+    background: rgb(var(--c-redmark));
+    color: rgb(var(--c-chiffon));
   }
 
   .on-red ::selection {
-    background: #0d3b66;
-    color: #faf0ca;
+    background: rgb(var(--c-ink));
+    color: rgb(var(--c-chiffon));
   }
 
   .on-navy .text-regal,
   .on-red .text-regal {
-    color: #faf0ca;
+    color: rgb(var(--c-chiffon));
   }
 
   .on-navy [class*="text-regal/"],
   .on-red [class*="text-regal/"] {
-    color: rgb(250 240 202 / 0.6);
+    color: rgb(var(--c-chiffon) / 0.6);
   }
 
   .on-navy [class*="border-regal"],
   .on-red [class*="border-regal"] {
-    border-color: rgb(250 240 202 / 0.22);
+    border-color: rgb(var(--c-chiffon) / 0.22);
   }
 
   .on-navy [class*="bg-regal/"],
   .on-red [class*="bg-regal/"] {
-    background-color: rgb(250 240 202 / 0.16);
+    background-color: rgb(var(--c-chiffon) / 0.16);
   }
 
   .on-navy .text-redmark,
   .on-navy .hover\:text-redmark:hover,
   .on-navy .group:hover .group-hover\:text-redmark {
-    color: #ee6a60;
+    color: rgb(var(--c-lift));
   }
 
   .on-red .text-redmark,
   .on-red .hover\:text-redmark:hover,
   .on-red .group:hover .group-hover\:text-redmark {
-    color: #faf0ca;
+    color: rgb(var(--c-chiffon));
   }
 
   /* Drawings on red: accent strokes turn navy, accent labels stay chiffon. */
   .on-red svg .text-redmark {
-    color: #0d3b66;
+    color: rgb(var(--c-ink));
   }
 
   .on-red svg text.text-redmark {
-    color: #faf0ca;
+    color: rgb(var(--c-chiffon));
   }
 
   /* Navy bands anywhere (including inside the red room) behave like navy fields. */
   .bg-regal :focus-visible,
   .bg-regal-deep :focus-visible {
-    outline-color: #faf0ca;
+    outline-color: rgb(var(--c-chiffon));
   }
 
   .bg-regal .text-regal,
   .bg-regal-deep .text-regal {
-    color: #faf0ca;
+    color: rgb(var(--c-chiffon));
   }
 
   .bg-regal [class*="text-regal/"],
   .bg-regal-deep [class*="text-regal/"] {
-    color: rgb(250 240 202 / 0.6);
+    color: rgb(var(--c-chiffon) / 0.6);
   }
 
   .bg-regal [class*="border-regal"],
   .bg-regal-deep [class*="border-regal"] {
-    border-color: rgb(250 240 202 / 0.22);
+    border-color: rgb(var(--c-chiffon) / 0.22);
   }
 
   .bg-regal [class*="bg-regal/"],
   .bg-regal-deep [class*="bg-regal/"] {
-    background-color: rgb(250 240 202 / 0.16);
+    background-color: rgb(var(--c-chiffon) / 0.16);
   }
 
   .bg-regal .text-redmark,
@@ -197,12 +211,12 @@
   .bg-regal-deep .hover\:text-redmark:hover,
   .bg-regal .group:hover .group-hover\:text-redmark,
   .bg-regal-deep .group:hover .group-hover\:text-redmark {
-    color: #ee6a60;
+    color: rgb(var(--c-lift));
   }
 
   .bg-regal svg .text-redmark,
   .bg-regal-deep svg .text-redmark {
-    color: #ee6a60;
+    color: rgb(var(--c-lift));
   }
 
 }
@@ -223,7 +237,7 @@
     width: 0.55em;
     height: 1em;
     margin-left: 2px;
-    background: #c8312b;
+    background: rgb(var(--c-redmark));
     transform: translateY(2px);
     animation: caret 1.05s steps(1) infinite;
   }

@@ -1,4 +1,5 @@
 import { useLayoutEffect } from "react";
+import { PaletteSwitcher } from "@/components/site/PaletteSwitcher";
 import { SplitDoor } from "@/motion/SplitDoor";
 import { usePageTitle } from "@/hooks/usePageTitle";
 
@@ -9,5 +10,10 @@ export default function Landing() {
     delete document.body.dataset.tone;
   }, []);
 
-  return <SplitDoor />;
+  return (
+    <>
+      <SplitDoor />
+      <PaletteSwitcher />
+    </>
+  );
 }
