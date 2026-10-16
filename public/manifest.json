@@ -1,27 +1,12 @@
 {
   "name": "Muhammad Ahmad - Portfolio",
   "short_name": "MA Portfolio",
-  "description": "Computer Engineering Student - Backend Developer & DevOps Enthusiast",
+  "description": "Computer engineer and freelance software engineer.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#00D9FF",
+  "background_color": "#FAF0CA",
+  "theme_color": "#0D3B66",
   "icons": [
-    {
-      "src": "/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
-    },
-    {
-      "src": "/favicon.webp",
-      "sizes": "192x192",
-      "type": "image/webp"
-    },
-    {
-      "src": "/favicon.webp",
-      "sizes": "512x512",
-      "type": "image/webp"
-    },
     {
       "src": "/favicon.ico",
       "sizes": "256x256",

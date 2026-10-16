@@ -19,9 +19,10 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['IBM Plex Sans', 'system-ui', 'sans-serif'],
-				serif: ['Sora', 'system-ui', 'sans-serif'],
-				mono: ['IBM Plex Mono', 'Consolas', 'monospace'],
+				editorial: ['"Instrument Serif"', 'Georgia', 'serif'],
+				sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+				serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+				mono: ['"IBM Plex Mono"', 'Consolas', 'monospace'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -29,7 +30,23 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
-				cream: '#E5E0D8',
+				regal: {
+					DEFAULT: '#0D3B66',
+					deep: '#071F36',
+					light: '#144B7E',
+					muted: '#2A5580',
+				},
+				chiffon: {
+					DEFAULT: '#FAF0CA',
+					light: '#FCF8E8',
+					warm: '#F5E6AC',
+					muted: '#E6DAB0',
+				},
+				redmark: '#C8312B',
+				/* Fixed inks that the .on-navy / .on-red helpers never remap: for text on chiffon buttons and fills. */
+				navy: '#0D3B66',
+				crimson: '#C8312B',
+				cream: '#FAF0CA',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))',

@@ -1,27 +1,34 @@
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useLayoutEffect } from "react";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
-const NotFound = () => {
-  const location = useLocation();
+export default function NotFound() {
+  usePageTitle("Not on the map — Muhammad Ahmad");
 
-  useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
-  }, [location.pathname]);
+  useLayoutEffect(() => {
+    delete document.body.dataset.tone;
+  }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          Return to Home
-        </a>
+    <main className="flex min-h-[100dvh] flex-col justify-between bg-chiffon px-6 py-8 text-regal md:px-10">
+      <p className="font-mono text-[11px] uppercase tracking-[0.24em]">Muhammad Ahmad</p>
+      <div>
+        <h1 className="font-serif text-[clamp(4rem,12vw,9rem)] leading-[0.84]">Unmapped.</h1>
+        <p className="mt-6 max-w-md text-base leading-relaxed opacity-80">
+          This address is not on the academic record or the freelance practice.
+        </p>
       </div>
-    </div>
+      <div className="flex flex-wrap gap-x-8 gap-y-3 font-mono text-[11px] uppercase tracking-[0.2em]">
+        <Link to="/" className="hover:text-redmark">
+          Index
+        </Link>
+        <Link to="/academic" className="hover:text-redmark">
+          Academic
+        </Link>
+        <Link to="/freelance" className="hover:text-redmark">
+          Freelance
+        </Link>
+      </div>
+    </main>
   );
-};
-
-export default NotFound;
+}

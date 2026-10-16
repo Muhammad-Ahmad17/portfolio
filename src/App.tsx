@@ -1,50 +1,63 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { ColorProvider } from "@/components/ColorProvider";
-import { KonamiCode } from "@/components/KonamiCode";
-import { ScrollSmoother } from "@/components/ScrollSmoother";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
-import AboutPage from "./pages/AboutPage";
-import ProjectsPage from "./pages/ProjectsPage";
-import SkillsPage from "./pages/SkillsPage";
-import ExperiencePage from "./pages/ExperiencePage";
-import ContactPage from "./pages/ContactPage";
-import BlogPage from "./pages/BlogPage";
-import BlogPostPage from "./pages/BlogPostPage";
+import { lazy, Suspense } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { CursorDot } from "@/motion/CursorDot";
+import { AcademicLayout } from "@/layouts/AcademicLayout";
+import { FreelanceLayout } from "@/layouts/FreelanceLayout";
+import Landing from "@/pages/Landing";
+import NotFound from "@/pages/NotFound";
+import AcademicOverview from "@/pages/academic/Overview";
+import Education from "@/pages/academic/Education";
+import AcademicProjects from "@/pages/academic/Projects";
+import AcademicSkills from "@/pages/academic/Skills";
+import FreelanceOverview from "@/pages/freelance/Overview";
+import Work from "@/pages/freelance/Work";
+import Services from "@/pages/freelance/Services";
+import Contact from "@/pages/freelance/Contact";
+const Blog = lazy(() => import("@/pages/freelance/Blog"));
+const BlogPost = lazy(() => import("@/pages/freelance/BlogPost"));
 
-const queryClient = new QueryClient();
+function NoteFallback() {
+  return (
+    <p className="px-6 py-24 font-mono text-[12px] uppercase tracking-[0.16em] opacity-60">Opening the notebook…</p>
+  );
+}
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="light" storageKey="portfolio-theme">
-      <ColorProvider defaultColor="blue" storageKey="portfolio-color-theme">
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <KonamiCode />
-          <ScrollSmoother />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/projects" element={<ProjectsPage />} />
-              <Route path="/skills" element={<SkillsPage />} />
-              <Route path="/experience" element={<ExperiencePage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/blog" element={<BlogPage />} />
-              <Route path="/blog/:slug" element={<BlogPostPage />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
-      </ColorProvider>
-    </ThemeProvider>
-  </QueryClientProvider>
+  <BrowserRouter>
+    <CursorDot />
+    <Routes>
+      <Route path="/" element={<Landing />} />
+      <Route path="/academic" element={<AcademicLayout />}>
+        <Route index element={<AcademicOverview />} />
+        <Route path="education" element={<Education />} />
+        <Route path="projects" element={<AcademicProjects />} />
+        <Route path="skills" element={<AcademicSkills />} />
+      </Route>
+      <Route path="/freelance" element={<FreelanceLayout />}>
+        <Route index element={<FreelanceOverview />} />
+        <Route path="work" element={<Work />} />
+        <Route path="services" element={<Services />} />
+        <Route path="contact" element={<Contact />} />
+        <Route
+          path="blog"
+          element={
+            <Suspense fallback={<NoteFallback />}>
+              <Blog />
+            </Suspense>
+          }
+        />
+        <Route
+          path="blog/:slug"
+          element={
+            <Suspense fallback={<NoteFallback />}>
+              <BlogPost />
+            </Suspense>
+          }
+        />
+      </Route>
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  </BrowserRouter>
 );
 
 export default App;
