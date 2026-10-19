@@ -129,7 +129,7 @@ export const academic = {
         "The deploy is the project. On every push GitHub Actions builds the Docker image, pushes it to a registry, and ships it to Oracle Cloud, with no manual step. Nginx in front, Node and Express behind, PostgreSQL for the data.",
       tags: ["Oracle Cloud", "Docker", "GitHub Actions", "Nginx", "Node.js", "Express", "PostgreSQL", "React"],
       links: [
-        { label: "Live", href: "https://cicd.aahmad.app/" },
+        { label: "Live", href: "https://cicd.aahmad.tech/" },
         { label: "Source", href: "https://github.com/Muhammad-Ahmad17/root" },
       ],
       art: "deploy",
