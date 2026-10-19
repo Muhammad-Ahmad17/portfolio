@@ -5,8 +5,8 @@ import { useSyncExternalStore } from "react";
   switching a palette is one pass of setProperty on <html>.
 
   Roles
-    a      the academic room (header, hero and footer on /academic) and the ink on paper
-    b      the freelance room (header, hero and bands on /freelance) and the accent on paper
+    a      the navy of the header, footer, and ink on paper
+    b      the red accent, and the red call bands
     paper  the page colour between header and footer
     ink    the dark accent that sits on the freelance room (strokes, kickers)
 

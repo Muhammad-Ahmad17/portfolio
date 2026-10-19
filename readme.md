@@ -1,8 +1,8 @@
 # Muhammad Ahmad — portfolio
 
-One site, two rooms: an **academic** record (`/academic`) and a **freelance** practice (`/freelance`), joined by a landing page (`/`).
+One site: a software engineer who is a computer engineer by degree. Pages are Home (`/`), Work, About, Services, Notes, and Contact. Older `/academic` and `/freelance` addresses redirect.
 
-Palette: regal navy `#0D3B66`, lemon chiffon `#FAF0CA`, red `#C8312B`. The academic side is chiffon with navy and red; the freelance side is navy and red with chiffon ink.
+Palette: regal navy `#0D3B66`, lemon chiffon `#FAF0CA`, red `#C8312B`. The page is chiffon with navy ink, a navy header and footer, and red accents.
 
 ## Stack
 
@@ -19,8 +19,8 @@ npm run lint
 
 ## Layout
 
-- `src/pages` — landing, `academic/*`, `freelance/*`
-- `src/layouts` — shared section frame and the two layouts
+- `src/pages` — Home, Work, About, Services, Notes, Contact
+- `src/layouts` — the single site frame
 - `src/components/site`, `src/motion`, `src/art` — shared pieces, motion helpers, hand-drawn art
 - `src/data` — person, academic and freelance content
 - `src/content/blogs` — Markdown notes, loaded by `src/lib/blog.ts`

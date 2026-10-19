@@ -65,7 +65,7 @@ export function LeatherFeature({ compact = false }: LeatherFeatureProps) {
             </a>
           ))}
           {compact && (
-            <Link to="/freelance/work" className="font-mono text-[12px] uppercase tracking-[0.2em] underline decoration-redmark underline-offset-[7px] hover:text-redmark">
+            <Link to="/work" className="font-mono text-[12px] uppercase tracking-[0.2em] underline decoration-redmark underline-offset-[7px] hover:text-redmark">
               The details
             </Link>
           )}

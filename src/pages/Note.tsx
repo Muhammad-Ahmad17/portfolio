@@ -44,7 +44,7 @@ export default function BlogPost() {
     return (
       <div className="px-6 py-24 md:px-10">
         <h1 className="font-serif text-5xl">This note is not here.</h1>
-        <Link to="/freelance/blog" className="mt-6 inline-block font-mono text-[11px] uppercase tracking-[0.18em] hover:text-redmark">
+        <Link to="/notes" className="mt-6 inline-block font-mono text-[11px] uppercase tracking-[0.18em] hover:text-redmark">
           Back to notes
         </Link>
       </div>
@@ -55,7 +55,7 @@ export default function BlogPost() {
     <FullScreenReveal>
       <header className="border-b border-regal/15 bg-chiffon px-6 pb-12 pt-16 text-regal md:px-10 lg:px-14">
         <div className="mx-auto max-w-[860px] border-t-4 border-redmark pt-6">
-          <Link to="/freelance/blog" className="font-mono text-[11px] uppercase tracking-[0.2em] text-redmark hover:opacity-75">
+          <Link to="/notes" className="font-mono text-[11px] uppercase tracking-[0.2em] text-redmark hover:opacity-75">
             ← Notes
           </Link>
           <h1 className="mt-5 font-serif text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.95] text-regal">{post.title}</h1>

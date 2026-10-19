@@ -22,18 +22,18 @@ export default function Contact() {
   return (
     <>
       <FullScreenReveal>
-        <section className="on-red border-b border-chiffon/25 bg-redmark px-6 pb-20 pt-16 text-chiffon md:px-10 lg:px-14">
-          <div className="mx-auto max-w-[1400px]">
-            <p className="font-mono text-[11px] uppercase tracking-[0.28em] opacity-80">04 — Contact</p>
+        <section className="border-b border-regal/15 bg-chiffon px-6 pb-20 pt-16 text-regal md:px-10 lg:px-14">
+          <div className="mx-auto max-w-[1400px] border-t-4 border-redmark pt-6">
+            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-redmark">05 — Contact</p>
             <h1 className="mt-5 max-w-5xl break-words font-serif text-[clamp(2.4rem,6.6vw,6rem)] leading-[0.95]">
-              <a href={`mailto:${person.email}`} className="hover:opacity-80">
+              <a href={`mailto:${person.email}`} className="hover:text-redmark">
                 <LetterRise text={person.email} stagger={0.02} />
               </a>
             </h1>
-            <div className="mt-4 w-40 text-navy">
+            <div className="mt-4 w-40 text-redmark">
               <StrokeDraw delay={0.9} />
             </div>
-            <p className="mt-8 max-w-md text-base leading-relaxed text-chiffon/90">
+            <p className="mt-8 max-w-md text-base leading-relaxed text-regal/85">
               Tell me what you sell, what it has to connect to, and when you need it. Or just ask for a free 15-minute call. {freelance.response}
             </p>
           </div>
@@ -46,7 +46,7 @@ export default function Contact() {
             {[
               ["Place", person.location],
               ["Phone", person.phone],
-              ["Status", freelance.availability],
+              ["Status", "Open for freelance and internships"],
             ].map(([label, value], index) => (
               <Rise key={label} delay={index * 0.06} className="border-t border-regal/15 pt-5">
                 <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-redmark">{label}</dt>

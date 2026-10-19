@@ -44,11 +44,10 @@ export default function Blog() {
   return (
     <FullScreenReveal>
       <PageHeader
-        tone="freelance"
-        index="05"
+        index="04"
         label="Notes"
         title="Field notes"
-        lede="Write-ups from the software side: deploys, pipelines, and things I had to learn in public."
+        lede="Write-ups from the work: deploys, pipelines, and things I had to learn in public."
       />
       <div className="px-6 pb-16 md:px-10 lg:px-14">
         <div className="mx-auto max-w-[1400px]">
@@ -90,7 +89,7 @@ export default function Blog() {
           <ul>
             {visible.map((post) => (
               <li key={post.slug} className="border-b border-regal/15">
-                <Link to={`/freelance/blog/${post.slug}`} className="group grid gap-3 py-8 md:grid-cols-12 md:items-baseline">
+                <Link to={`/notes/${post.slug}`} className="group grid gap-3 py-8 md:grid-cols-12 md:items-baseline">
                   <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-redmark md:col-span-3">
                     {formatDate(post.date)}
                     {post.featured ? "  ·  marked" : ""}

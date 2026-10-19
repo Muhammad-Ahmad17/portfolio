@@ -25,7 +25,6 @@ export default function Services() {
     <>
       <FullScreenReveal>
         <PageHeader
-          tone="freelance"
           index="03"
           label="Services"
           title="What I take on"

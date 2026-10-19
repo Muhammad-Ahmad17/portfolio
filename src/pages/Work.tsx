@@ -1,13 +1,16 @@
 import { CtaBand } from "@/components/site/CtaBand";
 import { LeatherFeature } from "@/components/site/LeatherFeature";
 import { PageHeader } from "@/components/site/PageHeader";
+import { ProjectStack } from "@/components/site/ProjectStack";
+import { academic } from "@/data/academic";
 import { freelance } from "@/data/freelance";
-import { person } from "@/data/person";
 import { usePageTitle } from "@/hooks/usePageTitle";
 import { CurtainSection } from "@/motion/CurtainSection";
 import { FullScreenReveal } from "@/motion/FullScreenReveal";
-import { MagneticLink } from "@/motion/MagneticLink";
 import { Rise } from "@/motion/Rise";
+
+const systemsProjects = academic.projects.filter((project) => project.track === "systems");
+const softwareProjects = academic.projects.filter((project) => project.track === "software");
 
 export default function Work() {
   usePageTitle("Work — Muhammad Ahmad");
@@ -17,11 +20,10 @@ export default function Work() {
     <>
       <FullScreenReveal>
         <PageHeader
-          tone="freelance"
-          index="02"
+          index="01"
           label="Work"
           title="Shipped"
-          lede="A live storefront for a real business. Study projects, boards, and cloud experiments are kept with the academic record."
+          lede="A live storefront, an internship, and the projects from the degree: boards, pipelines, and the software built beside them."
         />
       </FullScreenReveal>
 
@@ -31,7 +33,7 @@ export default function Work() {
         </div>
       </div>
 
-      <CurtainSection curtain="chiffon" className="on-red border-t border-chiffon/25 bg-redmark px-6 py-20 text-chiffon md:px-10 lg:px-14">
+      <CurtainSection curtain="navy" className="on-navy border-t border-chiffon/20 bg-regal px-6 py-20 text-chiffon md:px-10 lg:px-14">
         <div className="mx-auto grid max-w-[1400px] gap-10 md:grid-cols-12">
           <Rise className="md:col-span-3">
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-redmark">Employment</p>
@@ -57,27 +59,27 @@ export default function Work() {
         </div>
       </CurtainSection>
 
-      <CurtainSection curtain="warm" className="border-t border-regal/15 px-6 py-20 md:px-10 lg:px-14">
-        <div className="mx-auto grid max-w-[1400px] gap-10 md:grid-cols-12">
-          <Rise className="md:col-span-3">
-            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-redmark">Tools on this side</p>
+      <div className="px-6 pt-16 md:px-10 lg:px-14">
+        <div className="mx-auto max-w-[1400px]">
+          <Rise className="mb-10 border-b border-regal/20 pb-6">
+            <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-redmark">Track A</p>
+            <h2 className="mt-2 font-serif text-[clamp(2rem,4vw,3.2rem)] leading-none">Hardware & systems</h2>
+            <p className="mt-3 max-w-md text-sm opacity-75">The degree: boards, signals, and pipelines.</p>
           </Rise>
-          <ul className="grid gap-x-10 sm:grid-cols-2 md:col-span-9">
-            {freelance.skills.map((item, index) => (
-              <Rise key={item.name} as="li" delay={(index % 4) * 0.04} className="flex items-baseline justify-between gap-4 border-t border-regal/15 py-3">
-                <span className="text-sm">
-                  <span className="mr-3 font-mono text-[11px] text-redmark">{String(index + 1).padStart(2, "0")}</span>
-                  {item.name}
-                </span>
-                <span className="font-mono text-[10px] uppercase tracking-[0.16em] opacity-55">{item.note}</span>
-              </Rise>
-            ))}
-          </ul>
+          <ProjectStack projects={systemsProjects} />
         </div>
-        <p className="mx-auto mt-10 max-w-[1400px] font-mono text-[11px] uppercase tracking-[0.18em]">
-          <MagneticLink href={person.social.github}>More on GitHub ↗</MagneticLink>
-        </p>
-      </CurtainSection>
+      </div>
+
+      <div id="software" className="scroll-mt-24 px-6 pb-20 pt-8 md:px-10 lg:px-14">
+        <div className="mx-auto max-w-[1400px]">
+          <Rise className="mb-10 border-b border-regal/20 pb-6">
+            <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-redmark">Track B</p>
+            <h2 className="mt-2 font-serif text-[clamp(2rem,4vw,3.2rem)] leading-none">Software, in parallel</h2>
+            <p className="mt-3 max-w-md text-sm opacity-75">Built alongside the same semesters.</p>
+          </Rise>
+          <ProjectStack projects={softwareProjects} />
+        </div>
+      </div>
 
       <CtaBand />
     </>

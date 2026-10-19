@@ -9,6 +9,6 @@ export const person = {
     github: "https://github.com/muhammad-ahmad17",
     linkedin: "https://linkedin.com/in/muhammad-ahmad17",
     leetcode: "https://leetcode.com/muhammad-ahmad17",
-    site: "https://aahmad.app",
+    site: "https://aahmad.tech",
   },
 } as const;

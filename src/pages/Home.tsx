@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
+import { BenchDrawing } from "@/art/BenchDrawing";
 import { DeskDrawing } from "@/art/DeskDrawing";
 import { GroupIcon } from "@/art/GroupIcon";
 import { ListenGlyph, ShapeGlyph, ShipGlyph, SoftwareGlyph } from "@/art/Glyphs";
 import { CtaBand } from "@/components/site/CtaBand";
 import { LeatherFeature } from "@/components/site/LeatherFeature";
 import { ResumeButton } from "@/components/site/ResumeButton";
+import { academic } from "@/data/academic";
 import { freelance } from "@/data/freelance";
+import { profile } from "@/data/profile";
 import { usePageTitle } from "@/hooks/usePageTitle";
 import { CircuitField } from "@/motion/CircuitField";
 import { CurtainSection } from "@/motion/CurtainSection";
@@ -18,9 +21,10 @@ import { WordScene } from "@/motion/WordScene";
 
 const glyphs = [ListenGlyph, ShapeGlyph, SoftwareGlyph, ShipGlyph];
 const sceneItems = freelance.process.map((item, index) => ({ word: `${item.step}.`, note: item.text, Art: glyphs[index] }));
+const featured = academic.projects.slice(0, 3);
 
-export default function Overview() {
-  usePageTitle("Software Engineer — Muhammad Ahmad");
+export default function Home() {
+  usePageTitle("Muhammad Ahmad — Software Engineer");
 
   return (
     <>
@@ -34,9 +38,8 @@ export default function Overview() {
               <div className="flex items-center justify-between gap-4">
                 <p className="inline-flex items-center gap-2.5 bg-redmark px-3 py-1 font-mono text-[10px] uppercase tracking-[0.26em] text-chiffon">
                   <span className="inline-block h-1.5 w-1.5 bg-chiffon" />
-                  Freelance · Software engineer
+                  Lahore · available remotely
                 </p>
-                <span className="hidden font-mono text-[10px] uppercase tracking-[0.22em] text-regal/60 sm:inline">02 / PRACTICE</span>
               </div>
               <div>
                 <h1 className="font-serif text-[clamp(3.5rem,10.5vw,9rem)] leading-[0.82] tracking-[-0.045em] text-regal">
@@ -50,17 +53,18 @@ export default function Overview() {
                 <div className="mt-3 w-36 text-redmark md:w-48">
                   <StrokeDraw delay={0.75} />
                 </div>
-                <p className="mt-8 max-w-md text-base leading-relaxed text-regal/85 md:text-lg">{freelance.lede}</p>
+                <p className="mt-6 max-w-lg font-mono text-[11px] uppercase leading-5 tracking-[0.14em] text-regal/75">{profile.credential}</p>
+                <p className="mt-6 max-w-md text-base leading-relaxed text-regal/85 md:text-lg">{profile.lede}</p>
                 <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5">
                   <Link
-                    to="/freelance/contact"
+                    to="/contact"
                     className="bg-redmark px-7 py-3.5 font-mono text-[12px] uppercase tracking-[0.2em] text-chiffon transition-opacity hover:opacity-85"
                   >
                     Start a project
                   </Link>
                   <ResumeButton variant="ghost" />
                   <Link
-                    to="/freelance/work"
+                    to="/work"
                     className="font-mono text-[12px] uppercase tracking-[0.2em] text-regal underline decoration-redmark underline-offset-[7px] hover:text-redmark"
                   >
                     See the work
@@ -76,7 +80,7 @@ export default function Overview() {
               <div className="flex items-end justify-between gap-6 border-t border-regal/15 pt-5">
                 <p className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-regal">
                   <span className="inline-block h-2 w-2 bg-redmark" />
-                  {freelance.availability}
+                  {profile.availability}
                 </p>
                 <div className="hidden items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-regal sm:flex">
                   Scroll
@@ -99,22 +103,66 @@ export default function Overview() {
 
       <MarqueeLine items={freelance.marquee} className="border-regal/20 bg-chiffon-warm text-regal" />
 
-      <WordScene
-        items={sceneItems}
-        className="bg-chiffon text-regal"
-        wordClass="text-redmark"
-        numberClass="text-regal"
-      />
+      <WordScene items={sceneItems} className="bg-chiffon text-regal" wordClass="text-redmark" numberClass="text-regal" />
 
       <CurtainSection curtain="red" className="border-t border-regal/15 bg-chiffon-light px-6 py-24 md:px-10 lg:px-14">
         <div className="mx-auto max-w-[1400px]">
           <Rise className="mb-12 flex items-end justify-between gap-6">
             <h2 className="font-serif text-4xl md:text-6xl">Selected work</h2>
-            <Link to="/freelance/work" className="font-mono text-[11px] uppercase tracking-[0.18em] hover:text-redmark">
+            <Link to="/work" className="font-mono text-[11px] uppercase tracking-[0.18em] hover:text-redmark">
               All of it
             </Link>
           </Rise>
           <LeatherFeature compact />
+          <ul className="mt-16 border-t border-regal/15">
+            {featured.map((project, index) => (
+              <Rise key={project.title} as="li" delay={index * 0.05}>
+                <Link to="/work" className="group grid gap-2 border-b border-regal/15 py-5 md:grid-cols-12 md:items-baseline">
+                  <span className="font-mono text-[11px] tracking-[0.16em] text-redmark md:col-span-1">{project.index}</span>
+                  <span className="font-serif text-2xl transition-transform duration-500 group-hover:translate-x-2 md:col-span-7 md:text-3xl">
+                    {project.title}
+                  </span>
+                  <span className="font-mono text-[11px] uppercase tracking-[0.14em] opacity-60 md:col-span-4 md:text-right">
+                    {project.domain}
+                  </span>
+                </Link>
+              </Rise>
+            ))}
+          </ul>
+        </div>
+      </CurtainSection>
+
+      <CurtainSection curtain="navy" className="border-t border-regal/15 px-6 py-24 md:px-10 lg:px-14">
+        <div className="mx-auto grid max-w-[1400px] items-center gap-12 lg:grid-cols-12">
+          <Rise className="lg:col-span-5">
+            <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-redmark">From the board to the cloud</p>
+            <h2 className="mt-4 font-serif text-[clamp(2.2rem,4vw,3.6rem)] leading-[1.02]">The degree sits under the software.</h2>
+            <p className="mt-5 max-w-md text-base leading-relaxed opacity-80">{academic.lede}</p>
+            <dl className="mt-8 grid grid-cols-2 gap-6 border-t border-regal/15 pt-6">
+              <div>
+                <dt className="font-mono text-[11px] uppercase tracking-[0.2em] text-redmark">CGPA</dt>
+                <dd className="mt-2 font-serif text-4xl">{academic.cgpa}</dd>
+              </div>
+              <div>
+                <dt className="font-mono text-[11px] uppercase tracking-[0.2em] text-redmark">Now</dt>
+                <dd className="mt-2 font-serif text-4xl">{academic.semester}</dd>
+              </div>
+            </dl>
+            <Link
+              to="/about"
+              className="mt-8 inline-block font-mono text-[12px] uppercase tracking-[0.18em] underline decoration-redmark underline-offset-[7px] hover:text-redmark"
+            >
+              The record
+            </Link>
+          </Rise>
+          <div className="lg:col-span-7">
+            <div className="border border-regal/25 bg-chiffon-light p-5 shadow-[8px_8px_0_0_rgb(var(--c-regal))] md:p-7">
+              <p className="mb-3 border-b border-regal/15 pb-2.5 font-mono text-[10px] uppercase tracking-[0.22em] text-regal/70">
+                FIG. 01 — HARDWARE BENCH
+              </p>
+              <BenchDrawing className="h-auto w-full" />
+            </div>
+          </div>
         </div>
       </CurtainSection>
 
@@ -122,7 +170,7 @@ export default function Overview() {
         <div className="mx-auto max-w-[1400px]">
           <Rise className="mb-10 flex items-end justify-between gap-6">
             <h2 className="font-serif text-4xl md:text-6xl">What I take on</h2>
-            <Link to="/freelance/services" className="font-mono text-[11px] uppercase tracking-[0.18em] hover:text-redmark">
+            <Link to="/services" className="font-mono text-[11px] uppercase tracking-[0.18em] hover:text-redmark">
               All services
             </Link>
           </Rise>
@@ -130,7 +178,7 @@ export default function Overview() {
             {freelance.services.map((service, index) => (
               <Rise key={service.index} as="li" delay={(index % 3) * 0.05}>
                 <Link
-                  to="/freelance/services"
+                  to="/services"
                   className="group grid grid-cols-[auto_1fr] items-center gap-x-6 border-t border-regal/15 py-4 hover:text-redmark md:grid-cols-12"
                 >
                   <span className="font-mono text-[11px] tracking-[0.16em] text-redmark md:col-span-1">{service.index}</span>

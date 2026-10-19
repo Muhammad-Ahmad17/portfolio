@@ -1,60 +1,65 @@
 import { lazy, Suspense } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useParams } from "react-router-dom";
+import { SiteLayout } from "@/layouts/SiteLayout";
 import { CursorDot } from "@/motion/CursorDot";
-import { AcademicLayout } from "@/layouts/AcademicLayout";
-import { FreelanceLayout } from "@/layouts/FreelanceLayout";
-import Landing from "@/pages/Landing";
+import About from "@/pages/About";
+import Contact from "@/pages/Contact";
+import Home from "@/pages/Home";
 import NotFound from "@/pages/NotFound";
-import AcademicOverview from "@/pages/academic/Overview";
-import Education from "@/pages/academic/Education";
-import AcademicProjects from "@/pages/academic/Projects";
-import AcademicSkills from "@/pages/academic/Skills";
-import FreelanceOverview from "@/pages/freelance/Overview";
-import Work from "@/pages/freelance/Work";
-import Services from "@/pages/freelance/Services";
-import Contact from "@/pages/freelance/Contact";
-const Blog = lazy(() => import("@/pages/freelance/Blog"));
-const BlogPost = lazy(() => import("@/pages/freelance/BlogPost"));
+import Services from "@/pages/Services";
+import Work from "@/pages/Work";
+
+const Notes = lazy(() => import("@/pages/Notes"));
+const Note = lazy(() => import("@/pages/Note"));
 
 function NoteFallback() {
-  return (
-    <p className="px-6 py-24 font-mono text-[12px] uppercase tracking-[0.16em] opacity-60">Opening the notebook…</p>
-  );
+  return <p className="px-6 py-24 font-mono text-[12px] uppercase tracking-[0.16em] opacity-60">Opening the notebook…</p>;
+}
+
+function NoteRedirect() {
+  const { slug = "" } = useParams();
+  return <Navigate to={`/notes/${slug}`} replace />;
 }
 
 const App = () => (
   <BrowserRouter>
     <CursorDot />
     <Routes>
-      <Route path="/" element={<Landing />} />
-      <Route path="/academic" element={<AcademicLayout />}>
-        <Route index element={<AcademicOverview />} />
-        <Route path="education" element={<Education />} />
-        <Route path="projects" element={<AcademicProjects />} />
-        <Route path="skills" element={<AcademicSkills />} />
-      </Route>
-      <Route path="/freelance" element={<FreelanceLayout />}>
-        <Route index element={<FreelanceOverview />} />
-        <Route path="work" element={<Work />} />
-        <Route path="services" element={<Services />} />
-        <Route path="contact" element={<Contact />} />
+      <Route element={<SiteLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/work" element={<Work />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/contact" element={<Contact />} />
         <Route
-          path="blog"
+          path="/notes"
           element={
             <Suspense fallback={<NoteFallback />}>
-              <Blog />
+              <Notes />
             </Suspense>
           }
         />
         <Route
-          path="blog/:slug"
+          path="/notes/:slug"
           element={
             <Suspense fallback={<NoteFallback />}>
-              <BlogPost />
+              <Note />
             </Suspense>
           }
         />
       </Route>
+
+      <Route path="/academic" element={<Navigate to="/about" replace />} />
+      <Route path="/academic/education" element={<Navigate to="/about" replace />} />
+      <Route path="/academic/skills" element={<Navigate to="/about" replace />} />
+      <Route path="/academic/projects" element={<Navigate to="/work" replace />} />
+      <Route path="/freelance" element={<Navigate to="/" replace />} />
+      <Route path="/freelance/work" element={<Navigate to="/work" replace />} />
+      <Route path="/freelance/services" element={<Navigate to="/services" replace />} />
+      <Route path="/freelance/contact" element={<Navigate to="/contact" replace />} />
+      <Route path="/freelance/blog" element={<Navigate to="/notes" replace />} />
+      <Route path="/freelance/blog/:slug" element={<NoteRedirect />} />
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   </BrowserRouter>

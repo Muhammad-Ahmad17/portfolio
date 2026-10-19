@@ -43,7 +43,7 @@ export function CtaBand({ title = "Have a store, an API, or a payment flow to bu
               {person.email}
             </MagneticLink>
             <Link
-              to="/freelance/services"
+              to="/services"
               className="font-mono text-[12px] uppercase tracking-[0.2em] underline decoration-chiffon/60 underline-offset-[7px] hover:opacity-70"
             >
               What I take on

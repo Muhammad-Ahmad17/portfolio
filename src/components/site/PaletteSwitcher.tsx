@@ -15,7 +15,7 @@ function Swatches({ palette }: { palette: Palette }) {
 }
 
 /* A temporary picker for comparing colour trios. The choice is kept in localStorage and applies to the whole site. */
-export function PaletteSwitcher() {
+export function PaletteSwitcher({ inline = false }: { inline?: boolean }) {
   const current = usePalette();
   const [open, setOpen] = useState(false);
   const box = useRef<HTMLDivElement>(null);
@@ -39,7 +39,10 @@ export function PaletteSwitcher() {
   return (
     <div
       ref={box}
-      className="fixed bottom-4 right-4 z-[55] flex flex-col-reverse items-end gap-2 md:bottom-auto md:left-1/2 md:right-auto md:top-4 md:-translate-x-1/2 md:flex-col md:items-center"
+      className={cn(
+        "flex flex-col-reverse items-end gap-2",
+        inline ? "relative z-20" : "fixed bottom-4 right-4 z-[55] md:bottom-auto md:left-1/2 md:right-auto md:top-4 md:-translate-x-1/2 md:flex-col md:items-center"
+      )}
     >
       <button
         type="button"
