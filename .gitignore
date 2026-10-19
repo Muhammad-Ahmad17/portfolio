@@ -32,3 +32,8 @@ nohup.out
 tmp
 *.tsbuildinfo
 create_excel.py
+
+# LaTeX build output
+*.aux
+*.out
+*.synctex.gz
